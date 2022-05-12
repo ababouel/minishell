@@ -6,13 +6,14 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 23:46:36 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/13 00:52:51 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/13 00:57:42 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
 
+# define WHITESP	" \t\r\n\v"
 # define PIPE		"|"
 # define AMPAND		"&"
 # define SINQTE		"'"
