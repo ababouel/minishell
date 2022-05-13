@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/13 15:56:05 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:20:28 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 
 char	**ft_split(char const *s, char c);
 size_t	ft_strlen(const char *s);
-in		tft_strncmp(const char *s1, const char *s2, size_t n);
+int     ft_strncmp(const char *s1, const char *s2, size_t n);
+
 #endif
