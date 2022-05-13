@@ -1,0 +1,6 @@
+make: Entering directory `/Users/ababouel/Desktop/minishell'
+ 
+make: Leaving directory `/Users/ababouel/Desktop/minishell'
+ 
+Makefile:28: *** missing separator.  Stop.
+

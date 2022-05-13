@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.h                                              :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/13 15:56:05 by ababouel         ###   ########.fr       */
+/*   Created: 2022/05/13 15:47:35 by ababouel          #+#    #+#             */
+/*   Updated: 2022/05/13 15:49:41 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_H
-# define LIB_H
+#include "../inc/lib.h"
 
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <readline/history.h>
-# include <readline/readline.h>
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	index;
 
-char	**ft_split(char const *s, char c);
-size_t	ft_strlen(const char *s);
-in		tft_strncmp(const char *s1, const char *s2, size_t n);
-#endif
+	index = 0;
+	if (n == 0)
+		return (0);
+	while (s1[index] && s2[index] && s1[index] == s2[index] && index < n - 1)
+		index++;
+	return ((unsigned char)s1[index] - (unsigned char)s2[index]);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len] != '\0')
+	{
+		len++;
+	}
+	return (len);
+}

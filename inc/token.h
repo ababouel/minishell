@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 23:46:36 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/13 00:57:42 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:41:34 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@
 # define AND_IF		"&&"
 # define AND_OR		"||"
 # define DEXCLAM	"$?"
-# define OTHER		"a"
+# define OTHER		"word"
 # define EOL		'\0'
 
 typedef struct s_token
 {
+	int		id;
 	char	*type;
 	char	*value;	
 }	t_token;
