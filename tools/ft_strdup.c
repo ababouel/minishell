@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lsnode.h                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/13 20:30:51 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/14 00:47:15 by ababouel         ###   ########.fr       */
+/*   Created: 2022/05/14 00:45:20 by ababouel          #+#    #+#             */
+/*   Updated: 2022/05/14 00:45:37 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LSNODE_H
-# define LSNODE_H
-
 #include "lib.h"
 
-typedef struct	s_node
+char	*ft_strdup(const char *s)
 {
-	void			*value;
-	struct s_node	*next;
-}	t_node;
+	char	*data;
+	int		index;
 
-typedef struct s_lsnode
-{
-	int			size;
-	t_node	*head;
-	t_node	*tail; 
-}	t_lsnode;
-
-int		ins_next_node(t_lsnode *stack, t_node *node, void *data);
-void	init_stack(t_lsnode *stack);
-void	ft_freestack(t_lsnode *sk);
-
-#endif
+	data = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!data)
+		return (0);
+	index = 0;
+	while (s[index])
+	{
+		data[index] = s[index];
+		index++;
+	}
+	data[index] = '\0';
+	return (data);
+}

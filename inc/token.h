@@ -6,12 +6,15 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 23:46:36 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/13 19:58:20 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/14 00:33:04 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
+
+# include "lib.h"
+# include "lsnode.h"
 
 # define WHITESP	" \t\r\n\v"
 # define PIPE		"|"
@@ -43,21 +46,7 @@ typedef struct s_token
 	char	*value;	
 }	t_token;
 
-struct s_nodetoken
-{
-    t_token             *token;
-    struct s_nodetoken    *next;
-}   t_nodetok;
-
-struct s_lstok
-{
-    int			size;
-	t_nodetok	*head;
-	t_nodetok	*tail; 
-}   t_lstok;
-
-t_token	*init_token(char *type, char *value);
-t_token	*insert_lstok(t_lstok *)
-int		chektok(char *str, char **type);
+t_token	*init_token(const char *type, char *value);
+int		chektok(t_lsnode *lstok, char *str, const char **type);
 
 #endif

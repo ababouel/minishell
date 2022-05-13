@@ -1,6 +1,8 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/ababouel/Desktop/minishell'
+printf "\e[33;2;37m-COMPILING Minishell...\n"
+cc -Wall -Werror -Wextra  build/main.o build/parse/lexer.o build/parse/token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o -o minishell
+ 
+printf "\033[0;32mDone !"
 make: Leaving directory `/Users/ababouel/Desktop/minishell'
  
-Makefile:28: *** missing separator.  Stop.
-

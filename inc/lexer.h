@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:20:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/13 19:58:29 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/14 00:26:11 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "token.h"
 
-void    init_lexer(char *line, t_lstok *lstok);
+void    init_lexer(char *line, t_lsnode *lstok);
 
 #endif

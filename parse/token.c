@@ -6,35 +6,33 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:42:42 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/13 19:43:59 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/14 00:41:56 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lib.h"
 #include "../inc/token.h"
-#include "../inc/lexer.h"
 
-t_token	*init_token(char *type, char *value)
+t_token	*init_token(const char *type, char *value)
 {
 	t_token	*tok;
 	tok = malloc(sizeof(t_token));
-	tok->type = type;
+	tok->type = (char *)type;
 	tok->value = value;
 	return (tok);
 }
 
-int	chektok(t_lstoken lstok,char *str, char **type)
+int	chektok(t_lsnode *lstok,char *str, const char **type)
 {
     size_t  size;
     int     x;
 
-    size = ft_strlen(str);
     x = 0;
+    size = ft_strlen(str);
     while (type[x])
     {
         if (ft_strncmp(str,type[x],size) == 0)
         {
-            init_token(type, str);
+            ins_next_node(lstok,lstok->head->next,(void *) init_token(type[x], str));
             return (1);
         }
         x++;

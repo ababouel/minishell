@@ -6,13 +6,13 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:27:31 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/13 00:44:30 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/14 00:55:50 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
-# include "lexer.h"
+#include "lib.h"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:15:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/13 20:33:11 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/14 00:48:36 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ int ins_next_node(t_lsnode *stack, t_node *node, void *data)
 	new_node = malloc(sizeof(t_node));
 	if (new_node == NULL)
 		return (-1);
-	new_node->data = data;
-	new_node->index = 0;
-	new_node->check = 0;
+	new_node->value = data;
 	if (node == NULL)
 	{
 		if (stack->size == 0)
