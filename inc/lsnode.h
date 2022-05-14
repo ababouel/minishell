@@ -6,14 +6,12 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:30:51 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/14 00:47:15 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/14 01:26:16 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LSNODE_H
 # define LSNODE_H
-
-#include "lib.h"
 
 typedef struct	s_node
 {

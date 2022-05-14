@@ -6,11 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:33:48 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/13 15:34:32 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/14 01:28:08 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lib.h"
+#include "../inc/minishell.h"
 
 static int	nbrword(char const *s, char c)
 {

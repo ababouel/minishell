@@ -2,7 +2,10 @@
     "makefile.extensionOutputFolder": "./.vscode",
     "files.associations": {
         "lexer.h": "c",
-        "minishell.h": "c"
+        "minishell.h": "c",
+        "lib.h": "c",
+        "token.h": "c",
+        "lsnode.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
