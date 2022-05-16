@@ -6,42 +6,75 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:42:42 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/14 01:51:24 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/16 23:36:41 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/token.h"
 
-const char *symb[] = {
-		WHITESP,PIPE,AMPAND,SINQTE,
+static const char *symb[] = {
+        PIPE,AMPAND,SINQTE,
 		ASTERK,DQUOTE,DOLLAR,RINPUT,
-		ROUTPUT,ROUTAPP,RINDELI,AND_IF,
-		AND_OR,DEXCLAM,OTHER,EOL};
+		ROUTPUT,EXCLAM,OTHER,EOL};
         
-t_token *init_token(int num,char *value)
+t_token *init_token(const char *type,char *value)
 {
     t_token *tok;
+	
     tok = malloc(sizeof(t_token));
-    tok->type = (char *) symb[num];
-     tok->value = value;
-     return (tok);
+    tok->type = (char *)type;
+    tok->value = value;
+    return (tok);
  }
- 
- int chektok(t_lsnode *lstok,char *str)
- {
-     size_t  size;
-     int     x;
- 
-     x = 0;
-     size = ft_strlen(str);
-     while (symb[x])
-     {
-        if (ft_strncmp(str,symb[x],size) == 0)
-         {
-             ins_next_node(lstok, lstok->head->next,(void *) init_token(x, str));
-             return (1);
-         }
-         x++;
+
+int	checkdata(t_lsnode *lstok ,char str, const char **symb)
+{
+	int	x;
+	int y;
+
+	x = 0;
+	while (symb[x])
+	{
+		y = 0;
+		while (symb[x][y])
+		{
+			if (symb[x][y] == str)
+			{
+				token = init_token(symb[x], &str);
+				ins_next_node(lstok, (void *) token);
+				return (1);
+			}
+			y++;
+		}
+		x++;
+	}
+	return (0);
+}
+
+int chektok(t_lsnode *lstok,char *str)
+{
+	int	x;
+	int    y;
+	t_token *token;
+
+	x = 0;
+	while (symb[x])
+	{
+		y = 0;
+		while (str[y])
+		{
+			y += checkdata(str[y], symb);
+            if (ft_strncmp(&str[y],symb[x]) == 0)
+            {
+				token = init_token(symb[x], &str[y]);
+				ins_next_node(lstok, (void *) token);
+				return (1);
+			}
+			y++;
+		}
+		x++;
      }
-    return (0);
+	 token = init_token(symb[9], str);
+	 ins_next_node(lstok, (void *) token);
+     return (0);
 }

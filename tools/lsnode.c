@@ -6,11 +6,12 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:15:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/14 01:29:04 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/16 22:38:19 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../inc/lib.h"
+#include "../inc/lsnode.h"
 
 void	init_stack(t_lsnode *stack)
 {
@@ -19,27 +20,29 @@ void	init_stack(t_lsnode *stack)
 	stack->tail = NULL;
 }
 
-int ins_next_node(t_lsnode *stack, t_node *node, void *data)
+int ins_next_node(t_lsnode *stack, void *data)
 {
 	t_node	*new_node;
+	t_node	*temp;
 	
+	temp = NULL;
 	new_node = malloc(sizeof(t_node));
 	if (new_node == NULL)
 		return (-1);
 	new_node->value = data;
-	if (node == NULL)
+	new_node->next = NULL;
+	if (stack->head == NULL)
 	{
-		if (stack->size == 0)
-			stack->tail = new_node;
-		new_node->next = stack->head;
 		stack->head = new_node;
+		stack->tail = new_node;
 	}
 	else
 	{
-		if (node->next == NULL)
-			stack->tail = new_node;
-		new_node->next = node->next;
-		node->next = new_node;
+		temp = stack->head;
+		while (temp->next)
+			temp = temp->next;	
+		temp->next = new_node;
+		stack->tail = new_node;
 	}
 	stack->size++;
 	return (0);
@@ -56,4 +59,15 @@ void	ft_freestack(t_lsnode *sk)
 		free(node);
 	}
 	free(sk);
+}
+
+unsigned int is_delim(char c, char *delim)
+{
+    while(*delim != '\0')
+    {
+        if(c == *delim)
+            return 1;
+        delim++;
+    }
+    return 0;
 }

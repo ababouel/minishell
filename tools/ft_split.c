@@ -6,13 +6,13 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:33:48 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/14 01:28:08 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/15 00:57:27 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../inc/lib.h"
 
-static int	nbrword(char const *s, char c)
+static int	nbrword(char const *s, char *delim)
 {
 	int	status;
 	int	nbr;
@@ -21,7 +21,7 @@ static int	nbrword(char const *s, char c)
 	nbr = 0;
 	while (*s)
 	{
-		if (*s == c)
+		if (is_delim(*s, delim))
 			status = 0;
 		else if (status == 0)
 		{
@@ -33,7 +33,7 @@ static int	nbrword(char const *s, char c)
 	return (nbr);
 }
 
-static char	*repchz(char const *s, char c, char rech)
+static char	*repchz(char const *s, char *c, char rech)
 {
 	size_t	i;
 	char	*str;
@@ -42,7 +42,7 @@ static char	*repchz(char const *s, char c, char rech)
 	str = ft_strdup(s);
 	while (str[i])
 	{
-		if (str[i] == c)
+		if (is_delim(str[i], c))
 			str[i] = rech;
 		i++;
 	}
@@ -90,7 +90,7 @@ static char	**injectdata(char **data, char const *s, char *str)
 	return (data);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char *c)
 {
 	char	**data;
 	char	*str;
