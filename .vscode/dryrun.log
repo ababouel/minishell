@@ -1,19 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/ababouel/Desktop/minishell'
-mkdir -p build
-cc -Wall -Werror -Wextra  -c main.c -o build/main.o -I ./inc 
-mkdir -p build/parse
-cc -Wall -Werror -Wextra  -c parse/lexer.c -o build/parse/lexer.o -I ./inc 
-mkdir -p build/parse
-cc -Wall -Werror -Wextra  -c parse/token.c -o build/parse/token.o -I ./inc 
-mkdir -p build/tools
-cc -Wall -Werror -Wextra  -c tools/ft_split.c -o build/tools/ft_split.o -I ./inc 
-mkdir -p build/tools
-cc -Wall -Werror -Wextra  -c tools/ft_strncmp.c -o build/tools/ft_strncmp.o -I ./inc 
-mkdir -p build/tools
-cc -Wall -Werror -Wextra  -c tools/lsnode.c -o build/tools/lsnode.o -I ./inc 
-mkdir -p build/tools
-cc -Wall -Werror -Wextra  -c tools/ft_strdup.c -o build/tools/ft_strdup.o -I ./inc 
 printf "\e[33;2;37m-COMPILING Minishell...\n"
 cc -Wall -Werror -Wextra  build/main.o build/parse/lexer.o build/parse/token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o -o minishell
 printf "\033[0;32mDone !"

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:45:20 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/14 01:28:20 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:56:21 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,11 @@ char	*ft_strdup(const char *s)
 	}
 	data[index] = '\0';
 	return (data);
+}
+
+int	isalpha(char c)
+{
+	if (('A' <= c <= 'Z') || 'a' <= c <= 'z')
+		return (1);
+	return (0);
 }

@@ -6,12 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:15:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/16 22:38:19 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:31:56 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lib.h"
-#include "../inc/lsnode.h"
 
 void	init_stack(t_lsnode *stack)
 {

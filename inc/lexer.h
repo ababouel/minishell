@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:20:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/14 01:44:42 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/17 19:13:49 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 
 #include "token.h"
 
-void    init_lexer(char *line, t_lsnode *lstok);
+typedef struct s_lexer
+{
+    char			*src;
+    size_t			size;
+    char			c;
+    unsigned int	i;
+}   t_lexer;
+
+t_lexer	init_lexer(char *line);
+void	lexer_advance(t_lexer *lexer);
+t_token	*lexer_next_token(t_lexer *lexer);
+t_token *lexer_parse_id(t_lexer *lexer);
 
 #endif
