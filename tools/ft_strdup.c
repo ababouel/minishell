@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:45:20 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/17 16:56:21 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/17 23:03:26 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,23 @@ char	*ft_strdup(const char *s)
 	return (data);
 }
 
-int	isalpha(char c)
+int	is_alpha(char c)
 {
-	if (('A' <= c <= 'Z') || 'a' <= c <= 'z')
+	if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
 		return (1);
 	return (0);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned int	x;
+	unsigned char	*str;
+
+	x = 0;
+	str = s;
+	while (x < n)
+	{
+		str[x] = (unsigned char ) 0;
+		x++;
+	}
 }

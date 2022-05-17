@@ -6,7 +6,7 @@
 #    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
-#    Updated: 2022/05/14 01:41:29 by ababouel         ###   ########.fr        #
+#    Updated: 2022/05/17 22:40:51 by ababouel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,13 @@ GREEN = \033[0;32m
 CC = cc
 CFLAGS = -Wall -Werror -Wextra 
 BDIR = build
-FILES = main parse/lexer parse/token\
+FILES = main parse/lexer parse/lexerbis parse/token\
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup
 		
 NAME = minishell
 OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))
 INC = -I ./inc 
-HEADERS = inc/minishell.h inc/lib.h inc/token.h inc/lsnode.h inc/lexer.h
+HEADERS = inc/minishell.h inc/lib.h inc/token.h  inc/lexer.h
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/15 01:04:07 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/18 00:02:47 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,22 @@
 int main(void)
 {
     t_lsnode	lstok;
+	t_lexer		*lexer;
     char		*line;
 	t_node 		*node;
 	t_token		*token;
-	line = "ls	-la	|	grep	$(philipe) >> data	| \n wc -l";
+	line = "ls	-la	| grep	$(philipe) >> data | wc -l";
     init_stack(&lstok);
-    init_lexer(line, &lstok);
+    lexer = init_lexer(line);
+	token = NULL;
+	node = NULL;
+	while((token = lexer_next_token(lexer))->type != TOKEN_EOL)
+		ins_next_node(&lstok, (void *) token);
 	node = lstok.head;
 	while (node)
 	{
 		token =(t_token *) node->value;
-		printf("type => %s\n", token->type);
+		printf("type => %d\n", (int)token->type);
 		printf("value => %s\n", token->value);
 		node = node->next;
 	}
