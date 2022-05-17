@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:52:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/17 20:12:58 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:39:46 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,4 @@ t_token *lexer_parse_id(t_lexer *lexer)
 		return (init_token(TOKEN_CMD, value));
 	else 
 		return (init_token(TOKEN_ARG, value));
-}
-
-
-t_token	*lexer_next_token(t_lexer *lexer)
-{
-	t_token	*
-	while (lexer->c != '\0')
-	{
-		if(isalpha(lexer->c))
-			return (lexer_advance_with(lexer, lexer_parse_id(lexer)));
-		if (lexer->c == '|')
-		{
-			if (lexer->src[lexer->i + 1] == '|')
-				return (lexer_advance_with(lexer, init_token(TOKEN_DPIPE, "||")));
-			else
-				return (lexer_advance_with(lexer, init_token(TOKEN_PIPE, "|")));
-		}
-
-		
-	}
-	return (init_token(TOKEN_EOL, '\0'));
 }

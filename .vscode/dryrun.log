@@ -1,7 +1,12 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/ababouel/Desktop/minishell'
-printf "\e[33;2;37m-COMPILING Minishell...\n"
-cc -Wall -Werror -Wextra  build/main.o build/parse/lexer.o build/parse/token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o -o minishell
-printf "\033[0;32mDone !"
 make: Leaving directory `/Users/ababouel/Desktop/minishell'
  
+make: *** No rule to make target `build/main.o', needed by `minishell'.
+make: *** No rule to make target `build/parse/lexer.o', needed by `minishell'.
+make: *** No rule to make target `build/parse/token.o', needed by `minishell'.
+make: *** No rule to make target `build/tools/ft_split.o', needed by `minishell'.
+make: *** No rule to make target `build/tools/ft_strncmp.o', needed by `minishell'.
+make: *** No rule to make target `build/tools/lsnode.o', needed by `minishell'.
+make: *** No rule to make target `build/tools/ft_strdup.o', needed by `minishell'.
+

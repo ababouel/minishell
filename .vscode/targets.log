@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Tue May 17 19:07:31 2022
+# Make data base, printed on Tue May 17 21:03:50 2022
 
 # Variables
 
@@ -42,11 +42,11 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cf3w0033hz/T/vscode-ipc-55e86f26-24f0-4157-a4a2-e2c75bc86b59.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cf3w0033hz/T/vscode-ipc-b28bb6c4-9e6a-4c38-a376-48ae3f570202.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.GaC7sGZktc/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.DZUw5XDRGp/Render
 # environment
 PATH = /Users/ababouel/goinfre/.brew/bin:/Users/ababouel/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
@@ -60,7 +60,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.kt9oCncjRl/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.8m5u7MVEWw/Listeners
 # automatic
 %F = $(notdir $%)
 # makefile (from `Makefile', line 23)
@@ -136,7 +136,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000004.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000005.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # makefile (from `Makefile', line 15)
@@ -158,7 +158,7 @@ LC_ALL = C
 # makefile (from `Makefile', line 17)
 RESET = \e[0m
 # environment
-SECURITYSESSIONID = 186a8
+SECURITYSESSIONID = 186a7
 # automatic
 ^F = $(notdir $^)
 # default
@@ -172,7 +172,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1207
+VSCODE_PID = 2115
 # makefile (from `Makefile', line 24)
 FILES = main parse/lexer parse/token tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup
 # variable set hash-table stats:
@@ -184,12 +184,10 @@ FILES = main parse/lexer parse/token tools/ft_split tools/ft_strncmp tools/lsnod
 
 # Directories
 
-# tools (device 16777227, inode 3531602): 6 files, no impossibilities so far.
-# . (device 16777227, inode 3406148): 14 files, no impossibilities.
-# parse (device 16777227, inode 3531599): 4 files, no impossibilities so far.
+# . (device 16777227, inode 3406148): 12 files, no impossibilities.
 # inc (device 16777227, inode 3531593): 6 files, 1 impossibilities.
 
-# 30 files, 1 impossibilities in 4 directories.
+# 18 files, 1 impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -206,9 +204,8 @@ build/%.o: %.c inc/minishell.h inc/lib.h inc/token.h inc/lsnode.h inc/lexer.h
 # Not a target:
 build/main.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-17 00:12:54
-#  File has been updated.
-#  Successfully updated.
+#  File does not exist.
+#  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -217,8 +214,7 @@ all: minishell
 #  Command-line target.
 #  Implicit rule search has not been done.
 #  File does not exist.
-#  File has been updated.
-#  Successfully updated.
+#  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -229,12 +225,9 @@ all: minishell
 
 # Not a target:
 build/parse/lexer.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-17 00:12:54
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .SUFFIXES:
@@ -253,9 +246,8 @@ Makefile:
 
 minishell: build/main.o build/parse/lexer.o build/parse/token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-05-17 14:43:01
-#  File has been updated.
-#  Successfully updated.
+#  File does not exist.
+#  File has not been updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 #  commands to execute (from `Makefile', line 35):
@@ -276,21 +268,15 @@ fclean: clean
 
 # Not a target:
 build/tools/ft_strdup.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-17 00:12:54
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 build/parse/token.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-17 14:43:01
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
@@ -300,13 +286,9 @@ build/parse/token.o:
 
 # Not a target:
 build/tools/lsnode.o:
-#  Implicit rule search has been done.
- 
-#  Last modified 2022-05-17 00:12:54
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
@@ -316,18 +298,18 @@ re: fclean all
 
 # Not a target:
 build/tools/ft_strncmp.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-17 00:12:54
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
+ 
+make: *** No rule to make target `build/main.o', needed by `minishell'.  Stop.
+
 #  commands to execute (from `Makefile', line 43):
 	@printf "$(RED)Deleting build\n"
 	@rm -rf build
@@ -335,15 +317,12 @@ clean:
 
 # Not a target:
 build/tools/ft_split.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-17 00:12:54
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=16/1024=2%, Rehash=0, Collisions=2/78=3%
+# Load=16/1024=2%, Rehash=0, Collisions=2/54=4%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -355,6 +334,6 @@ build/tools/ft_split.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue May 17 19:07:31 2022
+# Finished Make data base on Tue May 17 21:03:50 2022
 
  
