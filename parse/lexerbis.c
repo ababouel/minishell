@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/18 00:02:21 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/19 20:24:01 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,39 @@ static t_token *checkcondition(t_lexer *lexer, t_token *token)
     return (lexer_advance_with(lexer, token));
 }
 
-t_token	*lexer_next_token(t_lexer *lexer)
+t_token *lexer_parse_option(t_lexer *lexer)
+{
+	char	*value;
+	int		i;
+	
+	value = ft_calloc(1, sizeof(char));
+	i = lexer->i;
+	if (lexer->c = '-')
+	{
+		value = ft_realloc(value, (ft_strlen(value) + 2) * sizeof(char));
+		ft_strcat(value, &lexer->c);
+		ft_strcat(value,"\0");
+		lexer_advance(lexer);
+	}
+	while (ft_strcmp(&lexer->c, WHITESP) != 0)
+	{
+		value = ft_realloc(value, (ft_strlen(value) + 2) * sizeof(char));
+		ft_strcat(value, &lexer->c);
+		ft_strcat(value,"\0");
+		lexer_advance(lexer);
+	}
+	return (init_token(TOKEN_OPTION, value));
+}
+
+t_token	*lexer_next_token(t_lexer *lexer, t_lsnode *lsnode)
 {
 	while (lexer->c != '\0')
 	{
         lexer_whitespace(lexer);
 		if(is_alpha(lexer->c))
-			return (lexer_parse_id(lexer));
+			return (lexer_parse_id(lexer, lsnode));
         if (lexer->c == '-')
-            return (lexer_advance_with(lexer, init_token(TOKEN_OPTION, "-")));
+            return (lexer_parse_option(lexer));
 		else if (lexer->c == '|' && lexer->src[lexer->i + 1] == '|')
             return (checkcondition(lexer, init_token(TOKEN_DPIPE, "||")));
 		else if (lexer->c == '&' && lexer->src[lexer->i + 1] == '&')

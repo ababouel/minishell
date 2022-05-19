@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:45:20 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/17 23:03:26 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/19 19:56:14 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,17 @@ void	ft_bzero(void *s, size_t n)
 	{
 		str[x] = (unsigned char ) 0;
 		x++;
+	}
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (s)
+	{
+		while (*s)
+		{
+			write(fd, &*s, 1);
+			s++;
+		}
 	}
 }

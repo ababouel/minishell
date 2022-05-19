@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:52:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/17 23:52:38 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/19 20:27:30 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ t_token	*lexer_advance_with(t_lexer *lexer, t_token *token)
 	return (token);
 }
 
-t_token *lexer_parse_id(t_lexer *lexer)
+t_token *lexer_parse_id(t_lexer *lexer, t_lsnode *lsnode)
 {
 	char	*value;
 	int		i;
+
 	value = ft_calloc(1, sizeof(char));
 	i = lexer->i;
 	while (is_alpha(lexer->c))
@@ -58,8 +59,9 @@ t_token *lexer_parse_id(t_lexer *lexer)
 		ft_strcat(value,"\0");
 		lexer_advance(lexer);
 	}
-	if (i == 0 || lexer->src[i - 2] == '|')
+	if (lsnode->head == NULL || ft_strcmp((char *)lsnode->tail->value, "|"))
 		return (init_token(TOKEN_CMD, value));
 	else 
 		return (init_token(TOKEN_ARG, value));
 }
+

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/19 00:31:26 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/19 20:01:55 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ t_cmd	*init_cmd(t_lsnode *lsnode, char **env)
 	token = NULL;
 	path = NULL;
 	node = lsnode->head;
-	cmd = ft_calloc(0, sizeof(t_cmd));
-	cmd->arg = ft_calloc(0 ,sizeof(char *) * 3);
+	cmd = ft_calloc(1, sizeof(t_cmd));
+	cmd->arg = ft_calloc(3 ,sizeof(char *));
+	cmd->arg[0] = ft_strdup("");
 	cmd->arg[1] = NULL;
-	cmd->arg[0] = ft_strdup("ls adtdbhsdn");
 	cmd->arg[2] = NULL;
 	cmd->cmd = NULL;
 	cmd->env = env;
@@ -45,19 +45,19 @@ t_cmd	*init_cmd(t_lsnode *lsnode, char **env)
 			cmd->cmd = ft_realloc(cmd->cmd,(ft_strlen(cmd->cmd) + ft_strlen(token->value) + 1) * sizeof(char));
 			ft_strcat(cmd->cmd, token->value);
 		}
-		else if (token->type == TOKEN_OPTION || token->type == TOKEN_ARG)
+		else if (token->type == TOKEN_OPTION || token->type == TOKEN_ARG || token->type == TOKEN_ASTERK)
 		{
-			if(path != NULL)
-			{
-				path = ft_realloc(path,(ft_strlen(path) + ft_strlen(token->value) + 1) * sizeof(char));
-				ft_strcat(path, token->value);
-			}
-			else
-				path = ft_strdup(token->value);
+			// if(path != NULL)
+			// {
+			// 	path = ft_realloc(path,(ft_strlen(path) + ft_strlen(token->value) + 1) * sizeof(char));
+			// 	ft_strcat(path, token->value);
+			// }
+			// else
+			cmd->arg[1] = ft_strdup("-la");
 		}
 		node = node->next;
 	}
-	cmd->arg[1] = path;
+	
 	return (cmd);
 }
 
@@ -74,16 +74,16 @@ int main(int ac, char **av, char **env)
 
 	token = NULL;
 	node = NULL;
-	line = "ls -l ";
+	line = "ls * ";
     init_stack(&lstok);
     lexer = init_lexer(line);
 	while((token = lexer_next_token(lexer))->type != TOKEN_EOL)
 		ins_next_node(&lstok, (void *) token);
 	cmd = init_cmd(&lstok, env);
 	// printf("data\n");
-	// printf("cmd =>%s\narg =>%s\n", cmd->cmd, cmd->arg[1]);
-	if (execve(cmd->cmd, cmd->arg , env))
-		perror("Error execve");
+	// return (0);
+	if (execve(cmd->cmd, cmd->arg , env) == -1)
+		ft_putstr_fd("Error execve:", 2);
     return (0);
 }
 
@@ -91,8 +91,15 @@ int main(int ac, char **av, char **env)
 
 // int	main(int ac, char **av, char **env)
 // {
+// 	int x;
+// 	x = 0;
 // 	(void)ac;
 // 		char cmd[] = "/bin/ls";
+// 		while (av[x])
+// 		{
+// 			printf("av[%d]=>%s\n", x, av[x]);
+// 			x++;
+// 		}
 // 		if(execve(cmd, av , env) == -1)
 // 			perror("Error execve");
 // 	return (0);
