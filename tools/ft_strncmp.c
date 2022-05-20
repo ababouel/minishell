@@ -5,23 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 19:33:30 by sismaili          #+#    #+#             */
-/*   Updated: 2022/05/12 21:47:53 by sismaili         ###   ########.fr       */
+/*   Created: 2022/05/13 15:47:35 by ababouel          #+#    #+#             */
+/*   Updated: 2022/05/14 21:55:56 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/lib.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned char	*str1;
-	unsigned char	*str2;
-	size_t			i;
+	size_t	index;
 
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	i = 0;
-	while (str1[i] && str2[i] && str1[i] == str2[i])
-		i++;
-	return (str1[i] - str2[i]);
+	index = 0;
+	if (n == 0)
+		return (0);
+	while (s1[index] && s2[index] && s1[index] == s2[index] && index < n - 1)
+		index++;
+	return ((unsigned char)s1[index] - (unsigned char)s2[index]);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len] != '\0')
+	{
+		len++;
+	}
+	return (len);
 }
