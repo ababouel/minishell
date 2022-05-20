@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:52:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/19 20:27:30 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/19 20:35:17 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ t_token	*lexer_advance_with(t_lexer *lexer, t_token *token)
 t_token *lexer_parse_id(t_lexer *lexer, t_lsnode *lsnode)
 {
 	char	*value;
-	int		i;
-
+	
 	value = ft_calloc(1, sizeof(char));
-	i = lexer->i;
 	while (is_alpha(lexer->c))
 	{
 		value = ft_realloc(value, (ft_strlen(value) + 2) * sizeof(char));

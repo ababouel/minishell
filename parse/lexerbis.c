@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/19 20:24:01 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/20 00:01:08 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,12 @@ static t_token *checkcondition(t_lexer *lexer, t_token *token)
 t_token *lexer_parse_option(t_lexer *lexer)
 {
 	char	*value;
-	int		i;
-	
-	value = ft_calloc(1, sizeof(char));
-	i = lexer->i;
-	if (lexer->c = '-')
-	{
-		value = ft_realloc(value, (ft_strlen(value) + 2) * sizeof(char));
-		ft_strcat(value, &lexer->c);
-		ft_strcat(value,"\0");
-		lexer_advance(lexer);
-	}
-	while (ft_strcmp(&lexer->c, WHITESP) != 0)
+		
+	value = ft_calloc(2, sizeof(char));
+	ft_strcat(value, &lexer->c);
+	ft_strcat(value,"\0");
+	lexer_advance(lexer);
+	while (is_alpha(lexer->c))
 	{
 		value = ft_realloc(value, (ft_strlen(value) + 2) * sizeof(char));
 		ft_strcat(value, &lexer->c);
