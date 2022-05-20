@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/20 03:21:02 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/20 16:37:54 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int ac, char **av, char **env)
 	int x;
 	x = 0;
 	(void)ac;
-		char cmd[] = "/bin/echo";
+		char cmd[] = "/bin/ls";
 		while (av[x])
 		{
 			printf("av[%d]=>%s\n", x, av[x]);
