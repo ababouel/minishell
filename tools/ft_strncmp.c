@@ -5,33 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/13 15:47:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/14 21:55:56 by sismaili         ###   ########.fr       */
+/*   Created: 2021/11/03 19:33:30 by sismaili          #+#    #+#             */
+/*   Updated: 2022/05/21 16:12:06 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lib.h"
+#include "../inc/minishell.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	index;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
 
-	index = 0;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
 	if (n == 0)
 		return (0);
-	while (s1[index] && s2[index] && s1[index] == s2[index] && index < n - 1)
-		index++;
-	return ((unsigned char)s1[index] - (unsigned char)s2[index]);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len] != '\0')
-	{
-		len++;
-	}
-	return (len);
+	i = 0;
+	while (str1[i] && str2[i] && str1[i] == str2[i] && i < n - 1)
+		i++;
+	return (str1[i] - str2[i]);
 }

@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 14:42:57 by sismaili          #+#    #+#             */
-/*   Updated: 2022/05/20 23:13:04 by sismaili         ###   ########.fr       */
+/*   Created: 2021/11/01 20:53:36 by sismaili          #+#    #+#             */
+/*   Updated: 2022/05/21 16:12:12 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
-size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
+int	ft_strlen(char *s)
 {
-	size_t	i;
-	size_t	src_len;
+	int	i;
 
 	i = 0;
-	src_len = ft_strlen(src);
-	if (dstsize > 0)
-	{
-		while (src[i] && i < dstsize - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (src_len);
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+int	ft_isalpha(char c)
+{
+	if ((c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
 }
