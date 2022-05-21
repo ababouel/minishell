@@ -6,11 +6,11 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 18:13:09 by sismaili          #+#    #+#             */
-/*   Updated: 2022/05/21 16:12:59 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/05/21 16:37:02 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minishell.h"
+#include "../inc/minishell.h"
 
 void	ft_pwd(void)
 {

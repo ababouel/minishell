@@ -6,11 +6,11 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/05/21 16:32:53 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/05/21 16:37:06 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minishell.h"
+#include "../inc/minishell.h"
 
 void	check_export(t_env *sh, char **line, int i, int len)
 {

@@ -6,11 +6,11 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:57:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/05/21 16:34:29 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/05/21 16:37:09 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minishell.h"
+#include "../inc/minishell.h"
 
 void	ft_env_oldpwd(t_env *sh)
 {
