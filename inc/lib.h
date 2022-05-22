@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/19 19:56:38 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/20 20:08:20 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct	s_node
 
 typedef struct s_lsnode
 {
-	int			size;
+	int		size;
 	t_node	*head;
 	t_node	*tail; 
 }	t_lsnode;

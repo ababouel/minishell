@@ -2,6 +2,7 @@ make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/ababouel/Desktop/minishell'
 mkdir -p build
 cc -Wall -Werror -Wextra  -c main.c -o build/main.o -I ./inc 
+ 
 mkdir -p build/parse
 cc -Wall -Werror -Wextra  -c parse/lexer.c -o build/parse/lexer.o -I ./inc 
 mkdir -p build/parse
@@ -10,6 +11,7 @@ mkdir -p build/parse
 cc -Wall -Werror -Wextra  -c parse/token.c -o build/parse/token.o -I ./inc 
 mkdir -p build/tools
 cc -Wall -Werror -Wextra  -c tools/ft_split.c -o build/tools/ft_split.o -I ./inc 
+ 
 mkdir -p build/tools
 cc -Wall -Werror -Wextra  -c tools/ft_strncmp.c -o build/tools/ft_strncmp.o -I ./inc 
 mkdir -p build/tools
