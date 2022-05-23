@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/20 20:08:20 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/23 01:38:57 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void			*ft_realloc(void *ptr, size_t size);
 void			*ft_calloc(size_t count, size_t size);
 void			ft_bzero(void *s, size_t n);
 void			ft_putstr_fd(char *s, int fd);
-
+int				is_filename(char c);
 #endif

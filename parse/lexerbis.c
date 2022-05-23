@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/20 00:01:08 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/23 02:44:10 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,28 @@ t_token *lexer_parse_option(t_lexer *lexer)
 		ft_strcat(value,"\0");
 		lexer_advance(lexer);
 	}
-	return (init_token(TOKEN_OPTION, value));
+	return (init_token(TOKEN_OPTION, value));	
+}
+
+t_token *lexer_parse_arg(t_lexer *lexer,t_lsnode *lsnode)
+{
+	char	*value;
+	t_token	*tail;
+	
+	value = ft_calloc(1, sizeof(char));
+	tail = (t_token *)lsnode->tail->value;
+	while (is_filename(lexer->c))
+	{
+		value = ft_realloc(value, (ft_strlen(value) + 2) * sizeof(char));
+		ft_strcat(value, &lexer->c);
+		ft_strcat(value,"\0");
+		lexer_advance(lexer);
+	}
+	if (!ft_strcmp(tail->value,">") || !ft_strcmp(tail->value, ">>") 
+		|| !ft_strcmp(tail->value, "<<") || !ft_strcmp(tail->value, "<"))
+		return (init_token(TOKEN_NAME, value));
+	else
+		return (init_token(TOKEN_ARG, value));	
 }
 
 t_token	*lexer_next_token(t_lexer *lexer, t_lsnode *lsnode)
@@ -42,40 +63,46 @@ t_token	*lexer_next_token(t_lexer *lexer, t_lsnode *lsnode)
 	while (lexer->c != '\0')
 	{
         lexer_whitespace(lexer);
-		if(is_alpha(lexer->c))
-			return (lexer_parse_id(lexer, lsnode));
         if (lexer->c == '-')
             return (lexer_parse_option(lexer));
-		else if (lexer->c == '|' && lexer->src[lexer->i + 1] == '|')
+		if (lexer->c == '|' && lexer->src[lexer->i + 1] == '|')
             return (checkcondition(lexer, init_token(TOKEN_DPIPE, "||")));
-		else if (lexer->c == '&' && lexer->src[lexer->i + 1] == '&')
+		if (lexer->c == '&' && lexer->src[lexer->i + 1] == '&')
             return (checkcondition(lexer, init_token(TOKEN_DAND, "&&")));
-		else if (lexer->c == '|')
+		if (lexer->c == '|')
             return (lexer_advance_with(lexer, init_token(TOKEN_PIPE, "|")));
-		else if (lexer->c == '&')
+		if (lexer->c == '&')
             return (lexer_advance_with(lexer, init_token(TOKEN_AND, "&")));
-		else if(lexer->c == '(')
+		if(lexer->c == '(')
 			return (lexer_advance_with(lexer, init_token(TOKEN_RPAREN, "(")));
-		else if(lexer->c == ')')
+		if(lexer->c == ')')
 			return (lexer_advance_with(lexer, init_token(TOKEN_LPAREN, ")")));
-		else if(lexer->c == '\'')
+		if(lexer->c == '\'')
 			return (lexer_advance_with(lexer, init_token(TOKEN_SINQTE, "'")));
-		else if(lexer->c == '*')
+		if(lexer->c == '*')
 			return (lexer_advance_with(lexer, init_token(TOKEN_ASTERK, "*")));
-		else if(lexer->c == '$')
+		if(lexer->c == '$')
 			return (lexer_advance_with(lexer, init_token(TOKEN_DOLLAR, "$")));
-		else if(lexer->c == '"')
+		if(lexer->c == '"')
 			return (lexer_advance_with(lexer, init_token(TOKEN_DQUOTE, "\"")));
-		else if (lexer->c == '<' && lexer->src[lexer->i + 1] == '<')
+		if (lexer->c == '<' && lexer->src[lexer->i + 1] == '<')
             return (checkcondition(lexer, init_token(TOKEN_DAND, "<<")));
-		else if (lexer->c == '>' && lexer->src[lexer->i + 1] == '>')
+		if (lexer->c == '>' && lexer->src[lexer->i + 1] == '>')
             return (checkcondition(lexer, init_token(TOKEN_DROUTPUT,">>")));
-        else if (lexer->c == '<')
+        if (lexer->c == '<')
             return (lexer_advance_with(lexer, init_token(TOKEN_RINPUT, "<")));
-		else if (lexer->c == '>')
+		if (lexer->c == '>')
             return (lexer_advance_with(lexer, init_token(TOKEN_ROUTPUT, ">"))); 
-		else if (lexer->c == '?')
+		if (lexer->c == '?')
 			return (lexer_advance_with(lexer, init_token(TOKEN_EXCLAM, "?")));
+		if (is_alpha(lexer->c)	
+			&& (lsnode->head == NULL
+				|| !ft_strcmp(lsnode->tail->value, "|")
+				|| !ft_strcmp(lsnode->tail->value, "||")
+				|| !ft_strcmp(lsnode->tail->value, "&&")))
+			return (lexer_parse_cmd(lexer));
+		if (is_filename(lexer->c))
+			return (lexer_parse_arg(lexer, lsnode));
 	}
 	return (init_token(TOKEN_EOL, "\0"));
 }

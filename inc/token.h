@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 23:46:36 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/19 20:03:58 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/22 16:24:18 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef enum	e_type
 	TOKEN_ROUTPUT = 15,
 	TOKEN_EXCLAM = 16,
 	TOKEN_EOL = 17,
-	TOKEN_OPTION = 18
+	TOKEN_OPTION = 18,
+	TOKEN_NAME = 19
 }	t_type;
 
 typedef struct	s_token

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/22 16:03:47 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/23 02:47:56 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,31 @@ int main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
+	(void)env;
     t_lsnode	lstok;
 	t_lexer		*lexer;
     char		*line;
 	t_node 		*node;
 	t_token		*token;
-	t_cmd		*cmd;
+	//t_cmd		*cmd;
 
 	token = NULL;
 	node = NULL;
-	line = "echo 'LOGNAME' ";
+	line = "ls -la > file || grep -n main.c > files";
     init_stack(&lstok);
     lexer = init_lexer(line);
 	while((token = lexer_next_token(lexer, &lstok))->type != TOKEN_EOL)
-		ins_next_node(&lstok, (void *) token);
+	{
+		if (token != NULL)
+			ins_next_node(&lstok, (void *) token);
+	}
+	node = lstok.head;
+	while (node)
+	{
+		token = (t_token *) node->value;
+		printf("%d => %s\n", token->type,token->value);
+		node = node->next;
+	}
     return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:45:20 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/19 19:56:14 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/23 01:59:53 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,18 @@ char	*ft_strdup(const char *s)
 
 int	is_alpha(char c)
 {
-	if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
+	if (('A' <= c && c <= 'Z') 
+		|| ('a' <= c && c <= 'z'))
+		return (1);
+	return (0);
+}
+
+int	is_filename(char c)
+{
+	if(('A' <= c && c <= 'Z')
+		|| ('a'<= c && c <= 'z')
+		|| ('0'<= c && c <= '9')
+		|| c == '_' || c == '.')
 		return (1);
 	return (0);
 }
