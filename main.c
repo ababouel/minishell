@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/23 02:47:56 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/23 15:43:42 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ t_cmd	*init_cmd(t_lsnode *lsnode, char **env)
 	
 	return (cmd);
 }
-
-
 
 int main(int ac, char **av, char **env)
 {
