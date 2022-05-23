@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/23 02:44:10 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/23 03:42:34 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ t_token *lexer_parse_arg(t_lexer *lexer,t_lsnode *lsnode)
 		ft_strcat(value,"\0");
 		lexer_advance(lexer);
 	}
-	if (!ft_strcmp(tail->value,">") || !ft_strcmp(tail->value, ">>") 
-		|| !ft_strcmp(tail->value, "<<") || !ft_strcmp(tail->value, "<"))
+	if (tail->type == TOKEN_DAND || tail->type == TOKEN_PIPE
+		|| tail->type == TOKEN_DPIPE)
+		return (init_token(TOKEN_CMD, value));
+	if (tail->type == TOKEN_RINPUT || tail->type == TOKEN_DRINPUT
+		|| tail->type == TOKEN_DROUTPUT|| tail->type == TOKEN_ROUTPUT)
 		return (init_token(TOKEN_NAME, value));
 	else
 		return (init_token(TOKEN_ARG, value));	
@@ -95,11 +98,7 @@ t_token	*lexer_next_token(t_lexer *lexer, t_lsnode *lsnode)
             return (lexer_advance_with(lexer, init_token(TOKEN_ROUTPUT, ">"))); 
 		if (lexer->c == '?')
 			return (lexer_advance_with(lexer, init_token(TOKEN_EXCLAM, "?")));
-		if (is_alpha(lexer->c)	
-			&& (lsnode->head == NULL
-				|| !ft_strcmp(lsnode->tail->value, "|")
-				|| !ft_strcmp(lsnode->tail->value, "||")
-				|| !ft_strcmp(lsnode->tail->value, "&&")))
+		if (is_alpha(lexer->c) && lsnode->head == NULL)
 			return (lexer_parse_cmd(lexer));
 		if (is_filename(lexer->c))
 			return (lexer_parse_arg(lexer, lsnode));
