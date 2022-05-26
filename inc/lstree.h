@@ -6,14 +6,16 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/23 23:16:59 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:16:26 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LSTREE_H
 # define LSTREE_H
 
-typedef	enum	treetype
+#include "lexer.h"
+
+typedef enum	e_treetype
 {
 	ROUTPUT = 0,
 	DROUTPUT = 1,
@@ -23,7 +25,7 @@ typedef	enum	treetype
 	DAND = 81,
 	DPIPE = 243,
 	CMD = 729
-};
+}	t_treetype;
 
 typedef	struct	s_routput
 {
@@ -58,7 +60,6 @@ typedef struct	s_dpipe
 typedef struct	s_pipe
 {
 	int	type;
-	
 }	t_pipe;
 
 typedef struct	s_cmd
@@ -91,5 +92,10 @@ typedef	struct s_lstree
 	int		size;
 	t_tree	*root;
 }	t_lstree;
+
+void	init_lstree(t_lstree *lstree);
+int		parsing(t_lstree *lstree, t_lsnode *lsnode);
+char	**inject_arg(t_lsnode *node);
+t_cmd	parse_cmd(char *path, char **arg, char **env);
 
 #endif

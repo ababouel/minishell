@@ -4,7 +4,6 @@ mkdir -p build
 cc -Wall -Werror -Wextra  -c main.c -o build/main.o -I ./inc 
 mkdir -p build/parse
 cc -Wall -Werror -Wextra  -c parse/lexer.c -o build/parse/lexer.o -I ./inc 
- 
 mkdir -p build/parse
 cc -Wall -Werror -Wextra  -c parse/lexerbis.c -o build/parse/lexerbis.o -I ./inc 
 mkdir -p build/parse
