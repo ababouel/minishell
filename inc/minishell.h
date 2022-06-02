@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 21:21:25 by sismaili          #+#    #+#             */
-/*   Updated: 2022/05/21 16:35:06 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:19:05 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ void	ft_export(char **line, t_env *sh);
 void	ft_unset(char **line, t_env *sh);
 void	ft_cd(char **line, t_env *sh);
 void	ft_echo(char **line);
+void	ft_pwd(void);
+void	ft_env(char **line, t_env *sh);
 
 #endif

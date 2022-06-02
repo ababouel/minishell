@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/05/21 16:37:06 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:26:33 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,7 @@ void	ft_unset(char **line, t_env *sh)
 		check_unset(sh, line, i);
 		i++;
 	}
+	i = 0;
+	while (sh->envi[i])
+		printf("%s\n", sh->envi[i++]);
 }

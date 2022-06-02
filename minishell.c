@@ -6,33 +6,11 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 18:13:09 by sismaili          #+#    #+#             */
-/*   Updated: 2022/05/21 16:57:04 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:12:24 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/minishell.h"
-
-void	ft_pwd(void)
-{
-	char	str[100];
-
-	getcwd(str, sizeof(str));
-	printf("%s\n", str);
-}
-
-void	ft_env(char **line, t_env *sh)
-{
-	int	i;
-
-	i = 0;
-	if (line[2])
-	{
-		printf("env: %s: No such file or directory\n", line[2]);
-		return ;
-	}
-	while (sh->envi[i])
-		printf("%s\n", sh->envi[i++]);
-}
 
 int	main(int ac, char **av, char **env)
 {
@@ -53,6 +31,8 @@ int	main(int ac, char **av, char **env)
 			ft_export(av, &sh);
 		else if (!ft_strncmp(av[1], "unset", ft_strlen(av[1])))
 			ft_unset(av, &sh);
+		else if (!ft_strncmp(av[1], "exit", ft_strlen(av[1])))
+			exit(0);
 	}
 	return (0);
 }
