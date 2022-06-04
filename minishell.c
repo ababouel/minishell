@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 18:13:09 by sismaili          #+#    #+#             */
-/*   Updated: 2022/05/24 15:12:24 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/04 15:09:20 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(int ac, char **av, char **env)
 			ft_unset(av, &sh);
 		else if (!ft_strncmp(av[1], "exit", ft_strlen(av[1])))
 			exit(0);
+		else
+			ft_which(av, &sh);
 	}
 	return (0);
 }
