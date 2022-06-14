@@ -8,6 +8,7 @@ mkdir -p build/parse
 cc -Wall -Werror -Wextra  -c parse/lexerbis.c -o build/parse/lexerbis.o -I ./inc 
 mkdir -p build/parse
 cc -Wall -Werror -Wextra  -c parse/token.c -o build/parse/token.o -I ./inc 
+ 
 mkdir -p build/tools
 cc -Wall -Werror -Wextra  -c tools/ft_split.c -o build/tools/ft_split.o -I ./inc 
 mkdir -p build/tools
