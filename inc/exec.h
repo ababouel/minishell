@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parstree.c                                         :+:      :+:    :+:   */
+/*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/15 02:51:09 by ababouel         ###   ########.fr       */
+/*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
+/*   Updated: 2022/06/15 03:14:15 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lstree.h"
+#ifndef EXEC_H
+# define EXEC_H
 
-void	init_lstree(t_lstree *lstree)
-{
-    lstree->root = NULL;
-    lstree->size = 0;
-}
+char    *ft_which(char **av, t_env *sh);
 
-int		parsing(t_lstree *lstree, t_lsnode *lsnode)
-{
-    t_node 	*temp;
-
-    node = lsnode->head;
-	token = NULL;
-    while (node)
-    {
-		token = (t_token *) node->value;
-        if (token->type == TOKEN_CMD)
-        {
-
-        }			
-    }
-}
+#endif

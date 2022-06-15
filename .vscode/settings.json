@@ -5,7 +5,18 @@
         "minishell.h": "c",
         "lib.h": "c",
         "token.h": "c",
-        "lsnode.h": "c"
+        "lsnode.h": "c",
+        "__config": "c",
+        "__functional_03": "c",
+        "__functional_base": "c",
+        "array": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "exception": "c",
+        "functional": "c",
+        "iterator": "c",
+        "string_view": "c",
+        "tuple": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

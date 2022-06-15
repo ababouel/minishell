@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/25 17:16:26 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/15 02:49:51 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct	s_pipe
 
 typedef struct	s_cmd
 {
-	int		type;
 	char	*pathcmd;
 	char	**cmdarg;
 	char	**env;
