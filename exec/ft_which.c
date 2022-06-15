@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/15 03:15:21 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/15 03:39:46 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char    *ft_which(char **av, t_env *sh)
 				str = ft_strjoin(spl[j], "/");
 				str = ft_strjoin(str, av[1]);
 				if (!access(str, X_OK))
-					execve(str, &av[1], sh->envi);
+					return (ft_strdup(str));	
 				j++;
 			}
 		}

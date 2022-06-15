@@ -17,7 +17,7 @@ cc -Wall -Werror -Wextra  -c tools/lsnode.c -o build/tools/lsnode.o -I ./inc
 mkdir -p build/tools
 cc -Wall -Werror -Wextra  -c tools/ft_strdup.c -o build/tools/ft_strdup.o -I ./inc 
 printf "\e[33;2;37m-COMPILING Minishell...\n"
-cc -Wall -Werror -Wextra  build/main.o build/parse/lexer.o build/parse/lexerbis.o build/parse/token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o -o minishell
+cc -Wall -Werror -Wextra  build/main.o build/parse/lexer.o build/parse/lexerbis.o build/parse/token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o -o minishell -lreadline
 printf "\033[0;32mDone !"
 make: Leaving directory `/Users/ababouel/Desktop/minishell'
  
