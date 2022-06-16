@@ -39,5 +39,6 @@ void	ft_echo(char **line);
 void	ft_pwd(void);
 void	ft_env(char **line, t_env *sh);
 void	ft_which(char **av, t_env *sh);
+char	*get_next_line(int fd);
 
 #endif

@@ -25,43 +25,50 @@ int	main(int ac, char **av, char **env)
 	t_env	sh;
 	char	*str;
 
-	while(1)
+	if (ac > 1)
 	{
-		signal(SIGINT, handler);
-		str = readline("sh>> ");
-		signal(SIGQUIT, SIG_IGN);
-		if (!str)
+		sh.envi = env;
+		if (!ft_strncmp(av[1], "pwd", ft_strlen(av[1])))
+			ft_pwd();
+		else if (!ft_strncmp(av[1], "echo", ft_strlen(av[1])))
+			ft_echo(av);
+		else if (!ft_strncmp(av[1], "cd", ft_strlen(av[1])))
+			ft_cd(av, &sh);
+		else if (!ft_strncmp(av[1], "env", ft_strlen(av[1])))
+			ft_env(av, &sh);
+		else if (!ft_strncmp(av[1], "export", ft_strlen(av[1])))
+			ft_export(av, &sh);
+		else if (!ft_strncmp(av[1], "unset", ft_strlen(av[1])))
+			ft_unset(av, &sh);
+		else
+			ft_which(av, &sh);
+	}
+	else
+	{
+		while(1)
 		{
-			write(1, "exit\n", 5);
-			exit(0);
-		}
-		else if (!ft_strncmp(str, "exit", ft_strlen(str)))
-		{
-			write(1, "exit\n", 6);
-			exit(0);
+			signal(SIGINT, handler);
+			str = readline("sh>> ");
+			if (ft_strlen(str) > 0)
+			{
+				add_history(str);
+				printf("%s\n", str);
+			}
+			signal(SIGQUIT, SIG_IGN);
+			if (!str)
+			{
+				if (get_next_line(0) == 0)
+				{
+					write(1, "exit\n", 5);
+					exit(0);
+				}
+			}
+			else if (!ft_strncmp(str, "exit", ft_strlen(str)))
+			{
+				write(1, "exit\n", 6);
+				exit(0);
+			}
 		}
 	}
-	// if (ac > 1)
-	// {
-	// 	sh.envi = env;
-	// 	if (!ft_strncmp(av[1], "pwd", ft_strlen(av[1])))
-	// 		ft_pwd();
-	// 	else if (!ft_strncmp(av[1], "echo", ft_strlen(av[1])))
-	// 		ft_echo(av);
-	// 	else if (!ft_strncmp(av[1], "cd", ft_strlen(av[1])))
-	// 		ft_cd(av, &sh);
-	// 	else if (!ft_strncmp(av[1], "env", ft_strlen(av[1])))
-	// 		ft_env(av, &sh);
-	// 	else if (!ft_strncmp(av[1], "export", ft_strlen(av[1])))
-	// 		ft_export(av, &sh);
-	// 	else if (!ft_strncmp(av[1], "unset", ft_strlen(av[1])))
-	// 		ft_unset(av, &sh);
-	// 	else if (!ft_strncmp(av[1], "exit", ft_strlen(av[1])))
-	// 		signal(SIGQUIT, handler);
-	// 	else if (!ft_strncmp(av[1], "NULL", ft_strlen(av[1])))
-	// 		signal(SIGUSR1, handler);
-	// 	else
-	// 		ft_which(av, &sh);
-	// }
 	return (0);
 }
