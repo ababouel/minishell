@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/13 00:27:31 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/15 17:12:34 by ababouel         ###   ########.fr       */
+/*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
+/*   Updated: 2022/06/16 03:08:41 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-#define MINISHELL_H
+#include "../inc/exec.h"
 
-# include "lexer.h"
-# include "exec.h"
-
-#endif
+void    exec_cmd(t_cmd *cmd)
+{
+    int id;
+    id = fork();
+    if (id == -1)
+        perror("error id");
+    if ( id == 0)
+    {
+        if (execve(cmd->pathcmd, cmd->cmdarg, cmd->env) == -1)
+            perror("Error execve");
+    }
+}

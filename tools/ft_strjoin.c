@@ -6,30 +6,27 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:55:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/15 04:03:05 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/15 21:04:02 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lib.h"
 
-// static void *ft_memcpy(void *dst, void *src, size_t n)
-// {
-// 	char			*d;
-// 	const char		*s;
-// 	size_t			i;
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
 
-// 	s = src;
-// 	d = dst;
-// 	i = 0;
-// 	if (d == NULL && s == NULL)
-// 		return (NULL);
-// 	while (i < n)
-// 	{
-// 		d[i] = s[i];
-// 		i++;
-// 	}
-// 	return (dst);
-// }
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	i = 0;
+	while (str1[i] && str2[i] && str1[i] == str2[i] && i < n - 1)
+		i++;
+	return (str1[i] - str2[i]);
+}
 
 char	*ft_strjoin(char *s1, char *s2)
 {

@@ -16,7 +16,8 @@
         "functional": "c",
         "iterator": "c",
         "string_view": "c",
-        "tuple": "c"
+        "tuple": "c",
+        "exec.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

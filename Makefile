@@ -21,13 +21,14 @@ GREEN = \033[0;32m
 CC = cc
 CFLAGS = -Wall -Werror -Wextra 
 BDIR = build
-FILES = main parse/lexer parse/lexerbis parse/token\
-		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup
+FILES = main parse/lexer parse/lexerbis parse/token parse/parstree\
+		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin\
+		exec/ft_which exec/execution
 		
 NAME = minishell
 OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))
 INC = -I ./inc 
-HEADERS = inc/minishell.h inc/lib.h inc/token.h  inc/lexer.h
+HEADERS = inc/minishell.h inc/lib.h inc/token.h  inc/lexer.h inc/exec.h
 
 all: $(NAME)
 
