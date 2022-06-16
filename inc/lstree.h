@@ -6,15 +6,15 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/16 02:22:36 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/16 20:01:55 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LSTREE_H
 # define LSTREE_H
 
-#include "lexer.h"
-
+# include "lexer.h"
+# include "lib.h"
 typedef enum	e_treetype
 {
 	ROUTPUT = 0,
@@ -64,9 +64,9 @@ typedef struct	s_pipe
 
 typedef struct	s_cmd
 {
-	char	*pathcmd;
-	char	**cmdarg;
-	char	**env;
+	char		*pathcmd;
+	char		**cmdarg;
+	char		**env;
 }	t_cmd;
 
 typedef struct s_tree
@@ -82,6 +82,7 @@ typedef struct s_tree
 		t_pipe		pipe;
 		t_cmd		cmd;
 	}	utree;
+	t_treetype		type;
    	struct s_tree	*left;
 	struct s_tree	*right;
 }	t_tree;
@@ -95,7 +96,7 @@ typedef	struct s_lstree
 void	init_lstree(t_lstree *lstree);
 void	parsing(t_lstree *lstree, t_lsnode *lsnode, char **env);
 char	**inject_arg(t_lsnode *node);
-t_cmd	parse_cmd(char *path, char **arg, char **env);
 int		ins_next_tree(t_lstree *stack, void *data);
+t_tree	*parse_cmd(t_token *token, char **env, t_node *temp);
 
 #endif

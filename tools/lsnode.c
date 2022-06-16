@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:15:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/17 23:41:03 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:35:49 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,6 @@ int ins_next_node(t_lsnode *stack, void *data)
 	}
 	stack->size++;
 	return (0);
-}
-
-void	ft_freestack(t_lsnode *sk)
-{
-	t_node	*node;
-	
-	while (sk->head != NULL)
-	{
-		node = sk->head;
-		sk->head = sk->head->next;
-		free(node);
-	}
-	free(sk);
 }
 
 unsigned int is_delim(char c, char *delim)

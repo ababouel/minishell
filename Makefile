@@ -6,7 +6,7 @@
 #    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
-#    Updated: 2022/05/17 22:40:51 by ababouel         ###   ########.fr        #
+#    Updated: 2022/06/16 19:42:47 by ababouel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,9 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra 
 BDIR = build
 FILES = main parse/lexer parse/lexerbis parse/token parse/parstree\
-		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin\
-		exec/ft_which exec/execution
+		parse/parselst/parsecmd\
+		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack\
+		exec/ft_which exec/execution 
 		
 NAME = minishell
 OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))

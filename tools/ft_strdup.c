@@ -6,11 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:45:20 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/23 01:59:53 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:57:12 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "lib.h"
 
 char	*ft_strdup(const char *s)
 {

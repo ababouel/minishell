@@ -17,7 +17,8 @@
         "iterator": "c",
         "string_view": "c",
         "tuple": "c",
-        "exec.h": "c"
+        "exec.h": "c",
+        "lstree.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

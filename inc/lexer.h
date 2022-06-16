@@ -6,14 +6,14 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:20:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/22 17:00:21 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/16 20:05:59 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef  LEXER_H
 #define LEXER_H
 
-#include "token.h"
+# include "token.h"
 
 typedef struct s_lexer
 {

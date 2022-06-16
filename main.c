@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/16 03:09:20 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:32:45 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
-	(void)env;
     t_lsnode	lstok;
 	t_lexer		*lexer;
     char		*line;
@@ -28,7 +27,7 @@ int main(int ac, char **av, char **env)
 	init_lstree(lstree);
 	while (1337)
 	{
-		if((line = readline("minihell$ ")) != NULL)
+		if ((line = readline("minihell$ ")) != NULL)
 		{
 			init_stack(&lstok);
 			lexer = init_lexer(line);
@@ -38,7 +37,9 @@ int main(int ac, char **av, char **env)
 					ins_next_node(&lstok, (void *) token);
 			}
 			parsing(lstree, &lstok, env);
-			exec_cmd(&(lstree->root->utree.cmd));	
+			exec_cmd(&(lstree->root->utree.cmd));
+			while (lstree->root != NULL)
+				free(lstree->root);	
 		}
 	}
     return (0);
