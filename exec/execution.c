@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/16 04:38:18 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/16 04:58:57 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void    exec_cmd(t_cmd *cmd)
             perror("Error execve");
     }
     if (id > 0)
-        waitpid(id, NULL, WNOHANG);
+        waitpid(-1, NULL, 0);
 }
