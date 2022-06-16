@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/16 19:32:45 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:10:42 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int main(int ac, char **av, char **env)
 			}
 			parsing(lstree, &lstok, env);
 			exec_cmd(&(lstree->root->utree.cmd));
-			while (lstree->root != NULL)
-				free(lstree->root);	
+			if (!lstree)
+				ft_freetree(lstree);	
 		}
 	}
     return (0);

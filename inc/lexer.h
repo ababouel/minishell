@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:20:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/16 20:05:59 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:09:04 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define LEXER_H
 
 # include "token.h"
+# include "lstree.h"
 
 typedef struct s_lexer
 {

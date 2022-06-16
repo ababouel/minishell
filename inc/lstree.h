@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/16 20:01:55 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:08:10 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void	parsing(t_lstree *lstree, t_lsnode *lsnode, char **env);
 char	**inject_arg(t_lsnode *node);
 int		ins_next_tree(t_lstree *stack, void *data);
 t_tree	*parse_cmd(t_token *token, char **env, t_node *temp);
+void	ft_freetree(t_lstree *sk);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/16 19:59:38 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:07:57 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <unistd.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include "lstree.h"
-# include "token.h"
 
 typedef struct	s_node
 {
@@ -38,7 +36,6 @@ typedef struct s_lsnode
 int				ins_next_node(t_lsnode *stack, void *data);
 void			init_stack(t_lsnode *stack);
 void			ft_freestack(t_lsnode *sk);
-void			ft_freetree(t_lstree *sk);
 unsigned int	is_delim(char c, char *delim);
 char			**ft_split(char const *s, char *c);
 size_t			ft_strlen(const char *s);
