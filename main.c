@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/16 22:10:42 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/17 03:12:10 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ int main(int ac, char **av, char **env)
 					ins_next_node(&lstok, (void *) token);
 			}
 			parsing(lstree, &lstok, env);
-			exec_cmd(&(lstree->root->utree.cmd));
-			if (!lstree)
-				ft_freetree(lstree);	
+			exec_cmd(&(lstree->root->utree.cmd));	
 		}
 	}
     return (0);
