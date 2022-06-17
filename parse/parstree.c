@@ -26,6 +26,8 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
 		token = (t_token *) temp->value;
         if (token->type == TOKEN_CMD)
             treend = parse_cmd(token, env, temp);
+        else if (token->type == TOKEN_PIPE)
+            treend = parse_pipe(token);
         if (treend != NULL)
            ins_next_tree(lstree, (void *) treend); 
         if (temp != NULL) 
@@ -46,7 +48,9 @@ int ins_next_tree(t_lstree *stack, void *data)
     treend = (t_tree *) data;
     if (treend->type == PIPE)
     {
-        stack->root = treend;
+        if (treend->left == NULL)
+            treend->left = stack->root;
+        stack->root = treend; 
         stack->size += 1; 
     }
     else if (treend->type == CMD)
@@ -59,7 +63,7 @@ int ins_next_tree(t_lstree *stack, void *data)
         else if (stack->root->left == NULL)
         {
             stack->root->left = treend;
-            stack->size += 1
+            stack->size += 1;
         }
         else if (stack->root->right == NULL)
         {

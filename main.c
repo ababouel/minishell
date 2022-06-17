@@ -37,7 +37,7 @@ int main(int ac, char **av, char **env)
 					ins_next_node(&lstok, (void *) token);
 			}
 			parsing(lstree, &lstok, env);
-			exec_cmd(&(lstree->root->utree.cmd));
+			//exec_cmd(&(lstree->root->utree.cmd));
 			if (!lstree)
 				ft_freetree(lstree);	
 		}
