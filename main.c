@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/18 07:16:30 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/18 19:01:22 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int main(int ac, char **av, char **env)
 			recursive(lstree->root);
 			// exec_cmd(&(lstree->root->utree.cmd));	
 		}
+		ft_freetree(lstree);
 	}
     return (0);
 }
