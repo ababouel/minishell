@@ -6,20 +6,31 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/18 19:01:22 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/18 20:29:20 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/minishell.h"
-
+	
 void	recursive(t_tree *lstree)
 {
 	t_tree	*temp;
 
 	temp = lstree;
-
 	if (temp->type == PIPE)
 		printf("%s\n", "PIPE");
+	if (temp->type == ROUTPUT)
+		printf("%s\n", "ROUTPUT");
+	if (temp->type == DROUTPUT)
+		printf("%s\n", "DROUTPUT");
+	if (temp->type == RINPUT)
+		printf("%s\n", "RINPUT");
+	if (temp->type == DRINPUT)
+		printf("%s\n", "DRINPUT");
+	if (temp->type == DAND)
+		printf("%s\n", "DAND");
+	if (temp->type == DPIPE)
+		printf("%s\n", "DPIPE");
 	if (temp->type == CMD)
 		printf("%s\n", temp->utree.cmd.cmdarg[0]);
 	if (temp->left != NULL)

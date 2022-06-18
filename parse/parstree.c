@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/18 07:09:27 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/18 20:56:59 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ int ins_next_tree(t_lstree *stack, void *data)
         temp = stack->root;
         stack->root = treend;
         stack->root->left = temp;
+    }
+    else if (treend->type == DROUTPUT)
+    {
+        
     }
     else if (treend->type == CMD)
     {
