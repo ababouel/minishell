@@ -22,7 +22,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra 
 BDIR = build
 FILES = main parse/lexer parse/lexerbis parse/token parse/parstree\
-		parse/parselst/parsecmd\
+		parse/parselst/parsecmd parse/parselst/parsepipe\
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack\
 		exec/ft_which exec/execution 
 		

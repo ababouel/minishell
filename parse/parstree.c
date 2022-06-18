@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/18 03:33:06 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/18 07:09:27 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
 		token = (t_token *) temp->value;
         if (token->type == TOKEN_CMD)
             treend = parse_cmd(token, env, temp);
-        else if(token->type == TOKEN_PIPE)
-            treend = parse_pipe(token);
+        if(token->type == TOKEN_PIPE)
+            treend = parse_pipe();
         if (treend != NULL)
            ins_next_tree(lstree, (void *) treend); 
         if (temp != NULL) 
@@ -44,12 +44,22 @@ void	init_lstree(t_lstree *lstree)
 int ins_next_tree(t_lstree *stack, void *data)
 {
     t_tree  *treend;
+    t_tree  *temp;
 
     treend = (t_tree *) data;
-    if (treend->type == CMD)
+    temp = NULL;
+    if (treend->type == PIPE)
     {
+        temp = stack->root;
         stack->root = treend;
-        stack->size += 1;
-    }    
+        stack->root->left = temp;
+    }
+    else if (treend->type == CMD)
+    {
+        if (stack->root == NULL)
+            stack->root = treend;
+        else if (stack->root->type == PIPE)
+            stack->root->right = treend; 
+    }
 	return (0);
 }
