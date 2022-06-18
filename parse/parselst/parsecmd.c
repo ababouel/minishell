@@ -6,7 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/18 01:48:19 by ababouel         ###   ########.fr       */
+=======
+/*   Updated: 2022/06/17 22:11:29 by ababouel         ###   ########.fr       */
+>>>>>>> 959f7b588f1bffda7aeb0b24207b7e2cf04e0450
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +36,10 @@ t_tree  *parse_cmd(t_token *token, char **env, t_node *temp)
         if (temp != NULL)
             temp = temp->next;
     }
+<<<<<<< HEAD
     // printf("=>%s\n", tmpstr);
+=======
+>>>>>>> 959f7b588f1bffda7aeb0b24207b7e2cf04e0450
     cmd.cmdarg = ft_split(tmpstr, " ");
     cmd.env = env;
     if(!(treend = malloc(sizeof(t_tree))))
