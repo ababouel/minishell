@@ -6,11 +6,26 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/17 03:12:10 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/18 05:26:08 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/minishell.h"
+
+void	recursive(t_tree lstree)
+{
+	t_tree	*temp;
+
+	temp = lstree;
+	if (temp->left != NULL)
+		recursive(temp->right);
+	else if (temp->left != NULL)
+		recursive(temp->left);
+	if (temp->type == CMD)
+		printf("type -> %s\n", "CMD");
+	if (temp->type == PIPE)
+		printf("type -> %s\n", "PIPE");
+}
 
 int main(int ac, char **av, char **env)
 {
@@ -37,7 +52,8 @@ int main(int ac, char **av, char **env)
 					ins_next_node(&lstok, (void *) token);
 			}
 			parsing(lstree, &lstok, env);
-			exec_cmd(&(lstree->root->utree.cmd));	
+			
+			// exec_cmd(&(lstree->root->utree.cmd));	
 		}
 	}
     return (0);
