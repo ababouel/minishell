@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   parsepipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/18 02:54:36 by ababouel         ###   ########.fr       */
+/*   Created: 2022/06/18 02:38:39 by ababouel          #+#    #+#             */
+/*   Updated: 2022/06/18 02:56:25 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
+#include "../../inc/exec.h"
 
-# include "lib.h"
-# include "lstree.h"
-
-char    *ft_which(char *cmd, char **env);
-void    exec_cmd(t_cmd *cmd);
-#endif
+t_tree  *parse_pipe(t_token *token, t_tree *cmd1, t_tree *cmd2)
+{
+    
+}
