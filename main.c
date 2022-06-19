@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/18 20:29:20 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/19 00:32:55 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	recursive(t_tree *lstree)
 	t_tree	*temp;
 
 	temp = lstree;
+	if (temp->left != NULL)
+		recursive(temp->left);
 	if (temp->type == PIPE)
 		printf("%s\n", "PIPE");
 	if (temp->type == ROUTPUT)
@@ -31,12 +33,10 @@ void	recursive(t_tree *lstree)
 		printf("%s\n", "DAND");
 	if (temp->type == DPIPE)
 		printf("%s\n", "DPIPE");
-	if (temp->type == CMD)
-		printf("%s\n", temp->utree.cmd.cmdarg[0]);
-	if (temp->left != NULL)
-		recursive(temp->left);
 	if (temp->right != NULL)
 		recursive(temp->right);
+	if (temp->type == CMD)
+		printf("%s\n", temp->utree.cmd.cmdarg[0]);
 }
 
 int main(int ac, char **av, char **env)
