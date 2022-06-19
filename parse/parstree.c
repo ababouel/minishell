@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/18 20:56:59 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/19 23:41:29 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,16 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
 		token = (t_token *) temp->value;
         if (token->type == TOKEN_CMD)
             treend = parse_cmd(token, env, temp);
-        if(token->type == TOKEN_PIPE)
+        if (token->type == TOKEN_PIPE)
             treend = parse_pipe();
+        // if (token->type == TOKEN_ROUTPUT)
+        //     treend = parse_routput();
+        // if (token->type == TOKEN_DROUTPUT)
+        //     treend = parse_droutput();
+        // if (token->type == TOKEN_DRINPUT)
+        //     treend = parse_drinput();
+        // if (token->type == TOKEN_RINPUT)
+        //     treend = parse_rinput();
         if (treend != NULL)
            ins_next_tree(lstree, (void *) treend); 
         if (temp != NULL) 
@@ -54,10 +62,10 @@ int ins_next_tree(t_lstree *stack, void *data)
         stack->root = treend;
         stack->root->left = temp;
     }
-    else if (treend->type == DROUTPUT)
-    {
+    // else if (treend->type == DROUTPUT)
+    // {
         
-    }
+    // }
     else if (treend->type == CMD)
     {
         if (stack->root == NULL)

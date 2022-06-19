@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/19 04:18:43 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/19 23:54:57 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,27 @@ void    loop_pipe(char ***cmd)
   int   fd_in = 0;
 
   while (*cmd != NULL)
-    {
+  {
       pipe(p);
       if ((pid = fork()) == -1)
-        {
-          exit(EXIT_FAILURE);
-        }
+        exit(EXIT_FAILURE);
       else if (pid == 0)
-        {
-          dup2(fd_in, 0); //change the input according to the old one 
-          if (*(cmd + 1) != NULL)
-            dup2(p[1], 1);
-          close(p[0]);
-          execvp((*cmd)[0], *cmd);
-          exit(EXIT_FAILURE);
-        }
+      {
+        dup2(fd_in, STDIN_FILENO); //change the input according to the old one 
+        if (*(cmd + 1) != NULL)
+          dup2(p[1], STDOUT_FILENO);
+        close(p[0]);
+        close(p[1]);
+        execvp((*cmd)[0], *cmd);
+        exit(EXIT_FAILURE);
+      }
       else
-        {
-          wait(NULL);
-          close(p[1]);
-          fd_in = p[0]; //save the input for the next command
-          cmd++;
-        }
+      {
+        wait(NULL);
+        close(p[1]);
+        fd_in = p[0]; //save the input for the next command
+        cmd++;
+      }
     }
 }
 
