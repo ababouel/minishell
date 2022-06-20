@@ -1,5 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/ababouel/Desktop/minishell'
+make: Entering directory `/Users/abdelghani/Desktop/minishell'
 mkdir -p build
 cc -Wall -Werror -Wextra  -c main.c -o build/main.o -I ./inc 
 mkdir -p build/parse
@@ -10,7 +10,6 @@ mkdir -p build/parse
 cc -Wall -Werror -Wextra  -c parse/token.c -o build/parse/token.o -I ./inc 
 mkdir -p build/parse
 cc -Wall -Werror -Wextra  -c parse/parstree.c -o build/parse/parstree.o -I ./inc 
- 
 mkdir -p build/parse/parselst
 cc -Wall -Werror -Wextra  -c parse/parselst/parsecmd.c -o build/parse/parselst/parsecmd.o -I ./inc 
 mkdir -p build/parse/parselst
@@ -34,5 +33,5 @@ cc -Wall -Werror -Wextra  -c exec/execution.c -o build/exec/execution.o -I ./inc
 printf "\e[33;2;37m-COMPILING Minishell...\n"
 cc -Wall -Werror -Wextra  build/main.o build/parse/lexer.o build/parse/lexerbis.o build/parse/token.o build/parse/parstree.o build/parse/parselst/parsecmd.o build/parse/parselst/parsepipe.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o build/tools/ft_strjoin.o build/tools/freestack.o build/exec/ft_which.o build/exec/execution.o -o minishell -lreadline
 printf "\033[0;32mDone !"
-make: Leaving directory `/Users/ababouel/Desktop/minishell'
+make: Leaving directory `/Users/abdelghani/Desktop/minishell'
  
