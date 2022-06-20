@@ -1,0 +1,15 @@
+total 32
+drwxr-xr-x  14 abdelghani  staff   448 Jun 21 00:21 .
+drwx------@  8 abdelghani  staff   256 Jun 20 18:14 ..
+drwxr-xr-x  13 abdelghani  staff   416 Jun 20 23:52 .git
+drwxr-xr-x   6 abdelghani  staff   192 Jun 20 18:15 .vscode
+-rw-r--r--   1 abdelghani  staff  1872 Jun 20 18:15 Makefile
+-rw-r--r--   1 abdelghani  staff   176 Jun 20 18:15 README.md
+drwxr-xr-x   4 abdelghani  staff   128 Jun 20 18:15 exec
+-rw-r--r--   1 abdelghani  staff     0 Jun 21 00:23 file
+-rw-r--r--   1 abdelghani  staff     0 Jun 21 00:23 file1
+drwxr-xr-x   8 abdelghani  staff   256 Jun 20 18:15 inc
+-rw-r--r--   1 abdelghani  staff  2568 Jun 20 18:15 main.c
+drwxr-xr-x   7 abdelghani  staff   224 Jun 20 18:15 parse
+-rw-r--r--   1 abdelghani  staff  3390 Jun 21 00:18 test.c
+drwxr-xr-x   8 abdelghani  staff   256 Jun 20 18:15 tools
