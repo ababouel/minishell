@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/20 03:29:14 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/20 04:07:48 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,63 +37,23 @@ int cmdfunc(int track,int *cpipe,int *pvpipe, char **str, char **env)
       dup2(cpipe[1], STDOUT_FILENO);
     }
     if (track == 3)
-    {
       dup2(cpipe[0], STDIN_FILENO);
-    }
     execve(str[0],&str[1],env);
   }
   if (pid > 0)
   {
     if (track == 1)
-    {
       close(cpipe[1]);
-      // return (cpipe);
-    }
     if (track == 2)
     {
       close(pvpipe[0]);
       close(cpipe[1]);
-      // return (cpipe);
     }
     if (track == 3)
-    {
       close(cpipe[0]);
-      // return (cpipe);
-    }
     waitpid(-1, NULL, 0);
   }
   return (0);
-}
-
-void    loop_pipe(char ***cmd) 
-{
-  int   p[2];
-  pid_t pid;
-  int   fd_in = 0;
-
-  while (*cmd != NULL)
-  {
-      pipe(p);
-      if ((pid = fork()) == -1)
-        exit(EXIT_FAILURE);
-      else if (pid == 0)
-      {
-        dup2(fd_in, STDIN_FILENO); //change the input according to the old one 
-        if (*(cmd + 1) != NULL)
-          dup2(p[1], STDOUT_FILENO);
-        close(p[0]);
-        close(p[1]);
-        execvp((*cmd)[0], *cmd);
-        exit(EXIT_FAILURE);
-      }
-      else
-      {
-        wait(NULL);
-        close(p[1]);
-        fd_in = p[0]; //save the input for the next command
-        cmd++;
-      }
-    }
 }
 
 int main(int ac, char **av, char **env)
