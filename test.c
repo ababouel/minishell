@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/21 00:37:11 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/21 06:25:40 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,73 +36,97 @@ int forcked()
 }
 
 
-int cmdredirectio(char **files,char **str, char **env, int flag, int std)
+int cmdredirectio(int *fd1,char **filein, char **fileout, char **str, char **env,int flagi, int flago)
 {
   int pid;
-  int file;
+  int fileo;
+  int filei;
   int x;
 
   x = 0;
-  while (files[x])
+  filei = -1;
+  fileo = -1;
+  // while (fileout[x])
+  // {
+  //   fileo = open(fileout[x], flago, 0777);
+  //   if (fileo == -1)
+  //     return (2);
+  //   x++;
+  // }
+  x = 0;
+  while (filein[x])
   {
-    file = open(files[x], flag, 0777);
-    if (file == -1)
+    filei = open(filein[x], flagi, 0777);
+    if (filei == -1)
       return (2);
     x++;
-  } 
-  pid = fork();
-  if (pid < 0)
-    return (1);
+  }
+  pid = forcked();
   if (pid == 0)
   {
-    dup2(file,std);
-    close(file);
-    execve(str[0],&str[1],env);
+    // if (filei != -1)
+    // {
+    dup2(filei, STDIN_FILENO);
+    dup2(fd1[1],STDOUT_FILENO);
+    close(filei);
+    close(fd1[1]);
+    // }
+    // if (fileo != -1)
+    // {
+    //   dup2(fileo, STDOUT_FILENO);
+    //   close(fileo);
+    // }
+   if (execve(str[0],&str[1],env) == -1)
+    perror(str[1]);
   }
   else
   {
-    close(file);
+    // if (filei != -1)
+    close(filei);
+    close(fd1[1]);
+    // if (fileo != -1)
+    //   close(fileo);
     waitpid(-1, NULL, 0);
   }
   return (0);
 }
 
-int cmdfunc(char **file,int isredirect,int track,int *cpipe,int *pvpipe, char **str, char **env)
+int cmdfunc(char **filein,int isredirect,int track,int *cpipe,int *pvpipe, char **str, char **env)
 {
   int pid;
 
-  pid = forcked; 
+  pid = forcked(); 
   if (pid == 0)
   {
-    if (track == 1)
+    if (track == start)
       dup2(cpipe[1], STDOUT_FILENO);
-    if (track == 2)
+    if (track == middle)
     {
       dup2(pvpipe[0], STDIN_FILENO);
       dup2(cpipe[1], STDOUT_FILENO);
     }
-    if (track == 3)
+    if (track == end)
       dup2(cpipe[0], STDIN_FILENO);
-    if (isredirect == 1)
-      cmdredirectio(file, str, env, O_WRONLY | O_CREAT |O_TRUNC, STDOUT_FILENO);
-    else
-      execve(str[0],&str[1],env);
+    execve(str[0],&str[1],env);
   }
   if (pid > 0)
-  {
-    if (track == 1)
+  { 
+    if (track == start)
       close(cpipe[1]);
-    if (track == 2)
+    if (track == middle)
     {
       close(pvpipe[0]);
       close(cpipe[1]);
     }
-    if (track == 3)
+    if (track == end)
       close(cpipe[0]);
     waitpid(-1, NULL, 0);
   }
   return (pid);
 }
+
+
+
 
 int main(int ac, char **av, char **env)
 {
@@ -112,26 +136,27 @@ int main(int ac, char **av, char **env)
 //     char **cmd[] = {ls, grep, wc, NULL};
     
     // loop_pipe(cmd);
-    // int  fd1[2];
+    int  fd1[2];
     // int  fd2[2];
     // int  fd3[2];
-    char *str1[100] = {"/bin/ls", "ls", "-la"};
+    char *str1[100] = {"/bin/cat", "cat"};
+    char *str4[100] = {"/usr/bin/wc", "wc", "-c"};
     char *str2[100] = {"file2.txt", "file3.txt", "file1.txt"}; 
     char *str3[100] = {"file.txt"};
     // char *str3[100] = {"/usr/bin/uniq","uniq"};
     // char *str2[100] = {"/usr/bin/sort","sort"};
     // char *str4[100] = {"/usr/bin/wc","wc"};
     
-    // if (pipe(fd1) == -1)
-    //   return (1);
-    // if (pipe(fd2) == -1)
-    //   return (2);
+    if (pipe(fd1) == -1)
+      return (1);
+    cmdredirectio(fd1,str3, NULL, str1, env, O_RDONLY , 0);
+    cmdfunc(NULL, 0, end,fd1, NULL,str4,env);
     // if (pipe(fd3) == -1)
     //   return (3);
     // cmdfunc(start, fd1, NULL, str1, env);
     // cmdfunc(middle, fd2, fd1, str2, env);
     // cmdfunc(middle, fd3, fd2, str3, env);
     // cmdfunc(end, fd3, NULL, str4, env);
-    cmdredirectio(str2, str1,) 
+    //  cmdfunc() 
     return (0); 
 }
