@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/21 03:02:19 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 06:02:52 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,23 @@ void	recursive(t_tree *lstree)
 		printf("%s\n", temp->utree.cmd.cmdarg[0]);
 }
 
+void printtoken(t_lsnode *lstok)
+{
+	t_token	*temp;
+
+	temp = lstok->head;
+	while (temp)
+	{
+		printf("data => %d => %s\n", temp->type, temp->value);
+		temp = temp->next;
+	}
+}
+
 int main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
+	(void)env;
     t_lsnode	lstok;
 	t_lexer		*lexer;
     char		*line;
@@ -58,16 +71,17 @@ int main(int ac, char **av, char **env)
 		{
 			init_stack(&lstok);
 			lexer = init_lexer(line);
-			while((token = lexer_next_token(lexer, &lstok))->type != TOKEN_EOL)
+			while((token = lexer_next_token(lexer))->type != TOKEN_EOL)
 			{
 				if (token != NULL)
 					ins_next_node(&lstok, (void *) token);
 			}
-			parsing(lstree, &lstok, env);
-			recursive(lstree->root);
+			printtoken(&lstok);
+			// parsing(lstree, &lstok, env);
+			// recursive(lstree->root);
 			// exec_cmd(&(lstree->root->utree.cmd));	
 		}
-		ft_freetree(lstree);
+		// ft_freetree(lstree);
 	}
     return (0);
 }

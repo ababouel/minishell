@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:15:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/16 19:35:49 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 04:28:35 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,23 @@ void	init_stack(t_lsnode *stack)
 	stack->tail = NULL;
 }
 
-int ins_next_node(t_lsnode *stack, void *data)
+int ins_next_node(t_lsnode *stack, t_token *token)
 {
-	t_node	*new_node;
-	t_node	*temp;
+	t_token	*temp;
 	
-	temp = NULL;
-	new_node = calloc(1,sizeof(t_node));
-	if (new_node == NULL)
-		return (-1);
-	new_node->value = data;
-	new_node->next = NULL;
+	temp = stack->head;	
 	if (stack->head == NULL)
 	{
-		stack->head = new_node;
-		stack->tail = new_node;
+		stack->head = token;
+		stack->tail = token;
 	}
 	else
 	{
 		temp = stack->head;
 		while (temp->next)
 			temp = temp->next;	
-		temp->next = new_node;
-		stack->tail = new_node;
+		temp->next = token;
+		stack->tail = token;
 	}
 	stack->size++;
 	return (0);
@@ -60,6 +54,20 @@ unsigned int is_delim(char c, char *delim)
     }
     return (0);
 }
+
+// int	checkexp(char *str)
+// {
+// 	int x;
+
+// 	x = 0;
+// 	while (str[x])
+// 	{
+// 		if(isdelim(str[x], " $'\"()|&<>*\0") == 1)
+// 			return (1);
+// 		x++;
+// 	}
+// 	return (0);
+// }
 
 void	*ft_calloc(size_t count, size_t size)
 {

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/18 02:55:47 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 03:19:54 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,9 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 
-typedef struct	s_node
-{
-	void			*value;
-	struct s_node	*next;
-}	t_node;
+#include "token.h"
 
-typedef struct s_lsnode
-{
-	int		size;
-	t_node	*head;
-	t_node	*tail; 
-}	t_lsnode;
-
-int				ins_next_node(t_lsnode *stack, void *data);
+int				ins_next_node(t_lsnode *stack, t_token *token);
 void			init_stack(t_lsnode *stack);
 void			ft_freestack(t_lsnode *sk);
 unsigned int	is_delim(char c, char *delim);

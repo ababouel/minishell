@@ -6,45 +6,48 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 23:46:36 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/22 16:24:18 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 03:19:23 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKEN_H
 # define TOKEN_H
 
-#include "lib.h"
 # define WHITESP	" \t\r\n\v"
-
 typedef enum	e_type
 {
-	TOKEN_CMD = 0,
-	TOKEN_ARG = 1,
-	TOKEN_PIPE = 2,
-	TOKEN_DPIPE = 3,
-	TOKEN_LPAREN = 4,
-	TOKEN_RPAREN = 5,
-	TOKEN_AND = 6,
-	TOKEN_DAND = 7,
-	TOKEN_SINQTE = 8,
-	TOKEN_ASTERK = 9,
-	TOKEN_DOLLAR = 10,
-	TOKEN_DQUOTE = 11,	
-	TOKEN_DRINPUT = 12,	
-	TOKEN_RINPUT = 13,	
-	TOKEN_DROUTPUT = 14,	
-	TOKEN_ROUTPUT = 15,
-	TOKEN_EXCLAM = 16,
-	TOKEN_EOL = 17,
-	TOKEN_OPTION = 18,
-	TOKEN_NAME = 19
+	TOKEN_PIPE = 0,
+	TOKEN_DPIPE = 1,
+	TOKEN_LPAREN = 2,
+	TOKEN_RPAREN = 3,
+	TOKEN_DAND = 4,
+	TOKEN_DQUOTE =  5,	
+	TOKEN_SINQTE = 6,
+	TOKEN_ASTERK = 7,
+	TOKEN_DOLLAR =  8,
+	TOKEN_SPACE =  9,
+	TOKEN_DRINPUT =  10,	
+	TOKEN_RINPUT =  11,	
+	TOKEN_DROUTPUT =  12,	
+	TOKEN_ROUTPUT =  13,
+	TOKEN_EXCLAM =  14,
+	TOKEN_EXP = 15,
+	TOKEN_EOL =  16,
 }	t_type;
 
 typedef struct	s_token
 {
-	t_type	type;
-	char	*value;	
+	t_type			type;
+	char			*value;
+	struct	s_token	*next;	
 }	t_token;
+
+typedef struct s_lsnode
+{
+	int		size;
+	t_token	*head;
+	t_token	*tail; 
+}	t_lsnode;
 
 t_token	*init_token(int type, char *value);
 

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:52:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/22 17:10:52 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 03:04:11 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,5 @@ t_token	*lexer_advance_with(t_lexer *lexer, t_token *token)
 {
 	lexer_advance(lexer);
 	return (token);
-}
-
-t_token *lexer_parse_cmd(t_lexer *lexer)
-{
-	char	*value;
-	
-	value = ft_calloc(1, sizeof(char));
-	while (is_alpha(lexer->c))
-	{
-		value = ft_realloc(value, (ft_strlen(value) + 2) * sizeof(char));
-		ft_strcat(value, &lexer->c);
-		ft_strcat(value,"\0");
-		lexer_advance(lexer);
-	}
-	return (init_token(TOKEN_CMD, value));	
 }
 
