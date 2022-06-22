@@ -6,11 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:47:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/17 19:16:21 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 08:43:00 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lib.h"
+#include "lib.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

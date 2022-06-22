@@ -6,11 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/16 04:58:57 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 08:43:51 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/exec.h"
+#include "exec.h"
 #include <sys/wait.h>
 
 void    exec_cmd(t_cmd *cmd)

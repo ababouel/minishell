@@ -6,11 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:52:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 03:04:11 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 08:41:55 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lexer.h"
+#include "lexer.h"
 
 t_lexer	*init_lexer(char *line)
 {

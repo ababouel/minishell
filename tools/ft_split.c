@@ -6,11 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:33:48 by ababouel          #+#    #+#             */
-/*   Updated: 2022/05/15 00:57:27 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 08:42:43 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lib.h"
+#include "lib.h"
 
 static int	nbrword(char const *s, char *delim)
 {

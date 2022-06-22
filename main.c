@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 06:02:52 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 22:35:10 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	recursive(t_tree *lstree)
 	if (temp->right != NULL)
 		recursive(temp->right);
 	if (temp->type == CMD)
-		printf("%s\n", temp->utree.cmd.cmdarg[0]);
+		exec_cmd(&(temp->utree.cmd));
 }
 
 void printtoken(t_lsnode *lstok)
@@ -76,12 +76,12 @@ int main(int ac, char **av, char **env)
 				if (token != NULL)
 					ins_next_node(&lstok, (void *) token);
 			}
-			printtoken(&lstok);
-			// parsing(lstree, &lstok, env);
-			// recursive(lstree->root);
-			// exec_cmd(&(lstree->root->utree.cmd));	
+
+			//  printtoken(&lstok);
+			parsing(lstree, &lstok, env);
+			recursive(lstree->root);
 		}
-		// ft_freetree(lstree);
+		ft_freetree(lstree);
 	}
     return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:55:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/15 21:04:02 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 08:42:52 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lib.h"
+#include "lib.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

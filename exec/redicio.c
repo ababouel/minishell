@@ -6,9 +6,9 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/21 06:52:21 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 08:43:36 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/exec.h"
+#include "exec.h"
 

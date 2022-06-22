@@ -6,11 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 08:23:41 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 08:42:01 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lexer.h"
+#include "lexer.h"
 
 static t_token *checkcondition(t_lexer *lexer, t_token *token)
 {

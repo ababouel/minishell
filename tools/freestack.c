@@ -6,12 +6,12 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 03:22:01 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 08:42:36 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lib.h"
-#include "../inc/lstree.h"
+#include "lib.h"
+#include "lstree.h"
 
 void	ft_freestack(t_lsnode *sk)
 {
