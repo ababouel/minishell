@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:15:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 08:43:09 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/23 00:29:41 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,6 @@ unsigned int is_delim(char c, char *delim)
     return (0);
 }
 
-// int	checkexp(char *str)
-// {
-// 	int x;
-
-// 	x = 0;
-// 	while (str[x])
-// 	{
-// 		if(isdelim(str[x], " $'\"()|&<>*\0") == 1)
-// 			return (1);
-// 		x++;
-// 	}
-// 	return (0);
-// }
-
 void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*copy;
@@ -80,4 +66,14 @@ void	*ft_calloc(size_t count, size_t size)
 	index = count * size;
 	ft_bzero(copy, index);
 	return (copy);
+}
+
+size_t ft_dstrlen(char **str)
+{
+	size_t	len;
+
+	len = 0;
+	while (str[len] != NULL)
+		len++;
+	return (len);	
 }

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:47:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 08:43:00 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 23:56:32 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 void	*ft_realloc(void *ptr, size_t size)
 {
-	char *dt;
+	char	*dt;
 
 	dt = malloc(size);
     ft_memcpy(dt, ptr, size);

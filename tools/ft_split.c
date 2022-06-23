@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:33:48 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 08:42:43 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/22 23:29:35 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	*repchz(char const *s, char *c, char rech)
 	return (str);
 }
 
-static char	**ft_freememory(char **data, int index)
+char	**ft_freememory(char **data, int index)
 {
 	int	i;
 
