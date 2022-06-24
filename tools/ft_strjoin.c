@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:55:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/23 00:31:29 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/24 03:04:23 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,16 @@ char	*ft_strjoinbis(char *s1, char *s2)
 }
 
 
-static void	**ft_dmemcpy(void **dst, const void **src, size_t n)
+static void	**ft_dmemcpy(void **dst, const void **src)
 {
 	size_t				index;
 
 	index = 0;
 	if (dst == NULL && src == NULL )
 		return (NULL);
-	while (index < n)
+	while (src[index] != NULL)
 	{
-		((unsigned char **)dst)[index] = ((unsigned char **)src)[index];
+		((unsigned char **)dst)[index] = (unsigned char *) ft_strdup(src[index]);
 		index++;
 	}
 	return (dst);
@@ -89,7 +89,9 @@ void	**ft_drealloc(void **ptr, size_t size)
 	char	**dt;
 
 	dt = malloc(size);
-	ft_dmemcpy((void **)dt,(const void **) ptr, size);
+	if (!dt)
+		return(NULL);
+	ft_dmemcpy((void **)dt,(const void **) ptr);
 	ft_freememory((char **)ptr, ft_dstrlen((char **)ptr));
 	return ((void **)dt);
 }

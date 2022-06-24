@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/23 02:05:05 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/24 02:29:07 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
 {
     t_token *token;
-    t_tree  *treend;
-    (void)env;
+    int     len;
+
+    len = 0;
 	token = lsnode->head; 
-    treend = NULL;
     while (token != NULL && token->type != TOKEN_EOL)
     {
-        if (token->type == TOKEN_EXP 
+        if (token->type == TOKEN_EXP
             || token->type == TOKEN_DQUOTE 
-            || token->type == TOKEN_SINQTE)
-            treend = parse_cmd(token, env);
+            || token->type == TOKEN_SINQTE
+            || token->type == TOKEN_DOLLAR)
+            parse_cmd(lstree, token, env);
         // if (token->type == TOKEN_PIPE)
         //     treend = parse_pipe();
         // if (token->type == TOKEN_ROUTPUT)
@@ -35,11 +36,14 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
         //     treend = parse_drinput();
         // if (token->type == TOKEN_RINPUT)
         //     treend = parse_rinput();
-        printf("data track from => %d\n", token->type);
-        if (treend != NULL)
-           ins_next_tree(lstree, (void *) treend); 
+        // printf("data track from => %d\n", token->type); 
         if (token->type != TOKEN_EOL) 
             token = token->next;
+    }
+    while (lstree->root->utree.cmd.cmdarg[len] !=  NULL)
+    {
+        printf("%s => cmdarg\n",lstree->root->utree.cmd.cmdarg[len]);
+        len++; 
     }
 }
 

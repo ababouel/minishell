@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 23:06:22 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/24 01:59:04 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ t_token *lexer_parse_quote(t_lexer *lexer, char ch, t_type type)
 	}
 	if(c[len] == ch)
 	{
-		value = ft_strndup(lexer->src + lexer->i, len);
+		printf("len=>%d\n",len);
+		if (len == 0)
+			value = ft_strdup("n");
+		else
+			value = ft_strndup(lexer->src + lexer->i, len);
 		lexer->i += ++len;
 		lexer->c = lexer->src[lexer->i];
 	}
