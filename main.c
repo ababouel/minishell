@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/24 04:39:28 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/24 23:07:49 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
-	(void)env;
     t_lsnode	lstok;
 	t_lexer		*lexer;
     char		*line;
@@ -76,7 +75,6 @@ int main(int ac, char **av, char **env)
 				if (token != NULL)
 					ins_next_node(&lstok, (void *) token);
 			}
-
 			//  printtoken(&lstok);
 			parsing(lstree, &lstok, env);
 			recursive(lstree->root);

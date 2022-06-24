@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/24 05:13:22 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/24 23:08:12 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_token	*lexer_parse_dollar(t_lexer *lexer)
 	c = lexer->src + lexer->i;
 	while (c[len] != '\0' && !is_delim(c[len], " |&<>"))
 		len++;
-	if (len != 1 && c[1] != '$')
+	if (len != 1 && c[1] == '$')
 	{
 		value = ft_strndup(lexer->src + lexer->i + 1, len - 1);
 		lexer->i += len;
