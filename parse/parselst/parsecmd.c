@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/24 05:04:30 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/24 06:02:14 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int parse_cmd(t_lstree *lstree,t_token *token, char **env)
         cmd->pathcmd = ft_which(token->value, env);
         cmd->env = env;
     }
-    if (cmd->cmdarg != NULL && token->value != NULL)
+    else if (cmd->cmdarg != NULL && token->value != NULL)
     {
         size = ft_dstrlen(cmd->cmdarg);
         cmd->cmdarg = (char **)ft_drealloc((void **) cmd->cmdarg,sizeof(char *) * (size + 1));

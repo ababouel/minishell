@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/21 07:15:57 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/24 06:45:53 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,8 +158,8 @@ int main(int ac, char **av, char **env)
       return (1);
     // cmdredirectio(fd1,str3, NULL, str1, env, O_RDONLY , 0);
     fd = open(str3[0],O_WRONLY|O_CREAT|O_APPEND,0777);
-    cmdfunc(0,fd ,NULL, 0, start,fd1, NULL, str1, env);
-    cmdfunc(-1,-1 ,NULL, 0, end,fd1, NULL, str4, env);
+    cmdfunc(1,fd ,NULL, 0, start,fd1, NULL, str1, env);
+    // cmdfunc(-1,-1 ,NULL, 0, end,fd1, NULL, str4, env);
     // if (pipe(fd3) == -1)
     //   return (3);
     // cmdfunc(start, fd1, NULL, str1, env);
