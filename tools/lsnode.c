@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:15:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/23 00:29:41 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/24 04:23:56 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ size_t ft_dstrlen(char **str)
 	len = 0;
 	while (str[len] != NULL)
 		len++;
-	return (len);	
+	return (len + 1);	
 }

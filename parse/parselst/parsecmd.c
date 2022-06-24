@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/24 02:59:15 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/24 05:04:30 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ static int ctreenode(t_lstree *lstree, t_treetype type)
 int parse_cmd(t_lstree *lstree,t_token *token, char **env)
 {
     t_tree  *treend;
-    // char    *tmpexp;
     t_cmd   *cmd;
     int     size;
 
-    // tmpexp = NULL;
     size = 0;
     ctreenode(lstree, CMD);
     treend = lstree->root;
@@ -49,26 +47,18 @@ int parse_cmd(t_lstree *lstree,t_token *token, char **env)
         cmd->pathcmd = ft_which(token->value, env);
         cmd->env = env;
     }
-    printf(" token => %s \n", token->value);
     if (cmd->cmdarg != NULL && token->value != NULL)
     {
-        // while (cmd->cmdarg[len])
-        // {
-        //     tmpexp = ft_strjoinbis(tmpexp, " ");
-        //     tmpexp = ft_strjoinbis(tmpexp, cmd->cmdarg[len++]);
-        // }
-        // tmpexp = ft_strjoinbis(tmpexp, " "); 
-        // tmpexp = ft_strjoin(tmpexp, token->value);
-        // cmd->cmdarg = ft_split(tmpexp, " ");
         size = ft_dstrlen(cmd->cmdarg);
-        printf("size=> %d\n", size);
         cmd->cmdarg = (char **)ft_drealloc((void **) cmd->cmdarg,sizeof(char *) * (size + 1));
-        // printf("here\n");
-        cmd->cmdarg[size] = ft_strdup(token->value);
-        cmd->cmdarg[size + 1] = NULL; 
+        cmd->cmdarg[size - 1] = ft_strdup(token->value);
+        cmd->cmdarg[size] = NULL; 
     }
     else
-        cmd->cmdarg = ft_split(token->value, " "); 
-    // printf("temp => %s\n", cmd->cmdarg[0]);
+    {
+        cmd->cmdarg = (char **)malloc(sizeof(char *) + 1);
+        cmd->cmdarg[0] = token->value;
+        cmd->cmdarg[1] = NULL;
+    }
     return (0);
 }

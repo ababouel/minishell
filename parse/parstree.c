@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/24 02:29:07 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/24 04:55:32 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
 {
     t_token *token;
-    int     len;
 
-    len = 0;
 	token = lsnode->head; 
     while (token != NULL && token->type != TOKEN_EOL)
     {
@@ -39,11 +37,6 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
         // printf("data track from => %d\n", token->type); 
         if (token->type != TOKEN_EOL) 
             token = token->next;
-    }
-    while (lstree->root->utree.cmd.cmdarg[len] !=  NULL)
-    {
-        printf("%s => cmdarg\n",lstree->root->utree.cmd.cmdarg[len]);
-        len++; 
     }
 }
 

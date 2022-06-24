@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/24 01:35:07 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/24 04:39:28 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,22 +85,3 @@ int main(int ac, char **av, char **env)
 	}
     return (0);
 }
-
-// int	main(int ac, char **av, char **env)
-// {
-// 	int x;
-// 	char *cmd;
-// 	x = 0;
-// 	(void)ac;
-	
-// 		cmd = ft_which(av[1], env);
-// 		// printf("path %s = %s\n", av[1], cmd);
-// 		// while (av[x])
-// 		// {
-// 		// 	printf("av[%d]=>%s\n", x, av[x]);
-// 		// 	x++;
-// 		// }
-// 		if(execve(cmd, &av[1] , env) == -1)
-// 			perror("Error execve");
-// 	return (0);
-// }
