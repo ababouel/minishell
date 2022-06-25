@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/24 04:55:32 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/25 22:38:24 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
 	token = lsnode->head; 
     while (token != NULL && token->type != TOKEN_EOL)
     {
-        if (token->type == TOKEN_EXP
+        if (token->type != TOKEN_EOL && (token->type == TOKEN_EXP
             || token->type == TOKEN_DQUOTE 
             || token->type == TOKEN_SINQTE
-            || token->type == TOKEN_DOLLAR)
+            || token->type == TOKEN_DOLLAR))
             parse_cmd(lstree, token, env);
         // if (token->type == TOKEN_PIPE)
         //     treend = parse_pipe();
@@ -37,7 +37,7 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
         // printf("data track from => %d\n", token->type); 
         if (token->type != TOKEN_EOL) 
             token = token->next;
-    }
+    }    
 }
 
 void	init_lstree(t_lstree *lstree)
