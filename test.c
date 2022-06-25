@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/25 05:33:54 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/25 07:55:40 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,44 +65,45 @@ int forcked()
   return (pid);
 }
 
-int filename(t_data *dt)
+int *filename(t_data *dt)
 {
   int     x;
-  int     fd;
+  int     *fd;
   t_file  *file;
-  
+
   x = 0;
-  fd = 0;
+  fd = malloc(sizeof(int) * 2);
   file = dt->file;
   while (file[x].file != NULL)
   {
     if (file[x].type == TK_HEREDOC)
     {
-      close(dt->ffd.ffin);
-      dt->ffd.ffin = open("/tmp/hedoc", O_RDONLY | O_WRONLY | O_CREAT , 0777);
-      dt->ffd.type = file[x].type;
+      fd[0] = open("/tmp/hedoc", O_RDONLY | O_WRONLY | O_CREAT , 0777);
+      dup2(fd[0], STDOUT_FILENO);
+      close(fd[0]);
     }
     if (file[x].type == TK_RINPUT)
     {
-      close(dt->ffd.ffin);
-      dt->ffd.ffin = open(file[x].file, O_RDONLY , 0777);      
-      dt->ffd.type = file[x].type;
+      fd[0] = open(file[x].file, O_RDONLY , 0777);      
+      dup2(fd[0], STDOUT_FILENO);
+      close(fd[0]);
     }
     if (file[x].type == TK_ROUTPUT)
-    { 
-      close(dt->ffd.ffout);
-      dt->ffd.ffout = open(file[x].file, O_RDONLY |   O_CREAT | O_TRUNC , 0777);
-      dt->ffd.type = file[x].type;
+    {
+      fd[1] = open(file[x].file, O_RDONLY |   O_CREAT | O_TRUNC , 0777);
+      dup2(fd[1], STDIN_FILENO);
+      close(fd[1]);
     }
     if (file[x].type == TK_DROUTPUT)
     {
-      close(dt->ffd.ffout);
-      dt->ffd.ffout = open(file[x].file, O_WRONLY | O_CREAT | O_APPEND, 0777);
-      dt->ffd.type = file[x].type;
+      fd[1] = open(file[x].file, O_WRONLY | O_CREAT | O_APPEND, 0777);
+      dup2(fd[1], STDIN_FILENO);
+      close(fd[1]);
     }
+        
     x++;
   }
-  return (0);
+  return (fd);
 }
 
 // void cmdrdout(t_data *dt, char **cmd)
@@ -136,26 +137,61 @@ int filename(t_data *dt)
 //     perror(cmd[1]); 
 // }
 
-int redictionfunc(t_data *dt, char **cmd)
+void redictionfunc(t_data *dt, char **cmd)
 {
-  int pid;
-
-  pid = forcked();
-  if (pid == 0)
+  int pid1;
+  int pid2;
+  int pid3;
+  int fd;
+  
+  pid1 = forcked();
+  if (pid1 == 0)
   {
-    filename(dt);
-    dup2(dt->ffd.ffin, STDIN_FILENO);
-    dup2(dt->ffd.ffout, STDOUT_FILENO);
-    close(dt->ffd.ffin);
-    close(dt->ffd.ffout);
-    if (execve(cmd[0], &(cmd[1]), dt->env) == -1){}
-      perror(cmd[1]); 
+    fd = open(dt->file[0].file, O_RDONLY, 0777);
+    dup2(fd, STDIN_FILENO);
+    pid1 = forcked();
+    if (pid1 == 0)
+    {
+      fd = open(dt->file[0].file, O_RDONLY, 0777);
+      dup2(fd, STDIN_FILENO);
+      fd = open(dt->file[1].file, O_CREAT | O_TRUNC| O_WRONLY, 0777);
+      dup2(fd, STDOUT_FILENO);
+      close(fd);
+      if (execve(cmd[0], &(cmd[1]), dt->env) == -1)
+        perror(cmd[1]);
+    }
+    pid2 = forcked();
+    if (pid2 == 0)
+    {
+      fd = open(dt->file[0].file, O_RDONLY, 0777);
+      dup2(fd, STDIN_FILENO);
+      fd = open(dt->file[2].file, O_CREAT | O_TRUNC| O_WRONLY, 0777);
+      dup2(fd, STDOUT_FILENO);
+      close(fd);
+      if (execve(cmd[0], &(cmd[1]), dt->env) == -1)
+        perror(cmd[1]);
+    }
+    pid3 = forcked();
+    if (pid3 == 0)
+    {
+      fd = open(dt->file[3].file, O_CREAT | O_TRUNC| O_WRONLY, 0777);
+      dup2(fd, STDOUT_FILENO);
+      close(fd);
+      if (execve(cmd[0], &(cmd[1]), dt->env) == -1)
+        perror(cmd[1]);
+    }
   }
-  printf("hiiiiii\n"); 
+  // pid2 = forcked();
+  // if(pid2 == 0)
+  // {
+    
+  //   close(fd);
+  //   if (execve(cmd[0], &(cmd[1]), dt->env) == -1){}
+  //     perror(cmd[1]);
+  // :w
+  // }
+  // // printf("hiiiiii\n"); 
   waitpid(-1, NULL, 0);
-  close(3);
-  close(4);
-  return (pid);
 }
 
 
@@ -218,10 +254,10 @@ int main(int ac, char **av, char **env)
     char *strin[100] = {"file.txt"};
 
     file = malloc(sizeof(t_file) * 4);
-    file = injectfile(0, file, strout[0], TK_ROUTPUT);
+    file = injectfile(3, file, strout[0], TK_ROUTPUT);
     file = injectfile(1, file, strout[1], TK_ROUTPUT);
     file = injectfile(2, file, strout[2], TK_ROUTPUT);
-    file = injectfile(3, file, strin[0], TK_RINPUT);
+    file = injectfile(0, file, strin[0], TK_RINPUT);
     
     
     data.file = file;
