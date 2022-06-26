@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 02:55:50 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 05:24:11 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,12 @@ int forcked()
   return (pid);
 }
 
-int *filein(t_data *dt)
+int filein(int *fd,t_data *dt)
 {
   int     x;
-  int     *fd;
   t_file  *file;
 
   x = 0;
-  fd = malloc(sizeof(int) * 2);
   file = dt->file;
   while (file[x].file != NULL)
   {
@@ -86,7 +84,7 @@ int *filein(t_data *dt)
       fd[1] = open(file[x].file, O_WRONLY | O_CREAT | O_APPEND, 0777);
     x++;
   }
-  return (fd);
+  return (0);
 }
 
 // void cmdrdout(t_data *dt, char **cmd)
@@ -126,9 +124,10 @@ void redictionfunc(t_data *dt, char **cmd)
   int *fd;
 
   pid1 = forcked();
+  fd = malloc(sizeof(int) * 2);
+  filein(fd, dt);
   if (pid1 == 0)
   {
-    fd = filein(dt);
     dup2(fd[0] ,STDIN_FILENO);
     close(fd[0]); 
     dup2(fd[1], STDOUT_FILENO);

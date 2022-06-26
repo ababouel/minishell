@@ -6,7 +6,7 @@
 #    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
-#    Updated: 2022/06/16 19:42:47 by ababouel         ###   ########.fr        #
+#    Updated: 2022/06/26 04:47:26 by ababouel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ BDIR = build
 FILES = main parse/lexer parse/lexerbis parse/token parse/parstree\
 		parse/parselst/parsecmd parse/parselst/parsepipe\
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack\
-		exec/ft_which exec/execution 
+		exec/ft_which exec/execution exec/exectool 
 		
 NAME = minishell
 OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))

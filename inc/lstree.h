@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 02:59:21 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 05:17:52 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,26 @@ typedef enum	e_treetype
 	DPIPE = 243,
 	CMD = 729
 }	t_treetype;
-typedef	struct	s_routput
-{
-	int	type;
-}	t_routput;
 
-typedef	struct	s_droutput
+typedef enum	e_mpipe
 {
-	int	type;
-}	t_droutput;
+	NUL		= -1,
+	START	= 0,
+	UPDATE	= 1,
+	END		= 2
+}	t_statpipe;
 
-typedef	struct	s_rinput
+typedef struct file
 {
-	int	type;
-}	t_rinput;
-
-typedef	struct	s_drinput
+  char    *file;
+  t_type  type;
+} t_file;
+// start =>struct parsing 
+typedef	struct	s_redicio
 {
-	int	type;
-}	t_drinput;
+	int		*fd;
+	t_file	*name;
+}	t_redicio;
 
 typedef struct s_dand
 {
@@ -58,7 +59,8 @@ typedef struct	s_dpipe
 
 typedef struct	s_pipe
 {
-	int	type;
+	int			*fd;
+	t_statpipe	statpipe;
 }	t_pipe;
 
 typedef struct	s_cmd
@@ -66,17 +68,14 @@ typedef struct	s_cmd
 	char	*pathcmd;
 	char	**cmdarg;
 	char	**env;
-	int		*fd;
 }	t_cmd;
-
+// end =>struct parsing 
+// struct of tree and lstree
 typedef struct s_tree
 {
-    union u_c_tree
+	union u_c_tree
 	{
-		t_drinput 	drinput;
-		t_rinput 	rinput;
-		t_routput	routput;
-		t_droutput	droutput;
+		t_redicio	redic;
 		t_dand		dand;
 		t_dpipe		dpipe;
 		t_pipe		pipe;

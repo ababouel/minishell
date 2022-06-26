@@ -8,9 +8,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sat Jun 25 20:38:35 2022
+# Make data base, printed on Sun Jun 26 04:47:31 2022
 
- 
 # Variables
 
 # automatic
@@ -114,7 +113,6 @@ NAME = minishell
 # environment
 LESS = -R
 # automatic
- 
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
@@ -151,6 +149,7 @@ MAKEFILES :=
 # automatic
 <F = $(notdir $<)
 # environment
+ 
 PAGER = less
 # environment
 LC_ALL = C
@@ -171,7 +170,7 @@ LANG = C
 # environment
 VSCODE_PID = 1781
 # makefile (from `Makefile', line 24)
-FILES = main parse/lexer parse/lexerbis parse/token parse/parstree parse/parselst/parsecmd parse/parselst/parsepipe tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack exec/ft_which exec/execution 
+FILES = main parse/lexer parse/lexerbis parse/token parse/parstree parse/parselst/parsecmd parse/parselst/parsepipe tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack exec/ft_which exec/execution exec/exectool 
 # variable set hash-table stats:
 # Load=79/1024=8%, Rehash=0, Collisions=4/116=3%
 
@@ -181,10 +180,10 @@ FILES = main parse/lexer parse/lexerbis parse/token parse/parstree parse/parsels
 
 # Directories
 
-# . (device 16777225, inode 4155636): 12 files, no impossibilities.
+# . (device 16777225, inode 4155636): 18 files, no impossibilities.
 # inc (device 16777225, inode 4155716): 8 files, no impossibilities so far.
 
-# 20 files, no impossibilities in 2 directories.
+# 26 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -251,7 +250,7 @@ all: minishell
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-24 23:07:49
+#  Last modified 2022-06-25 22:40:23
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -281,7 +280,7 @@ build/parse/lexer.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-24 22:50:03
+#  Last modified 2022-06-26 04:47:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -293,7 +292,13 @@ build/exec/ft_which.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-minishell: build/main.o build/parse/lexer.o build/parse/lexerbis.o build/parse/token.o build/parse/parstree.o build/parse/parselst/parsecmd.o build/parse/parselst/parsepipe.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o build/tools/ft_strjoin.o build/tools/freestack.o build/exec/ft_which.o build/exec/execution.o
+# Not a target:
+build/exec/exectool.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+minishell: build/main.o build/parse/lexer.o build/parse/lexerbis.o build/parse/token.o build/parse/parstree.o build/parse/parselst/parsecmd.o build/parse/parselst/parsepipe.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o build/tools/ft_strjoin.o build/tools/freestack.o build/exec/ft_which.o build/exec/execution.o build/exec/exectool.o
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
@@ -386,7 +391,7 @@ clean:
 # Not a target:
 inc/exec.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-24 22:50:03
+#  Last modified 2022-06-26 04:29:48
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -418,7 +423,6 @@ inc/lib.h:
 
 # Not a target:
 build/parse/parselst/parsecmd.o:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -442,9 +446,10 @@ build/parse/parstree.o:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=30/1024=3%, Rehash=0, Collisions=2/79=3%
+# Load=31/1024=3%, Rehash=0, Collisions=2/81=2%
 # VPATH Search Paths
 
+ 
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
@@ -454,6 +459,6 @@ build/parse/parstree.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Jun 25 20:38:35 2022
+# Finished Make data base on Sun Jun 26 04:47:31 2022
 
  
