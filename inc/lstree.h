@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 05:17:52 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 06:41:30 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@
 # include "lib.h"
 typedef enum	e_treetype
 {
-	ROUTPUT = 0,
-	DROUTPUT = 1,
-	DRINPUT = 3,
-	RINPUT = 9,
+	REDICIO = 1,	
 	PIPE = 27,
 	DAND = 81,
 	DPIPE = 243,
@@ -99,5 +96,4 @@ int		ins_next_tree(t_lstree *stack, t_tree *data);
 void	ft_freetree(t_lstree *sk);
 int		parse_cmd(t_lstree *lstree, t_token *token, char **env);
 t_tree  *parse_pipe();
-
 #endif

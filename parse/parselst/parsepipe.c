@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:38:39 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 08:41:48 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 06:24:44 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ t_tree  *parse_pipe()
     tree->type = PIPE;
     tree->left = NULL;
     tree->right = NULL;
+    piped(tree->utree.pipe.fd);
+
     return (tree);  
 }

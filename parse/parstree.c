@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/25 22:38:24 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 06:45:25 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
 	token = lsnode->head; 
     while (token != NULL && token->type != TOKEN_EOL)
     {
+        // if (token->type == TOKEN_ROUTPUT 
+        //|| token->type == TOKEN_DROUTPUT)
+        //||token->type == TOKEN_RINPUT)
         if (token->type != TOKEN_EOL && (token->type == TOKEN_EXP
             || token->type == TOKEN_DQUOTE 
             || token->type == TOKEN_SINQTE
@@ -26,12 +29,6 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
             parse_cmd(lstree, token, env);
         // if (token->type == TOKEN_PIPE)
         //     treend = parse_pipe();
-        // if (token->type == TOKEN_ROUTPUT)
-        //     treend = parse_routput();
-        // if (token->type == TOKEN_DROUTPUT)
-        //     treend = parse_droutput();
-        // if (token->type == TOKEN_DRINPUT)
-        //     treend = parse_drinput();
         // if (token->type == TOKEN_RINPUT)
         //     treend = parse_rinput();
         // printf("data track from => %d\n", token->type); 
@@ -55,7 +52,13 @@ int ins_next_tree(t_lstree *stack, t_tree *treend)
     {
         temp = stack->root;
         stack->root = treend;
-        stack->root->left = temp;
+        treend = temp;
+    }
+    else if (treend->type == REDICIO)
+    {
+        temp = stack->root;
+        stack->root = treend;
+        treend->left = temp;
     } 
     else if (treend->type == CMD)
     {
