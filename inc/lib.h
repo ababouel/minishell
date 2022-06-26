@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/23 01:10:42 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 08:50:34 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <fcntl.h>
 
 #include "token.h"
 

@@ -6,12 +6,24 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/25 22:40:23 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 09:19:04 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/minishell.h"
 	
+void	printall(t_tree *treend)
+{
+	int x;
+
+	x = 0;
+	while (treend->utree.redic.name[x].file)
+	{
+		printf("=>%s\n", treend->utree.redic.name[x].file);
+		x++;
+	}
+}
+
 void	recursive(t_tree *lstree)
 {
 	t_tree	*temp;
@@ -21,14 +33,8 @@ void	recursive(t_tree *lstree)
 		recursive(temp->left);
 	if (temp->type == PIPE)
 		printf("%s\n", "PIPE");
-	if (temp->type == ROUTPUT)
-		printf("%s\n", "ROUTPUT");
-	if (temp->type == DROUTPUT)
-		printf("%s\n", "DROUTPUT");
-	if (temp->type == RINPUT)
-		printf("%s\n", "RINPUT");
-	if (temp->type == DRINPUT)
-		printf("%s\n", "DRINPUT");
+	if (temp->type == REDICIO)
+		printall(temp);
 	if (temp->type == DAND)
 		printf("%s\n", "DAND");
 	if (temp->type == DPIPE)

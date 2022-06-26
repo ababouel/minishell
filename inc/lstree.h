@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 06:41:30 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 08:38:32 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct file
 // start =>struct parsing 
 typedef	struct	s_redicio
 {
-	int		*fd;
+	int		fd[2];
 	t_file	*name;
 }	t_redicio;
 
@@ -96,4 +96,5 @@ int		ins_next_tree(t_lstree *stack, t_tree *data);
 void	ft_freetree(t_lstree *sk);
 int		parse_cmd(t_lstree *lstree, t_token *token, char **env);
 t_tree  *parse_pipe();
+t_token *parse_redic(t_lstree *lstree, t_token *token);
 #endif

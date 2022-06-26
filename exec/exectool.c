@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 05:10:24 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 07:53:33 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ int filein(t_redicio *redic)
 
   x = 0;
   file = redic->name;
-  redic->fd = malloc(sizeof(int) * 2);
-  if (redic->fd == NULL)
-    return (1);
   while (file[x].file != NULL)
   {
     if (file[x].type == TOKEN_DRINPUT)
