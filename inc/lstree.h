@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/25 21:24:35 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 02:59:21 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef enum	e_treetype
 	DPIPE = 243,
 	CMD = 729
 }	t_treetype;
-
 typedef	struct	s_routput
 {
 	int	type;
@@ -64,9 +63,10 @@ typedef struct	s_pipe
 
 typedef struct	s_cmd
 {
-	char		*pathcmd;
-	char		**cmdarg;
-	char		**env;
+	char	*pathcmd;
+	char	**cmdarg;
+	char	**env;
+	int		*fd;
 }	t_cmd;
 
 typedef struct s_tree

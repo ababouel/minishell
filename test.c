@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/25 07:55:40 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 02:55:50 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int forcked()
   return (pid);
 }
 
-int *filename(t_data *dt)
+int *filein(t_data *dt)
 {
   int     x;
   int     *fd;
@@ -77,30 +77,13 @@ int *filename(t_data *dt)
   while (file[x].file != NULL)
   {
     if (file[x].type == TK_HEREDOC)
-    {
       fd[0] = open("/tmp/hedoc", O_RDONLY | O_WRONLY | O_CREAT , 0777);
-      dup2(fd[0], STDOUT_FILENO);
-      close(fd[0]);
-    }
     if (file[x].type == TK_RINPUT)
-    {
-      fd[0] = open(file[x].file, O_RDONLY , 0777);      
-      dup2(fd[0], STDOUT_FILENO);
-      close(fd[0]);
-    }
+      fd[0] = open(file[x].file, O_RDONLY , 0777);
     if (file[x].type == TK_ROUTPUT)
-    {
-      fd[1] = open(file[x].file, O_RDONLY |   O_CREAT | O_TRUNC , 0777);
-      dup2(fd[1], STDIN_FILENO);
-      close(fd[1]);
-    }
+      fd[1] = open(file[x].file, O_WRONLY |   O_CREAT | O_TRUNC , 0777);
     if (file[x].type == TK_DROUTPUT)
-    {
       fd[1] = open(file[x].file, O_WRONLY | O_CREAT | O_APPEND, 0777);
-      dup2(fd[1], STDIN_FILENO);
-      close(fd[1]);
-    }
-        
     x++;
   }
   return (fd);
@@ -140,100 +123,62 @@ int *filename(t_data *dt)
 void redictionfunc(t_data *dt, char **cmd)
 {
   int pid1;
-  int pid2;
-  int pid3;
-  int fd;
-  
+  int *fd;
+
   pid1 = forcked();
   if (pid1 == 0)
   {
-    fd = open(dt->file[0].file, O_RDONLY, 0777);
-    dup2(fd, STDIN_FILENO);
-    pid1 = forcked();
-    if (pid1 == 0)
-    {
-      fd = open(dt->file[0].file, O_RDONLY, 0777);
-      dup2(fd, STDIN_FILENO);
-      fd = open(dt->file[1].file, O_CREAT | O_TRUNC| O_WRONLY, 0777);
-      dup2(fd, STDOUT_FILENO);
-      close(fd);
-      if (execve(cmd[0], &(cmd[1]), dt->env) == -1)
-        perror(cmd[1]);
-    }
-    pid2 = forcked();
-    if (pid2 == 0)
-    {
-      fd = open(dt->file[0].file, O_RDONLY, 0777);
-      dup2(fd, STDIN_FILENO);
-      fd = open(dt->file[2].file, O_CREAT | O_TRUNC| O_WRONLY, 0777);
-      dup2(fd, STDOUT_FILENO);
-      close(fd);
-      if (execve(cmd[0], &(cmd[1]), dt->env) == -1)
-        perror(cmd[1]);
-    }
-    pid3 = forcked();
-    if (pid3 == 0)
-    {
-      fd = open(dt->file[3].file, O_CREAT | O_TRUNC| O_WRONLY, 0777);
-      dup2(fd, STDOUT_FILENO);
-      close(fd);
-      if (execve(cmd[0], &(cmd[1]), dt->env) == -1)
-        perror(cmd[1]);
-    }
-  }
-  // pid2 = forcked();
-  // if(pid2 == 0)
-  // {
-    
-  //   close(fd);
-  //   if (execve(cmd[0], &(cmd[1]), dt->env) == -1){}
-  //     perror(cmd[1]);
-  // :w
-  // }
-  // // printf("hiiiiii\n"); 
+    fd = filein(dt);
+    dup2(fd[0] ,STDIN_FILENO);
+    close(fd[0]); 
+    dup2(fd[1], STDOUT_FILENO);
+    close(fd[1]);
+    if (execve(cmd[0], &(cmd[1]), dt->env) == -1)
+      perror(cmd[1]);
+  } 
   waitpid(-1, NULL, 0);
 }
 
 
-int cmdfunc(int isin,int fd,char **filein,int isredirect,int track,int *cpipe,int *pvpipe, char **str, char **env)
-{
-  int pid;
+// int cmdfunc(int isin,int fd,char **filein,int isredirect,int track,int *cpipe,int *pvpipe, char **str, char **env)
+// {
+//   int pid;
 
-  pid = forcked(); 
-  if (pid == 0)
-  {
-    if (fd > 0 && isin == 1)
-      dup2(fd, STDIN_FILENO);
-    else if (fd>0 && isin == 0)
-      dup2(fd, STDOUT_FILENO);
-    if (track == start && fd > 0 && isin != 0)
-      dup2(cpipe[1], STDOUT_FILENO);
-    if (track == middle)
-    {
-      dup2(pvpipe[0], STDIN_FILENO);
-      dup2(cpipe[1], STDOUT_FILENO);
-    }
-    if (track == end)
-      dup2(cpipe[0], STDIN_FILENO);
-    execve(str[0],&str[1],env);
-  }
-  if (pid > 0)
-  { 
-    if (track == start)
-      close(cpipe[1]);
-    if (track == middle)
-    {
-      close(pvpipe[0]);
-      close(cpipe[1]);
-    }
-    if (track == end)
-      close(cpipe[0]);
-    if (fd > 0)
-      close(fd);
-    waitpid(-1, NULL, 0);
-  }
-  return (pid);
-}
+//   pid = forcked(); 
+//   if (pid == 0)
+//   {
+//     if (fd > 0 && isin == 1)
+//       dup2(fd, STDIN_FILENO);
+//     else if (fd>0 && isin == 0)
+//       dup2(fd, STDOUT_FILENO);
+//     if (track == start && fd > 0 && isin != 0)
+//       dup2(cpipe[1], STDOUT_FILENO);
+//     if (track == middle)
+//     {
+//       dup2(pvpipe[0], STDIN_FILENO);
+//       dup2(cpipe[1], STDOUT_FILENO);
+//     }
+//     if (track == end)
+//       dup2(cpipe[0], STDIN_FILENO);
+//     execve(str[0],&str[1],env);
+//   }
+//   if (pid > 0)
+//   { 
+//     if (track == start)
+//       close(cpipe[1]);
+//     if (track == middle)
+//     {
+//       close(pvpipe[0]);
+//       close(cpipe[1]);
+//     }
+//     if (track == end)
+//       close(cpipe[0]);
+//     if (fd > 0)
+//       close(fd);
+//     waitpid(-1, NULL, 0);
+//   }
+//   return (pid);
+// }
 
 t_file  *injectfile(int x,t_file *fl,char *file, t_type type)
 {
@@ -251,19 +196,19 @@ int main(int ac, char **av, char **env)
     char *cmd2[100] = {"/usr/bin/wc", "wc", "-c"};
     char *cmd1[100] = {"/bin/cat", "cat"};
     char *strout[100] = {"file2.txt", "file3.txt", "file1.txt"}; 
-    char *strin[100] = {"file.txt"};
+    char *strin[100] = {"file.txt", "lexer"};
 
-    file = malloc(sizeof(t_file) * 4);
+    file = malloc(sizeof(t_file) * 5);
     file = injectfile(3, file, strout[0], TK_ROUTPUT);
     file = injectfile(1, file, strout[1], TK_ROUTPUT);
     file = injectfile(2, file, strout[2], TK_ROUTPUT);
-    file = injectfile(0, file, strin[0], TK_RINPUT);
+    file = injectfile(4, file, strin[0], TK_RINPUT);
+    file = injectfile(0, file, strin[1], TK_RINPUT);
     
     
     data.file = file;
     data.env = env;
     data.delim = "data";
-    pipe(data.pfd);
     redictionfunc(&data, cmd1); 
     return (0); 
 }
