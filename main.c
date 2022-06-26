@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 18:10:25 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/26 18:23:39 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int main(int ac, char **av, char **env)
     char		*line;
 	t_token		*token;
 	t_lstree	*lstree;
-	char	*test;
 
 	token = NULL;
 	lstree = malloc(sizeof(t_lstree));
@@ -96,12 +95,7 @@ int main(int ac, char **av, char **env)
 			{
 				parsing(lstree, &lstok, env);
 				recursive(lstree->root);
-				for(int i = 0; lstree->root->utree.cmd.cmdarg[i]; i++)
-				{
-					test = search_var(lstree->root->utree.cmd.cmdarg[i], lstree->root->utree.cmd.env);
-					printf("%s\n", test);
-				}
-				// built(&(lstree->root->utree.cmd));
+				built(&(lstree->root->utree.cmd));
 			}
 		}
 		ft_freetree(lstree);

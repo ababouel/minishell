@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd_echo.c                                          :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:57:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/23 18:38:49 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/26 19:36:21 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_env_pwd(char **env)
 	i = 0;
 	j = 0;
 	len = 0;
-	if(getcwd(str, sizeof(str)) == NULL)
+	if (getcwd(str, sizeof(str)) == NULL)
 		return ;
 	while (env[i])
 	{
@@ -87,30 +87,4 @@ void	ft_cd(t_cmd *cmd)
 		perror(join);
 	}
 	ft_env_pwd(cmd->env);
-}
-
-void	ft_echo(char **line)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	j = 0;
-	if (!line[1])
-	{
-		write(1, "\n", 1);
-		return ;
-	}
-	while (line[j])
-		j++;
-	if (!ft_strncmp(line[1], "-n", ft_strlen(line[1])))
-		i++;
-	while (line[i])
-	{
-		printf("%s", line[i++]);
-		if (i != j)
-			printf(" ");
-	}
-	if (ft_strncmp(line[1], "-n", ft_strlen(line[1])))
-		printf("\n");
 }

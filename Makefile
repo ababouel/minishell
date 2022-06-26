@@ -6,7 +6,7 @@
 #    By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
-#    Updated: 2022/06/26 14:32:21 by sismaili         ###   ########.fr        #
+#    Updated: 2022/06/26 19:27:04 by sismaili         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ BDIR = build
 FILES = main parse/lexer parse/lexerbis parse/token parse/parstree\
 		parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio\
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack\
-		tools/ft_isalpha exec/built exec/cd_echo exec/export_unset exec/pwd_env\
+		tools/ft_isalpha exec/built exec/cd exec/echo exec/export_unset exec/pwd_env\
 		exec/ft_which exec/execution exec/exectool exec/env_var errors/tokens_check errors/errors
 		
 NAME = minishell

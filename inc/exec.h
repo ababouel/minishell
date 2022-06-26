@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 18:10:30 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/26 19:29:51 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "lib.h"
 # include "lstree.h"
+# include "minishell.h"
 # include <sys/wait.h>
 
 char    *ft_which(char *cmd, char **env);
@@ -25,8 +26,8 @@ int     piped(int *fd);
 void    exec_redic(t_redicio *redic,t_cmd *cmd);
 void	built(t_cmd *cmd);
 void	ft_cd(t_cmd *cmd);
-void	ft_echo(char **line);
-void	ft_pwd(void);
+void	ft_echo(char **line, char **env);
+void	ft_pwd(t_cmd *cmd);
 void	ft_env(t_cmd *cmd);
 void	ft_export(t_cmd *cmd);
 void	ft_unset(t_cmd *cmd);

@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/25 11:20:56 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/26 19:33:49 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	handler(int	hand)
 void	built(t_cmd *cmd)
 {
 	if (!ft_strncmp(cmd->cmdarg[0], "pwd", ft_strlen(cmd->cmdarg[0])))
-		ft_pwd();
+		ft_pwd(cmd);
 	else if (!ft_strncmp(cmd->cmdarg[0], "echo", ft_strlen(cmd->cmdarg[0])))
-		ft_echo(cmd->cmdarg);
+		ft_echo(cmd->cmdarg, cmd->env);
 	else if (!ft_strncmp(cmd->cmdarg[0], "cd", ft_strlen(cmd->cmdarg[0])))
 		ft_cd(cmd);
 	else if (!ft_strncmp(cmd->cmdarg[0], "env", ft_strlen(cmd->cmdarg[0])))
