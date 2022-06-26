@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 18:23:39 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:02:47 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	recursive(t_tree *lstree)
 		printf("%s\n", "DPIPE");
 	if (temp->right != NULL)
 		recursive(temp->right);
-	// if (temp->type == CMD)
-	// 	exec_cmd(&(temp->utree.cmd));
+	if (temp->type == CMD)
+		built(&lstree->utree.cmd);
 }
 
 // void printtoken(t_lsnode *lstok)
@@ -95,7 +95,6 @@ int main(int ac, char **av, char **env)
 			{
 				parsing(lstree, &lstok, env);
 				recursive(lstree->root);
-				built(&(lstree->root->utree.cmd));
 			}
 		}
 		ft_freetree(lstree);
