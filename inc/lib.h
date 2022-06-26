@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lib.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 08:50:34 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:06:22 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ char            **ft_freememory(char **data, int index);
 void            **ft_drealloc(void **ptr, size_t size);
 size_t          ft_dstrlen(char **str);
 char            *ft_strjoinbis(char *s1, char *s2);
+int				ft_isalpha(char c);
+int				ft_ischar(char *str);
 
 #endif

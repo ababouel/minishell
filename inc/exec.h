@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 08:46:32 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:05:45 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,16 @@ int     forcked();
 int     filein(t_redicio *redic);
 int     piped(int *fd);
 void    exec_redic(t_redicio *redic,t_cmd *cmd);
+void	built(t_cmd *cmd);
+void	ft_cd(t_cmd *cmd);
+void	ft_echo(char **line);
+void	ft_pwd(void);
+void	ft_env(t_cmd *cmd);
+void	ft_export(t_cmd *cmd);
+void	ft_unset(t_cmd *cmd);
+void	handler(int	hand);
+int		printtoken(t_lsnode *lstok);
+int     first_check(t_token *temp);
+int     second_check(t_token *temp);
 
 #endif

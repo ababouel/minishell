@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
+#    By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
-#    Updated: 2022/06/26 06:24:40 by ababouel         ###   ########.fr        #
+#    Updated: 2022/06/26 14:07:57 by sismaili         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ BDIR = build
 FILES = main parse/lexer parse/lexerbis parse/token parse/parstree\
 		parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio\
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack\
-		exec/ft_which exec/execution exec/exectool 
+		tools/ft_isalpha exec/built exec/cd_echo exec/export_unset exec/pwd_env\
+		exec/ft_which exec/execution exec/exectool errors/tokens_check errors/errors
 		
 NAME = minishell
 OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))

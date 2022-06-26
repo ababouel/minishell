@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 08:49:30 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:13:59 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    exec_cmd(t_cmd *cmd)
     if (pid == 0)
     {
         if (execve(cmd->pathcmd, cmd->cmdarg, cmd->env) == -1)
-            perror(cmd->cmdarg[0]);
+            printf("%s: command not found\n", cmd->cmdarg[0]);
     }
     if (pid > 0)
         waitpid(-1, NULL, 0);

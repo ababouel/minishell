@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 09:19:04 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 14:13:03 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@ void	recursive(t_tree *lstree)
 		printf("%s\n", "DPIPE");
 	if (temp->right != NULL)
 		recursive(temp->right);
-	if (temp->type == CMD)
-		exec_cmd(&(temp->utree.cmd));
+	// if (temp->type == CMD)
+	// 	exec_cmd(&(temp->utree.cmd));
 }
 
-void printtoken(t_lsnode *lstok)
-{
-	t_token	*temp;
+// void printtoken(t_lsnode *lstok)
+// {
+// 	t_token	*temp;
 
-	temp = lstok->head;
-	while (temp)
-	{
-		printf("data => %d => %s\n", temp->type, temp->value);
-		temp = temp->next;
-	}
-}
+// 	temp = lstok->head;
+// 	while (temp)
+// 	{
+// 		printf("data => %d => %s\n", temp->type, temp->value);
+// 		temp = temp->next;
+// 	}
+// }
 
 int main(int ac, char **av, char **env)
 {
@@ -73,7 +73,16 @@ int main(int ac, char **av, char **env)
 	init_lstree(lstree);
 	while (1337)
 	{
-		if ((line = readline("minihell$ ")) != NULL)
+		signal(SIGINT, handler);
+		signal(SIGQUIT, SIG_IGN);
+		line = readline("minihell$ ");
+		add_history(line);
+		if (!line)
+		{
+			write(1, "exit\n", 5);
+			exit(0);
+		}
+		if (line != NULL && ft_strlen(line) > 0)
 		{
 			init_stack(&lstok);
 			lexer = init_lexer(line);
@@ -82,10 +91,12 @@ int main(int ac, char **av, char **env)
 				if (token != NULL)
 					ins_next_node(&lstok, (void *) token);
 			}
-			// printtoken(&lstok);
-			parsing(lstree, &lstok, env);
-			recursive(lstree->root);
-			
+			if (printtoken(&lstok))
+			{
+				parsing(lstree, &lstok, env);
+				recursive(lstree->root);
+				built(&(lstree->root->utree.cmd));
+			}
 		}
 		ft_freetree(lstree);
 	}
