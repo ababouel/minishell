@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/26 21:49:25 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:27:25 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,31 @@ void	handler(int	hand)
 
 void	built(t_cmd *cmd)
 {
-	if (!ft_strncmp(cmd->cmdarg[0], "pwd", ft_strlen(cmd->cmdarg[0])))
-		ft_pwd(cmd);
-	else if (!ft_strncmp(cmd->cmdarg[0], "echo", ft_strlen(cmd->cmdarg[0])))
-		ft_echo(cmd->cmdarg, cmd->env);
-	else if (!ft_strncmp(cmd->cmdarg[0], "cd", ft_strlen(cmd->cmdarg[0])))
-		ft_cd(cmd);
-	else if (!ft_strncmp(cmd->cmdarg[0], "env", ft_strlen(cmd->cmdarg[0])))
-		ft_env(cmd);
-	else if (!ft_strncmp(cmd->cmdarg[0], "export", ft_strlen(cmd->cmdarg[0])))
-		ft_export(cmd);
-	else if (!ft_strncmp(cmd->cmdarg[0], "unset", ft_strlen(cmd->cmdarg[0])))
-		ft_unset(cmd);
-	else if (!ft_strncmp(cmd->cmdarg[0], "exit", ft_strlen(cmd->cmdarg[0])))
+	if (cmd->pathcmd)
 	{
-		write(1, "exit\n", 6);
-		exit(0);
+		if (!ft_strncmp(cmd->pathcmd, "/bin/pwd", ft_strlen(cmd->pathcmd)))
+			ft_pwd(cmd);
+		else if (!ft_strncmp(cmd->pathcmd, "/bin/echo", ft_strlen(cmd->pathcmd)))
+			ft_echo(cmd->cmdarg, cmd->env);
+		else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/cd", ft_strlen(cmd->pathcmd)))
+			ft_cd(cmd);
+		else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/env", ft_strlen(cmd->pathcmd)))
+			ft_env(cmd);
 	}
 	else
-		exec_cmd(cmd);
+	{
+		if (!ft_strncmp(cmd->cmdarg[0], "export", ft_strlen(cmd->cmdarg[0])))
+		{
+			ft_export(cmd);
+		}
+		else if (!ft_strncmp(cmd->cmdarg[0], "unset", ft_strlen(cmd->cmdarg[0])))
+			ft_unset(cmd);
+		else if (!ft_strncmp(cmd->cmdarg[0], "exit", ft_strlen(cmd->cmdarg[0])))
+		{
+			write(1, "exit\n", 6);
+			exit(0);
+		}
+		else
+			exec_cmd(cmd);
+	}
 }

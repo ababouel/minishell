@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexerbis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/24 23:08:12 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:12:51 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_token *lexer_parse_quote(t_lexer *lexer, char ch, t_type type)
 	if(c[len] == ch)
 	{
 		if (len == 0)
-			value = ft_strdup("n");
+			value = ft_strdup("\0");
 		else
 			value = ft_strndup(lexer->src + lexer->i, len);
 		lexer->i += ++len;
