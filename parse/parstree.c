@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parstree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 09:13:15 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/26 21:02:38 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
         // if (token->type == TOKEN_RINPUT)
         //     treend = parse_rinput();
         // printf("data track from => %d\n", token->type); 
-        if (token != NULL && token->type != TOKEN_EOL) 
+        if (token != NULL) 
             token = token->next;
     }    
 }

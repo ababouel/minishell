@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/26 19:33:49 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/26 21:49:25 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	handler(int	hand)
 	{
 		write(1, "\n", 1);
 		rl_on_new_line();
-		// rl_replace_line();
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }
