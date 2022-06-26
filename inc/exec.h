@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 14:05:45 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/26 18:10:30 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_unset(t_cmd *cmd);
 void	handler(int	hand);
 int		printtoken(t_lsnode *lstok);
 int     first_check(t_token *temp);
-int     second_check(t_token *temp);
+int		second_check(t_token *temp);
+char	*search_var(char *cmd, char **env);
 
 #endif
