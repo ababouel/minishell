@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parstree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 21:02:38 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/27 04:22:35 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
             || token->type == TOKEN_DRINPUT))
         {
             parse_redic(lstree, token);
-            token = token->next->next->next; 
+            token = token->next->next->next;
         }
         if (token != NULL && 
             (token->type == TOKEN_EXP

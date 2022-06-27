@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:25:44 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/26 19:35:53 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/27 02:46:38 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/exec.h"
+#include "exec.h"
 
 void	check_echo(char **line, char **env, int i, int j)
 {

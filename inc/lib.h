@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lib.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 14:06:22 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/27 02:48:29 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 # include <fcntl.h>
-
 #include "token.h"
 
 int				ins_next_node(t_lsnode *stack, t_token *token);

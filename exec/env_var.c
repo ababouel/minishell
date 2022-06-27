@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/26 19:04:15 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/27 02:46:45 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/exec.h"
+#include "exec.h"
 
 char	*search_in_env(char **env, char *var)
 {

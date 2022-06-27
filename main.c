@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 22:02:47 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/27 03:36:17 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./inc/minishell.h"
-	
+#include "./inc/minishell.h"	
 void	printall(t_tree *treend)
 {
 	int x;
-
+	
 	x = 0;
 	while (treend->utree.redic.name[x].file)
 	{
@@ -94,7 +93,8 @@ int main(int ac, char **av, char **env)
 			if (printtoken(&lstok))
 			{
 				parsing(lstree, &lstok, env);
-				recursive(lstree->root);
+				printall(lstree->root);
+				// recursive(lstree->root);
 			}
 		}
 		ft_freetree(lstree);

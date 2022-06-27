@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 08:38:32 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/27 06:26:06 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef	struct	s_redicio
 {
 	int		fd[2];
 	t_file	*name;
+	int		numfile;
 }	t_redicio;
 
 typedef struct s_dand

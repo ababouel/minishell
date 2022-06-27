@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:31:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/26 19:36:48 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/27 02:47:04 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/exec.h"
+#include "exec.h"
 
 void	ft_pwd(t_cmd *cmd)
 {
