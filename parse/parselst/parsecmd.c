@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 06:37:48 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:08:21 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ static int ctreenode(t_lstree *lstree, t_treetype type)
 {
     t_tree *treend;
 
-    if (lstree->root == NULL || lstree->root->type != type) 
+    if (lstree->root == NULL 
+        || lstree->root->type != type && 
+        (lstree->root->type != REDICIO 
+            || lstree->root->left != cmd))
     {
         if(!(treend = malloc(sizeof(t_tree))))
             return (1);

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/27 02:48:55 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/27 08:29:44 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int     forcked();
 int     filein(t_redicio *redic);
 int     piped(int *fd);
 void    exec_redic(t_redicio *redic,t_cmd *cmd);
-void	built(t_cmd *cmd);
+void	built(t_cmd *cmd, t_redicio* redic);
 void	ft_cd(t_cmd *cmd);
 void	ft_echo(char **line, char **env);
 void	ft_pwd(t_cmd *cmd);

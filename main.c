@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/27 03:36:17 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:05:00 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,34 @@ void	printall(t_tree *treend)
 	int x;
 	
 	x = 0;
-	while (treend->utree.redic.name[x].file)
+	while (treend->utree.redic != NULL && treend->utree.redic->name[x].file)
 	{
-		printf("=>%s\n", treend->utree.redic.name[x].file);
+		printf("=>%s\n", treend->utree.redic->name[x].file);
 		x++;
 	}
 }
 
 void	recursive(t_tree *lstree)
 {
-	t_tree	*temp;
+	t_tree		*temp;
+	t_redicio	*redic;
 
 	temp = lstree;
+	redic = NULL;
 	if (temp->left != NULL)
 		recursive(temp->left);
+	if (temp->type == REDICIO)
+		redic = temp->utree.redic;
 	if (temp->type == PIPE)
 		printf("%s\n", "PIPE");
-	if (temp->type == REDICIO)
-		printall(temp);
 	if (temp->type == DAND)
 		printf("%s\n", "DAND");
 	if (temp->type == DPIPE)
 		printf("%s\n", "DPIPE");
+	if (temp->type == CMD)
+		built(&temp->utree.cmd, redic);
 	if (temp->right != NULL)
 		recursive(temp->right);
-	if (temp->type == CMD)
-		built(&lstree->utree.cmd);
 }
 
 // void printtoken(t_lsnode *lstok)
@@ -93,8 +95,8 @@ int main(int ac, char **av, char **env)
 			if (printtoken(&lstok))
 			{
 				parsing(lstree, &lstok, env);
-				printall(lstree->root);
-				// recursive(lstree->root);
+				// printall(lstree->root);
+				recursive(lstree->root);
 			}
 		}
 		ft_freetree(lstree);

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/27 02:56:05 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:44:35 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	handler(int	hand)
 	}
 }
 
-void	built(t_cmd *cmd)
+void	built(t_cmd *cmd, t_redicio* redic)
 {
+
 	if (cmd->pathcmd)
 	{
 		if (!ft_strncmp(cmd->pathcmd, "/bin/pwd", ft_strlen(cmd->pathcmd)))
@@ -66,5 +67,8 @@ void	built(t_cmd *cmd)
 			exit(0);
 		}
 	}
-	exec_cmd(cmd);
+	if (cmd != NULL && redic != NULL)
+		exec_redic(redic, cmd);
+	else
+		exec_cmd(cmd);
 }

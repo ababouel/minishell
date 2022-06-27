@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/27 06:26:06 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/27 07:46:49 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_tree
 {
 	union u_c_tree
 	{
-		t_redicio	redic;
+		t_redicio	*redic;
 		t_dand		dand;
 		t_dpipe		dpipe;
 		t_pipe		pipe;
