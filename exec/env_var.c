@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/26 19:04:15 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/27 14:22:30 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ char	*search_var(char *cmd, char **env)
 		}
 		return(search_in_env(env, var));
 	}
-		printf("wee\n");
-	return (NULL);
+	return (cmd);
 }
