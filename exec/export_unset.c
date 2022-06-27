@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/22 18:51:46 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:39:46 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ void	check_export(t_cmd *cmd, int i, int len)
 				cmd->env[++len] = NULL;
 				return ;
 			}
+			// else if (cmd->cmdarg[i][j] != '+' && cmd->cmdarg[i][j + 1] == '=')
+			// {
+				
+			// }
 			j++;
 		}
 	}

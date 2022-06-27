@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:57:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/26 19:36:21 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:10:43 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,10 @@ void	ft_cd(t_cmd *cmd)
 	len = 0;
 	ft_env_oldpwd(cmd->env);
 	if (!cmd->cmdarg[1])
+	{
 		chdir("/Users/sismaili");
+		return ;
+	}
 	if (chdir(cmd->cmdarg[1]) == -1)
 	{
 		join = ft_strjoin(cmd->cmdarg[0], ":");

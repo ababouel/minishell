@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 21:48:06 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:21:33 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int     piped(int *fd);
 void    exec_redic(t_redicio *redic,t_cmd *cmd);
 void	built(t_cmd *cmd);
 void	ft_cd(t_cmd *cmd);
-void	ft_echo(char **line, char **env);
+void	ft_echo(t_cmd *cmd);
 void	ft_pwd(t_cmd *cmd);
 void	ft_env(t_cmd *cmd);
 void	ft_export(t_cmd *cmd);
