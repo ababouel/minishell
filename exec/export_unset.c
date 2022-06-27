@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/27 15:39:46 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:36:31 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,37 @@
 void	check_export(t_cmd *cmd, int i, int len)
 {
 	int	j;
+	int	size;
 
+	size = 0;
 	if (ft_isalpha(cmd->cmdarg[i][0]))
 	{
 		j = 0;
 		while (cmd->cmdarg[i][j])
 		{
-			if (cmd->cmdarg[i][j] == '=')
+			if (cmd->cmdarg[i][j] == '=' || (cmd->cmdarg[i][j] == '+' && cmd->cmdarg[i][j + 1] == '='))
 			{
+				while (cmd->env[size])
+				{
+					if (!ft_strncmp(cmd->env[size], cmd->cmdarg[i], j))
+					{
+						cmd->env[size] = cmd->cmdarg[i];
+						return ;
+					}
+					size++;
+				}
+				if (cmd->cmdarg[i][j] == '+')
+				{
+					while (cmd->cmdarg[i][j])
+					{
+						cmd->cmdarg[i][j] = cmd->cmdarg[i][j + 1];
+						j++;
+					}
+					cmd->cmdarg[i][j] = '\0';
+				}
 				cmd->env[len] = cmd->cmdarg[i];
 				cmd->env[++len] = NULL;
-				return ;
 			}
-			// else if (cmd->cmdarg[i][j] != '+' && cmd->cmdarg[i][j + 1] == '=')
-			// {
-				
-			// }
 			j++;
 		}
 	}
