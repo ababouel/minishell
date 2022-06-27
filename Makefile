@@ -5,17 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-<<<<<<< HEAD
-#    Created: 2022/05/13 16:11:30 by ababouel          #+#    #+#              #
-#    Updated: 2022/05/13 16:11:40 by ababouel         ###   ########.fr        #
+#    Created: 2022/06/27 23:21:55 by ababouel          #+#    #+#              #
+#    Updated: 2022/06/27 23:21:59 by ababouel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-=======
-#    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
-#    Updated: 2022/06/27 02:55:33 by ababouel         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+
 
 MAGENTA = \033[35m
 RED = \e[1;31m
@@ -24,7 +19,6 @@ CURVE = \e[33;3m
 RESET =  \e[0m
 GRAY	=	\e[33;2;37m
 GREEN = \033[0;32m
-###
 CC = cc
 CFLAGS = -Wall -Werror -Wextra 
 BDIR = build
@@ -60,4 +54,3 @@ fclean: clean
 re: fclean all
 
 .PHONY : re all clean fclean
->>>>>>> a7bb57462feac414d371f7f0b812c50fa28bb7ea

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/27 03:36:17 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/27 23:22:25 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int main(int ac, char **av, char **env)
 			if (printtoken(&lstok))
 			{
 				parsing(lstree, &lstok, env);
-				printall(lstree->root);
-				// recursive(lstree->root);
+				// printall(lstree->root);
+				recursive(lstree->root);
 			}
 		}
 		ft_freetree(lstree);
