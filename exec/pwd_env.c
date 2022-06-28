@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:31:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/26 19:36:48 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:39:49 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,23 @@ void	ft_pwd(t_cmd *cmd)
 {
 	char	str[100];
 
-	if(cmd->cmdarg[1])
+	if (cmd->cmdarg[1])
 	{
 		if (cmd->cmdarg[1][0] == '-')
 		{
-			if(cmd->cmdarg[1][1] == '-')
+			if (cmd->cmdarg[1][1] == '-')
 			{
-				if(cmd->cmdarg[1][2])
+				if (cmd->cmdarg[1][2])
 				{
-					printf("%c%c: invalid option\n", cmd->cmdarg[1][0], cmd->cmdarg[1][1]);
+					printf("%c%c: invalid option\n",
+						cmd->cmdarg[1][0], cmd->cmdarg[1][1]);
 					return ;
 				}
 			}
 			else if (cmd->cmdarg[1][1])
 			{
-				printf("%c%c: invalid option\n", cmd->cmdarg[1][0], cmd->cmdarg[1][1]);
+				printf("%c%c: invalid option\n",
+					cmd->cmdarg[1][0], cmd->cmdarg[1][1]);
 				return ;
 			}
 		}

@@ -6,13 +6,13 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/27 15:21:10 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:35:01 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exec.h"
 
-void	handler(int	hand)
+void	handler(int hand)
 {
 	if (hand == SIGINT)
 	{
@@ -26,7 +26,7 @@ void	handler(int	hand)
 void	path_cmd(t_cmd *cmd)
 {
 	if (!ft_strncmp(cmd->pathcmd, "/bin/pwd", ft_strlen(cmd->pathcmd)))
-			ft_pwd(cmd);
+		ft_pwd(cmd);
 	else if (!ft_strncmp(cmd->pathcmd, "/bin/echo", ft_strlen(cmd->pathcmd)))
 		ft_echo(cmd);
 	else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/cd", ft_strlen(cmd->pathcmd)))

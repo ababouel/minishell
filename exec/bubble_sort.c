@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_which.c                                         :+:      :+:    :+:   */
+/*   bubble_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 19:39:27 by sismaili         ###   ########.fr       */
+/*   Created: 2022/06/28 19:25:59 by sismaili          #+#    #+#             */
+/*   Updated: 2022/06/28 19:27:41 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "../inc/exec.h"
 
-char	*ft_which(char *cmd, char **env)
+void	simple_sort(t_cmd *cmd, int size)
 {
-	char	*str;
-	char	**spl;
-	int		i;
-	int		j;
+	int	step;
+	int	i;
+	int	temp;
 
-	i = 0;
-	j = 0;
-	str = NULL;
-	while (env[i])
+	step = 0;
+	while (step < size - 1)
 	{
-		if (ft_strncmp(env[i], "PATH", strlen("PATH")) == 0)
+		i = 0;
+		while (i < size - step - 1)
 		{
-			spl = ft_split(env[i], ":");
-			while (spl[j])
+			if (cmd->cmdarg[i] > cmd->cmdarg[i])
 			{
-				str = ft_strjoin(spl[j], "/");
-				str = ft_strjoin(str, cmd);
-				if (!access(str, X_OK))
-					return (ft_strdup(str));
-				j++;
+				temp = cmd->cmdarg[i];
+				cmd->cmdarg[i] = cmd->cmdarg[i + 1];
+				cmd->cmdarg[i + 1] = temp;
 			}
+			i++;
 		}
-		i++;
+		step++;
 	}
-	return (NULL);
 }

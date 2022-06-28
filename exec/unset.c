@@ -1,42 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_which.c                                         :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 19:39:27 by sismaili         ###   ########.fr       */
+/*   Created: 2022/06/28 16:47:35 by sismaili          #+#    #+#             */
+/*   Updated: 2022/06/28 16:48:02 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "../inc/exec.h"
 
-char	*ft_which(char *cmd, char **env)
+void	check_unset(t_cmd *cmd, int i)
 {
-	char	*str;
-	char	**spl;
-	int		i;
-	int		j;
+	int	j;
 
-	i = 0;
 	j = 0;
-	str = NULL;
-	while (env[i])
+	while (cmd->env[j])
 	{
-		if (ft_strncmp(env[i], "PATH", strlen("PATH")) == 0)
+		if (!ft_strncmp(cmd->cmdarg[i], cmd->env[j], ft_strlen(cmd->cmdarg[i])))
 		{
-			spl = ft_split(env[i], ":");
-			while (spl[j])
+			while (cmd->env[j])
 			{
-				str = ft_strjoin(spl[j], "/");
-				str = ft_strjoin(str, cmd);
-				if (!access(str, X_OK))
-					return (ft_strdup(str));
+				cmd->env[j] = cmd->env[j + 1];
 				j++;
+				if (cmd->env[j + 1] == NULL)
+				{
+					cmd->env[j] = NULL;
+					break ;
+				}
 			}
 		}
+		else
+			j++;
+	}
+}
+
+void	ft_unset(t_cmd *cmd)
+{
+	int	i;
+
+	i = 1;
+	while (cmd->cmdarg[i])
+	{
+		check_unset(cmd, i);
 		i++;
 	}
-	return (NULL);
 }
