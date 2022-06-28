@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:20:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 01:19:07 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/28 05:38:05 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ t_token	*lexer_parse_cmd(t_lexer *lexer);
 t_token	*lexer_advance_with(t_lexer *lexer, t_token *token);
 void	lexer_whitespace(t_lexer *lexer);
 t_token *lexer_redirection(t_lexer *lexer, char *ch, t_type type);
+t_token *lexer_parse_quote(t_lexer *lexer, char ch, t_type type);
+t_token *lexer_parse_exp(t_lexer *lexer);
+t_token	*lexer_parse_dollar(t_lexer *lexer);
 
 #endif

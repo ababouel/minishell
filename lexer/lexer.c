@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:52:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 04:12:39 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/28 05:19:19 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_lexer	*init_lexer(char *line)
 	lexer->i = 0;
 	lexer->size = ft_strlen(line);
 	lexer->c = lexer->src[lexer->i];
-	return (lexer); 
+	return (lexer);
 }
 
 void	lexer_advance(t_lexer *lexer)
@@ -45,8 +45,7 @@ t_token	*lexer_advance_with(t_lexer *lexer, t_token *token)
 	return (token);
 }
 
-
-t_token *lexer_redirection(t_lexer *lexer, char *ch, t_type type)
+t_token	*lexer_redirection(t_lexer *lexer, char *ch, t_type type)
 {
 	char	*c;
 	char	*value;
@@ -59,14 +58,14 @@ t_token *lexer_redirection(t_lexer *lexer, char *ch, t_type type)
 	c = lexer->src + lexer->i + 1;
 	while (len++ < size)
 		lexer_advance(lexer);
-	lexer_whitespace(lexer);	
+	lexer_whitespace(lexer);
 	while (c[len] != '\0')
 	{
 		if (c[len] == ' ')
-			break;
+			break ;
 		len++;
 	}
-	if(c[len] == '\0' || c[len] == ' ')
+	if (c[len] == '\0' || c[len] == ' ')
 	{
 		if (len == 0)
 			value = NULL;
@@ -75,5 +74,5 @@ t_token *lexer_redirection(t_lexer *lexer, char *ch, t_type type)
 		lexer->i += len;
 		lexer->c = lexer->src[lexer->i];
 	}
-	return (init_token(type, value));	
+	return (init_token(type, value));
 }
