@@ -6,19 +6,21 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 04:49:55 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/28 07:15:39 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./inc/minishell.h"	
+#include "minishell.h"
+
 void	printall(t_tree *treend)
 {
-	int x;
-	
+	int			x;
+	// t_redicio	*redic;	
 	x = 0;
-	while (treend->utree.redic.name[x].file)
+
+	while (treend->type == REDICIO && treend->utree.redic != NULL && treend->utree.redic->name[x].file != NULL)
 	{
-		printf("=>%s\n", treend->utree.redic.name[x].file);
+		printf("=>%s\n", treend->utree.redic->name[x].file);
 		x++;
 	}
 }
@@ -33,7 +35,7 @@ void	recursive(t_tree *lstree)
 	if (temp->type == PIPE)
 		printf("%s\n", "PIPE");
 	if (temp->type == REDICIO)
-		printall(temp);
+		printf("redic\n");
 	if (temp->type == DAND)
 		printf("%s\n", "DAND");
 	if (temp->type == DPIPE)
@@ -100,13 +102,13 @@ int main(int ac, char **av, char **env)
 				if (token != NULL)
 					ins_next_node(&lstok, (void *) token);
 			}
-			printoken(&lstok);
+			// printoken(&lstok);
 			// if (printtoken(&lstok))
 			// {
-				// parsing(lstree, &lstok, env);
-				// // printall(lstree->root);
+				parsing(lstree, &lstok, env);
+				printall(lstree->root);
 				// recursive(lstree->root);
-			// }
+			// 
 		}
 		ft_freetree(lstree);
 	}

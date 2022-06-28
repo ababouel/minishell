@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 01:05:23 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/28 05:59:17 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
             || token->type == TOKEN_DROUTPUT
             || token->type == TOKEN_RINPUT
             || token->type == TOKEN_DRINPUT))
-        {
             parse_redic(lstree, token);
-            token = token->next->next->next;
-        }
         if (token != NULL && 
             (token->type == TOKEN_EXP
             || token->type == TOKEN_DQUOTE 
