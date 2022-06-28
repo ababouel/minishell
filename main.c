@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/27 23:22:25 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/28 04:49:55 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,25 @@ void	recursive(t_tree *lstree)
 		built(&lstree->utree.cmd);
 }
 
-// void printtoken(t_lsnode *lstok)
-// {
-// 	t_token	*temp;
+void printoken(t_lsnode *lstok)
+{
+	t_token	*tempnext;
+	t_token	*temprev;
 
-// 	temp = lstok->head;
-// 	while (temp)
-// 	{
-// 		printf("data => %d => %s\n", temp->type, temp->value);
-// 		temp = temp->next;
-// 	}
-// }
+	tempnext = lstok->head;
+	temprev = lstok->tail;
+	while (tempnext)
+	{
+		printf("next token => %d => %s\n", tempnext->type, tempnext->value);
+		tempnext = tempnext->next;
+	}
+	// while (temprev)
+	// {
+	// 	printf("prev token => %d => %s\n", temprev->type, temprev->value);
+	// 	temprev = temprev->prev;
+	// }
+	
+}
 
 int main(int ac, char **av, char **env)
 {
@@ -81,21 +89,24 @@ int main(int ac, char **av, char **env)
 			write(1, "exit\n", 5);
 			exit(0);
 		}
-		if (line != NULL && ft_strlen(line) > 0)
+		if (line != NULL)
 		{
 			init_stack(&lstok);
 			lexer = init_lexer(line);
-			while((token = lexer_next_token(lexer))->type != TOKEN_EOL)
+			while(lexer->i < ft_strlen(line))
 			{
+				if (lexer->src[lexer->i] != '\0')
+					token = lexer_next_token(lexer);
 				if (token != NULL)
 					ins_next_node(&lstok, (void *) token);
 			}
-			if (printtoken(&lstok))
-			{
-				parsing(lstree, &lstok, env);
-				// printall(lstree->root);
-				recursive(lstree->root);
-			}
+			printoken(&lstok);
+			// if (printtoken(&lstok))
+			// {
+				// parsing(lstree, &lstok, env);
+				// // printall(lstree->root);
+				// recursive(lstree->root);
+			// }
 		}
 		ft_freetree(lstree);
 	}

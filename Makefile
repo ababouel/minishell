@@ -6,7 +6,7 @@
 #    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 23:21:55 by ababouel          #+#    #+#              #
-#    Updated: 2022/06/27 23:21:59 by ababouel         ###   ########.fr        #
+#    Updated: 2022/06/28 03:11:33 by ababouel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RESET =  \e[0m
 GRAY	=	\e[33;2;37m
 GREEN = \033[0;32m
 CC = cc
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra -g
 BDIR = build
 FILES = main parse/lexer parse/lexerbis parse/token parse/parstree\
 		parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio\

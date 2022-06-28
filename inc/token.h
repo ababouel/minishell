@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 23:46:36 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 03:19:23 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/28 02:27:27 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef struct	s_token
 {
 	t_type			type;
 	char			*value;
-	struct	s_token	*next;	
+	struct	s_token	*next;
+	struct s_token *prev;
 }	t_token;
 
 typedef struct s_lsnode
@@ -48,6 +49,7 @@ typedef struct s_lsnode
 	t_token	*head;
 	t_token	*tail; 
 }	t_lsnode;
+
 
 t_token	*init_token(int type, char *value);
 
