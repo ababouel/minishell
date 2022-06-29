@@ -6,11 +6,18 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 20:53:36 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/24 21:42:42 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/29 12:26:21 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/lib.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}
 
 int	ft_isprint(int c)
 {

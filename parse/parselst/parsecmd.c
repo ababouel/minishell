@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsecmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 06:37:48 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/29 12:57:39 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int parse_cmd(t_lstree *lstree,t_token *token, char **env)
     {
         cmd->pathcmd = ft_which(token->value, env);
         cmd->env = env;
+        cmd->export = env;
     }
     if (cmd->cmdarg != NULL && token->value != NULL)
     {

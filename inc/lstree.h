@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstree.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 08:38:32 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/29 09:57:37 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct	s_cmd
 	char	*pathcmd;
 	char	**cmdarg;
 	char	**env;
+	char	**export;
 }	t_cmd;
 // end =>struct parsing 
 // struct of tree and lstree

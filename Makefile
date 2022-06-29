@@ -6,7 +6,7 @@
 #    By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
-#    Updated: 2022/06/28 16:50:58 by sismaili         ###   ########.fr        #
+#    Updated: 2022/06/29 10:48:56 by sismaili         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ FILES = main parse/lexer parse/lexerbis parse/token parse/parstree\
 		parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio\
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack\
 		tools/ft_isalpha exec/built exec/cd exec/echo exec/export exec/unset exec/pwd_env\
-		exec/ft_which exec/execution exec/exectool exec/env_var errors/tokens_check errors/errors
+		exec/ft_which exec/execution exec/exectool exec/env_var exec/sort_export errors/tokens_check\
+		errors/errors
 		
 NAME = minishell
 OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))

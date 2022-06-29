@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/28 19:13:12 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/29 12:58:30 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,25 +91,27 @@ char	**plus_export(t_cmd *cmd, int i, int j)
 
 char	**check_export(t_cmd *cmd, int i, int j)
 {
+	int	l;
 	int	check;
 
+	l = 0;
 	check = 0;
 	while (cmd->cmdarg[i][j])
 	{
-		if (cmd->cmdarg[i][j] == '='
-			|| (cmd->cmdarg[i][j] == '+' && cmd->cmdarg[i][j + 1] == '='))
+		if ((cmd->cmdarg[i][j] == '='
+			|| (cmd->cmdarg[i][j] == '+' && cmd->cmdarg[i][j + 1] == '=')) && check == 0)
 		{
 			if (cmd->cmdarg[i][j] == '+')
 				return (plus_export(cmd, i, j));
 			else
 				return (equal_export(cmd, i, j));
 		}
-		else if (!ft_isalpha(cmd->cmdarg[i][j] || cmd->cmdarg[i][j] != '_'))
+		if (!ft_isalpha(cmd->cmdarg[i][j]) && cmd->cmdarg[i][j] != '_'
+			&& !ft_isdigit(cmd->cmdarg[i][j]))
 			check = 1;
 		j++;
 	}
-	if ((cmd->cmdarg[i][j] != '+' || cmd->cmdarg[i][j] != '=')
-		&& check == 1)
+	if (cmd->cmdarg[i][j] != '+' && check == 1)
 		return (printf("export: `%s': not a valid identifier\n",
 				cmd->cmdarg[i]), cmd->env);
 	else
@@ -122,6 +124,11 @@ void	ft_export(t_cmd *cmd)
 	int	j;
 
 	i = 1;
+	if (!cmd->cmdarg[i])
+	{
+		sort_export(cmd);
+		return ;
+	}
 	while (cmd->cmdarg[i])
 	{
 		if (ft_isalpha(cmd->cmdarg[i][0]) || cmd->cmdarg[i][0] == '_')

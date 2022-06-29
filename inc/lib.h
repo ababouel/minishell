@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 14:06:22 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/29 12:26:38 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ size_t          ft_dstrlen(char **str);
 char            *ft_strjoinbis(char *s1, char *s2);
 int				ft_isalpha(char c);
 int				ft_ischar(char *str);
+int				ft_isdigit(int c);
 
 #endif

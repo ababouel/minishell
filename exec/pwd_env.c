@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:31:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/28 19:39:49 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/29 11:31:33 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_pwd(t_cmd *cmd)
 {
-	char	str[100];
+	char	str[1000];
 
 	if (cmd->cmdarg[1])
 	{

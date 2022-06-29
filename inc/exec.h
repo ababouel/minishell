@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/27 15:21:33 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/29 10:46:07 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ int		printtoken(t_lsnode *lstok);
 int     first_check(t_token *temp);
 int		second_check(t_token *temp);
 char	*search_var(char *cmd, char **env);
+char	**bubble_sort(t_cmd *cmd);
+void    sort_export(t_cmd *cmd);
 
 #endif
