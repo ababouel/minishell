@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 05:59:17 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/29 07:05:17 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
             || token->type == TOKEN_SINQTE
             || token->type == TOKEN_DOLLAR))
             parse_cmd(lstree, token, env);
-        // if (token->type == TOKEN_PIPE)
-        //     treend = parse_pipe();
+        if (token->type == TOKEN_PIPE)
+            parse_pipe(lstree);
         // if (token->type == TOKEN_RINPUT)
         //     treend = parse_rinput();
         // printf("data track from => %d\n", token->type); 

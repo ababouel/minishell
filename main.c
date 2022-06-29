@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 07:15:39 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/29 06:58:59 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	printall(t_tree *treend)
 
 void	recursive(t_tree *lstree)
 {
-	t_tree	*temp;
+	t_tree		*temp;
+	// t_cmd		*cmd;
+	// t_redicio	*redic;
 
 	temp = lstree;
 	if (temp->left != NULL)
@@ -35,7 +37,8 @@ void	recursive(t_tree *lstree)
 	if (temp->type == PIPE)
 		printf("%s\n", "PIPE");
 	if (temp->type == REDICIO)
-		printf("redic\n");
+		printf("%s\n", "REDICIO");
+		// redic = temp->utree.redic;
 	if (temp->type == DAND)
 		printf("%s\n", "DAND");
 	if (temp->type == DPIPE)
@@ -43,16 +46,17 @@ void	recursive(t_tree *lstree)
 	if (temp->right != NULL)
 		recursive(temp->right);
 	if (temp->type == CMD)
-		built(&lstree->utree.cmd);
+		printf("%s\n","CMD");
+		// built(&lstree->utree.cmd, redic);
 }
 
 void printoken(t_lsnode *lstok)
 {
 	t_token	*tempnext;
-	t_token	*temprev;
+	// t_token	*temprev;
 
 	tempnext = lstok->head;
-	temprev = lstok->tail;
+	// temprev = lstok->tail;
 	while (tempnext)
 	{
 		printf("next token => %d => %s\n", tempnext->type, tempnext->value);
@@ -106,8 +110,8 @@ int main(int ac, char **av, char **env)
 			// if (printtoken(&lstok))
 			// {
 				parsing(lstree, &lstok, env);
-				printall(lstree->root);
-				// recursive(lstree->root);
+				// printall(lstree->root);
+				recursive(lstree->root);
 			// 
 		}
 		ft_freetree(lstree);

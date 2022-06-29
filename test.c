@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 05:24:11 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/29 06:32:39 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,25 @@ int filein(int *fd,t_data *dt)
   while (file[x].file != NULL)
   {
     if (file[x].type == TK_HEREDOC)
+    {
+      // close(fd[0]); 
       fd[0] = open("/tmp/hedoc", O_RDONLY | O_WRONLY | O_CREAT , 0777);
+    }
     if (file[x].type == TK_RINPUT)
+    {
+      // close(fd[0]); 
       fd[0] = open(file[x].file, O_RDONLY , 0777);
+    }
     if (file[x].type == TK_ROUTPUT)
+    {
+      // close(fd[1]); 
       fd[1] = open(file[x].file, O_WRONLY |   O_CREAT | O_TRUNC , 0777);
+    }
     if (file[x].type == TK_DROUTPUT)
+    {
+      // close(fd[1]);
       fd[1] = open(file[x].file, O_WRONLY | O_CREAT | O_APPEND, 0777);
+    }
     x++;
   }
   return (0);
@@ -125,17 +137,25 @@ void redictionfunc(t_data *dt, char **cmd)
 
   pid1 = forcked();
   fd = malloc(sizeof(int) * 2);
-  filein(fd, dt);
   if (pid1 == 0)
   {
-    dup2(fd[0] ,STDIN_FILENO);
-    close(fd[0]); 
-    dup2(fd[1], STDOUT_FILENO);
-    close(fd[1]);
+  filein(fd, dt);
+    if ( fd[0] > 0)
+    {
+      dup2(fd[0] ,STDIN_FILENO);
+      close(fd[0]); 
+    }
+    if (fd[1] > 0)
+    {
+      dup2(fd[1], STDOUT_FILENO);
+      close(fd[1]);
+    }
     if (execve(cmd[0], &(cmd[1]), dt->env) == -1)
       perror(cmd[1]);
   } 
-  waitpid(-1, NULL, 0);
+  // close(fd[0]);
+  // close(fd[1]);
+  waitpid(pid1, NULL, 0);
 }
 
 
@@ -195,14 +215,14 @@ int main(int ac, char **av, char **env)
     char *cmd2[100] = {"/usr/bin/wc", "wc", "-c"};
     char *cmd1[100] = {"/bin/cat", "cat"};
     char *strout[100] = {"file2.txt", "file3.txt", "file1.txt"}; 
-    char *strin[100] = {"file.txt", "lexer"};
+    char *strin[100] = {"file.txt", "lexers"};
 
     file = malloc(sizeof(t_file) * 5);
     file = injectfile(3, file, strout[0], TK_ROUTPUT);
     file = injectfile(1, file, strout[1], TK_ROUTPUT);
     file = injectfile(2, file, strout[2], TK_ROUTPUT);
-    file = injectfile(4, file, strin[0], TK_RINPUT);
-    file = injectfile(0, file, strin[1], TK_RINPUT);
+    file = injectfile(0, file, strin[0], TK_RINPUT);
+    file = injectfile(4, file, strin[1], TK_RINPUT);
     
     
     data.file = file;

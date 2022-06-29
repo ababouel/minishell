@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:57:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/27 02:46:30 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/29 00:59:30 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,9 @@ void	ft_env_pwd(char **env)
 }
 
 void	ft_cd(t_cmd *cmd)
-{
-	int		i;
-	int		j;
-	int		len;
+{	
 	char	*join;
 
-	i = 0;
-	j = 0;
-	len = 0;
 	ft_env_oldpwd(cmd->env);
 	if (!cmd->cmdarg[1])
 		chdir("/Users/sismaili");

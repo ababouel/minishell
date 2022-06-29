@@ -6,7 +6,7 @@
 #    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 23:21:55 by ababouel          #+#    #+#              #
-#    Updated: 2022/06/28 05:38:43 by ababouel         ###   ########.fr        #
+#    Updated: 2022/06/29 00:58:39 by ababouel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +30,14 @@ FILES = main lexer/lexer lexer/lexerbis lexer/token  lexer/lexerlst parse/parstr
 		
 NAME = minishell
 OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))
-INC = -I ./inc -I/Users/ababouel/.brew/opt/readline/include
+INC = -I ./inc -I /opt/homebrew/opt/readline/include
 HEADERS = inc/minishell.h inc/lib.h inc/token.h  inc/lexer.h inc/exec.h
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@printf "$(GRAY)-COMPILING Minishell...\n"
-	@$(CC) $(CFLAGS) $^ -o $@ -lreadline -L /Users/ababouel/.brew/opt/readline/lib
+	@$(CC) $(CFLAGS) $^ -o $@ -lreadline -L /opt/homebrew/opt/readline/lib
 	@printf "$(GREEN)Done !"
 
 $(BDIR)/%.o : %.c $(HEADERS)

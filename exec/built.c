@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/27 02:56:05 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/29 05:41:27 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	handler(int	hand)
 	}
 }
 
-void	built(t_cmd *cmd)
+void	built(t_cmd *cmd, t_redicio *redicio)
 {
 	if (cmd->pathcmd)
 	{
@@ -66,5 +66,8 @@ void	built(t_cmd *cmd)
 			exit(0);
 		}
 	}
-	exec_cmd(cmd);
+	// if (redicio != NULL)
+	exec_redic(redicio, cmd);
+	// // else 
+	// exec_cmd(cmd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/26 20:50:08 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/29 05:50:39 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void exec_redic(t_redicio *redic,t_cmd *cmd)
         if (execve(cmd->pathcmd, cmd->cmdarg, cmd->env) == -1)
             perror(cmd->cmdarg[0]);
     }
-    waitpid(-1, NULL, 0);
+    waitpid(pid, NULL, 0);
 }
