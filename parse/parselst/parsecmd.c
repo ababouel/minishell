@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/29 12:57:39 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:03:22 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int parse_cmd(t_lstree *lstree,t_token *token, char **env)
     {
         cmd->pathcmd = ft_which(token->value, env);
         cmd->env = env;
-        cmd->export = env;
+        cmd->export = cmd->env;
     }
     if (cmd->cmdarg != NULL && token->value != NULL)
     {

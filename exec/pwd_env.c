@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:31:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/29 11:31:33 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/29 14:55:58 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	ft_pwd(t_cmd *cmd)
 void	ft_env(t_cmd *cmd)
 {
 	int	i;
+	int	j;
+	int	check;
 
 	i = 0;
 	if (cmd->cmdarg[1])
@@ -52,5 +54,17 @@ void	ft_env(t_cmd *cmd)
 		return ;
 	}
 	while (cmd->env[i])
-		printf("%s\n", cmd->env[i++]);
+	{
+		j = 0;
+		check = 0;
+		while (cmd->env[i][j])
+		{
+			if (cmd->env[i][j] == '=')
+				check = 1;
+			j++;
+		}
+		if (check == 1)
+			printf("%s\n", cmd->env[i]);
+		i++;
+	}
 }

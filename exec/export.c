@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/29 12:58:30 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/30 17:18:18 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@ char	**equal_export(t_cmd *cmd, int i, int j)
 	int	len;
 	int	size;
 
-	len = 0;
 	size = 0;
 	while (cmd->env[size])
 	{
-		while (cmd->env[size][len] != '=')
+		len = 0;
+		while (cmd->env[size][len] && cmd->env[size][len] != '=')
 			len++;
-		if (!ft_strncmp(cmd->env[size], cmd->cmdarg[i], len) && len == j)
+		if (!ft_strncmp(cmd->env[size], cmd->cmdarg[i], len) && len == j
+			&& !ft_strncmp(cmd->export[size], cmd->cmdarg[i], len))
 		{
 			cmd->env[size] = cmd->cmdarg[i];
+			cmd->export[size] = cmd->cmdarg[i];
 			return (cmd->env);
 		}
 		size++;
-		len = 0;
 	}
 	cmd->env[size] = cmd->cmdarg[i];
 	cmd->env[++size] = NULL;
@@ -65,22 +66,41 @@ char	**plus_export(t_cmd *cmd, int i, int j)
 	int	len;
 	int	l;
 	int	size;
+	int	check;
 
 	len = 0;
 	size = 0;
 	l = 0;
+	check = 1;
 	while (cmd->env[size])
 	{
-		while (cmd->env[size][len] != '=')
+		while (cmd->env[size][len] && cmd->env[size][len] != '=')
 			len++;
-		if (!ft_strncmp(cmd->env[size], cmd->cmdarg[i], j) && len == j)
+		if (!ft_strncmp(cmd->env[size], cmd->cmdarg[i], j) && len == j
+			&& !ft_strncmp(cmd->export[size], cmd->cmdarg[i], len))
 		{
+			while (cmd->export[size][l])
+			{
+				if (cmd->export[size][l] == '=')
+					check = 0;
+				l++;
+			}
+			if (check)
+			{
+				cmd->export[size][l] = '=';
+				cmd->export[size][++l] = '\0';
+			}
+			l = 0;
 			++j;
 			while (cmd->env[size][l])
 				l++;
 			while (cmd->cmdarg[i][++j])
-				cmd->env[size][l++] = cmd->cmdarg[i][j];
+			{
+				cmd->env[size][l] = cmd->cmdarg[i][j];
+				cmd->export[size][l++] = cmd->cmdarg[i][j];
+			}
 			cmd->env[size][l] = '\0';
+			cmd->export[size][l] = '\0';
 			return (cmd->env);
 		}
 		size++;
@@ -115,7 +135,20 @@ char	**check_export(t_cmd *cmd, int i, int j)
 		return (printf("export: `%s': not a valid identifier\n",
 				cmd->cmdarg[i]), cmd->env);
 	else
+	{
+		j = 0;
+		while (cmd->cmdarg[i][j])
+			j++;
+		while (cmd->export[l])
+		{
+			if (!ft_strncmp(cmd->export[l], cmd->cmdarg[i], j))
+				return (cmd->env);
+			l++;
+		}
+		cmd->export[l] = cmd->cmdarg[i];
+		cmd->export[++l] = NULL;
 		return (cmd->env);
+	}
 }
 
 void	ft_export(t_cmd *cmd)

@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 09:58:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/29 10:52:30 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:12:30 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void    sort_export(t_cmd *cmd)
 {
     int i;
 
-    i = 0;
+	i = 0;
     cmd->export = bubble_sort(cmd);
     while (cmd->export[i])
         printf("declare -x %s\n", cmd->export[i++]);
