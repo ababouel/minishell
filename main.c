@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 15:56:09 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:06:25 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int main(int ac, char **av, char **env)
 				if (token != NULL)
 					ins_next_node(&lstok, (void *) token);
 			}
+			// printtoken(&lstok);
 			if (printtoken(&lstok))
 			{
 				parsing(lstree, &lstok, env);

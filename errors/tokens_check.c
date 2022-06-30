@@ -6,11 +6,22 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/26 19:36:11 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/06/30 19:06:14 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exec.h"
+
+int	check_quotes(t_token *temp)
+{
+	while (temp)
+	{
+		if (temp->value == NULL)
+			return (0);
+		temp = temp->next;
+	}
+	return (1);
+}
 
 int	tokens_check(t_token *temp, int i)
 {
@@ -97,6 +108,8 @@ int	printtoken(t_lsnode *lstok)
 	temp = lstok->head;
 	while (temp)
 	{
+		if (!check_quotes(temp))
+			return (0);
 		if (temp->type == TOKEN_PIPE || temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND)
 			return (printf("syntax error near unexpected token `%s'\n",
 					temp->value), 0);
