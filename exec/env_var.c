@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/01 16:37:33 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/01 18:42:57 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,16 @@ char	*search_in_env(char **env, char *var)
 	return (NULL);
 }
 
-char	*search_var(t_cmd *c, char *cmd, char **env)
+char	*search_var(char *cmd, char **env)
 {
 	int		i;
 	char	var[1000];
 
 	i = 0;
-	c->check = 0;
 	while (cmd[i])
 	{
 		if (cmd[i] == '$')
 		{
-			c->check = 1;
 			if (cmd[i + 1] == 0)
 			{
 				var[i] = 0;

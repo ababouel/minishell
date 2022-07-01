@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/01 16:35:02 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/01 18:42:16 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct	s_cmd
 	char	**cmdarg;
 	char	**env;
 	char	**export;
-	int		check;
 }	t_cmd;
 // end =>struct parsing 
 // struct of tree and lstree
