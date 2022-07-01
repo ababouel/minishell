@@ -6,11 +6,13 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/29 07:05:17 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/01 06:42:37 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+
 
 void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
 {
@@ -68,7 +70,16 @@ int ins_next_tree(t_lstree *stack, t_tree *treend)
             treend->left = temp;
         }
         else if (stack->root->type == PIPE)
-            stack->root->right = treend;
+        {
+            if (stack->root->right != NULL && stack->root->right->type == CMD)
+            {
+                temp = stack->root->right;
+                stack->root->right = treend;
+                treend->left = temp;
+            }
+            else
+                stack->root->right = treend;
+        }
     } 
     else if (treend->type == CMD)
     {

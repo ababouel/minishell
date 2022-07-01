@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/29 06:58:59 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/01 06:55:58 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	printall(t_tree *treend)
 	// t_redicio	*redic;	
 	x = 0;
 
-	while (treend->type == REDICIO && treend->utree.redic != NULL && treend->utree.redic->name[x].file != NULL)
+	while (treend->type == REDICIO && treend->redic != NULL && treend->redic->name[x].file != NULL)
 	{
-		printf("=>%s\n", treend->utree.redic->name[x].file);
+		printf("=>%s\n", treend->redic->name[x].file);
 		x++;
 	}
 }
@@ -28,26 +28,31 @@ void	printall(t_tree *treend)
 void	recursive(t_tree *lstree)
 {
 	t_tree		*temp;
+	int			x;
 	// t_cmd		*cmd;
 	// t_redicio	*redic;
 
+	if (!lstree)
+		return ;
 	temp = lstree;
+	x = 0;
 	if (temp->left != NULL)
 		recursive(temp->left);
 	if (temp->type == PIPE)
-		printf("%s\n", "PIPE");
+		printf("%s\n", "|");
 	if (temp->type == REDICIO)
-		printf("%s\n", "REDICIO");
-		// redic = temp->utree.redic;
-	if (temp->type == DAND)
-		printf("%s\n", "DAND");
-	if (temp->type == DPIPE)
-		printf("%s\n", "DPIPE");
+	{
+		while (x < temp->redic->numfile)
+			printf("redic=> %s\n", temp->redic->name[x++].file);
+	}
 	if (temp->right != NULL)
 		recursive(temp->right);
 	if (temp->type == CMD)
-		printf("%s\n","CMD");
-		// built(&lstree->utree.cmd, redic);
+	{
+		while (temp->cmd->cmdarg[x] != NULL)
+			printf("%s ", temp->cmd->cmdarg[x++]);
+		printf("\n");
+	}
 }
 
 void printoken(t_lsnode *lstok)
@@ -82,8 +87,8 @@ int main(int ac, char **av, char **env)
 	t_lstree	*lstree;
 
 	token = NULL;
-	lstree = malloc(sizeof(t_lstree));
-	init_lstree(lstree);
+	lstree = NULL;	
+	rl_catch_signals = 0;
 	while (1337)
 	{
 		signal(SIGINT, handler);
@@ -106,15 +111,17 @@ int main(int ac, char **av, char **env)
 				if (token != NULL)
 					ins_next_node(&lstok, (void *) token);
 			}
-			// printoken(&lstok);
+			printoken(&lstok);
 			// if (printtoken(&lstok))
 			// {
+				lstree = malloc(sizeof(t_lstree));
+				init_lstree(lstree);
 				parsing(lstree, &lstok, env);
-				// printall(lstree->root);
-				recursive(lstree->root);
+				printall(lstree->root);
+				// recursive(lstree->root);
 			// 
 		}
-		ft_freetree(lstree);
+		 ft_freetree(&lstree); 
 	}
     return (0);
 }

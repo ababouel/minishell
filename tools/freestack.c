@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 02:28:13 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/01 06:38:41 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,36 @@ void	ft_freestack(t_lsnode *sk)
 	// free(sk);
 }
 
-void	ft_freetree(t_lstree *sk)
+void	ft_freetree(t_lstree **sk)
 {
 	t_tree	*node;
-	
-	while (sk->root != NULL)
+	// t_cmd	*cmd;
+	// t_file 	*file;
+	// char 	*filedata;
+	// char 	**cmdarg;
+	if (!sk || !*sk)
+		return ;
+	while ((*sk)->root != NULL)
 	{
-		node = sk->root;
-		sk->root = sk->root->left;
+		node = (*sk)->root;
+		// if (sk->root->type == CMD)
+		// {
+		// 	cmdarg = sk->root->cmd->cmdarg;
+		// 	cmd  = sk->root->cmd;
+		// 	free(cmdarg);
+		// 	free(cmd);
+		// }
+		// else if (sk->root->type == REDICIO)
+		// {
+		// 	file = sk->root->redic->name;
+		// 	filedata = sk->root->redic->name->file;
+		// 	free(filedata);
+		// 	free(file);
+		// 	free(sk->root->redic);
+		// }
+		(*sk)->root = (*sk)->root->left;
 		free(node);
 	}
+	free(*sk);
+	*sk = NULL;	
 }

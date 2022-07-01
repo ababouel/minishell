@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 05:30:33 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/01 01:01:01 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_token	*lexer_next_token(t_lexer *lexer)
 	while (lexer->i < lexer->size && lexer->c != '\0')
 	{
         if (lexer->c == ' ')
-			return (lexer_advance_with(lexer, init_token(TOKEN_SPACE, " ")));
+			lexer_advance(lexer);
 		if (lexer->c == '|' && lexer->src[lexer->i + 1] == '|')
             return (checkcondition(lexer, init_token(TOKEN_DPIPE, "||")));
 		if (lexer->c == '&' && lexer->src[lexer->i + 1] == '&')

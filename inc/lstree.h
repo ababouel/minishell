@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/29 07:05:06 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/01 06:37:41 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,6 @@ typedef	struct	s_redicio
 	int		numfile;
 }	t_redicio;
 
-typedef struct s_dand
-{
-	int	type;
-}	t_dand;
-
-typedef struct	s_dpipe
-{
-	int	type;
-}	t_dpipe;
-
 typedef struct	s_pipe
 {
 	int			*fd;
@@ -71,14 +61,9 @@ typedef struct	s_cmd
 // struct of tree and lstree
 typedef struct s_tree
 {
-	union u_c_tree
-	{
-		t_redicio	*redic;
-		t_dand		dand;
-		t_dpipe		dpipe;
-		t_pipe		pipe;
-		t_cmd		cmd;
-	}	utree;
+	t_redicio	*redic;
+	t_pipe		*pipe;
+	t_cmd		*cmd;
 	t_treetype		type;
    	struct s_tree	*left;
 	struct s_tree	*right;
@@ -100,7 +85,7 @@ void	init_lstree(t_lstree *lstree);
 void	parsing(t_lstree *lstree, t_lsnode *lsnode, char **env);
 char	**inject_arg(t_lsnode *nt_tree);
 int		ins_next_tree(t_lstree *stack, t_tree *data);
-void	ft_freetree(t_lstree *sk);
+void	ft_freetree(t_lstree **sk);
 int		parse_cmd(t_lstree *lstree, t_token *token, char **env);
 int		parse_pipe(t_lstree *lstree);
 t_token	*parse_redic(t_lstree *lstree, t_token *token);

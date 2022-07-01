@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:38:39 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/29 07:11:39 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/01 03:33:14 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ int parse_pipe(t_lstree *lstree)
     tree->type = PIPE;
     tree->left = NULL;
     tree->right = NULL;
-    tree->utree.pipe.fd = malloc(sizeof(int) * 2);
-    piped(tree->utree.pipe.fd);
+    tree->pipe = malloc(sizeof(t_pipe));
+    tree->pipe->fd = malloc(sizeof(int) * 2);
+    piped(tree->pipe->fd);
     ins_next_tree(lstree, tree);
     return (0);  
 }

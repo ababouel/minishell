@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/29 04:06:56 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/01 05:55:40 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,23 @@
 
 static int ctreenode(t_lstree *lstree, t_treetype type)
 {
-    t_tree *treend;
+    t_tree  *treend;
+    t_tree  *root;
 
-    if (lstree->root == NULL || lstree->root->type != type) 
+    root = lstree->root;
+    if (root == NULL 
+        || (root->type == REDICIO &&(root->left == NULL || root->left->type != CMD))
+        || (root->type == PIPE && (root->right == NULL || (root->right->type == REDICIO && root->right->left == NULL))))
     {
         if(!(treend = malloc(sizeof(t_tree))))
             return (1);
         treend->type = type;
         treend->left = NULL;
         treend->right = NULL;
-        treend->utree.cmd.cmdarg = NULL;
-        treend->utree.cmd.env = NULL;
-        treend->utree.cmd.pathcmd = NULL;
+        treend->cmd = malloc(sizeof(t_cmd));
+        treend->cmd->cmdarg = NULL;
+        treend->cmd->env = NULL;
+        treend->cmd->pathcmd = NULL;
         ins_next_tree(lstree, treend);
         lstree->size += 1;
     }
@@ -42,7 +47,18 @@ int parse_cmd(t_lstree *lstree,t_token *token, char **env)
     size = 0;
     ctreenode(lstree, CMD);
     treend = lstree->root;
-    cmd = &treend->utree.cmd;
+    if (treend->type == REDICIO)
+        cmd = treend->left->cmd;
+    else if (treend->type == PIPE)
+    {
+        treend = treend->right;
+        if (treend->type == REDICIO)
+            cmd = treend->left->cmd;
+        else
+            cmd = treend->cmd; 
+    }
+    else
+        cmd = treend->cmd;
     if (cmd->pathcmd == NULL)
     {
         cmd->pathcmd = ft_which(token->value, env);

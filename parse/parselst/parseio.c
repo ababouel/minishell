@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:40:08 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/29 05:13:14 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/01 04:31:07 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static int ctreenode(t_lstree *lstree, t_treetype type)
         treend->type = type;
         treend->left = NULL;
         treend->right = NULL;
-        treend->utree.redic = malloc(sizeof(t_redicio));
-        treend->utree.redic->fd[0] = -1;
-        treend->utree.redic->fd[1] = -1; 
-        treend->utree.redic->name = NULL;
-        treend->utree.redic->numfile = 0; 
+        treend->redic = malloc(sizeof(t_redicio));
+        treend->redic->fd[0] = -1;
+        treend->redic->fd[1] = -1; 
+        treend->redic->name = NULL;
+        treend->redic->numfile = 0; 
         ins_next_tree(lstree, treend);
         lstree->size += 1;
     }
@@ -41,11 +41,14 @@ t_token *parse_redic(t_lstree *lstree, t_token *token)
 
     ctreenode(lstree, REDICIO);
     treend = lstree->root;
-    redic = treend->utree.redic;
+    if (treend->type == PIPE)
+        redic = treend->right->redic;
+    else
+        redic = treend->redic;
     if (redic->name != NULL && token->value != NULL)
     {
         redic->numfile += 1;
-        redic->name = ft_realloc((void *)redic->name,sizeof(t_file) * (redic->numfile));
+        redic->name = ft_realloc((void *)redic->name,sizeof(t_file) * redic->numfile);
         redic->name[redic->numfile - 1].file = ft_strdup(token->value);
         redic->name[redic->numfile - 1].type = token->type;
         redic->name[redic->numfile].file = NULL;
