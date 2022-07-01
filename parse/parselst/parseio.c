@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:40:08 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/01 04:31:07 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/01 07:17:06 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,12 @@ t_token *parse_redic(t_lstree *lstree, t_token *token)
 {
     t_tree      *treend;
     t_redicio   *redic;
+    char        *dtaa;
 
+    redic = NULL;
     ctreenode(lstree, REDICIO);
     treend = lstree->root;
+    dtaa = NULL;
     if (treend->type == PIPE)
         redic = treend->right->redic;
     else
@@ -48,15 +51,17 @@ t_token *parse_redic(t_lstree *lstree, t_token *token)
     if (redic->name != NULL && token->value != NULL)
     {
         redic->numfile += 1;
-        redic->name = ft_realloc((void *)redic->name,sizeof(t_file) * redic->numfile);
+        redic->name = ft_realloc((void *)redic->name,sizeof(t_file) * (redic->numfile + 1));
         redic->name[redic->numfile - 1].file = ft_strdup(token->value);
+        dtaa = ft_strdup(token->value);
         redic->name[redic->numfile - 1].type = token->type;
         redic->name[redic->numfile].file = NULL;
     }
     else
     {
-        redic->name = malloc(sizeof(t_file) + 1);
+        redic->name = malloc(sizeof(t_file) * 2);
         redic->name[0].file = ft_strdup(token->value);
+        dtaa = ft_strdup(token->value);
         redic->name[0].type = token->type;
         redic->name[1].file = NULL;
         redic->numfile += 1;

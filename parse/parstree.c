@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/01 06:42:37 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/01 07:07:23 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
 	token = lsnode->head; 
     while (token != NULL)
     {
-        if ( token != NULL && (token->type == TOKEN_ROUTPUT 
+        if ( token != NULL && 
+            (token->type == TOKEN_ROUTPUT 
             || token->type == TOKEN_DROUTPUT
             || token->type == TOKEN_RINPUT
             || token->type == TOKEN_DRINPUT))
