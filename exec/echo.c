@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 19:25:44 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/01 15:43:59 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:00:40 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_echo(t_cmd *cmd, int i)
 	{
 		printf("%s", cmd->cmdarg[i]);
 		i++;
-		if (cmd->cmdarg[i])
+		if (cmd->cmdarg[i] && cmd->check == 0)
 			printf(" ");
 	}
 }
