@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:15:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/24 04:23:56 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/06/28 03:43:13 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ int ins_next_node(t_lsnode *stack, t_token *token)
 {
 	t_token	*temp;
 	
-	temp = stack->head;	
 	if (stack->head == NULL)
 	{
 		stack->head = token;
 		stack->tail = token;
+		stack->head->next = NULL;
+		stack->head->prev = NULL;
 	}
 	else
 	{
@@ -35,6 +36,7 @@ int ins_next_node(t_lsnode *stack, t_token *token)
 		while (temp->next)
 			temp = temp->next;	
 		temp->next = token;
+		temp->next->prev = temp;
 		stack->tail = token;
 	}
 	stack->size++;
@@ -60,7 +62,7 @@ void	*ft_calloc(size_t count, size_t size)
 	unsigned char	*copy;
 	size_t			index;
 
-	copy = (unsigned char *)malloc(count * size);
+	copy = malloc(count * size);
 	if (copy == NULL)
 		return (0);
 	index = count * size;

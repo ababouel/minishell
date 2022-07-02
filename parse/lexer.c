@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:52:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 08:41:55 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/02 01:02:05 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_lexer	*init_lexer(char *line)
 	lexer->i = 0;
 	lexer->size = ft_strlen(line);
 	lexer->c = lexer->src[lexer->i];
-	return (lexer); 
+	return (lexer);
 }
 
 void	lexer_advance(t_lexer *lexer)
@@ -45,3 +45,38 @@ t_token	*lexer_advance_with(t_lexer *lexer, t_token *token)
 	return (token);
 }
 
+t_token	*lexer_redirection(t_lexer *lexer, char *ch, t_type type)
+{
+	char			*c;
+	char			*value;
+	unsigned int	len;
+	unsigned int	size;
+	
+	len = 0;
+	value = NULL;
+	size = ft_strlen(ch);
+	while (len++ < size)
+		lexer_advance(lexer);
+	lexer_whitespace(lexer);
+	len = lexer->i;
+	c = &lexer->src[len];
+	len = 0;
+	while (c[len] != '\0')
+	{
+		if (c[len] == ' ')
+			break ;
+		len++;
+	}
+	if (c[len] == '\0' || c[len] == ' ')
+	{
+		if (len == 0)
+			value = NULL;
+		else
+			value = ft_strndup(lexer->src + lexer->i, len);
+		size = 0;
+		while ( size++ < len)
+			lexer_advance(lexer);	
+	}	
+	return (init_token(type, value));
+}
+	

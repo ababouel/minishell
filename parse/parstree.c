@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parstree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/30 15:08:44 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/01 07:48:06 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
+
+
 
 void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
 {
@@ -19,22 +21,20 @@ void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
 	token = lsnode->head; 
     while (token != NULL)
     {
-        if ( token != NULL && (token->type == TOKEN_ROUTPUT 
+        if ( token != NULL && 
+            (token->type == TOKEN_ROUTPUT 
             || token->type == TOKEN_DROUTPUT
             || token->type == TOKEN_RINPUT
             || token->type == TOKEN_DRINPUT))
-        {
             parse_redic(lstree, token);
-            token = token->next->next->next; 
-        }
         if (token != NULL && 
             (token->type == TOKEN_EXP
             || token->type == TOKEN_DQUOTE 
             || token->type == TOKEN_SINQTE
             || token->type == TOKEN_DOLLAR))
             parse_cmd(lstree, token, env);
-        // if (token->type == TOKEN_PIPE)
-        //     treend = parse_pipe();
+        if (token->type == TOKEN_PIPE)
+            parse_pipe(lstree);
         // if (token->type == TOKEN_RINPUT)
         //     treend = parse_rinput();
         // printf("data track from => %d\n", token->type); 
@@ -71,7 +71,16 @@ int ins_next_tree(t_lstree *stack, t_tree *treend)
             treend->left = temp;
         }
         else if (stack->root->type == PIPE)
-            stack->root->right = treend;
+        {
+            if (stack->root->right != NULL && stack->root->right->type == CMD)
+            {
+                temp = stack->root->right;
+                stack->root->right = treend;
+                treend->left = temp;
+            }
+            else
+                stack->root->right = treend;
+        }
     } 
     else if (treend->type == CMD)
     {
@@ -84,3 +93,8 @@ int ins_next_tree(t_lstree *stack, t_tree *treend)
     }
 	return (0);
 }
+
+// t_lsnode    parsing(t_lsnode *lsnode, char **env)
+// {
+//     t_lsnode    node; 
+// }

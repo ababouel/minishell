@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freestack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/22 08:42:36 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/02 16:13:19 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,42 @@ void	ft_freestack(t_lsnode *sk)
 	{
 		temp = node;
 		node = node->next;
+		free(node->value);
 		free(temp);
 	}
-	free(sk);
+	// free(sk);
 }
 
-void	ft_freetree(t_lstree *sk)
+void	ft_freetree(t_lstree **sk)
 {
 	t_tree	*node;
-	
-	while (sk->root != NULL)
+	// t_cmd	*cmd;
+	// t_file 	*file;
+	// char 	*filedata;
+	// char 	**cmdarg;
+	if (!sk || !*sk)
+		return ;
+	while ((*sk)->root != NULL)
 	{
-		node = sk->root;
-		sk->root = sk->root->left;
+		node = (*sk)->root;
+		// if (sk->root->type == CMD)
+		// {
+		// 	cmdarg = sk->root->cmd->cmdarg;
+		// 	cmd  = sk->root->cmd;
+		// 	free(cmdarg);
+		// 	free(cmd);
+		// }
+		// else if (sk->root->type == REDICIO)
+		// {
+		// 	file = sk->root->redic->name;
+		// 	filedata = sk->root->redic->name->file;
+		// 	free(filedata);
+		// 	free(file);
+		// 	free(sk->root->redic);
+		// }
+		(*sk)->root = (*sk)->root->left;
 		free(node);
 	}
+	free(*sk);
+	*sk = NULL;	
 }

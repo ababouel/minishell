@@ -6,7 +6,7 @@
 #    By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
-#    Updated: 2022/06/29 10:48:56 by sismaili         ###   ########.fr        #
+#    Updated: 2022/07/02 16:08:38 by sismaili         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ GREEN = \033[0;32m
 CC = cc
 CFLAGS = -Wall -Werror -Wextra 
 BDIR = build
-FILES = main parse/lexer parse/lexerbis parse/token parse/parstree\
+FILES = main parse/lexer parse/lexerbis parse/token parse/parstree parse/lexerlst\
 		parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio\
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack\
 		tools/ft_isalpha exec/built exec/cd exec/echo exec/export exec/unset exec/pwd_env\

@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 09:58:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/29 17:12:30 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/02 16:29:48 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ char	**bubble_sort(t_cmd *cmd)
 	step = 0;
 	size = 0;
 	while (cmd->export[size])
+	{
+		printf("%s\n", cmd->export[size]);
 		size++;
+	}
 	while (step < size - 1)
 	{
 		i = 0;

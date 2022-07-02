@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/01 18:42:37 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/02 16:23:33 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	path_cmd(t_cmd *cmd)
 void	arg_cmd(t_cmd *cmd)
 {
 	if (!ft_strncmp(cmd->cmdarg[0], "export", ft_strlen("export")))
+	{
 		ft_export(cmd);
+	}
 	else if (!ft_strncmp(cmd->cmdarg[0], "unset", ft_strlen("unset")))
 		ft_unset(cmd);
 	else if (!ft_strncmp(cmd->cmdarg[0], "exit", ft_strlen("exit")))
