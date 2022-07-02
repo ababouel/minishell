@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 23:46:36 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 02:27:27 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/02 01:21:06 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ typedef struct s_lsnode
 
 
 t_token	*init_token(int type, char *value);
+int		ft_filter_token(t_lsnode *lstk);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:55:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/24 05:13:27 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/02 01:38:26 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,10 @@ char	*ft_strjoinbis(char *s1, char *s2)
 		ft_memcpy(result, s1, len1);
 		ft_memcpy(result + len1, s2, len2 + 1);
 	}
+	if (s1)
+		free(s1);
 	return (result);
 }
-
 
 static void	**ft_dmemcpy(void **dst, void **src)
 {

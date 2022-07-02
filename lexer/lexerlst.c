@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 05:29:58 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 05:40:40 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/02 00:45:21 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_token *lexer_parse_exp(t_lexer *lexer)
 	char	*value;
 	
 	value = ft_calloc(1, sizeof(char));
-	while (lexer->c != '\0' && !is_delim(lexer->c, " $'\"()|&<>*\0"))
+	while (lexer->c != '\0' && !is_delim(lexer->c, " |<>\0"))
 	{
 		ft_strcat(value, &lexer->c);
 		lexer_advance(lexer);

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/27 02:46:45 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/02 05:27:59 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ char	*search_var(char *cmd, char **env)
 		}
 		return(search_in_env(env, var));
 	}
-		printf("wee\n");
 	return (NULL);
 }

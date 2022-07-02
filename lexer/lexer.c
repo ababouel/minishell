@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:52:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/01 01:10:13 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/02 01:02:05 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,22 +79,4 @@ t_token	*lexer_redirection(t_lexer *lexer, char *ch, t_type type)
 	}	
 	return (init_token(type, value));
 }
-
-	// while (lexer->c == ch[0] && lexer->c == ' ')
-	// 	lexer_advance(lexer);
-	// c = &lexer->src[lexer->i];
-	// while (c[len] != '\0')
-	// {
-	// 	if (c[len] == ' ')
-	// 		break ;
-	// 	len++;
-	// }
-	// if (c[len] == '\0' || c[len] == ' ')
-	// {
-	// 	if (len == 0)
-	// 		value = NULL;
-	// 	else
-	// 		value = ft_strndup(lexer->src + lexer->i, len);
-	// 	lexer->i += len;
-	// 	lexer->c = lexer->src[lexer->i];
-	// }
+	

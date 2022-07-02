@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:40:08 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/01 07:17:06 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/02 00:43:24 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static int ctreenode(t_lstree *lstree, t_treetype type)
 {
-    t_tree      *treend;
+    t_tree  *treend;
+    t_tree  *root;
 
-    if (lstree->root == NULL || lstree->root->type != type) 
+    root = lstree->root;
+    if (root == NULL || root->type != type) 
     {
         if(!(treend = malloc(sizeof(t_tree))))
             return (1);
@@ -38,12 +40,12 @@ t_token *parse_redic(t_lstree *lstree, t_token *token)
 {
     t_tree      *treend;
     t_redicio   *redic;
-    char        *dtaa;
+    // char        *dtaa;
 
     redic = NULL;
     ctreenode(lstree, REDICIO);
     treend = lstree->root;
-    dtaa = NULL;
+    // dtaa = NULL;
     if (treend->type == PIPE)
         redic = treend->right->redic;
     else
@@ -53,7 +55,7 @@ t_token *parse_redic(t_lstree *lstree, t_token *token)
         redic->numfile += 1;
         redic->name = ft_realloc((void *)redic->name,sizeof(t_file) * (redic->numfile + 1));
         redic->name[redic->numfile - 1].file = ft_strdup(token->value);
-        dtaa = ft_strdup(token->value);
+        // dtaa = ft_strdup(token->value);
         redic->name[redic->numfile - 1].type = token->type;
         redic->name[redic->numfile].file = NULL;
     }
@@ -61,7 +63,7 @@ t_token *parse_redic(t_lstree *lstree, t_token *token)
     {
         redic->name = malloc(sizeof(t_file) * 2);
         redic->name[0].file = ft_strdup(token->value);
-        dtaa = ft_strdup(token->value);
+        // dtaa = ft_strdup(token->value);
         redic->name[0].type = token->type;
         redic->name[1].file = NULL;
         redic->numfile += 1;
