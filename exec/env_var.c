@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/01 18:42:57 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/02 21:40:56 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,59 @@ char	*search_in_env(char **env, char *var)
 	return (NULL);
 }
 
+char	*var_return(char *cmd, char *var, char *new, char **env, int i)
+{
+	int	l;
+
+	l = 0;
+	i++;
+	while (cmd[i] && cmd[i] != '$')
+	{
+		var[l] = cmd[i];
+		l++;
+		i++;
+	}
+	var[l] = '\0';
+	var = search_in_env(env, var);
+	if (var)
+		new = ft_strjoin(new, var);
+	else
+		return (new);
+	if (cmd[i] != '$')
+		return (new);
+	else
+	{
+		free (var);
+		return (var_return(cmd, var, new, env, i));
+	}
+}
+
 char	*search_var(char *cmd, char **env)
 {
 	int		i;
-	char	var[1000];
+	int		j;
+	char	*var;
+	char	*new;
 
 	i = 0;
+	j = 0;
+	var = malloc(sizeof(char) * ft_strlen(cmd) + 1);
+	new = malloc(sizeof(char) * ft_strlen(cmd) + 1);
+	if (!var || !new)
+		return (NULL);
 	while (cmd[i])
 	{
 		if (cmd[i] == '$')
 		{
-			if (cmd[i + 1] == 0)
-			{
-				var[i] = 0;
-				break ;
-			}
-			while (cmd[i])
-			{
-				var[i] = cmd[i + 1];
-				i++;
-			}
-			return (search_in_env(env, var));
+			new = var_return(cmd, var, new, env, i);
+			j += ft_strlen(new);
+			i += ft_strlen(new);
 		}
+		else
+			new[j] = cmd[i];
 		i++;
+		j++;
 	}
-	return (cmd);
+	free (var);
+	return (new);
 }
