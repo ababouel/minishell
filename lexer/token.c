@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:42:42 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/02 05:26:12 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/03 10:16:23 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,29 @@ static char	*rpl_sinqte(char *str)
 // 	return (NULL);
 // }
 
-static char	*rpl_dollar(char *str, char **env)
-{
-	int		len;
-	char	**arrstr;
-	char	*data;
+// static char	*rpl_dollar(char *str, char **env)
+// {
+// 	int		len;
+// 	char	**arrstr;
+// 	char	*data;
 
-	len = 0;
-	data = NULL;
-	arrstr = ft_split(str," ;*<>&|/\0");
-	while (arrstr[len])
-	{
-		data = search_var(arrstr[len], env);
-		if (data)
-			arrstr[len] = ft_strdup(data);
-		len++;
-	}
-	len = 0;
-	while (arrstr[len])
-	{
-		ft_strjoin()
-	}
-	return ()
-}
+// 	len = 0;
+// 	data = NULL;
+// 	arrstr = ft_split(str," ;*<>&|/\0");
+// 	while (arrstr[len])
+// 	{
+// 		data = search_var(arrstr[len], env);
+// 		if (data)
+// 			arrstr[len] = ft_strdup(data);
+// 		len++;
+// 	}
+// 	len = 0;
+// 	while (arrstr[len])
+// 	{
+// 		ft_strjoin()
+// 	}
+// 	return ()
+// }
 
 int	ft_filter_token(t_lsnode *lstk)
 {
