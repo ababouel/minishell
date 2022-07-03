@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/02 21:40:56 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:22:02 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,66 +36,72 @@ char	*search_in_env(char **env, char *var)
 				new[len] = env[i][++j];
 				len++;
 			}
+			free (var);
 			return (new);
 		}
 		i++;
 	}
+	free (var);
 	return (NULL);
 }
 
-char	*var_return(char *cmd, char *var, char *new, char **env, int i)
-{
-	int	l;
+// char	*var_return(char *cmd, char *var, char *new, char **env, int i)
+// {
+// 	int	l;
 
-	l = 0;
-	i++;
-	while (cmd[i] && cmd[i] != '$')
-	{
-		var[l] = cmd[i];
-		l++;
-		i++;
-	}
-	var[l] = '\0';
-	var = search_in_env(env, var);
-	if (var)
-		new = ft_strjoin(new, var);
-	else
-		return (new);
-	if (cmd[i] != '$')
-		return (new);
-	else
-	{
-		free (var);
-		return (var_return(cmd, var, new, env, i));
-	}
-}
+// 	l = 0;
+// 	i++;
+// 	while (cmd[i] && cmd[i] != '$')
+// 		var[l++] = cmd[i++];
+// 	var[l] = '\0';
+// 	var = search_in_env(env, var);
+// 	if (var)
+// 	{
+// 		new = ft_strjoin(new, var);
+// 		free (var);
+// 	}
+// 	else
+// 		free (var);
+// 	return (new);
+// }
 
 char	*search_var(char *cmd, char **env)
 {
 	int		i;
 	int		j;
-	char	*var;
+	int		l;
 	char	*new;
+	char	*var;
 
 	i = 0;
 	j = 0;
-	var = malloc(sizeof(char) * ft_strlen(cmd) + 1);
 	new = malloc(sizeof(char) * ft_strlen(cmd) + 1);
-	if (!var || !new)
+	if (!new)
 		return (NULL);
 	while (cmd[i])
 	{
 		if (cmd[i] == '$')
 		{
-			new = var_return(cmd, var, new, env, i);
-			j += ft_strlen(new);
-			i += ft_strlen(new);
+			var = malloc(sizeof(char) * ft_strlen(cmd) + 1);
+			if (!var)
+				return (NULL);
+			l = 0;
+			i++;
+			while (cmd[i] && cmd[i] != '$' && (ft_isalpha(cmd[i]) || ft_isdigit(cmd[i])))
+				var[l++] = cmd[i++];
+			var[l] = '\0';
+			var = search_in_env(env, var);
+			if (var)
+			{
+				new = ft_strjoin(new, var);
+				j = ft_strlen(new);
+				free (var);
+			}
+			else
+				free (var);
 		}
 		else
-			new[j] = cmd[i];
-		i++;
-		j++;
+			new[j++] = cmd[i++];
 	}
-	free (var);
 	return (new);
 }
