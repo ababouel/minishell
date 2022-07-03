@@ -6,95 +6,103 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/01 07:48:06 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:51:44 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
+static int  numpipe(t_token *token)
+{
+    t_token *temp;
+    int     len;
 
+    len = 0;
+    temp = token;
+    while (temp != NULL)
+    {
+        if (temp->type == TOKEN_PIPE)
+            len++;
+        temp = temp->next;
+    }
+    return (len);
+}
 
-void    parsing(t_lstree *lstree, t_lsnode *lsnode, char **env)
+t_data  *init_dt(char **env)
+{
+    t_data  *data;
+
+    data = malloc(sizeof(t_data));
+    if (!data)
+        return (NULL);
+    data->cmd.ffd[0] = -1;
+    data->cmd.ffd[1] = -1;
+    data->pipe.pfd[1] = -1;
+    data->pipe.pfd[0] = -1;
+    data->cmd.numfile = 0;
+    data->cmd.name = NULL;
+    data->cmd.cmdarg = NULL;
+    data->cmd.pathcmd = NULL;
+    data->cmd.env = env;
+    data->pipe.statpipe = NUL;
+    return (data);
+}
+
+void    parsing(t_lsdata *lsdata, t_lsnode *lsnode, char **env)
 {
     t_token *token;
+    t_data  *data;
 
-	token = lsnode->head; 
+    data = init_dt(env);
+	token = lsnode->head;
+    lsdata->nupipe = numpipe(token);
     while (token != NULL)
     {
-        if ( token != NULL && 
-            (token->type == TOKEN_ROUTPUT 
+        if ( token != NULL && (token->type == TOKEN_ROUTPUT 
             || token->type == TOKEN_DROUTPUT
             || token->type == TOKEN_RINPUT
             || token->type == TOKEN_DRINPUT))
-            parse_redic(lstree, token);
-        if (token != NULL && 
-            (token->type == TOKEN_EXP
-            || token->type == TOKEN_DQUOTE 
+            parse_redic(data, token);
+        if (token != NULL && (token->type == TOKEN_EXP
+            || token->type == TOKEN_DQUOTE
             || token->type == TOKEN_SINQTE
             || token->type == TOKEN_DOLLAR))
-            parse_cmd(lstree, token, env);
+            parse_cmd(data, token, env);
         if (token->type == TOKEN_PIPE)
-            parse_pipe(lstree);
-        // if (token->type == TOKEN_RINPUT)
-        //     treend = parse_rinput();
-        // printf("data track from => %d\n", token->type); 
+            data = parse_pipe(lsdata, data);
         if (token != NULL) 
             token = token->next;
-    }    
+    }
+    ins_next_data(lsdata, data);  
 }
 
-void	init_lstree(t_lstree *lstree)
+void	init_lstree(t_lsdata *t_lsdata)
 {
-    lstree->root = NULL;
-    lstree->size = 0;
+    t_lsdata->head = NULL;
+    t_lsdata->tail = NULL;
+    t_lsdata->size = 0;
 }
 
-int ins_next_tree(t_lstree *stack, t_tree *treend)
+int ins_next_data(t_lsdata *stack, t_data *data)
 {
-    t_tree  *temp;
-
-    temp = NULL;
-    if (treend->type == PIPE)
-    {
-        temp = stack->root;
-        stack->root = treend;
-        treend->left = temp;
-    }
-    else if (treend->type == REDICIO)
-    {
-        if (stack->root == NULL)
-            stack->root = treend;
-        if (stack->root->type == CMD)
-        {
-            temp = stack->root;
-            stack->root = treend;
-            treend->left = temp;
-        }
-        else if (stack->root->type == PIPE)
-        {
-            if (stack->root->right != NULL && stack->root->right->type == CMD)
-            {
-                temp = stack->root->right;
-                stack->root->right = treend;
-                treend->left = temp;
-            }
-            else
-                stack->root->right = treend;
-        }
-    } 
-    else if (treend->type == CMD)
-    {
-        if (stack->root == NULL)
-            stack->root = treend;
-        else if (stack->root->type == REDICIO)
-            stack->root->left = treend;
-        else if (stack->root->type == PIPE)
-            stack->root->right = treend; 
-    }
+	t_data	*temp;
+	
+	if (stack->head == NULL)
+	{
+		stack->head = data;
+		stack->tail = data;
+		stack->head->next = NULL;
+		stack->head->prev = NULL;
+	}
+	else
+	{
+		temp = stack->head;
+		while (temp->next)
+			temp = temp->next;	
+		temp->next = data;
+		temp->next->prev = temp;
+		stack->tail = data;
+	}
+	stack->size++;
 	return (0);
 }
-
-// t_lsnode    parsing(t_lsnode *lsnode, char **env)
-// {
-//     t_lsnode    node; 
-// }

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/29 06:32:39 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/03 10:37:39 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void redictionfunc(t_data *dt, char **cmd)
   fd = malloc(sizeof(int) * 2);
   if (pid1 == 0)
   {
-  filein(fd, dt);
+    filein(fd, dt);
     if ( fd[0] > 0)
     {
       dup2(fd[0] ,STDIN_FILENO);
@@ -155,7 +155,7 @@ void redictionfunc(t_data *dt, char **cmd)
   } 
   // close(fd[0]);
   // close(fd[1]);
-  waitpid(pid1, NULL, 0);
+  waitpid(-1, NULL, 0);
 }
 
 

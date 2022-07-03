@@ -6,54 +6,57 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 10:28:24 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:55:59 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	printall(t_tree *treend)
+void	printall(t_lsdata *data)
 {
 	int			x;
-	// t_redicio	*redic;	
+	t_data		*temp;
+	
 	x = 0;
-
-	while (treend->type == REDICIO && treend->redic != NULL && treend->redic->name[x].file != NULL)
+	temp = data->head;
+	while (temp != NULL && temp->cmd.name != NULL && temp->cmd.name[x].file != NULL)
 	{
-		printf("=>%s\n", treend->redic->name[x].file);
+		printf("=>%s\n", temp->cmd.pathcmd);
+		printf("=>%s\n", temp->cmd.cmdarg[1]);
+		printf("=>%s\n", temp->cmd.name[x].file);
 		x++;
 	}
 }
 
-void	recursive(t_tree *lstree)
-{
-	t_tree		*temp;
-	int			x;
-	// t_cmd		*cmd;
-	// t_redicio	*redic;
+// void	recursive(t_lsdata *data)
+// {
+// 	t_tree		*temp;
+// 	int			x;
+// 	// t_cmd		*cmd;
+// 	// t_redicio	*redic;
 
-	if (!lstree)
-		return ;
-	temp = lstree;
-	x = 0;
-	if (temp->left != NULL)
-		recursive(temp->left);
-	if (temp->type == PIPE)
-		printf("%s\n", "|");
-	if (temp->type == REDICIO)
-	{
-		while (x < temp->redic->numfile)
-			printf("redic=> %s\n", temp->redic->name[x++].file);
-	}
-	if (temp->right != NULL)
-		recursive(temp->right);
-	if (temp->type == CMD)
-	{
-		while (temp->cmd->cmdarg[x] != NULL)
-			printf("%s ", temp->cmd->cmdarg[x++]);
-		printf("\n");
-	}
-}
+// 	if (!lstree)
+// 		return ;
+// 	temp = lstree;
+// 	x = 0;
+// 	if (temp->left != NULL)
+// 		recursive(temp->left);
+// 	if (temp->type == PIPE)
+// 		printf("%s\n", "|");
+// 	if (temp->type == REDICIO)
+// 	{
+// 		while (x < temp->redic->numfile)
+// 			printf("redic=> %s\n", temp->redic->name[x++].file);
+// 	}
+// 	if (temp->right != NULL)
+// 		recursive(temp->right);
+// 	if (temp->type == CMD)
+// 	{
+// 		while (temp->cmd->cmdarg[x] != NULL)
+// 			printf("%s ", temp->cmd->cmdarg[x++]);
+// 		printf("\n");
+// 	}
+// }
 
 void printoken(t_lsnode *lstok)
 {
@@ -84,10 +87,10 @@ int main(int ac, char **av, char **env)
 	t_lexer		*lexer;
     char		*line;
 	t_token		*token;
-	t_lstree	*lstree;
+	t_lsdata	*lsdata;
 
 	token = NULL;
-	lstree = NULL;	
+	lsdata = NULL;	
 	rl_catch_signals = 0;
 	while (1337)
 	{
@@ -111,17 +114,17 @@ int main(int ac, char **av, char **env)
 				if (token != NULL)
 					ins_next_node(&lstok, (void *) token);
 			}
-			printoken(&lstok);
+			// printoken(&lstok);
 			// if (printtoken(&lstok))
 			// {
-				lstree = malloc(sizeof(t_lstree));
-				init_lstree(lstree);
-				parsing(lstree, &lstok, env);
-				// // printall(lstree->root);
+				lsdata = malloc(sizeof(t_lsdata));
+				init_lstree(lsdata);
+				parsing(lsdata, &lstok, env);
+				printall(lsdata);
 				// recursive(lstree->root);
 			// 
 		}
-		//  ft_freetree(&lstree); 
+		 ft_freetree(&lsdata); 
 	}
     return (0);
 }

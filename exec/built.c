@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/29 05:41:27 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:02:35 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,51 +23,54 @@ void	handler(int	hand)
 	}
 }
 
-void	built(t_cmd *cmd, t_redicio *redicio)
+void	built(t_data *data)
 {
-	if (cmd->pathcmd)
+	t_cmd cmd;
+
+	cmd = data->cmd;
+	if (cmd.pathcmd)
 	{
-		if (!ft_strncmp(cmd->pathcmd, "/bin/pwd", ft_strlen(cmd->pathcmd)))
+		if (!ft_strncmp(cmd.pathcmd, "/bin/pwd", ft_strlen(cmd.pathcmd)))
 		{
-			ft_pwd(cmd);
+			ft_pwd(&cmd);
 			return ;
 		}
-		else if (!ft_strncmp(cmd->pathcmd, "/bin/echo", ft_strlen(cmd->pathcmd)))
+		else if (!ft_strncmp(cmd.pathcmd, "/bin/echo", ft_strlen(cmd.pathcmd)))
 		{
-			ft_echo(cmd->cmdarg, cmd->env);
+			ft_echo(cmd.cmdarg, cmd.env);
 			return ;
 		}
-		else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/cd", ft_strlen(cmd->pathcmd)))
+		else if (!ft_strncmp(cmd.pathcmd, "/usr/bin/cd", ft_strlen(cmd.pathcmd)))
 		{
-			ft_cd(cmd);
+			ft_cd(&cmd);
 			return ;
 		}
-		else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/env", ft_strlen(cmd->pathcmd)))
+		else if (!ft_strncmp(cmd.pathcmd, "/usr/bin/env", ft_strlen(cmd.pathcmd)))
 		{
-			ft_env(cmd);
+			ft_env(&cmd);
 			return ;
 		}
 	}
 	else
 	{
-		if (!ft_strncmp(cmd->cmdarg[0], "export", ft_strlen(cmd->cmdarg[0])))
+		if (!ft_strncmp(cmd.cmdarg[0], "export", ft_strlen(cmd.cmdarg[0])))
 		{
-			ft_export(cmd);
+			ft_export(&cmd);
 			return ;
 		}
-		else if (!ft_strncmp(cmd->cmdarg[0], "unset", ft_strlen(cmd->cmdarg[0])))
+		else if (!ft_strncmp(cmd.cmdarg[0], "unset", ft_strlen(cmd.cmdarg[0])))
 		{
-			ft_unset(cmd);
+			ft_unset(&cmd);
 			return ;
 		}
-		else if (!ft_strncmp(cmd->cmdarg[0], "exit", ft_strlen(cmd->cmdarg[0])))
+		else if (!ft_strncmp(cmd.cmdarg[0], "exit", ft_strlen(cmd.cmdarg[0])))
 		{
 			write(1, "exit\n", 6);
 			exit(0);
 		}
 	}
 	// if (redicio != NULL)
-	exec_redic(redicio, cmd);
+	exec_redic(&cmd);
 	// // else 
 	// exec_cmd(cmd);
 }

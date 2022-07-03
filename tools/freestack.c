@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/01 06:38:41 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:01:35 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,35 +29,19 @@ void	ft_freestack(t_lsnode *sk)
 	// free(sk);
 }
 
-void	ft_freetree(t_lstree **sk)
+void	ft_freetree(t_lsdata **sk)
 {
-	t_tree	*node;
-	// t_cmd	*cmd;
-	// t_file 	*file;
-	// char 	*filedata;
-	// char 	**cmdarg;
+	t_data	*node;
 	if (!sk || !*sk)
 		return ;
-	while ((*sk)->root != NULL)
+	while ((*sk)->head != NULL)
 	{
-		node = (*sk)->root;
-		// if (sk->root->type == CMD)
-		// {
-		// 	cmdarg = sk->root->cmd->cmdarg;
-		// 	cmd  = sk->root->cmd;
-		// 	free(cmdarg);
-		// 	free(cmd);
-		// }
-		// else if (sk->root->type == REDICIO)
-		// {
-		// 	file = sk->root->redic->name;
-		// 	filedata = sk->root->redic->name->file;
-		// 	free(filedata);
-		// 	free(file);
-		// 	free(sk->root->redic);
-		// }
-		(*sk)->root = (*sk)->root->left;
+		node = (*sk)->head;	
+		(*sk)->head = (*sk)->head->next;
 		free(node);
+		node->cmd.env = NULL;
+		node->next = NULL;
+		node->prev = NULL;
 	}
 	free(*sk);
 	*sk = NULL;	
