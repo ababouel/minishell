@@ -2,7 +2,6 @@ make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/ababouel/Documents/minishell'
 mkdir -p build
 cc -Wall -Werror -Wextra -g -c main.c -o build/main.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
- 
 mkdir -p build/lexer
 cc -Wall -Werror -Wextra -g -c lexer/lexer.c -o build/lexer/lexer.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/lexer
@@ -11,7 +10,6 @@ mkdir -p build/lexer
 cc -Wall -Werror -Wextra -g -c lexer/token.c -o build/lexer/token.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/lexer
 cc -Wall -Werror -Wextra -g -c lexer/lexerlst.c -o build/lexer/lexerlst.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
- 
 mkdir -p build/parse
 cc -Wall -Werror -Wextra -g -c parse/parstree.c -o build/parse/parstree.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/parse/parselst

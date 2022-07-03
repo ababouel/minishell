@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 17:51:44 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:28:51 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	init_lstree(t_lsdata *t_lsdata)
 int ins_next_data(t_lsdata *stack, t_data *data)
 {
 	t_data	*temp;
-	
+    	
 	if (stack->head == NULL)
 	{
 		stack->head = data;

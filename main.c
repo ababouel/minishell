@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 17:55:59 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:23:01 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,28 @@
 void	printall(t_lsdata *data)
 {
 	int			x;
+	int			y;
 	t_data		*temp;
 	
 	x = 0;
+	y = 0;
 	temp = data->head;
-	while (temp != NULL && temp->cmd.name != NULL && temp->cmd.name[x].file != NULL)
+	while (y < data->size)
+	{if (temp != NULL && temp->cmd.pathcmd != NULL)
 	{
 		printf("=>%s\n", temp->cmd.pathcmd);
 		printf("=>%s\n", temp->cmd.cmdarg[1]);
+	}
+	while (temp != NULL && temp->cmd.name != NULL && temp->cmd.name[x].file != NULL)
+	{
 		printf("=>%s\n", temp->cmd.name[x].file);
 		x++;
+	}
+	if (temp != NULL)
+	{
+		temp = temp->next;
+		y++;	
+	}
 	}
 }
 
@@ -124,7 +136,7 @@ int main(int ac, char **av, char **env)
 				// recursive(lstree->root);
 			// 
 		}
-		 ft_freetree(&lsdata); 
+		 ft_freetree(lsdata); 
 	}
     return (0);
 }

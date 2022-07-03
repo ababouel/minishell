@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 10:37:39 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/03 18:48:41 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,45 +159,45 @@ void redictionfunc(t_data *dt, char **cmd)
 }
 
 
-// int cmdfunc(int isin,int fd,char **filein,int isredirect,int track,int *cpipe,int *pvpipe, char **str, char **env)
-// {
-//   int pid;
+int cmdfunc(int isin,int fd,char **filein,int isredirect,int track,int *cpipe,int *pvpipe, char **str, char **env)
+{
+  int pid;
 
-//   pid = forcked(); 
-//   if (pid == 0)
-//   {
-//     if (fd > 0 && isin == 1)
-//       dup2(fd, STDIN_FILENO);
-//     else if (fd>0 && isin == 0)
-//       dup2(fd, STDOUT_FILENO);
-//     if (track == start && fd > 0 && isin != 0)
-//       dup2(cpipe[1], STDOUT_FILENO);
-//     if (track == middle)
-//     {
-//       dup2(pvpipe[0], STDIN_FILENO);
-//       dup2(cpipe[1], STDOUT_FILENO);
-//     }
-//     if (track == end)
-//       dup2(cpipe[0], STDIN_FILENO);
-//     execve(str[0],&str[1],env);
-//   }
-//   if (pid > 0)
-//   { 
-//     if (track == start)
-//       close(cpipe[1]);
-//     if (track == middle)
-//     {
-//       close(pvpipe[0]);
-//       close(cpipe[1]);
-//     }
-//     if (track == end)
-//       close(cpipe[0]);
-//     if (fd > 0)
-//       close(fd);
-//     waitpid(-1, NULL, 0);
-//   }
-//   return (pid);
-// }
+  pid = forcked(); 
+  if (pid == 0)
+  {
+    if (fd > 0 && isin == 1)
+      dup2(fd, STDIN_FILENO);
+    else if (fd>0 && isin == 0)
+      dup2(fd, STDOUT_FILENO);
+    if (track == start && fd > 0 && isin != 0)
+      dup2(cpipe[1], STDOUT_FILENO);
+    if (track == middle)
+    {
+      dup2(pvpipe[0], STDIN_FILENO);
+      dup2(cpipe[1], STDOUT_FILENO);
+    }
+    if (track == end)
+      dup2(cpipe[0], STDIN_FILENO);
+    execve(str[0],&str[1],env);
+  }
+  if (pid > 0)
+  { 
+    if (track == start)
+      close(cpipe[1]);
+    if (track == middle)
+    {
+      close(pvpipe[0]);
+      close(cpipe[1]);
+    }
+    if (track == end)
+      close(cpipe[0]);
+    if (fd > 0)
+      close(fd);
+    waitpid(-1, NULL, 0);
+  }
+  return (pid);
+}
 
 t_file  *injectfile(int x,t_file *fl,char *file, t_type type)
 {

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:38:39 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 17:37:06 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:30:58 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ t_data  *parse_pipe(t_lsdata *lsdata, t_data *data)
         data->pipe.statpipe = END;
     ins_next_data(lsdata, data);
     new_dt = init_dt(data->cmd.env);
+    data = NULL;
     return (new_dt);
 }

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 17:01:35 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:37:39 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,23 @@ void	ft_freestack(t_lsnode *sk)
 	// free(sk);
 }
 
-void	ft_freetree(t_lsdata **sk)
+void	ft_freetree(t_lsdata *sk)
 {
 	t_data	*node;
-	if (!sk || !*sk)
+	t_data	*temp;
+	if (!sk)
 		return ;
-	while ((*sk)->head != NULL)
+	temp = sk->head;
+	while ( temp != NULL)
 	{
-		node = (*sk)->head;	
-		(*sk)->head = (*sk)->head->next;
+		node = temp;
+		if (temp->next != NULL)	
+			temp = temp->next;
 		free(node);
 		node->cmd.env = NULL;
 		node->next = NULL;
 		node->prev = NULL;
 	}
-	free(*sk);
-	*sk = NULL;	
+	free(sk);
+	sk = NULL;	
 }
