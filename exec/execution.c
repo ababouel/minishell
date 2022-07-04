@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 17:05:11 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:16:09 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void exec_redic(t_cmd *cmd)
     pid = forcked();
     if (pid == 0)
     {
-        filein(cmd);
+        if (cmd->name != NULL)
+            filein(cmd);
         if(cmd->ffd[0] > 0)
         {
             dup2(cmd->ffd[0], STDIN_FILENO);
@@ -45,8 +46,8 @@ void exec_redic(t_cmd *cmd)
             dup2(cmd->ffd[1], STDOUT_FILENO);
             close(cmd->ffd[1]);
         }
-        if (execve(cmd->pathcmd, cmd->cmdarg, cmd->env) == -1)
-            perror(cmd->cmdarg[0]);
+        exec_cmd(cmd);
+        exit(0);
     }
-    waitpid(pid, NULL, 0);
+    waitpid(-1, NULL, 0);
 }

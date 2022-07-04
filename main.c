@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/04 16:53:34 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:18:36 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,15 @@
 
 void	recursive(t_lsdata *data)
 {
+	t_data	*dt;
 
+	dt = data->head;
+	while (dt != NULL)
+	{	
+		built(dt);	
+		if (dt != NULL)
+			dt = dt->next;
+	}
 }
 
 // void printoken(t_lsnode *lstok)
@@ -113,8 +121,9 @@ int main(int ac, char **av, char **env)
 				lsdata = malloc(sizeof(t_lsdata));
 				init_lstree(lsdata);
 				parsing(lsdata, &lstok, env);
-				printall(lsdata);
-				recursive(lsdata); 
+				// printall(lsdata);
+				if (lsdata->head->cmd.cmdarg != NULL)
+					recursive(lsdata); 
 			// }
 		//  ft_freetree(lsdata);
 		// while(1); 
