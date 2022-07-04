@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/03 17:22:02 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:00:47 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*search_var(char *cmd, char **env)
 
 	i = 0;
 	j = 0;
-	new = malloc(sizeof(char) * ft_strlen(cmd) + 1);
+	new = malloc(sizeof(char) * ft_strlen(cmd));
 	if (!new)
 		return (NULL);
 	while (cmd[i])

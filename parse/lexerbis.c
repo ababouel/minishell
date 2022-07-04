@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexerbis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/02 01:06:30 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:51:30 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ t_token	*lexer_next_token(t_lexer *lexer)
 			return (lexer_advance_with(lexer, init_token(TOKEN_SPACE, " ")));
 		if (lexer->c == '|')
 		    return (lexer_advance_with(lexer, init_token(TOKEN_PIPE, "|")));
+		if (lexer->c == '"')
+			return (lexer_parse_quote(lexer, '"', TOKEN_EXP));
+		if (lexer->c == '\'')
+			return (lexer_parse_quote(lexer,'\'', TOKEN_EXP));
 		if(lexer->c == '$')
 			return (lexer_parse_dollar(lexer));
 		if (lexer->c == '<' && lexer->src[lexer->i + 1] == '<')

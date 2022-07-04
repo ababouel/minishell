@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexerlst.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 05:29:58 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/02 00:45:21 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:50:05 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_token *lexer_parse_quote(t_lexer *lexer, char ch, t_type type)
 		if (len == 0)
 			value = ft_strdup("\0");
 		else
-			value = ft_strndup(lexer->src + lexer->i, len);
+			value = ft_strndup(lexer->src + (lexer->i - 1), len + 2);
 		lexer->i += ++len;
 		lexer->c = lexer->src[lexer->i];
 	}
