@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:38:39 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 19:30:58 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 16:34:30 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ t_data  *parse_pipe(t_lsdata *lsdata, t_data *data)
     piped(data->pipe.pfd);
     if (lsdata->size == 0)
         data->pipe.statpipe = START;
-    else if (lsdata->size < (lsdata->nupipe - 1))
-        data->pipe.statpipe = UPDATE;
-    else if (lsdata->size == (lsdata->nupipe - 1))
-        data->pipe.statpipe = END;
+    else if (lsdata->size < lsdata->nupipe)
+        data->pipe.statpipe = UPDATE; 
     ins_next_data(lsdata, data);
     new_dt = init_dt(data->cmd.env);
     data = NULL;

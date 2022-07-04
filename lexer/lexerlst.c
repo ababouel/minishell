@@ -6,22 +6,45 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 05:29:58 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 10:22:42 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:23:00 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
+static int	is_qte(t_lexer *lexer,int isqte, char str)
+{
+	if (lexer->c == str)
+	{
+		if (isqte == 1)
+			isqte = 0;
+		else if (isqte == 0)
+			isqte = 1;
+	}
+	return (isqte);
+}
+
 t_token *lexer_parse_exp(t_lexer *lexer)
 {
 	char	*value;
-	
+	int		isqted;
+	int		isqtes;
+
+	isqted = 0;
+	isqtes = 0;	
 	value = ft_calloc(1, sizeof(char));
-	while (lexer->c != '\0' && !is_delim(lexer->c, " |<>\0"))
+	while (lexer->c != '\0')
 	{
-		ft_strcat(value, &lexer->c);
-		lexer_advance(lexer);
-		value = ft_realloc(value, (ft_strlen(value) + 1) * sizeof(char));
+		if (isqted == 1 || isqtes == 1 || !is_delim(lexer->c, " |<>\0"))
+		{
+			isqted = is_qte(lexer,isqted,'"');
+			isqtes = is_qte(lexer,isqtes,'\'');	
+			ft_strcat(value, &lexer->c);
+			lexer_advance(lexer);
+			value = ft_realloc(value, (ft_strlen(value) + 1) * sizeof(char));
+		}
+		else
+			break;	
 	}
 	ft_strcat(value, "\0");
 	return (init_token(TOKEN_EXP, value));	

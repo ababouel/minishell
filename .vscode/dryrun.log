@@ -2,6 +2,7 @@ make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/ababouel/Documents/minishell'
 mkdir -p build
 cc -Wall -Werror -Wextra -g -c main.c -o build/main.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build/lexer
 cc -Wall -Werror -Wextra -g -c lexer/lexer.c -o build/lexer/lexer.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/lexer
@@ -16,6 +17,7 @@ mkdir -p build/parse/parselst
 cc -Wall -Werror -Wextra -g -c parse/parselst/parsecmd.c -o build/parse/parselst/parsecmd.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/parse/parselst
 cc -Wall -Werror -Wextra -g -c parse/parselst/parsepipe.c -o build/parse/parselst/parsepipe.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build/parse/parselst
 cc -Wall -Werror -Wextra -g -c parse/parselst/parseio.c -o build/parse/parselst/parseio.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/tools
@@ -30,6 +32,7 @@ mkdir -p build/tools
 cc -Wall -Werror -Wextra -g -c tools/ft_strjoin.c -o build/tools/ft_strjoin.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/tools
 cc -Wall -Werror -Wextra -g -c tools/freestack.c -o build/tools/freestack.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build/tools
 cc -Wall -Werror -Wextra -g -c tools/ft_isalpha.c -o build/tools/ft_isalpha.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec

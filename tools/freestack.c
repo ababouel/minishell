@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 19:37:39 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 10:28:22 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,9 @@ void	ft_freetree(t_lsdata *sk)
 	while ( temp != NULL)
 	{
 		node = temp;
-		if (temp->next != NULL)	
-			temp = temp->next;
 		free(node);
-		node->cmd.env = NULL;
-		node->next = NULL;
-		node->prev = NULL;
+		if (temp->next != NULL)
+			temp = temp->next;
 	}
 	free(sk);
 	sk = NULL;	

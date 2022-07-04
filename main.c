@@ -6,89 +6,70 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 19:23:01 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 16:53:34 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	printall(t_lsdata *data)
-{
-	int			x;
-	int			y;
-	t_data		*temp;
-	
-	x = 0;
-	y = 0;
-	temp = data->head;
-	while (y < data->size)
-	{if (temp != NULL && temp->cmd.pathcmd != NULL)
-	{
-		printf("=>%s\n", temp->cmd.pathcmd);
-		printf("=>%s\n", temp->cmd.cmdarg[1]);
-	}
-	while (temp != NULL && temp->cmd.name != NULL && temp->cmd.name[x].file != NULL)
-	{
-		printf("=>%s\n", temp->cmd.name[x].file);
-		x++;
-	}
-	if (temp != NULL)
-	{
-		temp = temp->next;
-		y++;	
-	}
-	}
-}
-
-// void	recursive(t_lsdata *data)
+// void	printall(t_lsdata *data)
 // {
-// 	t_tree		*temp;
 // 	int			x;
-// 	// t_cmd		*cmd;
-// 	// t_redicio	*redic;
-
-// 	if (!lstree)
-// 		return ;
-// 	temp = lstree;
+// 	int			y;
+// 	int			z;
+// 	t_data		*temp;
+	
 // 	x = 0;
-// 	if (temp->left != NULL)
-// 		recursive(temp->left);
-// 	if (temp->type == PIPE)
-// 		printf("%s\n", "|");
-// 	if (temp->type == REDICIO)
+// 	y = 0;
+// 	temp = data->head;
+// 	while (y < data->size)
 // 	{
-// 		while (x < temp->redic->numfile)
-// 			printf("redic=> %s\n", temp->redic->name[x++].file);
-// 	}
-// 	if (temp->right != NULL)
-// 		recursive(temp->right);
-// 	if (temp->type == CMD)
-// 	{
-// 		while (temp->cmd->cmdarg[x] != NULL)
-// 			printf("%s ", temp->cmd->cmdarg[x++]);
-// 		printf("\n");
+// 		if (temp != NULL)
+// 		{
+// 			if (temp->cmd.pathcmd != NULL)
+// 				printf("path=>%s\n", temp->cmd.pathcmd);
+// 			z = 0;
+// 			while (temp->cmd.cmdarg != NULL && temp->cmd.cmdarg[z])
+// 				printf("arg=>%s\n", temp->cmd.cmdarg[z++]);
+// 		}
+// 		x = 0;
+// 		while (temp != NULL && temp->cmd.name != NULL && temp->cmd.name[x].file != NULL)
+// 		{
+// 			printf("filename=>%s\n", temp->cmd.name[x].file);
+// 			x++;
+// 		}
+// 		if (temp != NULL)
+// 		{
+// 			temp = temp->next;
+// 			y++;
+// 		}
 // 	}
 // }
 
-void printoken(t_lsnode *lstok)
+void	recursive(t_lsdata *data)
 {
-	t_token	*tempnext;
-	// t_token	*temprev;
 
-	tempnext = lstok->head;
-	// temprev = lstok->tail;
-	while (tempnext)
-	{
-		printf("next token => %d => %s\n", tempnext->type, tempnext->value);
-		tempnext = tempnext->next;
-	}
-	// while (temprev)
-	// {
-	// 	printf("prev token => %d => %s\n", temprev->type, temprev->value);
-	// 	temprev = temprev->prev;
-	// }
-	
 }
+
+// void printoken(t_lsnode *lstok)
+// {
+// 	t_token	*tempnext;
+// 	// t_token	*temprev;
+
+// 	tempnext = lstok->head;
+// 	// temprev = lstok->tail;
+// 	while (tempnext)
+// 	{
+// 		printf("next token => %d => %s\n", tempnext->type, tempnext->value);
+// 		tempnext = tempnext->next;
+// 	}
+// 	// while (temprev)
+// 	// {
+// 	// 	printf("prev token => %d => %s\n", temprev->type, temprev->value);
+// 	// 	temprev = temprev->prev;
+// 	// }
+	
+// }
 
 int main(int ac, char **av, char **env)
 {
@@ -127,16 +108,17 @@ int main(int ac, char **av, char **env)
 					ins_next_node(&lstok, (void *) token);
 			}
 			// printoken(&lstok);
-			// if (printtoken(&lstok))
+			// if (lstok.head != NULL)
 			// {
 				lsdata = malloc(sizeof(t_lsdata));
 				init_lstree(lsdata);
 				parsing(lsdata, &lstok, env);
 				printall(lsdata);
-				// recursive(lstree->root);
-			// 
+				recursive(lsdata); 
+			// }
+		//  ft_freetree(lsdata);
+		// while(1); 
 		}
-		 ft_freetree(lsdata); 
 	}
     return (0);
 }

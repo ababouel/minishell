@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 19:28:51 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 16:36:52 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,16 @@ t_data  *init_dt(char **env)
         return (NULL);
     data->cmd.ffd[0] = -1;
     data->cmd.ffd[1] = -1;
-    data->pipe.pfd[1] = -1;
-    data->pipe.pfd[0] = -1;
     data->cmd.numfile = 0;
     data->cmd.name = NULL;
     data->cmd.cmdarg = NULL;
     data->cmd.pathcmd = NULL;
     data->cmd.env = env;
+    data->pipe.pfd[1] = -1;
+    data->pipe.pfd[0] = -1;
     data->pipe.statpipe = NUL;
+    data->next = NULL;
+    data->prev = NULL;
     return (data);
 }
 
@@ -73,7 +75,10 @@ void    parsing(t_lsdata *lsdata, t_lsnode *lsnode, char **env)
         if (token != NULL) 
             token = token->next;
     }
-    ins_next_data(lsdata, data);  
+    if (data != NULL)
+        ins_next_data(lsdata, data);
+    if (lsdata->tail->prev != NULL && lsdata->tail->prev->pipe.statpipe != NUL)
+        lsdata->tail->pipe.statpipe = END;
 }
 
 void	init_lstree(t_lsdata *t_lsdata)

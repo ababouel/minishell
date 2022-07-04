@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 17:40:31 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 16:07:14 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void    parse_cmd(t_data *data, t_token *token, char **env)
 
     size = 0;
     cmd = &data->cmd;
+   
     if (cmd->pathcmd == NULL)
     {
         cmd->pathcmd = ft_which(token->value, env);
@@ -35,7 +36,7 @@ void    parse_cmd(t_data *data, t_token *token, char **env)
     else
     {
         cmd->cmdarg = (char **)malloc(sizeof(char *) + 1);
-        cmd->cmdarg[0] = token->value;
+        cmd->cmdarg[0] = ft_strdup(token->value);
         cmd->cmdarg[1] = NULL;
     }
 }
