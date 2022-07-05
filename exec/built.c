@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/05 13:24:18 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:19:52 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ void	arg_cmd(t_cmd *cmd)
 		exec_cmd(cmd);
 }
 
-void	built(t_cmd *cmd)
+void	built(t_cmd *cmd, int check)
 {
 	int	i;
-	int	check;
 
 	i = 0;
-	check = 1;
 	while (cmd->cmdarg[i])
 	{
+		if (check == 1)
+			break ;
 		cmd->cmdarg[i] = search_var(cmd->cmdarg[i], cmd->env);
 		i++;
 	}

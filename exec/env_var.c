@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/05 16:51:45 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:18:40 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ char	*search_in_env(char **env, char *var)
 	len = 0;
 	if (!var)
 		return (NULL);
-	new = malloc(sizeof(char) * 1000);
-	if (!new)
-		return (NULL);
 	while (env[i])
 	{
-		if (!ft_strncmp(env[i], var, ft_strlen(var)))
+		j = 0;
+		while (env[i][j] != '=')
+			j++;
+		if (!ft_strncmp(env[i], var, j))
 		{
-			j = ft_strlen(var);
+			new = malloc(sizeof(char) * ft_strlen(env[i]));
+			if (!new)
+				return (NULL);
 			while (env[i][j])
 			{
 				new[len] = env[i][++j];
@@ -47,24 +49,14 @@ char	*search_in_env(char **env, char *var)
 
 int	check_doll(char *cmd, int i)
 {
-	int	dollar;
-
-	dollar = 0;
 	if (!cmd[i + 1])
 		return (0);
-	else if (ft_isalpha(cmd[i + 1]) || ft_isdigit(cmd[i + 1]))
-		return (1);
 	else if (cmd[i + 1] == '$')
-	{
-		while (cmd[i] == '$')
-		{
-			dollar += 1;
-			i++;
-		}
-		return (dollar);
-	}
-	else
 		return (0);
+	else if (cmd[i + 1] == '?')
+		return (0);
+	else
+		return (1);
 }
 
 char	*search_var(char *cmd, char **env)
@@ -81,7 +73,7 @@ char	*search_var(char *cmd, char **env)
 		return (NULL);
 	while (cmd[i])
 	{
-		if (cmd[i] == '$' && check_doll(cmd, i) == 1)
+		if (cmd[i] == '$' && check_doll(cmd, i))
 		{
 			var = malloc(sizeof(char) * ft_strlen(cmd) + 1);
 			if (!var)
@@ -109,7 +101,6 @@ char	*search_var(char *cmd, char **env)
 		}
 		else
 		{
-			printf("test\n");
 			temp = malloc(2);
 			temp[0] = cmd[i++];
 			temp[1] = '\0';

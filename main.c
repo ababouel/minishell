@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 12:21:56 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:09:48 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	printall(t_tree *treend)
 	}
 }
 
-void	recursive(t_tree *lstree)
+void	recursive(t_tree *lstree, int check)
 {
 	t_tree		*temp;
 	int			x;
@@ -37,7 +37,7 @@ void	recursive(t_tree *lstree)
 	temp = lstree;
 	x = 0;
 	if (temp->left != NULL)
-		recursive(temp->left);
+		recursive(temp->left, check);
 	if (temp->type == PIPE)
 		printf("%s\n", "|");
 	if (temp->type == REDICIO)
@@ -46,10 +46,10 @@ void	recursive(t_tree *lstree)
 			printf("redic=> %s\n", temp->redic->name[x++].file);
 	}
 	if (temp->right != NULL)
-		recursive(temp->right);
+		recursive(temp->right, check);
 	if (temp->type == CMD)
 	{
-		built(lstree->cmd);
+		built(lstree->cmd, check);
 		// while (temp->cmd->cmdarg[x] != NULL)
 		// 	printf("%s ", temp->cmd->cmdarg[x++]);
 		// printf("\n");
@@ -86,6 +86,7 @@ int main(int ac, char **av, char **env)
     char		*line;
 	t_token		*token;
 	t_lstree	*lstree;
+	int			check;
 
 	token = NULL;
 	lstree = NULL;	
@@ -115,12 +116,12 @@ int main(int ac, char **av, char **env)
 			// printoken(&lstok);
 			if (printtoken(&lstok))
 			{
-				ft_filter_token(&lstok, env);
+				check = ft_filter_token(&lstok, env);
 				lstree = malloc(sizeof(t_lstree));
 				init_lstree(lstree);
 				parsing(lstree, &lstok, env);
 				// printall(lstree->root);
-				recursive(lstree->root);
+				recursive(lstree->root, check);
 			}
 		}
 		//  ft_freetree(&lstree); 
