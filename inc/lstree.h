@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 19:07:57 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 09:36:46 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef	struct s_lsdata
 	t_data	*tail;
 }	t_lsdata;
 
-void	init_lstree(t_lsdata *lstree);
+void	init_lsdata(t_lsdata *lstree);
 void	parsing(t_lsdata *lstree, t_lsnode *lsnode, char **env);
 int		ins_next_tree(t_lsdata *stack, t_data *data);
 void	ft_freetree(t_lsdata *sk);

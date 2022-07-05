@@ -3,6 +3,7 @@
     "files.associations": {
         "lstree.h": "c",
         "lib.h": "c",
-        "history.h": "c"
+        "history.h": "c",
+        "exec.h": "c"
     }
 }

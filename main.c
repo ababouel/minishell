@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/04 18:18:36 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 09:37:07 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,23 @@ void	recursive(t_lsdata *data)
 	
 // }
 
+
+
+char    *readline_t(void)
+{
+    char            *buf;
+    struct termios    attr;
+    struct termios    old_attr;
+
+    tcgetattr(STDIN_FILENO, &old_attr);
+    attr = old_attr;
+    attr.c_lflag &= ~(ECHOCTL);
+    tcsetattr(STDIN_FILENO, TCSANOW | TCSAFLUSH, &attr);
+    buf = readline("minishell$ ");
+    tcsetattr(STDIN_FILENO, TCSANOW | TCSAFLUSH, &old_attr);
+    return (buf);
+}
+
 int main(int ac, char **av, char **env)
 {
 	(void)ac;
@@ -93,11 +110,12 @@ int main(int ac, char **av, char **env)
 	token = NULL;
 	lsdata = NULL;	
 	rl_catch_signals = 0;
+	signal(SIGINT, handler);
+	signal(SIGQUIT, SIG_IGN);
 	while (1337)
 	{
-		signal(SIGINT, handler);
-		signal(SIGQUIT, SIG_IGN);
-		line = readline("minihell$ ");
+		// line = readline("minihell$ ");
+		line = readline_t();
 		add_history(line);
 		if (!line)
 		{
@@ -119,7 +137,7 @@ int main(int ac, char **av, char **env)
 			// if (lstok.head != NULL)
 			// {
 				lsdata = malloc(sizeof(t_lsdata));
-				init_lstree(lsdata);
+				init_lsdata(lsdata);
 				parsing(lsdata, &lstok, env);
 				// printall(lsdata);
 				if (lsdata->head->cmd.cmdarg != NULL)

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 17:03:19 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 09:13:08 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ int		printtoken(t_lsnode *lstok);
 int     first_check(t_token *temp);
 int		second_check(t_token *temp);
 char	*search_var(char *cmd, char **env);
+void    ft_stat_pipe_dup(t_data *dt);
+void    ft_stat_pipe_close(t_data *dt);
+int     exec_pipe(t_data *dt);
 
 #endif

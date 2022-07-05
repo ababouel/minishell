@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 11:59:31 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 09:10:13 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,42 @@ int piped(int *fd)
     return (-1);
   }
   return (0);
+}
+
+void  ft_stat_pipe_dup(t_data *dt)
+{
+  t_pipe *cupipe;
+  t_pipe *pvpipe;
+  
+  cupipe = &dt->pipe;
+  if (dt->prev != NULL)
+    pvpipe = &dt->prev->pipe;
+  if (cupipe->statpipe == START)
+    dup2(pvpipe->pfd[1], STDOUT_FILENO);
+  if (cupipe->statpipe == UPDATE)
+  {
+    dup2(pvpipe->pfd[0], STDIN_FILENO);
+    dup2(cupipe->pfd[1], STDOUT_FILENO);
+  }
+  if (cupipe->statpipe == END)
+    dup2(pvpipe->pfd[0], STDIN_FILENO);
+}
+
+void  ft_stat_pipe_close(t_data *dt)
+{
+  t_pipe *cupipe;
+  t_pipe *pvpipe;
+  
+  cupipe = &dt->pipe;
+  if (dt->prev != NULL)
+    pvpipe = &dt->prev->pipe;
+  if (cupipe->statpipe == START)
+    close(cupipe->pfd[1]);
+  if (cupipe->statpipe == UPDATE)
+  {
+    close(pvpipe->pfd[0]);
+    close(cupipe->pfd[1]);
+  }
+  if (cupipe->statpipe == END)
+    close(pvpipe->pfd[0]);
 }

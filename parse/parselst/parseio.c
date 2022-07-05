@@ -6,35 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:40:08 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 17:38:34 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 09:33:51 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
-
-// static int ctreenode(t_lstree *lstree, t_treetype type)
-// {
-//     t_tree  *treend;
-//     t_tree  *root;
-
-//     root = lstree->root;
-//     if (root == NULL || root->type != type) 
-//     {
-//         if(!(treend = malloc(sizeof(t_tree))))
-//             return (1);
-//         treend->type = type;
-//         treend->left = NULL;
-//         treend->right = NULL;
-//         treend->redic = malloc(sizeof(t_redicio));
-//         treend->redic->fd[0] = -1;
-//         treend->redic->fd[1] = -1; 
-//         treend->redic->name = NULL;
-//         treend->redic->numfile = 0; 
-//         ins_next_tree(lstree, treend);
-//         lstree->size += 1;
-//     }
-//     return (0);
-// }
 
 int parse_redic(t_data *data, t_token *token)
 {

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/04 19:16:09 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 09:27:52 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,25 @@ void exec_redic(t_cmd *cmd)
         exit(0);
     }
     waitpid(-1, NULL, 0);
+}
+
+int exec_pipe(t_data *dt)
+{
+    int pid;
+    
+    pid = forcked();
+    if (pid == 0)
+    {
+        ft_stat_pipe_dup(dt);
+        exec_redic(&dt->cmd);
+        exit(0); 
+    }
+    if (pid > 0)
+    {
+        signal(SIGINT, handler);
+		signal(SIGQUIT, SIG_IGN);
+        ft_stat_pipe_close(dt);
+        waitpid(-1, NULL, 0);
+    }
+    return (pid);
 }

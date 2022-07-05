@@ -6,7 +6,7 @@
 #    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 23:21:55 by ababouel          #+#    #+#              #
-#    Updated: 2022/06/30 20:54:42 by ababouel         ###   ########.fr        #
+#    Updated: 2022/07/05 09:39:08 by ababouel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 BDIR = build
 FILES = main lexer/lexer lexer/lexerbis lexer/token  lexer/lexerlst parse/parstree\
-		parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio\
+		parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio parse/parselst/parsetool\
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack\
 		tools/ft_isalpha exec/built exec/cd exec/echo exec/export_unset exec/pwd_env\
 		exec/ft_which exec/execution exec/exectool exec/env_var errors/tokens_check errors/errors

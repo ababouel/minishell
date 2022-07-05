@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/04 18:55:42 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 09:32:40 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	handler(int	hand)
 void	built(t_data *data)
 {
 	t_cmd *cmd;
-
+	
 	cmd = &data->cmd;
 	if (cmd->pathcmd)
 	{
@@ -69,8 +69,5 @@ void	built(t_data *data)
 			exit(0);
 		}
 	}
-	// if (redicio != NULL)
-	exec_redic(cmd);
-	// // else 
-	// exec_cmd(&cmd);
+	exec_pipe(data);
 }
