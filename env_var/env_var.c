@@ -6,46 +6,11 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/05 19:18:40 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:12:15 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exec.h"
-
-char	*search_in_env(char **env, char *var)
-{
-	int		i;
-	int		j;
-	int		len;
-	char	*new;
-
-	i = 0;
-	len = 0;
-	if (!var)
-		return (NULL);
-	while (env[i])
-	{
-		j = 0;
-		while (env[i][j] != '=')
-			j++;
-		if (!ft_strncmp(env[i], var, j))
-		{
-			new = malloc(sizeof(char) * ft_strlen(env[i]));
-			if (!new)
-				return (NULL);
-			while (env[i][j])
-			{
-				new[len] = env[i][++j];
-				len++;
-			}
-			free (var);
-			return (new);
-		}
-		i++;
-	}
-	free (var);
-	return (NULL);
-}
 
 int	check_doll(char *cmd, int i)
 {
@@ -59,12 +24,48 @@ int	check_doll(char *cmd, int i)
 		return (1);
 }
 
+char	*join_new(char *new, char *var, char **env, int l)
+{
+	var[l] = '\0';
+	var = search_in_env(env, var);
+	if (var)
+	{
+		new = ft_strjoin(new, var);
+		free (var);
+	}
+	else
+		free (var);
+	return (new);
+}
+
+char	*fill_new(char *new, char *cmd, char **env, int *i)
+{
+	char	*var;
+	int		l;
+
+	var = malloc(sizeof(char) * ft_strlen(cmd) + 1);
+	if (!var)
+		return (NULL);
+	l = 0;
+	(*i)++;
+	while (cmd[*i] && cmd[*i] != '$'
+		&& (ft_isalpha(cmd[*i]) || ft_isdigit(cmd[*i])))
+	{
+		if (ft_isdigit(cmd[*i]) && cmd[*i - 1] == '$')
+		{
+			var[l++] = cmd[(*i)++];
+			break ;
+		}
+		var[l++] = cmd[(*i)++];
+	}
+	new = join_new(new, var, env, l);
+	return (new);
+}
+
 char	*search_var(char *cmd, char **env)
 {
 	int		i;
-	int		l;
 	char	*new;
-	char	*var;
 	char	*temp;
 
 	i = 0;
@@ -74,31 +75,7 @@ char	*search_var(char *cmd, char **env)
 	while (cmd[i])
 	{
 		if (cmd[i] == '$' && check_doll(cmd, i))
-		{
-			var = malloc(sizeof(char) * ft_strlen(cmd) + 1);
-			if (!var)
-				return (NULL);
-			l = 0;
-			i++;
-			while (cmd[i] && cmd[i] != '$' && (ft_isalpha(cmd[i]) || ft_isdigit(cmd[i])))
-			{
-				if (ft_isdigit(cmd[i]) && cmd[i - 1] == '$')
-				{
-					var[l++] = cmd[i++];
-					break ;
-				}
-				var[l++] = cmd[i++];
-			}
-			var[l] = '\0';
-			var = search_in_env(env, var);
-			if (var)
-			{
-				new = ft_strjoin(new, var);
-				free (var);
-			}
-			else
-				free (var);
-		}
+			new = fill_new(new, cmd, env, &i);
 		else
 		{
 			temp = malloc(2);
