@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/05 20:04:21 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:20:15 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 void	handler(int	hand)
 {
-	if (hand == SIGINT)
+	if (hand == SIGQUIT && g_pid == 1)
+		return ;
+	if (hand == SIGINT && g_pid == 0)
+		exit (2);
+	if (hand == SIGQUIT && g_pid == 0)
+		exit (3);
+	if (hand == SIGINT && g_pid == 1)
 	{
 		write(1, "\n", 1);
 		rl_on_new_line();

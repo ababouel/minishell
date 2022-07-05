@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 09:36:46 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:03:27 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "lexer.h"
 # include "lib.h"
 
-extern int g_state;
+int g_pid;
 
 typedef enum	e_mpipe
 {

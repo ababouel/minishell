@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 20:05:15 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:07:55 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <termios.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+
+int g_pid;
 
 char    *ft_which(char *cmd, char **env);
 void    exec_cmd(t_cmd *cmd);

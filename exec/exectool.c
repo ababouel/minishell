@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 20:17:20 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:58:41 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int forcked()
 {
-  int pid;
+  // int pid;
 
-  pid = fork();
-  if (pid < 0)
+  g_pid = fork();
+  if (g_pid < 0)
   {
     perror("fork");
     return (-1);
   }
-  return (pid);
+  return (g_pid);
 }
 
 void  openfileredic(char *file,t_cmd *cmd, int flags)
