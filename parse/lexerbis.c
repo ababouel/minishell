@@ -6,11 +6,11 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/04 12:51:30 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/04 23:36:04 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../inc/lexer.h"
 
 t_token	*checkcondition(t_lexer *lexer, t_token *token)
 {
@@ -23,13 +23,9 @@ t_token	*lexer_next_token(t_lexer *lexer)
 	while (lexer->i < lexer->size && lexer->c != '\0')
 	{
 		if (lexer->c == ' ')
-			return (lexer_advance_with(lexer, init_token(TOKEN_SPACE, " ")));
+			return (lexer_advance_with(lexer, init_token(TOKEN_SPACE, " ")));	
 		if (lexer->c == '|')
 		    return (lexer_advance_with(lexer, init_token(TOKEN_PIPE, "|")));
-		if (lexer->c == '"')
-			return (lexer_parse_quote(lexer, '"', TOKEN_EXP));
-		if (lexer->c == '\'')
-			return (lexer_parse_quote(lexer,'\'', TOKEN_EXP));
 		if(lexer->c == '$')
 			return (lexer_parse_dollar(lexer));
 		if (lexer->c == '<' && lexer->src[lexer->i + 1] == '<')

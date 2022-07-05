@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:52:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/02 01:02:05 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 23:35:45 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../inc/lexer.h"
 
 t_lexer	*init_lexer(char *line)
 {
@@ -63,11 +63,13 @@ t_token	*lexer_redirection(t_lexer *lexer, char *ch, t_type type)
 	len = 0;
 	while (c[len] != '\0')
 	{
-		if (c[len] == ' ')
+		if (c[len] == ' ' || c[len] == '>' 
+			|| c[len] == '<' || c[len] == '|')
 			break ;
 		len++;
 	}
-	if (c[len] == '\0' || c[len] == ' ')
+	if (c[len] == '\0' || c[len] == ' ' || c[len] == '<'
+		|| c[len] == '|' || c[len] == '>')
 	{
 		if (len == 0)
 			value = NULL;

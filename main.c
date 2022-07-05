@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/04 17:00:55 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:21:56 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,17 +112,16 @@ int main(int ac, char **av, char **env)
 				if (token != NULL)
 					ins_next_node(&lstok, (void *) token);
 			}
-			// ft_filter_token(&lstok);
-			// ft_filter_token(&lstok);
-			printoken(&lstok);
-			// if (printtoken(&lstok))
-			// {
-			// 	lstree = malloc(sizeof(t_lstree));
-			// 	init_lstree(lstree);
-			// 	parsing(lstree, &lstok, env);
-			// 	// printall(lstree->root);
-			// 	recursive(lstree->root);
-			// }
+			// printoken(&lstok);
+			if (printtoken(&lstok))
+			{
+				ft_filter_token(&lstok, env);
+				lstree = malloc(sizeof(t_lstree));
+				init_lstree(lstree);
+				parsing(lstree, &lstok, env);
+				// printall(lstree->root);
+				recursive(lstree->root);
+			}
 		}
 		//  ft_freetree(&lstree); 
 	}

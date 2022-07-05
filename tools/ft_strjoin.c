@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:55:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/02 17:25:09 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/05 13:13:33 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ char	*ft_strjoinbis(char *s1, char *s2)
 		ft_memcpy(result, s1, len1);
 		ft_memcpy(result + len1, s2, len2 + 1);
 	}
+	free(s1);
+	s1 = NULL;
 	return (result);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/04 13:04:46 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:15:54 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ void	ft_freetree(t_lstree **sk);
 int		parse_cmd(t_lstree *lstree, t_token *token, char **env);
 int		parse_pipe(t_lstree *lstree);
 t_token	*parse_redic(t_lstree *lstree, t_token *token);
-int		ft_filter_token(t_lsnode *lstok);
+int		ft_filter_token(t_lsnode *lstok, char **env);
 
 #endif

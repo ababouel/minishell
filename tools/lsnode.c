@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lsnode.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:15:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 03:43:13 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/04 23:36:20 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib.h"
+#include "../inc/lib.h"
 
 void	init_stack(t_lsnode *stack)
 {
