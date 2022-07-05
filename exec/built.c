@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/05 19:19:52 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:12:24 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ void	built(t_cmd *cmd, int check)
 	i = 0;
 	while (cmd->cmdarg[i])
 	{
-		if (check == 1)
-			break ;
-		cmd->cmdarg[i] = search_var(cmd->cmdarg[i], cmd->env);
+		cmd->cmdarg[i] = search_var(cmd->cmdarg[i], cmd->env, check);
 		i++;
 	}
 	if (cmd->pathcmd && ft_strcmp(cmd->cmdarg[0], "export")
