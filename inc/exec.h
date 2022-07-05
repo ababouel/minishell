@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 09:13:08 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:05:15 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int     forcked();
 int     filein(t_cmd *redic);
 int     piped(int *fd);
 void    exec_redic(t_cmd *cmd);
-void	built(t_data *data);
+void    built(t_data *data, t_lsdata *lsdata);
 void	ft_cd(t_cmd *cmd);
 void	ft_echo(char **line, char **env);
 void	ft_pwd(t_cmd *cmd);
@@ -38,8 +38,10 @@ int		printtoken(t_lsnode *lstok);
 int     first_check(t_token *temp);
 int		second_check(t_token *temp);
 char	*search_var(char *cmd, char **env);
-void    ft_stat_pipe_dup(t_data *dt);
+void    ft_stat_pipe_dup(t_data *dt, t_lsdata *lsdata);
 void    ft_stat_pipe_close(t_data *dt);
-int     exec_pipe(t_data *dt);
+void    exec_pipe(t_data *dt);
+void    redic_close(t_cmd *cmd);
+void    redic_open(t_cmd *cmd);
 
 #endif

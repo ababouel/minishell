@@ -4,6 +4,10 @@
         "lstree.h": "c",
         "lib.h": "c",
         "history.h": "c",
-        "exec.h": "c"
-    }
+        "exec.h": "c",
+        "minishell.h": "c",
+        "lexer.h": "c",
+        "wait.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

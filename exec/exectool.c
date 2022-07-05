@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 09:10:13 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:17:20 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ int forcked()
   return (pid);
 }
 
+void  openfileredic(char *file,t_cmd *cmd, int flags)
+{
+  if (cmd->ffd[0] > 0)
+        close(cmd->ffd[0]);
+  cmd->ffd[0] = open(file, flags , 0777);
+}
+
 int filein(t_cmd *cmd)
 {
   int     x;
@@ -35,13 +42,29 @@ int filein(t_cmd *cmd)
   while (file[x].file != NULL)
   {
     if (file[x].type == TOKEN_DRINPUT)
+    { 
+      if (cmd->ffd[0] > 0)
+        close(cmd->ffd[0]);
       cmd->ffd[0] = open("/tmp/hedoc", O_RDONLY | O_WRONLY | O_CREAT , 0777);
+    }
     if (file[x].type == TOKEN_RINPUT)
+    {
+      if (cmd->ffd[0] > 0)
+        close(cmd->ffd[0]);
       cmd->ffd[0] = open(file[x].file, O_RDONLY , 0777);
+    }
     if (file[x].type == TOKEN_ROUTPUT)
+    {
+      if (cmd->ffd[1] > 0)
+        close(cmd->ffd[1]);
       cmd->ffd[1] = open(file[x].file, O_WRONLY |   O_CREAT | O_TRUNC , 0777);
+    }
     if (file[x].type == TOKEN_DROUTPUT)
+    {
+      if (cmd->ffd[1] > 0)
+        close(cmd->ffd[1]);
       cmd->ffd[1] = open(file[x].file, O_WRONLY | O_CREAT | O_APPEND, 0777);
+    }
     x++;
   }
   return (0);
@@ -57,16 +80,18 @@ int piped(int *fd)
   return (0);
 }
 
-void  ft_stat_pipe_dup(t_data *dt)
+void  ft_stat_pipe_dup(t_data *dt, t_lsdata *lsdata)
 {
   t_pipe *cupipe;
   t_pipe *pvpipe;
+  t_data *data;
   
+  data = lsdata->head;
   cupipe = &dt->pipe;
   if (dt->prev != NULL)
     pvpipe = &dt->prev->pipe;
   if (cupipe->statpipe == START)
-    dup2(pvpipe->pfd[1], STDOUT_FILENO);
+    dup2(cupipe->pfd[1], STDOUT_FILENO); 
   if (cupipe->statpipe == UPDATE)
   {
     dup2(pvpipe->pfd[0], STDIN_FILENO);
@@ -74,23 +99,18 @@ void  ft_stat_pipe_dup(t_data *dt)
   }
   if (cupipe->statpipe == END)
     dup2(pvpipe->pfd[0], STDIN_FILENO);
+  ft_stat_pipe_close(data); 
 }
 
 void  ft_stat_pipe_close(t_data *dt)
 {
-  t_pipe *cupipe;
-  t_pipe *pvpipe;
-  
-  cupipe = &dt->pipe;
-  if (dt->prev != NULL)
-    pvpipe = &dt->prev->pipe;
-  if (cupipe->statpipe == START)
-    close(cupipe->pfd[1]);
-  if (cupipe->statpipe == UPDATE)
+  while (dt)
   {
-    close(pvpipe->pfd[0]);
-    close(cupipe->pfd[1]);
-  }
-  if (cupipe->statpipe == END)
-    close(pvpipe->pfd[0]);
+    if (dt->pipe.pfd[0] > 0)
+      close(dt->pipe.pfd[0]);
+    if (dt->pipe.pfd[1] > 0)
+      close(dt->pipe.pfd[1]);
+    if (dt != NULL)
+      dt = dt->next;
+  } 
 }

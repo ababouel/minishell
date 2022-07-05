@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/01 06:38:54 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 16:27:01 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-#include "token.h"
+# include <signal.h>
+# include "token.h"
 
 int				ins_next_node(t_lsnode *stack, t_token *token);
 void			init_stack(t_lsnode *stack);

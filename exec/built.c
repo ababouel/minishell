@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/05 09:32:40 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:04:21 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,34 @@ void	handler(int	hand)
 	}
 }
 
-void	built(t_data *data)
+void	built(t_data *data, t_lsdata *lsdata)
 {
 	t_cmd *cmd;
 	
 	cmd = &data->cmd;
+    redic_open(cmd);
+    ft_stat_pipe_dup(data, lsdata);
 	if (cmd->pathcmd)
 	{
 		if (!ft_strncmp(cmd->pathcmd, "/bin/pwd", ft_strlen(cmd->pathcmd)))
 		{
 			ft_pwd(cmd);
-			return ;
+			exit(0);
 		}
 		else if (!ft_strncmp(cmd->pathcmd, "/bin/echo", ft_strlen(cmd->pathcmd)))
 		{
 			ft_echo(cmd->cmdarg, cmd->env);
-			return ;
+			exit(0);
 		}
 		else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/cd", ft_strlen(cmd->pathcmd)))
 		{
 			ft_cd(cmd);
-			return ;
+			exit(0);
 		}
 		else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/env", ft_strlen(cmd->pathcmd)))
 		{
 			ft_env(cmd);
-			return ;
+			exit(0);
 		}
 	}
 	else
@@ -56,18 +58,13 @@ void	built(t_data *data)
 		if (!ft_strncmp(cmd->cmdarg[0], "export", ft_strlen(cmd->cmdarg[0])))
 		{
 			ft_export(cmd);
-			return ;
+			exit(0);
 		}
 		else if (!ft_strncmp(cmd->cmdarg[0], "unset", ft_strlen(cmd->cmdarg[0])))
 		{
 			ft_unset(cmd);
-			return ;
-		}
-		else if (!ft_strncmp(cmd->cmdarg[0], "exit", ft_strlen(cmd->cmdarg[0])))
-		{
-			write(1, "exit\n", 6);
 			exit(0);
-		}
+		}	
 	}
 	exec_pipe(data);
 }

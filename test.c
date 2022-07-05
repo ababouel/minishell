@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/03 18:48:41 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:06:15 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
-# define null   0
 # define start  1
 # define middle 2
 # define end    3
@@ -172,13 +171,22 @@ int cmdfunc(int isin,int fd,char **filein,int isredirect,int track,int *cpipe,in
       dup2(fd, STDOUT_FILENO);
     if (track == start && fd > 0 && isin != 0)
       dup2(cpipe[1], STDOUT_FILENO);
+      close(cpipe[1]);
+      // close(cpipe[0]);
     if (track == middle)
     {
       dup2(pvpipe[0], STDIN_FILENO);
-      dup2(cpipe[1], STDOUT_FILENO);
+      dup2(cpipe[1], STDOUT_FILENO); 
+      close(pvpipe[1]);
+      close(pvpipe[0]);
+      
     }
     if (track == end)
-      dup2(cpipe[0], STDIN_FILENO);
+    {
+      dup2(pvpipe[0], STDIN_FILENO);
+      close(pvpipe[0]);
+      // close(pvpipe[1]);
+    }
     execve(str[0],&str[1],env);
   }
   if (pid > 0)
@@ -212,8 +220,9 @@ int main(int ac, char **av, char **env)
     int  fd1[2];
     t_file *file;
     t_data data;
+
     char *cmd2[100] = {"/usr/bin/wc", "wc", "-c"};
-    char *cmd1[100] = {"/bin/cat", "cat"};
+    char *cmd1[100] = {"/bin/cat", "cat", "data"};
     char *strout[100] = {"file2.txt", "file3.txt", "file1.txt"}; 
     char *strin[100] = {"file.txt", "lexers"};
 
@@ -224,10 +233,11 @@ int main(int ac, char **av, char **env)
     file = injectfile(0, file, strin[0], TK_RINPUT);
     file = injectfile(4, file, strin[1], TK_RINPUT);
     
-    
+    pipe(fd1);
     data.file = file;
     data.env = env;
     data.delim = "data";
-    redictionfunc(&data, cmd1); 
+    cmdfunc(0, -1 , NULL, 0, start, fd1, NULL, cmd1, env); 
+    cmdfunc(0, -1 , NULL, 0, end, NULL, fd1, cmd2, env); 
     return (0); 
 }

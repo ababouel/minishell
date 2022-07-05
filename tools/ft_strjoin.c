@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:55:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/02 01:38:26 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 11:56:28 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	*ft_strjoinbis(char *s1, char *s2)
 	}
 	if (s1)
 		free(s1);
+	s1 = NULL;
 	return (result);
 }
 

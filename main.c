@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 09:37:07 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:22:28 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,28 @@
 void	recursive(t_lsdata *data)
 {
 	t_data	*dt;
+	int		pid[1000];
+	int		len;
+	int		x;
 
+	x = 0;
+	len = 0;
 	dt = data->head;
 	while (dt != NULL)
 	{	
-		built(dt);	
+		pid[len] = forcked();
+		if (pid[len] == 0)
+			built(dt, data);
+		if (pid[len] > 0)
+			redic_close(&dt->cmd);
 		if (dt != NULL)
 			dt = dt->next;
+		len++;
 	}
+	dt = data->head;
+	ft_stat_pipe_close(dt);
+	while(x < len)
+		waitpid(pid[x++], NULL, 0);
 }
 
 // void printoken(t_lsnode *lstok)
@@ -106,15 +120,12 @@ int main(int ac, char **av, char **env)
     char		*line;
 	t_token		*token;
 	t_lsdata	*lsdata;
-
 	token = NULL;
 	lsdata = NULL;	
-	rl_catch_signals = 0;
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 	while (1337)
 	{
-		// line = readline("minihell$ ");
 		line = readline_t();
 		add_history(line);
 		if (!line)
