@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/02 17:56:49 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 19:02:23 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <fcntl.h>
-
-#include "token.h"
+# include "token.h"
 
 int				ins_next_node(t_lsnode *stack, t_token *token);
 void			init_stack(t_lsnode *stack);

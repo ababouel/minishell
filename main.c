@@ -6,63 +6,19 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 15:56:50 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 20:38:06 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	printall(t_tree *treend)
-{
-	int			x;
-	// t_redicio	*redic;	
-	x = 0;
-
-	while (treend->type == REDICIO && treend->redic != NULL && treend->redic->name[x].file != NULL)
-	{
-		printf("=>%s\n", treend->redic->name[x].file);
-		x++;
-	}
-}
-
-void	recursive(t_tree *lstree, int check)
-{
-	t_tree		*temp;
-	int			x;
-	// t_cmd		*cmd;
-	// t_redicio	*redic;
-
-	if (!lstree)
-		return ;
-	temp = lstree;
-	x = 0;
-	if (temp->left != NULL)
-		recursive(temp->left, check);
-	if (temp->type == PIPE)
-		printf("%s\n", "|");
-	if (temp->type == REDICIO)
-	{
-		while (x < temp->redic->numfile)
-			printf("redic=> %s\n", temp->redic->name[x++].file);
-	}
-	if (temp->right != NULL)
-		recursive(temp->right, check);
-	if (temp->type == CMD)
-	{
-		built(lstree->cmd);
-		// while (temp->cmd->cmdarg[x] != NULL)
-		// 	printf("%s ", temp->cmd->cmdarg[x++]);
-		// printf("\n");
-	}
-}
-
 void printoken(t_lsnode *lstok)
 {
 	t_token	*tempnext;
-	t_token	*temprev;
+	// t_token	*temprev;
 
 	tempnext = lstok->head;
-	temprev = lstok->tail;
+	// temprev = lstok->tail;
 	while (tempnext)
 	{
 		printf("next token => %d => %s\n", tempnext->type, tempnext->value);
@@ -76,16 +32,70 @@ void printoken(t_lsnode *lstok)
 	
 }
 
-void	delete_var(t_lsnode *lstok, char **env, int check)
+void	recursive(t_lsdata *data)
+{
+	t_data	*dt;
+	int		pid[1000];
+	int		len;
+	int		state;
+	int		x;
+
+	signal(SIGQUIT,handler);
+	x = 0;
+	len = 0;
+	dt = data->head;
+	while (dt != NULL)
+	{
+		pid[len] = forcked();
+		if (pid[len] == 0)
+			built(dt, data);
+		if (pid[len] > 0)
+			redic_close(&dt->cmd);
+		if (dt != NULL)
+			dt = dt->next;
+		len++;
+	}
+	dt = data->head;
+	ft_stat_pipe_close(dt);
+	while(x < len)
+		waitpid(pid[x++], &state, 0);
+	if (state == SIGINT)
+		printf("\n");
+	if (state == SIGQUIT)
+		printf("Quit: 3\n");
+	signal(SIGQUIT,SIG_IGN);
+}
+
+char    *readline_t(void)
+{
+    char            *buf;
+    struct termios    attr;
+    struct termios    old_attr;
+
+    tcgetattr(STDIN_FILENO, &old_attr);
+    attr = old_attr;
+    attr.c_lflag &= ~(ECHOCTL);
+    tcsetattr(STDIN_FILENO, TCSANOW | TCSAFLUSH, &attr);
+    buf = readline("minishell$ ");
+    tcsetattr(STDIN_FILENO, TCSANOW | TCSAFLUSH, &old_attr);
+    return (buf);
+}
+
+int	delete_var(t_lsnode *lstok, char **env)
 {
 	t_token *temp;
+	int		check;
 
 	temp = lstok->head;
 	while (temp)
 	{
+		check = ft_filter_token2(temp->value);
+		if (check == -1)
+			return (0);
 		temp->value = search_var(temp->value, env, check);
 		temp = temp->next;
 	}
+	return (1);
 }
 
 int main(int ac, char **av, char **env)
@@ -93,21 +103,22 @@ int main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	(void)env;
+	// int		pid;
     t_lsnode	lstok;
 	t_lexer		*lexer;
     char		*line;
 	t_token		*token;
-	t_lstree	*lstree;
-	int			check;
+	t_lsdata	*lsdata;
 
 	token = NULL;
-	lstree = NULL;	
-	// rl_catch_signals = 0;
+	lsdata = NULL;
+	signal(SIGINT, handler);
+	signal(SIGQUIT, SIG_IGN);
 	while (1337)
 	{
-		signal(SIGINT, handler);
-		signal(SIGQUIT, SIG_IGN);
-		line = readline("minihell$ ");
+		g_pid = 1;
+		line = readline_t();
+		g_pid = 0;
 		add_history(line);
 		if (!line)
 		{
@@ -127,15 +138,19 @@ int main(int ac, char **av, char **env)
 			}
 			if (printtoken(&lstok))
 			{
-				check = ft_filter_token(&lstok, env);
-				delete_var(&lstok, env, check);
-				lstree = malloc(sizeof(t_lstree));
-				init_lstree(lstree);
-				parsing(lstree, &lstok, env);
-				recursive(lstree->root, check);
+				if (delete_var(&lstok, env))
+				{
+					// printoken(&lstok);
+					lsdata = malloc(sizeof(t_lsdata));
+					init_lsdata(lsdata);
+					parsing(lsdata, &lstok, env);
+					// printall(lsdata);
+					if (lsdata->head->cmd.cmdarg != NULL)
+						recursive(lsdata);
+				}
 			}
 		}
-		 ft_freetree(&lstree); 
+		//  ft_freetree(); 
 	}
     return (0);
 }

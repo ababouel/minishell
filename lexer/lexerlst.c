@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexerlst.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 05:29:58 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 12:41:37 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/05 11:55:51 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,16 @@ t_token *lexer_parse_exp(t_lexer *lexer)
 		if (isqted == 1 || isqtes == 1 || !is_delim(lexer->c, " |<>\0"))
 		{
 			isqted = is_qte(lexer,isqted,'"');
-			isqtes = is_qte(lexer,isqtes,'\'');
+			isqtes = is_qte(lexer,isqtes,'\'');	
+			// ft_strcat(value, &lexer->c);
 			value = ft_strjoinbis(value, &lexer->c);
 			lexer_advance(lexer);
+			// value = ft_realloc(value, (ft_strlen(value) + 1) * sizeof(char));
 		}
 		else
 			break;	
 	}
+	// ft_strcat(value, "\0");
 	return (init_token(TOKEN_EXP, value));	
 }
 

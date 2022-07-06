@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 12:57:21 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/06 13:08:20 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 20:23:24 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	check_check(char *value)
 		if (value[i] == '\'')
 			return (0);
 		else if (value[i] == '"')
-			return (2);
+			return (4);
 		i++;
 	}
 	return (0);
@@ -84,23 +84,16 @@ char	*remove_quote(char *value, char c, int len)
 	return (value);
 }
 
-int	ft_filter_token(t_lsnode *lstok, char **env)
+int	ft_filter_token2(char *value)
 {
-	t_token	*temp;
-	int		check;
-
-	(void)env;
-	temp = lstok->head;
-	while (temp)
-	{
-		if (!check_squote(temp->value))
-			return (printf("syntax error\n"), 0);
-		if (!check_dquote(temp->value))
-			return (printf("syntax error\n"), 0);
-		check = check_check(temp->value);
-		if (check == 2)
-			temp->value = remove_quote(temp->value, '\"', ft_strlen(temp->value));
-		temp = temp->next;
-	}
+	int	check;
+	
+	if (!check_squote(value))
+		return (printf("syntax error\n"), -1);
+	if (!check_dquote(value))
+		return (printf("syntax error\n"), -1);
+	check = check_check(value);
+	if (check == 4)
+		value = remove_quote(value, '\"', ft_strlen(value));
 	return (check);
 }

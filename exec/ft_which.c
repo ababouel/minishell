@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 18:36:24 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:52:12 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ char	*ft_which(char *cmd, char **env)
 				else if (cmd[0] == '.' && cmd[1] == '/')
 					return (point_slash(cmd));
 				else
-					return (ft_access(spl, cmd, j));
+				{
+					if (ft_access(spl, cmd, j) != NULL)
+						return (ft_access(spl, cmd, j));
+				}
 				j++;
 			}
 		}

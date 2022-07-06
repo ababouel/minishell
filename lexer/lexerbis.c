@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexerbis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/04 23:36:04 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:26:27 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lexer.h"
+#include "lexer.h"
 
 t_token	*checkcondition(t_lexer *lexer, t_token *token)
 {
