@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 15:41:05 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:56:50 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	recursive(t_tree *lstree, int check)
 		recursive(temp->right, check);
 	if (temp->type == CMD)
 	{
-		built(lstree->cmd, check);
+		built(lstree->cmd);
 		// while (temp->cmd->cmdarg[x] != NULL)
 		// 	printf("%s ", temp->cmd->cmdarg[x++]);
 		// printf("\n");
@@ -135,7 +135,7 @@ int main(int ac, char **av, char **env)
 				recursive(lstree->root, check);
 			}
 		}
-		//  ft_freetree(&lstree); 
+		 ft_freetree(&lstree); 
 	}
     return (0);
 }
