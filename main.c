@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 20:38:06 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 22:22:50 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,21 @@ void	recursive(t_lsdata *data)
 	x = 0;
 	len = 0;
 	dt = data->head;
+	if (!ft_strncmp(dt->cmd.cmdarg[0], "export", ft_strlen("export")))
+	{
+		ft_export(&dt->cmd);
+		return ;	
+	}
+	else if (!ft_strncmp(dt->cmd.cmdarg[0], "unset", ft_strlen("unset")))
+	{
+			ft_unset(&dt->cmd);
+			return ;
+	}
+	else if (!ft_strncmp(dt->cmd.cmdarg[0], "exit", ft_strlen("exit")))
+	{
+		write(1, "exit\n", 6);
+		exit(0);
+	}
 	while (dt != NULL)
 	{
 		pid[len] = forcked();

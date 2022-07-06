@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/06 19:48:18 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 22:37:52 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,11 @@ void	arg_cmd(t_data *dt)
 	t_cmd	*cmd;
 
 	cmd = &dt->cmd;
-	if (!ft_strncmp(cmd->cmdarg[0], "export", ft_strlen("export")))
-		ft_export(cmd);
-	else if (!ft_strncmp(cmd->cmdarg[0], "unset", ft_strlen("unset")))
-		ft_unset(cmd);
-	else if (!ft_strncmp(cmd->cmdarg[0], "exit", ft_strlen("exit")))
+	if (!ft_strncmp(cmd->cmdarg[0], "exit", ft_strlen("exit")))
 	{
 		write(1, "exit\n", 6);
 		exit(0);
 	}
-	else
-		exec_pipe(dt);
 }
 
 void	built(t_data *data, t_lsdata *lsdata)
@@ -71,15 +65,14 @@ void	built(t_data *data, t_lsdata *lsdata)
 	cmd = &data->cmd;
     redic_open(cmd);
     ft_stat_pipe_dup(data, lsdata);
-	if (cmd->pathcmd && ft_strcmp(cmd->cmdarg[0], "export")
-		&& ft_strcmp(cmd->cmdarg[0], "unset"))
+	if (cmd->pathcmd)
 	{
 		path_cmd(data);
-		return ;
+		exit(0);
 	}
 	else
 	{
-		arg_cmd(data);
-		return ;
+		printf("%s: command not found\n", cmd->cmdarg[0]);
+		exit (0);
 	}
 }

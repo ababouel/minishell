@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 19:13:19 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/06 22:39:01 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void redic_open(t_cmd *cmd)
 void    exec_pipe(t_data *dt)
 {
     t_cmd *cmd;
-    
+
     cmd = &dt->cmd; 
     if (execve(cmd->pathcmd, cmd->cmdarg, cmd->env) == -1)
         printf("%s: command not found\n", cmd->cmdarg[0]);

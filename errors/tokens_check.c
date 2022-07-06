@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/01 11:48:57 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 21:57:12 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,7 @@ int	check_red(t_token *temp)
 		|| temp->type == TOKEN_ROUTPUT || temp->type == TOKEN_DROUTPUT
 		|| temp->type == TOKEN_RINPUT)
 	{
-		while (temp->next)
-		{
-			if (temp->next->type == TOKEN_SPACE)
-				temp = temp->next;
-			else if (temp->type == TOKEN_DRINPUT
-				|| temp->type == TOKEN_ROUTPUT || temp->type == TOKEN_DROUTPUT
-				|| temp->type == TOKEN_RINPUT)
-				return (printf("syntax error near unexpected token `newline'\n"),
-					0);
-			else if (!temp->value)
-				return (printf("syntax error near unexpected token `newline'\n"),
-					0);
-			else
-				return (1);
-		}
-		if (!temp->next)
+		if (temp->value == NULL)
 			return (printf("syntax error near unexpected token `newline'\n"), 0);
 	}
 	return (1);
@@ -88,7 +73,7 @@ int	check_pipe(t_token *temp)
 		{
 			if (temp->next->type == TOKEN_SPACE)
 				temp = temp->next;
-			else if (temp->type == TOKEN_PIPE || temp->type == TOKEN_DPIPE
+			if (temp->type == TOKEN_PIPE || temp->type == TOKEN_DPIPE
 				|| temp->type == TOKEN_DAND)
 				return (printf("syntax error near unexpected token `%s'\n",
 						temp->next->value), 0);
