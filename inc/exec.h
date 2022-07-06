@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 22:25:08 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:52:39 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ char	**bubble_sort(t_cmd *cmd);
 void    sort_export(t_cmd *cmd);
 char	*search_in_env(char **env, char *var);
 char	*return_new(char *new, char **env, int i, int j);
-char	*remove_quote(char *value, char c);
+char	*remove_quote(char *value, char c, int len);
 
 #endif

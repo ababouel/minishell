@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 12:57:21 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/06 09:10:33 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:08:20 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,33 +51,25 @@ int	check_dquote(char *value)
 int	check_check(char *value)
 {
 	int	i;
-	int	check;
 
 	i = 0;
-	check = 0;
 	while (value[i])
 	{
 		if (value[i] == '\'')
-		{
-			check = 1;
-			break ;
-		}
+			return (0);
 		else if (value[i] == '"')
-		{
-			check = 2;
-			break ;
-		}
+			return (2);
 		i++;
 	}
-	return (check);
+	return (0);
 }
 
-char	*remove_quote(char *value, char c)
+char	*remove_quote(char *value, char c, int len)
 {
 	int	i;
 
-	i = 0;
-	while (value[i])
+	i = -1;
+	while (value[++i] && i <= len)
 	{
 		if (value[i] == c)
 		{
@@ -86,9 +78,8 @@ char	*remove_quote(char *value, char c)
 				value[i] = value[i + 1];
 				i++;
 			}
-			i = 0;
+			i = -1;
 		}
-		i++;
 	}
 	return (value);
 }
@@ -100,7 +91,6 @@ int	ft_filter_token(t_lsnode *lstok, char **env)
 
 	(void)env;
 	temp = lstok->head;
-	check = 0;
 	while (temp)
 	{
 		if (!check_squote(temp->value))
@@ -108,10 +98,8 @@ int	ft_filter_token(t_lsnode *lstok, char **env)
 		if (!check_dquote(temp->value))
 			return (printf("syntax error\n"), 0);
 		check = check_check(temp->value);
-		if (check == 1)
-			temp->value = remove_quote(temp->value, '\'');
 		if (check == 2)
-			temp->value = remove_quote(temp->value, '\"');
+			temp->value = remove_quote(temp->value, '\"', ft_strlen(temp->value));
 		temp = temp->next;
 	}
 	return (check);

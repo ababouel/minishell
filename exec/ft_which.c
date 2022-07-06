@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 09:29:19 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 11:08:47 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	*ft_which(char *cmd, char **env)
 			spl = ft_split(env[i], ":");
 			while (spl[j])
 			{
+				if (cmd[0] == '/')
+					return (ft_strdup(cmd));
 				str = ft_strjoin(spl[j], "/");
 				str = ft_strjoin(str, cmd);
 				if (!access(str, X_OK))

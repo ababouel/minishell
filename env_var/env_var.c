@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/06 09:14:55 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:02:49 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,25 @@ char	*fill_new(char *new, char *cmd, char **env, int *i)
 	return (new);
 }
 
+char	*remove_squote(char *cmd, int *check, int i)
+{
+	int	len;
+
+	if (cmd[i] == '\'' && *check != 2)
+	{
+		len = i;
+		cmd = remove_quote(cmd, '\'', len);
+		(*check) += 1;
+	}
+	if (*check % 2 == 0 && *check != 2)
+	{
+		cmd = remove_quote(cmd, '\'', len);
+		(*check) = 0;
+		len = 0;
+	}
+	return (cmd);
+}
+
 char	*search_var(char *cmd, char **env, int check)
 {
 	int		i;
@@ -70,10 +89,9 @@ char	*search_var(char *cmd, char **env, int check)
 
 	i = 0;
 	new = ft_strdup("");
-	if (!new)
-		return (NULL);
 	while (cmd[i])
 	{
+		cmd = remove_squote(cmd, &check, i);
 		if (cmd[i] == '$' && check_doll(cmd, i) && check != 1)
 			new = fill_new(new, cmd, env, &i);
 		else
