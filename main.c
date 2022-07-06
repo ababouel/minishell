@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 11:53:18 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:41:05 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	recursive(t_tree *lstree, int check)
 void printoken(t_lsnode *lstok)
 {
 	t_token	*tempnext;
-	// t_token	*temprev;
+	t_token	*temprev;
 
 	tempnext = lstok->head;
-	// temprev = lstok->tail;
+	temprev = lstok->tail;
 	while (tempnext)
 	{
 		printf("next token => %d => %s\n", tempnext->type, tempnext->value);
@@ -74,6 +74,18 @@ void printoken(t_lsnode *lstok)
 	// 	temprev = temprev->prev;
 	// }
 	
+}
+
+void	delete_var(t_lsnode *lstok, char **env, int check)
+{
+	t_token *temp;
+
+	temp = lstok->head;
+	while (temp)
+	{
+		temp->value = search_var(temp->value, env, check);
+		temp = temp->next;
+	}
 }
 
 int main(int ac, char **av, char **env)
@@ -113,14 +125,13 @@ int main(int ac, char **av, char **env)
 				if (token != NULL)
 					ins_next_node(&lstok, (void *) token);
 			}
-			// printoken(&lstok);
 			if (printtoken(&lstok))
 			{
 				check = ft_filter_token(&lstok, env);
+				delete_var(&lstok, env, check);
 				lstree = malloc(sizeof(t_lstree));
 				init_lstree(lstree);
 				parsing(lstree, &lstok, env);
-				// printall(lstree->root);
 				recursive(lstree->root, check);
 			}
 		}
