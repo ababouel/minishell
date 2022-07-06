@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/05 22:39:08 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 09:14:55 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,6 @@ char	*search_var(char *cmd, char **env, int check)
 		return (NULL);
 	while (cmd[i])
 	{
-		if (cmd[i] == '\'' && check != 2)
-		{
-			cmd = remove_quote(cmd, '\'');
-			check = 1;
-		}
-		printf("#%d\n", check);
 		if (cmd[i] == '$' && check_doll(cmd, i) && check != 1)
 			new = fill_new(new, cmd, env, &i);
 		else

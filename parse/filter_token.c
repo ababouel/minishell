@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 12:57:21 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/05 22:36:35 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/06 09:10:33 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,12 @@ int	check_check(char *value)
 	check = 0;
 	while (value[i])
 	{
-		if (value[i] == '"')
+		if (value[i] == '\'')
+		{
+			check = 1;
+			break ;
+		}
+		else if (value[i] == '"')
 		{
 			check = 2;
 			break ;
@@ -103,7 +108,10 @@ int	ft_filter_token(t_lsnode *lstok, char **env)
 		if (!check_dquote(temp->value))
 			return (printf("syntax error\n"), 0);
 		check = check_check(temp->value);
-		temp->value = remove_quote(temp->value, '"');
+		if (check == 1)
+			temp->value = remove_quote(temp->value, '\'');
+		if (check == 2)
+			temp->value = remove_quote(temp->value, '\"');
 		temp = temp->next;
 	}
 	return (check);
