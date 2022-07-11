@@ -6,11 +6,15 @@
 #    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 23:21:55 by ababouel          #+#    #+#              #
-#    Updated: 2022/07/05 09:39:08 by ababouel         ###   ########.fr        #
+#    Updated: 2022/07/10 19:34:52 by ababouel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
+#-L/opt/homebrew/opt/readline/lib
+#-I/opt/homebrew/opt/readline/include
+#-I /Users/ababouel/.brew/opt/readline/include
+#-L/Users/ababouel/.brew/opt/readline/lib
 
 MAGENTA = \033[35m
 RED = \e[1;31m
@@ -30,14 +34,14 @@ FILES = main lexer/lexer lexer/lexerbis lexer/token  lexer/lexerlst parse/parstr
 		
 NAME = minishell
 OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))
-INC = -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+INC = -I ./inc  -I/opt/homebrew/opt/readline/include
 HEADERS = inc/minishell.h inc/lib.h inc/token.h  inc/lexer.h inc/exec.h
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@printf "$(GRAY)-COMPILING Minishell...\n"
-	@$(CC) $(CFLAGS) $^ -o $@ -lreadline -L/Users/ababouel/.brew/opt/readline/lib
+	@$(CC) $(CFLAGS) $^ -o $@ -lreadline -L/opt/homebrew/opt/readline/lib 
 	@printf "$(GREEN)Done !"
 
 $(BDIR)/%.o : %.c $(HEADERS)

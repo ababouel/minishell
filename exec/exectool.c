@@ -6,30 +6,37 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 21:58:41 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/11 01:13:51 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-int forcked()
+static void open_here_doc(char *eof,int *fd, int flag)
 {
-  // int pid;
-
-  g_pid = fork();
-  if (g_pid < 0)
+  char  line;
+  int   pid;
+  if (*fd > 0)
+        close(*fd);
+  *fd = open("/tmp/hedoc", flag, 0644);
+  pid = forcked();
+  if (pid == 0)
   {
-    perror("fork");
-    return (-1);
+    dup2(fd, STDOUT_FILENO);
+    while(1337)
+    {
+      line = readline("> "); 
+      if (line == eof)
+        break; 
+    }
   }
-  return (g_pid);
 }
 
-void  openfileredic(char *file,t_cmd *cmd, int flags)
+static void  openfileredic(char *file, int  *fd, int flags)
 {
-  if (cmd->ffd[0] > 0)
-        close(cmd->ffd[0]);
-  cmd->ffd[0] = open(file, flags , 0777);
+  if (*fd > 0)
+        close(*fd);
+  *fd = open(file, flags , 0644);
 }
 
 int filein(t_cmd *cmd)
@@ -42,43 +49,19 @@ int filein(t_cmd *cmd)
   while (file[x].file != NULL)
   {
     if (file[x].type == TOKEN_DRINPUT)
-    { 
-      if (cmd->ffd[0] > 0)
-        close(cmd->ffd[0]);
-      cmd->ffd[0] = open("/tmp/hedoc", O_RDONLY | O_WRONLY | O_CREAT , 0777);
-    }
+      open_here_doc(&cmd->ffd[0], O_RDONLY | O_WRONLY | O_CREAT); 
     if (file[x].type == TOKEN_RINPUT)
-    {
-      if (cmd->ffd[0] > 0)
-        close(cmd->ffd[0]);
-      cmd->ffd[0] = open(file[x].file, O_RDONLY , 0777);
-    }
+      openfileredic(file[x].file,&cmd->ffd[0], O_RDONLY); 
     if (file[x].type == TOKEN_ROUTPUT)
-    {
-      if (cmd->ffd[1] > 0)
-        close(cmd->ffd[1]);
-      cmd->ffd[1] = open(file[x].file, O_WRONLY |   O_CREAT | O_TRUNC , 0777);
-    }
+      openfileredic(file[x].file,&cmd->ffd[1], O_WRONLY | O_CREAT | O_TRUNC); 
     if (file[x].type == TOKEN_DROUTPUT)
-    {
-      if (cmd->ffd[1] > 0)
-        close(cmd->ffd[1]);
-      cmd->ffd[1] = open(file[x].file, O_WRONLY | O_CREAT | O_APPEND, 0777);
-    }
+      openfileredic(file[x].file,&cmd->ffd[1], O_WRONLY | O_CREAT | O_APPEND); 
     x++;
   }
   return (0);
 }
 
-int piped(int *fd)
-{
-  if (pipe(fd) == -1)
-  {
-    perror("pipe error");
-    return (-1);
-  }
-  return (0);
-}
+
 
 void  ft_stat_pipe_dup(t_data *dt, t_lsdata *lsdata)
 {

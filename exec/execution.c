@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 19:13:19 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/11 00:48:40 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,25 @@ void    exec_pipe(t_data *dt)
     if (execve(cmd->pathcmd, cmd->cmdarg, cmd->env) == -1)
         printf("%s: command not found\n", cmd->cmdarg[0]);
     exit(0);
+}
+
+int piped(int *fd)
+{
+  if (pipe(fd) == -1)
+  {
+    perror("pipe error");
+    return (-1);
+  }
+  return (0);
+}
+
+int forcked()
+{
+  g_pid = fork();
+  if (g_pid < 0)
+  {
+    perror("fork");
+    return (-1);
+  }
+  return (g_pid);
 }
