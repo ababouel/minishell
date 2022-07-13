@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/10 21:33:31 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:36:05 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	built(t_data *data, t_lsdata *lsdata)
 	t_cmd *cmd;
 	
 	cmd = &data->cmd;
-    ft_stat_pipe_dup(data, lsdata);
     redic_open(cmd);
+    ft_stat_pipe_dup(data, lsdata);
 	if (cmd->pathcmd)
 	{
 		if (!ft_strncmp(cmd->pathcmd, "/bin/pwd", ft_strlen(cmd->pathcmd)))

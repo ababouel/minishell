@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/11 01:13:51 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/13 11:32:56 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,26 @@
 
 static void open_here_doc(char *eof,int *fd, int flag)
 {
-  char  line;
-  int   pid;
+  char  *buf;
+  char  fdh;
   if (*fd > 0)
         close(*fd);
-  *fd = open("/tmp/hedoc", flag, 0644);
-  pid = forcked();
-  if (pid == 0)
-  {
-    dup2(fd, STDOUT_FILENO);
-    while(1337)
-    {
-      line = readline("> "); 
-      if (line == eof)
-        break; 
-    }
-  }
+  fdh = open("/tmp/.hedoc", flag, 0644);
+  buf = ft_strdup("");  
+  while (1337)
+	{
+		buf = readline("> ");
+		if (buf == NULL || (buf && ft_strcmp(buf, eof) == 0))
+			break ;
+		write(fdh, buf, ft_strlen(buf));
+		write(fdh, "\n", 1);
+		free(buf);
+		buf = ft_strdup("");
+	}
+  free(buf);
+  buf = NULL;
+  close(fdh);
+  *fd = open("/tmp/.hedoc", O_RDONLY, 0644);
 }
 
 static void  openfileredic(char *file, int  *fd, int flags)
@@ -49,13 +53,13 @@ int filein(t_cmd *cmd)
   while (file[x].file != NULL)
   {
     if (file[x].type == TOKEN_DRINPUT)
-      open_here_doc(&cmd->ffd[0], O_RDONLY | O_WRONLY | O_CREAT); 
+      open_here_doc(file[x].file, &cmd->ffd[0], O_CREAT | O_RDWR | O_TRUNC); 
     if (file[x].type == TOKEN_RINPUT)
-      openfileredic(file[x].file,&cmd->ffd[0], O_RDONLY); 
+      openfileredic(file[x].file, &cmd->ffd[0], O_RDONLY); 
     if (file[x].type == TOKEN_ROUTPUT)
-      openfileredic(file[x].file,&cmd->ffd[1], O_WRONLY | O_CREAT | O_TRUNC); 
+      openfileredic(file[x].file, &cmd->ffd[1], O_WRONLY | O_CREAT | O_TRUNC); 
     if (file[x].type == TOKEN_DROUTPUT)
-      openfileredic(file[x].file,&cmd->ffd[1], O_WRONLY | O_CREAT | O_APPEND); 
+      openfileredic(file[x].file, &cmd->ffd[1], O_WRONLY | O_CREAT | O_APPEND); 
     x++;
   }
   return (0);
