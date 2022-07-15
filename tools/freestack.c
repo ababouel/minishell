@@ -6,12 +6,28 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/04 10:28:22 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/15 22:49:06 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
 #include "lstree.h"
+#include "exec.h"
+
+static void freetoken(t_token *item)
+{	
+	free(item);
+	item = NULL;
+}
+
+static void freedata(t_data *item)
+{
+	ft_freedt(item->cmd.cmdarg);	
+	free(item->cmd.name);	
+	free(item);
+	item = NULL;
+}
+
 
 void	ft_freestack(t_lsnode *sk)
 {
@@ -23,10 +39,10 @@ void	ft_freestack(t_lsnode *sk)
 	{
 		temp = node;
 		node = node->next;
-		free(node->value);
-		free(temp);
+		if (temp != NULL)
+			freetoken(temp);
 	}
-	// free(sk);
+	init_stack(sk);
 }
 
 void	ft_freetree(t_lsdata *sk)
@@ -39,10 +55,9 @@ void	ft_freetree(t_lsdata *sk)
 	while ( temp != NULL)
 	{
 		node = temp;
-		free(node);
-		if (temp->next != NULL)
-			temp = temp->next;
+		temp = temp->next;
+		if (node != NULL)
+			freedata(node);
 	}
-	free(sk);
-	sk = NULL;	
+	init_lsdata(sk);
 }

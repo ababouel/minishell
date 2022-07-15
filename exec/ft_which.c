@@ -6,13 +6,13 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/01 01:55:05 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/15 22:46:47 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-static char	**ft_freedata(char **data)
+char	**ft_freedt(char **data)
 {
 	int	i;
 
@@ -44,14 +44,14 @@ char    *ft_which(char *cmd, char **env)
 				str = ft_strjoin(str, cmd);
 				if (!access(str, X_OK))
 				{
-					ft_freedata(spl);
-					return (ft_strdup(str));	
+					ft_freedt(spl);
+					return (str);	
 				}
 				j++;
 			}
 		}
 		i++;
 	}
-
+	ft_freedt(spl);	
 	return (NULL);
 }

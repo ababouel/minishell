@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 16:27:01 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/15 20:56:24 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 int				ins_next_node(t_lsnode *stack, t_token *token);
 void			init_stack(t_lsnode *stack);
-void			ft_freestack(t_lsnode *sk);
+void            ft_freestack(t_lsnode *sk);
 unsigned int	is_delim(char c, char *delim);
 char			**ft_split(char const *s, char *c);
 size_t			ft_strlen(const char *s);

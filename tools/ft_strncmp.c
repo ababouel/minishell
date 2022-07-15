@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:47:35 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/28 03:09:11 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/15 18:00:05 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void	*ft_realloc(void *ptr, size_t size)
 	dt = malloc(size);
     ft_memcpy(dt, ptr, size);
 	free(ptr);
+	ptr = NULL;
 	return (dt);
 }

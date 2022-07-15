@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/13 11:59:07 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/15 23:24:17 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,37 @@ char    *readline_t(void)
     return (buf);
 }
 
+t_lsnode	*add_init_lstok(t_lsnode *lstok,char *line)
+{
+	t_lexer	*lexer;
+	t_token	*token;
+
+	lexer = NULL;
+	token = NULL;	
+	init_stack(lstok);
+	lexer = init_lexer(line);
+	while(lexer->i < ft_strlen(line))
+	{
+		if (lexer->src[lexer->i] != '\0')
+			token = lexer_next_token(lexer);
+		if (token != NULL)
+			ins_next_node(lstok, (void *) token);
+	}
+	free(lexer);
+	lexer = NULL;
+	return (lstok);	
+}
 int main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
 	(void)env;
-	// int		pid;
-    t_lsnode	lstok;
-	t_lexer		*lexer;
+    t_lsnode	*lstok;
     char		*line;
-	t_token		*token;
+	lstok = NULL;	
 	t_lsdata	*lsdata;
-	token = NULL;
-	lsdata = NULL;	
+	lsdata = malloc(sizeof(t_lsdata));
+	lstok = malloc(sizeof(t_lsnode));	
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 	while (1337)
@@ -86,28 +104,20 @@ int main(int ac, char **av, char **env)
 		if (!line)
 		{
 			write(1, "exit\n", 5);
+			free(lsdata);
+			free(lstok);
 			exit(0);
 		}
 		if (line != NULL)
-		{
-			init_stack(&lstok);
-			lexer = init_lexer(line);
-			while(lexer->i < ft_strlen(line))
-			{
-				if (lexer->src[lexer->i] != '\0')
-					token = lexer_next_token(lexer);
-				if (token != NULL)
-					ins_next_node(&lstok, (void *) token);
-			}
-			lsdata = malloc(sizeof(t_lsdata));
+		{	
+			lstok = add_init_lstok(lstok, line);
+			free(line);
 			init_lsdata(lsdata);
-			parsing(lsdata, &lstok, env);
-			// printall(lsdata);
+			parsing(lsdata, lstok, env);
+			ft_freestack(lstok);
 			if (lsdata->head->cmd.cmdarg != NULL)
-				recursive(lsdata); 
-			// }
-		//  ft_freetree(lsdata);
-		// while(1); 
+				recursive(lsdata);
+			ft_freetree(lsdata); 
 		}
 	}
     return (0);
