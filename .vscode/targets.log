@@ -8,11 +8,12 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Fri Jul 15 21:15:03 2022
+# Make data base, printed on Mon Jul 18 15:00:41 2022
 
 # Variables
 
 # automatic
+ 
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
@@ -21,7 +22,6 @@ OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))
 # makefile (from `Makefile', line 24)
 GRAY = \e[33;2;37m
 # automatic
- 
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
@@ -82,7 +82,7 @@ VSCODE_CODE_CACHE_PATH = /Users/abdelghani/Library/Application Support/Code/Cach
 # environment
 LOGNAME = abdelghani
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # makefile (from `Makefile', line 38)
 HEADERS = inc/minishell.h inc/lib.h inc/token.h  inc/lexer.h inc/exec.h
 # environment
@@ -159,6 +159,7 @@ MAKEFILES :=
 PAGER = less
 # environment
 LC_ALL = C
+ 
 # makefile (from `Makefile', line 23)
 RESET = \e[0m
 # automatic
@@ -168,12 +169,11 @@ SUFFIXES :=
 # makefile (from `Makefile', line 19)
 MAGENTA = \033[35m
 # environment
- 
 MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 17083
+VSCODE_PID = 66498
 # makefile (from `Makefile', line 29)
 FILES = main lexer/lexer lexer/lexerbis lexer/token  lexer/lexerlst parse/parstree parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio parse/parselst/parsetool tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack tools/ft_isalpha exec/built exec/cd exec/echo exec/export_unset exec/pwd_env exec/ft_which exec/execution exec/exectool exec/env_var errors/tokens_check errors/errors
 # variable set hash-table stats:
@@ -185,10 +185,10 @@ FILES = main lexer/lexer lexer/lexerbis lexer/token  lexer/lexerlst parse/parstr
 
 # Directories
 
-# . (device 16777230, inode 3711531): 15 files, no impossibilities.
+# . (device 16777230, inode 3711531): 13 files, no impossibilities.
 # inc (device 16777230, inode 3711631): 8 files, no impossibilities so far.
 
-# 23 files, no impossibilities in 2 directories.
+# 21 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -211,7 +211,7 @@ build/exec/built.o:
 build/main.o: main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `main'
-#  Last modified 2022-07-15 21:02:27
+#  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -229,7 +229,7 @@ build/main.o: main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.
 # automatic
 # ^ := main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
 # automatic
-# ? := main.c
+# ? := main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/17=6%
 #  commands to execute (from `Makefile', line 48):
@@ -267,7 +267,7 @@ build/lexer/lexerbis.o:
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-15 21:15:02
+#  Last modified 2022-07-15 23:24:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -327,9 +327,10 @@ build/exec/exectool.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+ 
 minishell: build/main.o build/lexer/lexer.o build/lexer/lexerbis.o build/lexer/token.o build/lexer/lexerlst.o build/parse/parstree.o build/parse/parselst/parsecmd.o build/parse/parselst/parsepipe.o build/parse/parselst/parseio.o build/parse/parselst/parsetool.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o build/tools/ft_strjoin.o build/tools/freestack.o build/tools/ft_isalpha.o build/exec/built.o build/exec/cd.o build/exec/echo.o build/exec/export_unset.o build/exec/pwd_env.o build/exec/ft_which.o build/exec/execution.o build/exec/exectool.o build/exec/env_var.o build/errors/tokens_check.o build/errors/errors.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-15 21:02:27
+#  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -361,7 +362,6 @@ build/tools/ft_strdup.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 
 # Not a target:
 build/exec/env_var.o:
@@ -445,7 +445,7 @@ clean:
 # Not a target:
 inc/exec.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-13 13:31:22
+#  Last modified 2022-07-15 21:47:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -523,6 +523,7 @@ build/parse/parstree.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+ 
 # files hash-table stats:
 # Load=43/1024=4%, Rehash=0, Collisions=4/105=4%
 # VPATH Search Paths
@@ -536,6 +537,6 @@ build/parse/parstree.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Jul 15 21:15:03 2022
+# Finished Make data base on Mon Jul 18 15:00:41 2022
 
  
