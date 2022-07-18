@@ -6,13 +6,13 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 05:29:58 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 11:55:51 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/18 21:19:22 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-static int	is_qte(t_lexer *lexer,int isqte, char str)
+static int	is_qte(t_lexer *lexer, int isqte, char str)
 {
 	if (lexer->c == str)
 	{
@@ -24,34 +24,37 @@ static int	is_qte(t_lexer *lexer,int isqte, char str)
 	return (isqte);
 }
 
-t_token *lexer_parse_exp(t_lexer *lexer)
+void	lexer_whitespace(t_lexer *lexer)
+{
+	while (is_delim(lexer->c, WHITESP))
+		lexer_advance(lexer);
+}
+
+t_token	*lexer_parse_exp(t_lexer *lexer)
 {
 	char	*value;
 	int		isqted;
 	int		isqtes;
 
 	isqted = 0;
-	isqtes = 0;	
+	isqtes = 0;
 	value = ft_calloc(1, sizeof(char));
 	while (lexer->c != '\0')
 	{
 		if (isqted == 1 || isqtes == 1 || !is_delim(lexer->c, " |<>\0"))
 		{
-			isqted = is_qte(lexer,isqted,'"');
-			isqtes = is_qte(lexer,isqtes,'\'');	
-			// ft_strcat(value, &lexer->c);
+			isqted = is_qte(lexer, isqted, '"');
+			isqtes = is_qte(lexer, isqtes, '\'');
 			value = ft_strjoinbis(value, &lexer->c);
 			lexer_advance(lexer);
-			// value = ft_realloc(value, (ft_strlen(value) + 1) * sizeof(char));
 		}
 		else
-			break;	
+			break ;
 	}
-	// ft_strcat(value, "\0");
-	return (init_token(TOKEN_EXP, value));	
+	return (init_token(TOKEN_EXP, value));
 }
 
-t_token *lexer_parse_quote(t_lexer *lexer, char ch, t_type type)
+t_token	*lexer_parse_quote(t_lexer *lexer, char ch, t_type type)
 {
 	char	*c;
 	char	*value;
@@ -64,10 +67,10 @@ t_token *lexer_parse_quote(t_lexer *lexer, char ch, t_type type)
 	while (c[len] != '\0')
 	{
 		if (c[len] == ch)
-			break;
+			break ;
 		len++;
 	}
-	if(c[len] == ch)
+	if (c[len] == ch)
 	{
 		if (len == 0)
 			value = ft_strdup("\0");
@@ -76,7 +79,7 @@ t_token *lexer_parse_quote(t_lexer *lexer, char ch, t_type type)
 		lexer->i += ++len;
 		lexer->c = lexer->src[lexer->i];
 	}
-	return (init_token(type, value));	
+	return (init_token(type, value));
 }
 
 t_token	*lexer_parse_dollar(t_lexer *lexer)
@@ -94,13 +97,13 @@ t_token	*lexer_parse_dollar(t_lexer *lexer)
 		value = ft_strndup(lexer->src + lexer->i + 1, len - 1);
 		lexer->i += len;
 		lexer->c = lexer->src[lexer->i];
-		return (init_token(TOKEN_DOLLAR, value));	
+		return (init_token(TOKEN_DOLLAR, value));
 	}
 	else
 	{
 		value = ft_strndup(lexer->src + lexer->i, len);
 		while (len--)
 			lexer_advance(lexer);
-		return (init_token(TOKEN_EXP,value));
+		return (init_token(TOKEN_EXP, value));
 	}
 }
