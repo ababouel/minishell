@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/15 23:24:17 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:56:21 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ int main(int ac, char **av, char **env)
 	signal(SIGQUIT, SIG_IGN);
 	while (1337)
 	{
-		g_pid = 1;
+		gl.g_pid = 1;
 		line = readline_t();
-		g_pid = 0;
+		gl.g_pid = 0;
 		add_history(line);
 		if (!line)
 		{

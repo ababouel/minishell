@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/15 22:49:06 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/18 20:26:41 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void freetoken(t_token *item)
 
 static void freedata(t_data *item)
 {
-	ft_freedt(item->cmd.cmdarg);	
+	if(item->cmd.cmdarg != NULL)
+		ft_freedt(item->cmd.cmdarg);	
 	free(item->cmd.name);	
 	free(item);
 	item = NULL;

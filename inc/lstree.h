@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 22:03:27 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:05:12 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@
 # include "lexer.h"
 # include "lib.h"
 
-int g_pid;
+typedef struct s_gl
+{
+    int g_pid;
+	int g_exit_state;
+}   t_gl;
+
+t_gl	gl;
 
 typedef enum	e_mpipe
 {

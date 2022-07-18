@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/15 21:47:50 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/18 20:34:59 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <termios.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-
-extern int	g_pid;
 
 char	*ft_which(char *cmd, char **env);
 void	exec_cmd(t_cmd *cmd);
@@ -46,5 +44,6 @@ void	exec_pipe(t_data *dt);
 void	redic_close(t_cmd *cmd);
 void	redic_open(t_cmd *cmd);
 char	**ft_freedt(char **data);
+t_data  *genlsdt(t_lsdata *lsdata, t_token *token, t_data *data, char **env);
 
 #endif
