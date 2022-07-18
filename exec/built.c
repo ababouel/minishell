@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/06 22:47:31 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/18 20:37:06 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	handler(int	hand)
 {
-	if (hand == SIGQUIT && g_pid == 1)
+	if (hand == SIGQUIT && gl.g_pid == 1)
 		return ;
-	if (hand == SIGINT && g_pid == 0)
+	if (hand == SIGINT && gl.g_pid == 0)
 		exit (2);
-	if (hand == SIGQUIT && g_pid == 0)
+	if (hand == SIGQUIT && gl.g_pid == 0)
 		exit (3);
-	if (hand == SIGINT && g_pid == 1)
+	if (hand == SIGINT && gl.g_pid == 1)
 	{
 		write(1, "\n", 1);
 		rl_on_new_line();
@@ -44,6 +44,8 @@ void	path_cmd(t_data *dt)
 		ft_env(cmd);
 	else
 		exec_pipe(dt);
+	gl.state = 0;
+	exit(0);
 }
 
 void	arg_cmd(t_data *dt)
@@ -68,7 +70,6 @@ void	built(t_data *data, t_lsdata *lsdata)
 	if (cmd->pathcmd)
 	{
 		path_cmd(data);
-		exit(0);
 	}
 	else
 	{

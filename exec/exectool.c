@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exectool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 21:58:41 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/18 20:27:45 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int forcked()
 {
   // int pid;
 
-  g_pid = fork();
-  if (g_pid < 0)
+  gl.g_pid = fork();
+  if (gl.g_pid < 0)
   {
     perror("fork");
     return (-1);
   }
-  return (g_pid);
+  return (gl.g_pid);
 }
 
 void  openfileredic(char *file,t_cmd *cmd, int flags)

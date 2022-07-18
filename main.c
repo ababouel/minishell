@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 22:22:50 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/18 20:55:55 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,9 @@ int main(int ac, char **av, char **env)
 	signal(SIGQUIT, SIG_IGN);
 	while (1337)
 	{
-		g_pid = 1;
+		gl.g_pid = 1;
 		line = readline_t();
-		g_pid = 0;
+		gl.g_pid = 0;
 		add_history(line);
 		if (!line)
 		{
@@ -149,7 +149,7 @@ int main(int ac, char **av, char **env)
 				if (lexer->src[lexer->i] != '\0')
 					token = lexer_next_token(lexer);
 				if (token != NULL)
-					ins_next_node(&lstok, (void *) token);
+					ins_next_node(&lstok, (void *)token);
 			}
 			if (printtoken(&lstok))
 			{

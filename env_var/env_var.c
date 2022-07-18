@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/06 20:35:21 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/18 21:57:33 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	check_doll(char *cmd, int i)
 		return (0);
 	else if (cmd[i + 1] == '$')
 		return (0);
-	else if (cmd[i + 1] == '?')
-		return (0);
+	// else if (cmd[i + 1] == '?')
+		// return (0);
 	else
 		return (1);
 }

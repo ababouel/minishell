@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 19:22:15 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/18 20:26:03 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,13 @@
 # include <sys/wait.h>
 # include <termios.h>
 
-int g_pid;
+typedef struct s_gl
+{
+    int g_pid;
+    int state;
+}   t_gl;
+
+t_gl	gl;
 
 char    *ft_which(char *cmd, char **env);
 void    exec_cmd(t_cmd *cmd);
