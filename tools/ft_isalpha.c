@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 20:53:36 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/29 12:26:21 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/18 18:52:09 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ int	ft_ischar(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i])
+	if (str != NULL)
 	{
-		if (!ft_isprint(str[i]) && str[i] != '.')
-			return (0);
-		i++;
+		while (str[i])
+		{
+			if (!ft_isprint(str[i]) && str[i] != '.')
+				return (0);
+			i++;
+		}
 	}
 	return (1);
 }
