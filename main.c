@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/19 13:57:03 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:18:51 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ int	main(int ac, char **av, char **env)
 		{	
 			lstok = add_init_lstok(lstok, line);
 			free(line);
+			line = NULL;
 			init_lsdata(lsdata);
 			parsing(lsdata, lstok, env);
 			ft_freestack(lstok);
 			if (lsdata->head->cmd.cmdarg != NULL)
 				execution(lsdata);
-			ft_freetree(lsdata); 
+			ft_freetree(lsdata);
+			// init_lsdata(lsdata); 
 		}
 	}
     return (0);

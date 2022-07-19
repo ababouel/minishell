@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:55:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 11:56:28 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:01:25 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ void	**ft_drealloc(void **ptr, size_t size)
 	if (!dt)
 		return (NULL);
 	ft_dmemcpy((void **)dt, (void **) ptr);
-	ft_freememory((char **)ptr, ft_dstrlen((char **)ptr));
+	ptr = (void **) ft_freedt((char **)ptr);
 	return ((void **)dt);
 }

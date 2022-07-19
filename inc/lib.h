@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/15 20:56:24 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:20:50 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ size_t			ft_dstrlen(char **str);
 char			*ft_strjoinbis(char *s1, char *s2);
 int				ft_isalpha(char c);
 int				ft_ischar(char *str);
+char            **ft_freedt(char **data);
 
 #endif
