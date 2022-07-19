@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/19 17:18:42 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:30:52 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ static void	freedata(t_data *item)
 	if (item->cmd.pathcmd != NULL)
 		free(item->cmd.pathcmd);
 	if (item->cmd.cmdarg != NULL)
-		ft_freedt(item->cmd.cmdarg);
+		item->cmd.cmdarg = ft_freedt(item->cmd.cmdarg);
 	if (item->cmd.name != NULL)
 		free(item->cmd.name);
 	item->cmd.pathcmd = NULL;
-	item->cmd.cmdarg = NULL;
 	item->cmd.name = NULL;
 	free(item);
 	item = NULL;
