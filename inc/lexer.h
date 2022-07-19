@@ -18,10 +18,10 @@
 
 typedef struct s_lexer
 {
-	char		*src;
-	size_t		size;
-	char		c;
-	unsigned int		i;
+	char			*src;
+	size_t			size;
+	char			c;
+	unsigned int	i;
 }	t_lexer;
 
 t_lexer	*init_lexer(char *line);

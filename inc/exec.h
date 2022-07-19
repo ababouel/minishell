@@ -44,6 +44,6 @@ void	exec_pipe(t_data *dt);
 void	redic_close(t_cmd *cmd);
 void	redic_open(t_cmd *cmd);
 char	**ft_freedt(char **data);
-t_data  *genlsdt(t_lsdata *lsdata, t_token *token, t_data *data, char **env);
+t_data	*genlsdt(t_lsdata *lsdata, t_token *token, t_data *data, char **env);
 
 #endif

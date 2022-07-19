@@ -50,7 +50,7 @@ char	*ft_strndup(const char *s, int len)
 
 int	is_alpha(char c)
 {
-	if (('A' <= c && c <= 'Z') 
+	if (('A' <= c && c <= 'Z')
 		|| ('a' <= c && c <= 'z'))
 		return (1);
 	return (0);

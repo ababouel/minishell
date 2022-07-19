@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/18 16:57:17 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:07:43 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ int	piped(int *fd)
 
 int	forcked(void)
 {
-	gl.g_pid = fork();
-	if (gl.g_pid < 0)
+	g_v.g_pid = fork();
+	if (g_v.g_pid < 0)
 	{
 		perror("fork");
 		return (-1);
 	}
-	return (gl.g_pid);
+	return (g_v.g_pid);
 }

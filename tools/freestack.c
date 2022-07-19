@@ -14,27 +14,26 @@
 #include "lstree.h"
 #include "exec.h"
 
-static void freetoken(t_token *item)
-{	
-	free(item);
-	item = NULL;
-}
-
-static void freedata(t_data *item)
+static void	freetoken(t_token *item)
 {
-	if(item->cmd.cmdarg != NULL)
-		ft_freedt(item->cmd.cmdarg);	
-	free(item->cmd.name);	
 	free(item);
 	item = NULL;
 }
 
+static void	freedata(t_data *item)
+{
+	if (item->cmd.cmdarg != NULL)
+		ft_freedt(item->cmd.cmdarg);
+	free(item->cmd.name);
+	free(item);
+	item = NULL;
+}
 
 void	ft_freestack(t_lsnode *sk)
 {
 	t_token	*node;
-	t_token *temp;
-	
+	t_token	*temp;
+
 	node = sk->head;
 	while (node != NULL)
 	{
@@ -50,10 +49,11 @@ void	ft_freetree(t_lsdata *sk)
 {
 	t_data	*node;
 	t_data	*temp;
+
 	if (!sk)
 		return ;
 	temp = sk->head;
-	while ( temp != NULL)
+	while (temp != NULL)
 	{
 		node = temp;
 		temp = temp->next;

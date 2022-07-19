@@ -80,7 +80,8 @@ static void	**ft_dmemcpy(void **dst, void **src)
 		return (NULL);
 	while (src[index] != NULL)
 	{
-		((unsigned char **)dst)[index] = (unsigned char *) ft_strdup(src[index]);
+		((unsigned char **)dst)[index] = (unsigned char *)
+			ft_strdup(src[index]);
 		index++;
 	}
 	return (dst);
@@ -92,8 +93,8 @@ void	**ft_drealloc(void **ptr, size_t size)
 
 	dt = malloc(size);
 	if (!dt)
-		return(NULL);
-	ft_dmemcpy((void **)dt,(void **) ptr);
+		return (NULL);
+	ft_dmemcpy((void **)dt, (void **) ptr);
 	ft_freememory((char **)ptr, ft_dstrlen((char **)ptr));
 	return ((void **)dt);
 }
