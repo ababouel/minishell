@@ -6,37 +6,16 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:31:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/19 17:10:00 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:27:39 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exec.h"
 
-int	ft_pwd(t_cmd *cmd)
+int	ft_pwd(void)
 {
 	char	str[1000];
 
-	if (cmd->cmdarg[1])
-	{
-		if (cmd->cmdarg[1][0] == '-')
-		{
-			if (cmd->cmdarg[1][1] == '-')
-			{
-				if (cmd->cmdarg[1][2])
-				{
-					printf("%c%c: invalid option\n",
-						cmd->cmdarg[1][0], cmd->cmdarg[1][1]);
-					return (1);
-				}
-			}
-			else if (cmd->cmdarg[1][1])
-			{
-				printf("%c%c: invalid option\n",
-					cmd->cmdarg[1][0], cmd->cmdarg[1][1]);
-				return (1);
-			}
-		}
-	}
 	if (getcwd(str, sizeof(str)) != NULL)
 		printf("%s\n", str);
 	return (0);

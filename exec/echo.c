@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/26 19:25:44 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/18 21:10:32by sismaili         ###   ########.fr       */
+/*   Created: 2022/07/19 20:44:53 by sismaili          #+#    #+#             */
+/*   Updated: 2022/07/19 21:38:57 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,26 @@ void	check_echo(t_cmd *cmd, int check, int i)
 int	ft_echo(t_cmd *cmd)
 {
 	int	i;
-	int	j;
 	int	check;
 
 	i = 1;
-	j = 1;
 	check = 0;
 	if (!cmd->cmdarg[1])
 	{
 		write(1, "\n", 1);
 		return (0);
 	}
-	while (cmd->cmdarg[i][j] && cmd->cmdarg[i][0] == '-')
+	while (cmd->cmdarg[1][i] && cmd->cmdarg[1][0] == '-')
 	{
-		if (cmd->cmdarg[i][j] != 'n')
+		if (cmd->cmdarg[1][i] != 'n')
 		{
 			check = 0;
 			break ;
 		}
 		check = 1;
-		j++;
+		i++;
 	}
-	check_echo(cmd, check, i);
+	check_echo(cmd, check, 1);
 	if (check == 0)
 		printf("\n");
 	return (0);

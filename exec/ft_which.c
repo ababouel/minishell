@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 18:52:12 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:25:47 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ char	*ft_access(char **spl, char *cmd, int j)
 		return (NULL);
 }
 
+char	*ft_which1(char *cmd, char **spl, int j)
+{
+	if (cmd[0] == '/')
+		return (ft_strdup(cmd));
+	else if (cmd[0] == '.' && cmd[1] == '/')
+		return (point_slash(cmd));
+	else
+	{
+		if (ft_access(spl, cmd, j) != NULL)
+			return (ft_access(spl, cmd, j));
+	}
+	return (NULL);
+}
+
 char	*ft_which(char *cmd, char **env)
 {
 	char	**spl;
@@ -64,15 +78,8 @@ char	*ft_which(char *cmd, char **env)
 			spl = ft_split(env[i], ":");
 			while (spl[j])
 			{
-				if (cmd[0] == '/')
-					return (ft_strdup(cmd));
-				else if (cmd[0] == '.' && cmd[1] == '/')
-					return (point_slash(cmd));
-				else
-				{
-					if (ft_access(spl, cmd, j) != NULL)
-						return (ft_access(spl, cmd, j));
-				}
+				if (ft_which1(cmd, spl, j) != NULL)
+					return (ft_which1(cmd, spl, j));
 				j++;
 			}
 		}

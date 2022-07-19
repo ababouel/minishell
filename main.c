@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/18 20:55:55 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:42:50 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	(void)env;
-	// int		pid;
     t_lsnode	lstok;
 	t_lexer		*lexer;
     char		*line;

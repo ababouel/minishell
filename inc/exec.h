@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/19 17:23:53 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:27:51 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ void    exec_redic(t_cmd *redic,t_cmd *cmd);
 void	built(t_data *data, t_lsdata *lsdata);
 int		ft_cd(t_cmd *cmd);
 int		ft_echo(t_cmd *cmd);
-int		ft_pwd(t_cmd *cmd);
+int		ft_pwd(void);
 int		ft_env(t_cmd *cmd);
 int		ft_export(t_cmd *cmd);
+char	**cmdenv(t_cmd *cmd, int i, int j, int size);
+char	**exportenv(t_cmd *cmd, int i, int j, int check);
 int		ft_unset(t_cmd *cmd);
 void	handler(int	hand);
 int		printtoken(t_lsnode *lstok);

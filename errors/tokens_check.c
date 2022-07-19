@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/19 17:06:58 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:34:05 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,46 +73,55 @@ int	check_pipe(t_token *temp)
 	return (1);
 }
 
+t_token	*token_while(t_token *temp)
+{
+	int	i;
+
+	i = 0;
+	while (temp->type != TOKEN_PIPE
+		&& temp->type != TOKEN_DPIPE && temp->type != TOKEN_DAND)
+	{
+		if (!tokens_check(temp, i))
+		{
+			gl.state = 1;
+			return (NULL);
+		}
+		if (!check_red(temp))
+		{
+			gl.state = 258;
+			return (NULL);
+		}
+		if (!temp->next)
+			break ;
+		temp = temp->next;
+		if (temp->type == TOKEN_SPACE)
+			i++;
+	}
+	return (temp);
+}
+
 int	printtoken(t_lsnode *lstok)
 {
 	t_token	*temp;
-	int		i;
 
-	i = 0;
 	temp = lstok->head;
 	while (temp)
 	{
-		if (temp->type == TOKEN_PIPE || temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND)
+		if (temp->type == TOKEN_PIPE
+			|| temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND)
 		{
 			gl.state = 258;
 			return (printf("syntax error near unexpected token `%s'\n",
 					temp->value), 0);
 		}
-		while (temp->type != TOKEN_PIPE && temp->type != TOKEN_DPIPE && temp->type != TOKEN_DAND)
-		{
-			if (!tokens_check(temp, i))
-			{
-				gl.state = 1;
-				return (0);
-			}
-			if (!check_red(temp))
-			{
-				gl.state = 258;
-				return (0);
-			}
-			if (!temp->next)
-				break ;
-			temp = temp->next;
-			if (temp->type == TOKEN_SPACE)
-				i++;
-		}
+		temp = token_while(temp);
+		if (temp == NULL)
+			return (0);
 		if (!check_pipe(temp))
 		{
 			gl.state = 258;
 			return (0);
 		}
-		else
-			i = 0;
 		temp = temp->next;
 	}
 	return (1);
