@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:57:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/27 15:10:43 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:12:03 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,15 @@ void	ft_env_pwd(char **env)
 	}
 }
 
-void	ft_cd(t_cmd *cmd)
+int	ft_cd(t_cmd *cmd)
 {
-	int		i;
-	int		j;
-	int		len;
 	char	*join;
 
-	i = 0;
-	j = 0;
-	len = 0;
 	ft_env_oldpwd(cmd->env);
 	if (!cmd->cmdarg[1])
 	{
 		chdir("/Users/sismaili");
-		return ;
+		return (0);
 	}
 	if (chdir(cmd->cmdarg[1]) == -1)
 	{
@@ -88,6 +82,8 @@ void	ft_cd(t_cmd *cmd)
 		join = ft_strjoin(join, " ");
 		join = ft_strjoin(join, cmd->cmdarg[1]);
 		perror(join);
+		return (1);
 	}
 	ft_env_pwd(cmd->env);
+	return (0);
 }

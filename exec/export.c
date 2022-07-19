@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/02 16:26:59 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:14:54 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ char	**check_export(t_cmd *cmd, int i, int j)
 	}
 }
 
-void	ft_export(t_cmd *cmd)
+int	ft_export(t_cmd *cmd)
 {
 	int	i;
 	int	j;
@@ -160,7 +160,7 @@ void	ft_export(t_cmd *cmd)
 	if (!cmd->cmdarg[i])
 	{
 		sort_export(cmd);
-		return ;
+		return (0);
 	}
 	while (cmd->cmdarg[i])
 	{
@@ -173,7 +173,11 @@ void	ft_export(t_cmd *cmd)
 			}
 		}
 		else
+		{
 			printf("export: `%s': not a valid identifier\n", cmd->cmdarg[i]);
+			return (1);
+		}
 		i++;
 	}
+	return (0);
 }

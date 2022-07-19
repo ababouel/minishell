@@ -14,18 +14,30 @@
 
 void	check_echo(t_cmd *cmd, int check, int i)
 {
+	int	j;
+
 	if (check == 1)
 		i++;
 	while (cmd->cmdarg[i])
 	{
-		printf("%s", cmd->cmdarg[i]);
+		j = 0;
+		while (cmd->cmdarg[i][j])
+		{
+			if (cmd->cmdarg[i][j] == '$' && cmd->cmdarg[i][j + 1] == '?')
+			{
+				printf("%d", gl.state);
+				j += 2;
+			}
+			else
+				printf("%c", cmd->cmdarg[i][j++]);
+		}
 		i++;
 		if (cmd->cmdarg[i])
 			printf(" ");
 	}
 }
 
-void	ft_echo(t_cmd *cmd)
+int	ft_echo(t_cmd *cmd)
 {
 	int	i;
 	int	j;
@@ -37,7 +49,7 @@ void	ft_echo(t_cmd *cmd)
 	if (!cmd->cmdarg[1])
 	{
 		write(1, "\n", 1);
-		return ;
+		return (0);
 	}
 	while (cmd->cmdarg[i][j] && cmd->cmdarg[i][0] == '-')
 	{
@@ -52,4 +64,5 @@ void	ft_echo(t_cmd *cmd)
 	check_echo(cmd, check, i);
 	if (check == 0)
 		printf("\n");
+	return (0);
 }

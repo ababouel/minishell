@@ -6,13 +6,13 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:31:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/06/29 14:55:58 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:10:00 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exec.h"
 
-void	ft_pwd(t_cmd *cmd)
+int	ft_pwd(t_cmd *cmd)
 {
 	char	str[1000];
 
@@ -26,22 +26,23 @@ void	ft_pwd(t_cmd *cmd)
 				{
 					printf("%c%c: invalid option\n",
 						cmd->cmdarg[1][0], cmd->cmdarg[1][1]);
-					return ;
+					return (1);
 				}
 			}
 			else if (cmd->cmdarg[1][1])
 			{
 				printf("%c%c: invalid option\n",
 					cmd->cmdarg[1][0], cmd->cmdarg[1][1]);
-				return ;
+				return (1);
 			}
 		}
 	}
 	if (getcwd(str, sizeof(str)) != NULL)
 		printf("%s\n", str);
+	return (0);
 }
 
-void	ft_env(t_cmd *cmd)
+int	ft_env(t_cmd *cmd)
 {
 	int	i;
 	int	j;
@@ -51,7 +52,7 @@ void	ft_env(t_cmd *cmd)
 	if (cmd->cmdarg[1])
 	{
 		printf("env: %s: No such file or directory\n", cmd->cmdarg[1]);
-		return ;
+		return (1);
 	}
 	while (cmd->env[i])
 	{
@@ -67,4 +68,5 @@ void	ft_env(t_cmd *cmd)
 			printf("%s\n", cmd->env[i]);
 		i++;
 	}
+	return (0);
 }

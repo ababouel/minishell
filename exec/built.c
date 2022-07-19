@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/18 20:37:06 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:39:31 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,16 @@ void	path_cmd(t_data *dt)
 
 	cmd = &dt->cmd;
 	if (!ft_strncmp(cmd->pathcmd, "/bin/pwd", ft_strlen(cmd->pathcmd)))
-		ft_pwd(cmd);
+		gl.state = ft_pwd(cmd);
 	else if (!ft_strncmp(cmd->pathcmd, "/bin/echo", ft_strlen(cmd->pathcmd)))
-		ft_echo(cmd);
+		gl.state = ft_echo(cmd);
 	else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/cd", ft_strlen(cmd->pathcmd)))
-		ft_cd(cmd);
+		gl.state = ft_cd(cmd);
 	else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/env", ft_strlen(cmd->pathcmd)))
-		ft_env(cmd);
+		gl.state = ft_env(cmd);
 	else
 		exec_pipe(dt);
-	gl.state = 0;
-	exit(0);
+	exit(gl.state);
 }
 
 void	arg_cmd(t_data *dt)
@@ -68,12 +67,10 @@ void	built(t_data *data, t_lsdata *lsdata)
     redic_open(cmd);
     ft_stat_pipe_dup(data, lsdata);
 	if (cmd->pathcmd)
-	{
 		path_cmd(data);
-	}
 	else
 	{
 		printf("%s: command not found\n", cmd->cmdarg[0]);
-		exit (0);
+		exit (gl.state);
 	}
 }
