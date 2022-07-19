@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/19 21:00:55 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:56:55 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,27 @@ void	exec_pipe(t_data *dt)
 
 	cmd = &dt->cmd;
 	if (execve(cmd->pathcmd, cmd->cmdarg, cmd->env) == -1)
-	{
 		printf("%s: command not found\n", cmd->cmdarg[0]);
-		gl.state = 127;
+	exit(0);
+}
+
+int	piped(int *fd)
+{
+	if (pipe(fd) == -1)
+	{
+		perror("pipe error");
+		return (-1);
 	}
-	exit(gl.state);
+	return (0);
+}
+
+int	forcked(void)
+{
+	gl.g_pid = fork();
+	if (gl.g_pid < 0)
+	{
+		perror("fork");
+		return (-1);
+	}
+	return (gl.g_pid);
 }
