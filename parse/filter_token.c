@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 12:57:21 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/06 20:23:24 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:55:57 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*remove_quote(char *value, char c, int len)
 int	ft_filter_token2(char *value)
 {
 	int	check;
-	
+
 	if (!check_squote(value))
 		return (printf("syntax error\n"), -1);
 	if (!check_dquote(value))
