@@ -14,10 +14,6 @@
 #include "lib.h"
 #include "lstree.h"
 
-// static void	freetoken(t_token *item)
-// {
-// }
-
 static void	freedata(t_data *item)
 {
 	if (item->cmd.pathcmd != NULL)
@@ -42,8 +38,7 @@ void	ft_freestack(t_lsnode *sk)
 	{
 		temp = node;
 		node = node->next;
-		// if (temp->type == TOKEN_EXP)
-			free(temp->value);
+		free(temp->value);
 		temp->value = NULL;
 		free(temp);
 		temp = NULL;

@@ -19,10 +19,10 @@ void	init_stack(t_lsnode *stack)
 	stack->tail = NULL;
 }
 
-int ins_next_node(t_lsnode *stack, t_token *token)
+int	ins_next_node(t_lsnode *stack, t_token *token)
 {
 	t_token	*temp;
-	
+
 	if (stack->head == NULL)
 	{
 		stack->head = token;
@@ -34,7 +34,7 @@ int ins_next_node(t_lsnode *stack, t_token *token)
 	{
 		temp = stack->head;
 		while (temp->next)
-			temp = temp->next;	
+			temp = temp->next;
 		temp->next = token;
 		temp->next->prev = temp;
 		stack->tail = token;
@@ -43,18 +43,18 @@ int ins_next_node(t_lsnode *stack, t_token *token)
 	return (0);
 }
 
-unsigned int is_delim(char c, char *delim)
+unsigned int	is_delim(char c, char *delim)
 {
-	int x;
+	int	x;
 
 	x = 0;
-    while(delim[x] != '\0')
-    {
-        if(c == delim[x])
-            return (1);
-        x++;
-    }
-    return (0);
+	while (delim[x] != '\0')
+	{
+		if (c == delim[x])
+			return (1);
+		x++;
+	}
+	return (0);
 }
 
 void	*ft_calloc(size_t count, size_t size)
@@ -70,12 +70,12 @@ void	*ft_calloc(size_t count, size_t size)
 	return (copy);
 }
 
-size_t ft_dstrlen(char **str)
+size_t	ft_dstrlen(char **str)
 {
 	size_t	len;
 
 	len = 0;
 	while (str[len] != NULL)
 		len++;
-	return (len + 1);	
+	return (len + 1);
 }
