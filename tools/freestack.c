@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/19 17:30:52 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/20 02:35:47 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 #include "lstree.h"
 #include "exec.h"
 
-static void	freetoken(t_token *item)
-{
-		if (item->value != NULL)
-		{
-			free(item->value);
-			item->value = NULL;
-		}
-		free(item);
-		item = NULL;
-}
+// static void	freetoken(t_token *item)
+// {
+// 		if (item->value != NULL)
+// 		{
+// 			free(item->value);
+// 			item->value = NULL;
+// 		}
+// 		free(item);
+// 		item = NULL;
+// }
 
 static void	freedata(t_data *item)
 {
@@ -48,9 +48,10 @@ void	ft_freestack(t_lsnode *sk)
 	while (node != NULL)
 	{
 		temp = node;
+		node->prev = NULL;
 		node = node->next;
-		if (temp != NULL)
-			freetoken(temp);
+		free(temp);
+		temp = NULL;
 	}
 	init_stack(sk);
 }
@@ -70,5 +71,5 @@ void	ft_freetree(t_lsdata *sk)
 		if (node != NULL)
 			freedata(node);
 	}
-	init_lsdata(sk);
+	// init_lsdata(sk);
 }

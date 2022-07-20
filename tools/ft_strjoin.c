@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:55:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/19 17:01:25 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/20 12:55:48 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,28 @@ char	*ft_strjoinbis(char *s1, char *s2)
 	char	*result;
 
 	len1 = 0;
+	result = NULL;
 	if (!s2)
 		return (0);
 	if (s1)
 		len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	result = (char *) malloc(len1 + len2 + 1);
+	if (len2 == 0)
+		return (s1);
+	result = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (result == NULL)
+		return (NULL);
 	if (result != NULL)
 	{
 		ft_memcpy(result, s1, len1);
 		ft_memcpy(result + len1, s2, len2 + 1);
 	}
-	if (s1)
+	result[len1 + len2 + 1] = '\0';
+	if (s1 != NULL)
+	{
 		free(s1);
-	s1 = NULL;
+		s1 = NULL;
+	}
 	return (result);
 }
 

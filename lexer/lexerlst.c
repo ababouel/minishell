@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 05:29:58 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/18 21:19:22 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:49:28 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,20 @@ void	lexer_whitespace(t_lexer *lexer)
 
 t_token	*lexer_parse_exp(t_lexer *lexer)
 {
-	char	*value;
+	char	value[1000] = "";
 	int		isqted;
 	int		isqtes;
 
 	isqted = 0;
 	isqtes = 0;
-	value = ft_calloc(1, sizeof(char));
 	while (lexer->c != '\0')
 	{
 		if (isqted == 1 || isqtes == 1 || !is_delim(lexer->c, " |<>\0"))
 		{
 			isqted = is_qte(lexer, isqted, '"');
 			isqtes = is_qte(lexer, isqtes, '\'');
-			value = ft_strjoinbis(value, &lexer->c);
+			ft_strcat(value, &lexer->c);
+			// value = ft_realloc((void *)value, sizeof(char) * (ft_strlen(value) + 2));
 			lexer_advance(lexer);
 		}
 		else
