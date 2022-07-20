@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/20 13:08:28 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:07:29 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	handler(int hand)
 {
-	if (hand == SIGQUIT && gl.g_pid == 1)
+	if (hand == SIGQUIT && g_l.g_pid == 1)
 		return ;
-	if (hand == SIGINT && gl.g_pid == 0)
+	if (hand == SIGINT && g_l.g_pid == 0)
 		exit(2);
-	if (hand == SIGQUIT && gl.g_pid == 0)
+	if (hand == SIGQUIT && g_l.g_pid == 0)
 		exit(3);
-	if (hand == SIGINT && gl.g_pid == 1)
+	if (hand == SIGINT && g_l.g_pid == 1)
 	{
 		write(1, "\n", 1);
 		rl_on_new_line();
@@ -35,16 +35,16 @@ void	path_cmd(t_data *dt)
 
 	cmd = &dt->cmd;
 	if (!ft_strncmp(cmd->pathcmd, "/bin/pwd", ft_strlen(cmd->pathcmd)))
-		gl.state = ft_pwd();
+		g_l.state = ft_pwd();
 	else if (!ft_strncmp(cmd->pathcmd, "/bin/echo", ft_strlen(cmd->pathcmd)))
-		gl.state = ft_echo(cmd);
+		g_l.state = ft_echo(cmd);
 	else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/cd", ft_strlen(cmd->pathcmd)))
-		gl.state = ft_cd(cmd);
+		g_l.state = ft_cd(cmd);
 	else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/env", ft_strlen(cmd->pathcmd)))
-		gl.state = ft_env(cmd);
+		g_l.state = ft_env(cmd);
 	else
 		exec_pipe(dt);
-	exit(gl.state);
+	exit(g_l.state);
 }
 
 void	arg_cmd(t_data *dt)
@@ -71,7 +71,7 @@ void	built(t_data *data, t_lsdata *lsdata)
 	else
 	{
 		printf("%s: command not found\n", cmd->cmdarg[0]);
-		gl.state = 127;
-		exit(gl.state);
+		g_l.state = 127;
+		exit(g_l.state);
 	}
 }

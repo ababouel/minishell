@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:44:53 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/19 21:38:57 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:07:36 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_echo(t_cmd *cmd, int check, int i)
 		{
 			if (cmd->cmdarg[i][j] == '$' && cmd->cmdarg[i][j + 1] == '?')
 			{
-				printf("%d", gl.state);
+				printf("%d", g_l.state);
 				j += 2;
 			}
 			else

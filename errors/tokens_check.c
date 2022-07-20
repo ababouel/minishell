@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/20 19:01:07 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:06:38 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ t_token	*token_while(t_token *temp)
 	{
 		if (!tokens_check(temp, i))
 		{
-			gl.state = 1;
+			g_l.state = 1;
 			return (NULL);
 		}
 		if (!check_red(temp))
 		{
-			gl.state = 258;
+			g_l.state = 258;
 			return (NULL);
 		}
 		if (!temp->next)
@@ -110,7 +110,7 @@ int	printtoken(t_lsnode *lstok)
 		if (temp->type == TOKEN_PIPE
 			|| temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND)
 		{
-			gl.state = 258;
+			g_l.state = 258;
 			return (printf("syntax error near unexpected token `%s'\n",
 					temp->value), 3);
 		}
@@ -119,7 +119,7 @@ int	printtoken(t_lsnode *lstok)
 			return (0);
 		if (!check_pipe(temp))
 		{
-			gl.state = 258;
+			g_l.state = 258;
 			return (3);
 		}
 		temp = temp->next;

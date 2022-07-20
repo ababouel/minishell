@@ -11,11 +11,9 @@
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
-#define MINISHELL_H
+# define MINISHELL_H
 
 # include "lexer.h"
 # include "exec.h"
-
-int exit_err;
 
 #endif

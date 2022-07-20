@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/20 19:05:26 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:27:38 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ void	recursive(t_lsdata *data)
 	ft_stat_pipe_close(dt);
 	while(x < len)
 	{
-		waitpid(pid[x++], &gl.state, 0);
-		if (WIFEXITED(gl.state))
-			gl.state = WEXITSTATUS(gl.state);
+		waitpid(pid[x++], &g_l.state, 0);
+		if (WIFEXITED(g_l.state))
+			g_l.state = WEXITSTATUS(g_l.state);
 	}
-	if (gl.state == SIGINT)
+	if (g_l.state == SIGINT)
 		printf("\n");
-	if (gl.state == SIGQUIT)
+	if (g_l.state == SIGQUIT)
 		printf("Quit: 3\n");
 	signal(SIGQUIT,SIG_IGN);
 }
@@ -161,10 +161,10 @@ int main(int ac, char **av, char **env)
 	signal(SIGQUIT, SIG_IGN);
 	while (1337)
 	{
-		gl.g_pid = 1;
+		g_l.g_pid = 1;
 		line = readline_t();
 		// line = av[2];
-		gl.g_pid = 0;
+		g_l.g_pid = 0;
 		add_history(line);
 		if (!line)
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_which.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/20 15:50:18 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:01:05 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*ft_access(char **spl, char *cmd, int j)
 char	*ft_which1(char *cmd, char **spl, int j)
 {
 	char	*access;
-	
+
 	if (cmd[0] == '/')
 	{
 		spl = ft_freedt(spl);
