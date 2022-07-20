@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/19 20:42:50 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:01:09 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	recursive(t_lsdata *data)
 	t_data	*dt;
 	int		pid[1000];
 	int		len;
-	int		state;
 	int		x;
 
 	signal(SIGQUIT,handler);
@@ -73,10 +72,14 @@ void	recursive(t_lsdata *data)
 	dt = data->head;
 	ft_stat_pipe_close(dt);
 	while(x < len)
-		waitpid(pid[x++], &state, 0);
-	if (state == SIGINT)
+	{
+		waitpid(pid[x++], &gl.state, 0);
+		if (WIFEXITED(gl.state))
+			gl.state = WEXITSTATUS(gl.state);
+	}
+	if (gl.state == SIGINT)
 		printf("\n");
-	if (state == SIGQUIT)
+	if (gl.state == SIGQUIT)
 		printf("Quit: 3\n");
 	signal(SIGQUIT,SIG_IGN);
 }

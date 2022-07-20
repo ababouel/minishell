@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/19 22:28:00 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:08:28 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	built(t_data *data, t_lsdata *lsdata)
 	else
 	{
 		printf("%s: command not found\n", cmd->cmdarg[0]);
+		gl.state = 127;
 		exit(gl.state);
 	}
 }
