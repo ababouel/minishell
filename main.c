@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/20 13:01:09 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:05:26 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,17 +103,45 @@ int	delete_var(t_lsnode *lstok, char **env)
 {
 	t_token *temp;
 	int		check;
-
+	char	*val;
+	
+	val = NULL;
 	temp = lstok->head;
 	while (temp)
 	{
 		check = ft_filter_token2(temp->value);
 		if (check == -1)
 			return (0);
+		val = temp->value;
 		temp->value = search_var(temp->value, env, check);
+		if (temp->type == TOKEN_EXP)
+			free(val);
+		// free (val);
+		// if (val != NULL)
+		// 	free(val);
+		// val = NULL;
 		temp = temp->next;
 	}
 	return (1);
+}
+
+void	ft_freestackbis(t_lsnode *sk)
+{
+	t_token	*node;
+	t_token	*temp;
+
+	node = sk->head;
+	while (node != NULL)
+	{
+		temp = node;
+		node = node->next;
+		if (temp->type == TOKEN_EXP)
+			free(temp->value);
+		temp->value = NULL;
+		free(temp);
+		temp = NULL;
+	}
+	init_stack(sk);
 }
 
 int main(int ac, char **av, char **env)
@@ -125,16 +153,17 @@ int main(int ac, char **av, char **env)
 	t_lexer		*lexer;
     char		*line;
 	t_token		*token;
-	t_lsdata	*lsdata;
+	t_lsdata	lsdata;
 
 	token = NULL;
-	lsdata = NULL;
+	// lsdata = NULL;
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 	while (1337)
 	{
 		gl.g_pid = 1;
 		line = readline_t();
+		// line = av[2];
 		gl.g_pid = 0;
 		add_history(line);
 		if (!line)
@@ -153,19 +182,32 @@ int main(int ac, char **av, char **env)
 				if (token != NULL)
 					ins_next_node(&lstok, (void *)token);
 			}
-			if (printtoken(&lstok))
+			free(lexer);
+			lexer = NULL;
+			int	test;
+			test = printtoken(&lstok);
+			if (test && test != 3)
 			{
 				if (delete_var(&lstok, env))
 				{
 					// printoken(&lstok);
-					lsdata = malloc(sizeof(t_lsdata));
-					init_lsdata(lsdata);
-					parsing(lsdata, &lstok, env);
+					// lsdata = malloc(sizeof(t_lsdata));
+					init_lsdata(&lsdata);
+					parsing(&lsdata, &lstok, env);
 					// printall(lsdata);
-					if (lsdata->head->cmd.cmdarg != NULL)
-						recursive(lsdata);
+					if (lsdata.head->cmd.cmdarg != NULL)
+						recursive(&lsdata);
 				}
+				ft_freestack(&lstok);
+				ft_freetree(&lsdata);
 			}
+			else
+			{
+				ft_freestackbis(&lstok);
+				ft_freetree(&lsdata);
+			}
+			free (line);
+			// break;
 		}
 		//  ft_freetree(); 
 	}

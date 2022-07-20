@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/19 15:59:07 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:46:55 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*join_new(char *new, char *var, char **env, int l)
 	var = search_in_env(env, var);
 	if (var)
 	{
-		new = ft_strjoin(new, var);
+		new = ft_strjoinbis(new, var);
 		free (var);
 	}
 	else
@@ -88,7 +88,7 @@ char	*search_var(char *cmd, char **env, int check)
 	char	*temp;
 
 	i = 0;
-	new = ft_strdup("");
+	new = NULL;
 	while (cmd[i])
 	{
 		cmd = remove_squote(cmd, &check, i);
@@ -99,7 +99,7 @@ char	*search_var(char *cmd, char **env, int check)
 			temp = malloc(2);
 			temp[0] = cmd[i++];
 			temp[1] = '\0';
-			new = ft_strjoin(new, temp);
+			new = ft_strjoinbis(new, temp);
 			free (temp);
 		}
 	}

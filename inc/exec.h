@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/19 22:27:51 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 14:13:23 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ void    ft_stat_pipe_close(t_data *dt);
 void    exec_pipe(t_data *dt);
 void    redic_close(t_cmd *cmd);
 void    redic_open(t_cmd *cmd);
+char	**ft_freedt(char **data);
 
 #endif

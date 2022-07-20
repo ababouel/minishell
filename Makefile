@@ -18,8 +18,8 @@ RESET =  \e[0m
 GRAY	=	\e[33;2;37m
 GREEN = \033[0;32m
 ###
-CC = cc
-CFLAGS = -Wall -Werror -Wextra 
+CC = cc 
+CFLAGS = -Wall -g -Werror -Wextra 
 BDIR = build
 FILES = main lexer/lexer lexer/lexerbis lexer/token lexer/lexerlst lexer/lexerlst parse/parstree\
 		parse/parselst/parsetool parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio parse/filter_token\

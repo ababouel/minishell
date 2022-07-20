@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/19 21:34:05 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:01:07 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	printtoken(t_lsnode *lstok)
 		{
 			gl.state = 258;
 			return (printf("syntax error near unexpected token `%s'\n",
-					temp->value), 0);
+					temp->value), 3);
 		}
 		temp = token_while(temp);
 		if (temp == NULL)
@@ -120,7 +120,7 @@ int	printtoken(t_lsnode *lstok)
 		if (!check_pipe(temp))
 		{
 			gl.state = 258;
-			return (0);
+			return (3);
 		}
 		temp = temp->next;
 	}

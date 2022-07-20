@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 00:45:20 by ababouel          #+#    #+#             */
-/*   Updated: 2022/06/29 14:52:27 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:22:53 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_strndup(const char *s, int len)
 
 int	is_alpha(char c)
 {
-	if (('A' <= c && c <= 'Z') 
+	if (('A' <= c && c <= 'Z')
 		|| ('a' <= c && c <= 'z'))
 		return (1);
 	return (0);
