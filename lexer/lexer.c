@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:52:07 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 19:12:33 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:42:43 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,29 @@ void	lexer_advance(t_lexer *lexer)
 	}
 }
 
-void	lexer_whitespace(t_lexer *lexer)
+static unsigned int	loop(char *c)
 {
-	while (is_delim(lexer->c, WHITESP))
-		lexer_advance(lexer);
+	unsigned int	len;
+
+	len = 0;
+	while (c[len] != '\0')
+	{
+		if (c[len] == ' ' || c[len] == '>'
+			|| c[len] == '<' || c[len] == '|')
+			break ;
+		len++;
+	}
+	return (len);
 }
 
-t_token	*lexer_advance_with(t_lexer *lexer, t_token *token)
+static void	lexer_red_adv(t_lexer *lexer, unsigned int size)
 {
-	lexer_advance(lexer);
-	return (token);
+	unsigned int	len;
+
+	len = 0;
+	while (len++ < size)
+		lexer_advance(lexer);
+	lexer_whitespace(lexer);
 }
 
 t_token	*lexer_redirection(t_lexer *lexer, char *ch, t_type type)
@@ -51,23 +64,13 @@ t_token	*lexer_redirection(t_lexer *lexer, char *ch, t_type type)
 	char			*value;
 	unsigned int	len;
 	unsigned int	size;
-	
+
 	len = 0;
 	value = NULL;
 	size = ft_strlen(ch);
-	while (len++ < size)
-		lexer_advance(lexer);
-	lexer_whitespace(lexer);
-	len = lexer->i;
-	c = &lexer->src[len];
-	len = 0;
-	while (c[len] != '\0')
-	{
-		if (c[len] == ' ' || c[len] == '>' 
-			|| c[len] == '<' || c[len] == '|')
-			break ;
-		len++;
-	}
+	lexer_red_adv(lexer, size);
+	c = &lexer->src[lexer->i];
+	len = loop(c);
 	if (c[len] == '\0' || c[len] == ' ' || c[len] == '<'
 		|| c[len] == '|' || c[len] == '>')
 	{
@@ -76,9 +79,8 @@ t_token	*lexer_redirection(t_lexer *lexer, char *ch, t_type type)
 		else
 			value = ft_strndup(lexer->src + lexer->i, len);
 		size = 0;
-		while ( size++ < len)
-			lexer_advance(lexer);	
+		while (size++ < len)
+			lexer_advance(lexer);
 	}	
 	return (init_token(type, value));
 }
-	
