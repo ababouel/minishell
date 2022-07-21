@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 23:46:36 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/04 13:04:11 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:20:17 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef enum e_type
 	TOKEN_EXCLAM = 14,
 	TOKEN_EXP = 15,
 	TOKEN_EOL = 16,
+	TOKEN_SCL = 18,
 }	t_type;
 
 typedef struct s_token
