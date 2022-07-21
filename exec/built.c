@@ -3,10 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   built.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/21 03:58:32 by sismaili         ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Updated: 2022/07/21 02:06:32 by ababouel         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/21 02:48:06 by sismaili         ###   ########.fr       */
+>>>>>>> d9ad61baf55aa857b9f83297a087a05fc78172e8
+>>>>>>> 7a32107417ce52dbec134308f86345d2cd0feebc
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +45,11 @@ void	path_cmd(t_data *dt)
 	if (!ft_strncmp(cmd->pathcmd, "/bin/pwd", ft_strlen(cmd->pathcmd)))
 		g_l.state = ft_pwd();
 	else if (!ft_strncmp(cmd->pathcmd, "/bin/echo", ft_strlen(cmd->pathcmd)))
+<<<<<<< HEAD
+		g_l.state = ft_echo(cmd);	
+=======
 		g_l.state = ft_echo(cmd);
+>>>>>>> d9ad61baf55aa857b9f83297a087a05fc78172e8
 	else
 		exec_pipe(dt);
 	exit(g_l.state);
@@ -48,8 +60,8 @@ void	built(t_data *data, t_lsdata *lsdata)
 	t_cmd	*cmd;
 
 	cmd = &data->cmd;
-	redic_open(cmd);
 	ft_stat_pipe_dup(data, lsdata);
+	redic_open(cmd);
 	if (cmd->pathcmd)
 		path_cmd(data);
 	else

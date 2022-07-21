@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+         #
+#    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
+<<<<<<< HEAD
+#    Updated: 2022/07/20 21:45:31 by ababouel         ###   ########.fr        #
+=======
 #    Updated: 2022/07/21 02:32:58 by sismaili         ###   ########.fr        #
+>>>>>>> d9ad61baf55aa857b9f83297a087a05fc78172e8
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +25,7 @@ GREEN = \033[0;32m
 CC = cc 
 CFLAGS = -Wall -Werror -Wextra -g
 BDIR = build
-FILES = main lexer/lexer lexer/lexerbis lexer/token lexer/lexerlst lexer/lexerlst parse/parstree\
+FILES = main main_tool lexer/lexer lexer/lexerbis lexer/token lexer/lexerlst lexer/lexerlst parse/parstree\
 		parse/parselst/parsetool parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio parse/filter_token\
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack\
 		tools/ft_isalpha exec/built exec/cd exec/echo exec/export exec/export2 exec/unset exec/pwd_env\
@@ -30,14 +34,14 @@ FILES = main lexer/lexer lexer/lexerbis lexer/token lexer/lexerlst lexer/lexerls
 		
 NAME = minishell
 OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))
-INC = -I ./inc -I /Users/sismaili/.brew/opt/readline/include
+INC = -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 HEADERS = inc/minishell.h inc/lib.h inc/token.h  inc/lexer.h inc/exec.h
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@printf "$(GRAY)-COMPILING Minishell...\n"
-	@$(CC) $(CFLAGS) $^ -o $@ -lreadline -L /Users/sismaili/.brew/opt/readline/lib 
+	@$(CC) $(CFLAGS) $^ -o $@ -lreadline -L /Users/ababouel/.brew/opt/readline/lib 
 	@printf "$(GREEN)Done !"
 
 $(BDIR)/%.o : %.c $(HEADERS)
