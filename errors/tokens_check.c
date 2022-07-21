@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 15:22:16 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/21 17:04:19 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	check_pipe(t_token *temp)
 				|| temp->type == TOKEN_DAND)
 				return (printf("syntax error near unexpected token `%s'\n",
 						temp->next->value), 0);
+			else if (!temp->next || temp->next->type == TOKEN_SCL)
+				return (printf("syntax error: unexpected end of file\n"), 0);
 			else
 				break ;
 		}
@@ -108,7 +110,8 @@ int	printtoken(t_lsnode *lstok)
 	while (temp)
 	{
 		if (temp->type == TOKEN_PIPE
-			|| temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND || temp->type == TOKEN_SCL)
+			|| temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND
+			|| temp->type == TOKEN_SCL)
 		{
 			g_l.state = 258;
 			return (printf("syntax error near unexpected token `%s'\n",
