@@ -21,7 +21,7 @@ GREEN = \033[0;32m
 CC = cc 
 CFLAGS = -Wall -Werror -Wextra -g
 BDIR = build
-FILES = main main_tool lexer/lexer lexer/lexerbis lexer/token lexer/lexerlst lexer/lexerlst parse/parstree\
+FILES = main main_tool main_toolbis lexer/lexer lexer/lexerbis lexer/token lexer/lexerlst lexer/lexerlst parse/parstree\
 		parse/parselst/parsetool parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio parse/filter_token\
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack\
 		tools/ft_isalpha exec/built exec/cd exec/echo exec/export exec/export2 exec/unset exec/pwd_env\

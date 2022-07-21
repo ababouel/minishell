@@ -16,8 +16,8 @@
 # include "lexer.h"
 # include "exec.h"
 
-void        execution(t_lsdata *data);
-char        *readline_t(void);
-t_lsnode    *add_init_lstok(t_lsnode *lstok, char *line);
+void		execution(t_lsdata *data);
+char		*readline_t(void);
+t_lsnode	*add_init_lstok(t_lsnode *lstok, char *line);
 
 #endif

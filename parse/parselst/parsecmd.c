@@ -13,19 +13,11 @@
 #include "exec.h"
 #include "lstree.h"
 
-void	parse_cmd(t_data *data, t_token *token, char **env)
+static void	add_cmdarg(t_cmd *cmd, t_token *token)
 {
-	int		size;
-	t_cmd	*cmd;
+	int	size;
 
 	size = 0;
-	cmd = &data->cmd;
-	if (cmd->pathcmd == NULL)
-	{
-		cmd->pathcmd = ft_which(token->value, env);
-		cmd->env = env;
-		cmd->export = cmd->env;
-	}
 	if (cmd->cmdarg != NULL && token->value != NULL)
 	{
 		size = ft_dstrlen(cmd->cmdarg);
@@ -40,7 +32,21 @@ void	parse_cmd(t_data *data, t_token *token, char **env)
 		if (token->value != NULL)
 			cmd->cmdarg[0] = ft_strdup(token->value);
 		else
-			cmd->cmdarg[0] = ft_strdup(""); 
+			cmd->cmdarg[0] = ft_strdup("");
 		cmd->cmdarg[1] = NULL;
 	}
+}
+
+void	parse_cmd(t_data *data, t_token *token, char **env)
+{
+	t_cmd	*cmd;
+
+	cmd = &data->cmd;
+	if (cmd->pathcmd == NULL)
+	{
+		cmd->pathcmd = ft_which(token->value, env);
+		cmd->env = env;
+		cmd->export = cmd->env;
+	}
+	add_cmdarg(cmd, token);
 }
