@@ -1,12 +1,14 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/ababouel/Documents/minishells'
 mkdir -p build
 cc  -Wall -Werror -Wextra -g -c main.c -o build/main.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build
 cc  -Wall -Werror -Wextra -g -c main_tool.c -o build/main_tool.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/lexer
 cc  -Wall -Werror -Wextra -g -c lexer/lexer.c -o build/lexer/lexer.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/lexer
+ 
 cc  -Wall -Werror -Wextra -g -c lexer/lexerbis.c -o build/lexer/lexerbis.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/lexer
 cc  -Wall -Werror -Wextra -g -c lexer/token.c -o build/lexer/token.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
@@ -20,6 +22,7 @@ mkdir -p build/parse/parselst
 cc  -Wall -Werror -Wextra -g -c parse/parselst/parsecmd.c -o build/parse/parselst/parsecmd.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/parse/parselst
 cc  -Wall -Werror -Wextra -g -c parse/parselst/parsepipe.c -o build/parse/parselst/parsepipe.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build/parse/parselst
 cc  -Wall -Werror -Wextra -g -c parse/parselst/parseio.c -o build/parse/parselst/parseio.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/parse
@@ -38,6 +41,7 @@ mkdir -p build/tools
 cc  -Wall -Werror -Wextra -g -c tools/freestack.c -o build/tools/freestack.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/tools
 cc  -Wall -Werror -Wextra -g -c tools/ft_isalpha.c -o build/tools/ft_isalpha.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build/exec
 cc  -Wall -Werror -Wextra -g -c exec/built.c -o build/exec/built.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec
@@ -66,6 +70,7 @@ mkdir -p build/env_var
 cc  -Wall -Werror -Wextra -g -c env_var/env_var_tools.c -o build/env_var/env_var_tools.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/errors
 cc  -Wall -Werror -Wextra -g -c errors/tokens_check.c -o build/errors/tokens_check.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build/errors
 cc  -Wall -Werror -Wextra -g -c errors/errors.c -o build/errors/errors.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 printf "\e[33;2;37m-COMPILING Minishell...\n"
