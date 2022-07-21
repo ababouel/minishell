@@ -2,6 +2,8 @@ make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/ababouel/Documents/minishells'
 mkdir -p build
 cc  -Wall -g -Werror -Wextra  -c main.c -o build/main.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+mkdir -p build
+cc  -Wall -g -Werror -Wextra  -c main_tool.c -o build/main_tool.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/lexer
 cc  -Wall -g -Werror -Wextra  -c lexer/lexer.c -o build/lexer/lexer.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/lexer
@@ -67,7 +69,7 @@ cc  -Wall -g -Werror -Wextra  -c errors/tokens_check.c -o build/errors/tokens_ch
 mkdir -p build/errors
 cc  -Wall -g -Werror -Wextra  -c errors/errors.c -o build/errors/errors.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 printf "\e[33;2;37m-COMPILING Minishell...\n"
-cc  -Wall -g -Werror -Wextra  build/main.o build/lexer/lexer.o build/lexer/lexerbis.o build/lexer/token.o build/lexer/lexerlst.o build/parse/parstree.o build/parse/parselst/parsetool.o build/parse/parselst/parsecmd.o build/parse/parselst/parsepipe.o build/parse/parselst/parseio.o build/parse/filter_token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o build/tools/ft_strjoin.o build/tools/freestack.o build/tools/ft_isalpha.o build/exec/built.o build/exec/cd.o build/exec/echo.o build/exec/export.o build/exec/export2.o build/exec/unset.o build/exec/pwd_env.o build/exec/ft_which.o build/exec/execution.o build/exec/exectool.o build/exec/sort_export.o build/env_var/env_var.o build/env_var/env_var_tools.o build/errors/tokens_check.o build/errors/errors.o -o minishell -lreadline -L /Users/ababouel/.brew/opt/readline/lib 
+cc  -Wall -g -Werror -Wextra  build/main.o build/main_tool.o build/lexer/lexer.o build/lexer/lexerbis.o build/lexer/token.o build/lexer/lexerlst.o build/parse/parstree.o build/parse/parselst/parsetool.o build/parse/parselst/parsecmd.o build/parse/parselst/parsepipe.o build/parse/parselst/parseio.o build/parse/filter_token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o build/tools/ft_strjoin.o build/tools/freestack.o build/tools/ft_isalpha.o build/exec/built.o build/exec/cd.o build/exec/echo.o build/exec/export.o build/exec/export2.o build/exec/unset.o build/exec/pwd_env.o build/exec/ft_which.o build/exec/execution.o build/exec/exectool.o build/exec/sort_export.o build/env_var/env_var.o build/env_var/env_var_tools.o build/errors/tokens_check.o build/errors/errors.o -o minishell -lreadline -L /Users/ababouel/.brew/opt/readline/lib 
 printf "\033[0;32mDone !"
 make: Leaving directory `/Users/ababouel/Documents/minishells'
  

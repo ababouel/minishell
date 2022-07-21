@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freestack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/20 19:04:33 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 23:45:42 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,23 @@ void	ft_freetree(t_lsdata *sk)
 			freedata(node);
 	}
 	init_lsdata(sk);
+}
+
+void	ft_freestackbis(t_lsnode *sk)
+{
+	t_token	*node;
+	t_token	*temp;
+
+	node = sk->head;
+	while (node != NULL)
+	{
+		temp = node;
+		node = node->next;
+		if (temp->type == TOKEN_EXP)
+			free(temp->value);
+		temp->value = NULL;
+		free(temp);
+		temp = NULL;
+	}
+	init_stack(sk);
 }

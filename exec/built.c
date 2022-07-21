@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/20 22:07:29 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:23:58 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	built(t_data *data, t_lsdata *lsdata)
 	t_cmd	*cmd;
 
 	cmd = &data->cmd;
-	redic_open(cmd);
 	ft_stat_pipe_dup(data, lsdata);
+	redic_open(cmd);
 	if (cmd->pathcmd)
 		path_cmd(data);
 	else

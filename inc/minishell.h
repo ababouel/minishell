@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:27:31 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/01 11:48:25 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 23:39:42 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,9 @@
 
 # include "lexer.h"
 # include "exec.h"
+
+void        execution(t_lsdata *data);
+char        *readline_t(void);
+t_lsnode    *add_init_lstok(t_lsnode *lstok, char *line);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lstree.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 20:26:21 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/20 23:49:25 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ int		ins_next_data(t_lsdata *stack, t_data *data);
 int		parse_redic(t_data *lsdata, t_token *token);
 t_data	*init_dt(char **env);
 int		ft_filter_token2(char *value);
+void	ft_freestackbis(t_lsnode *sk);
 
 #endif
