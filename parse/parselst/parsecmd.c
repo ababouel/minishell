@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/06 19:31:25 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:39:11 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ void	parse_cmd(t_data *data, t_token *token, char **env)
 		cmd->cmdarg[size - 1] = ft_strdup(token->value);
 		cmd->cmdarg[size] = NULL;
 	}
-	else
+	else if (cmd->cmdarg == NULL)
 	{
 		cmd->cmdarg = (char **)malloc(sizeof(char *) + 1);
-		cmd->cmdarg[0] = ft_strdup(token->value);
+		if (token->value != NULL)
+			cmd->cmdarg[0] = ft_strdup(token->value);
+		else
+			cmd->cmdarg[0] = ft_strdup(""); 
 		cmd->cmdarg[1] = NULL;
 	}
 }

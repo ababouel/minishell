@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 00:50:25 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:58:45 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int ac, char **av, char **env)
 			add_init_lstok(&lstok, line);
 			if (printtoken(&lstok))
 			{
+				// printoken(&lstok);
 				if (delete_var(&lstok, env))
 				{
 					init_lsdata(&lsdata);

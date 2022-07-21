@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/20 18:46:55 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:44:23 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ char	*remove_squote(char *cmd, int *check, int i)
 {
 	int	len;
 
-	if (cmd[i] == '\'' && *check != 4)
+	if (cmd[i] == '\'' && *check != 4 && *check != -1)
 	{
 		len = i;
 		cmd = remove_quote(cmd, '\'', len);
 		(*check) += 1;
 	}
-	if (*check % 2 == 0 && *check != 4)
+	if (*check % 2 == 0 && *check != 4 && *check != -1)
 	{
 		cmd = remove_quote(cmd, '\'', len);
 		check = 0;

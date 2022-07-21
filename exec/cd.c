@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:57:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/19 17:12:03 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:13:59 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void	ft_env_pwd(char **env)
 
 int	ft_cd(t_cmd *cmd)
 {
-	char	*join;
-
 	ft_env_oldpwd(cmd->env);
 	if (!cmd->cmdarg[1])
 	{
@@ -78,10 +76,7 @@ int	ft_cd(t_cmd *cmd)
 	}
 	if (chdir(cmd->cmdarg[1]) == -1)
 	{
-		join = ft_strjoin(cmd->cmdarg[0], ":");
-		join = ft_strjoin(join, " ");
-		join = ft_strjoin(join, cmd->cmdarg[1]);
-		perror(join);
+		printf("cd: %s: No such file or directory\n", cmd->cmdarg[1]);
 		return (1);
 	}
 	ft_env_pwd(cmd->env);
