@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:47:35 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 16:01:35 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:31:01 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,19 @@ int	error_unset(t_cmd *cmd, int i)
 	}
 }
 
+char	**ft_swap(char **env, int j)
+{
+	char	*tmp;
+
+	tmp = env[j];
+	env[j] = env[j + 1];
+	env[j + 1] = tmp;
+	return (env);
+}
+
 void	check_unset(t_cmd *cmd, int i)
 {
 	int		j;
-	char	*tmp;
 
 	j = 0;
 	while (cmd->env[j])
@@ -37,14 +46,11 @@ void	check_unset(t_cmd *cmd, int i)
 			{
 				if (cmd->env[j + 1] == NULL)
 				{
-					printf("%s\n", cmd->env[j]);
 					free (cmd->env[j]);
 					cmd->env[j] = NULL;
 					break ;
 				}
-				tmp = cmd->env[j];
-				cmd->env[j] = cmd->env[j + 1];
-				cmd->env[j + 1] = tmp;
+				cmd->env = ft_swap(cmd->env, j);
 				j++;
 			}
 		}
