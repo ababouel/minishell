@@ -6,7 +6,19 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/21 03:42:43 by ababouel         ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Updated: 2022/07/21 03:58:32 by sismaili         ###   ########.fr       */
+=======
+<<<<<<< HEAD
+/*   Updated: 2022/07/21 02:06:32 by ababouel         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/21 02:48:06 by sismaili         ###   ########.fr       */
+>>>>>>> d9ad61baf55aa857b9f83297a087a05fc78172e8
+>>>>>>> 7a32107417ce52dbec134308f86345d2cd0feebc
+>>>>>>> d70e89b8b9b8117b296c1696589cc9e397b368ea
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +54,6 @@ void	path_cmd(t_data *dt)
 		exec_pipe(dt);
 	exit(g_l.state);
 }
-
-// void	arg_cmd(t_data *dt)
-// {
-// 	t_cmd	*cmd;
-
-// 	cmd = &dt->cmd;
-// 	if (!ft_strncmp(cmd->cmdarg[0], "exit", ft_strlen("exit")))
-// 	{
-// 		write(1, "exit\n", 6);
-// 		exit(0);
-// 	}
-// }
 
 void	built(t_data *data, t_lsdata *lsdata)
 {
