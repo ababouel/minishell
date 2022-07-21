@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 04:04:07 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:45:16 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,6 @@ char	*ft_which1(char *cmd, char **spl, int j)
 {
 	char	*access;
 
-	// if (cmd[0] == '/')
-	// {
-	// 	spl = ft_freedt(spl);
-	// 	return (ft_strdup(cmd));
-	// }
 	if (cmd[0] == '.' && cmd[1] == '/')
 	{
 		spl = ft_freedt(spl);
@@ -112,7 +107,7 @@ char	*ft_which(char *cmd, char **env)
 	{
 		if (cmd[0] == '/')
 			return (ft_strdup(cmd));
-		if (ft_strncmp(env[i], "PATH", strlen("PATH")) == 0)
+		if (ft_strncmp(env[i], "PATH", ft_strlen("PATH")) == 0)
 		{
 			spl = ft_split(env[i], ":");
 			while (spl[j])
