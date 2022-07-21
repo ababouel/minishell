@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:57:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 00:13:59 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 02:19:56 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_cd(t_cmd *cmd)
 	ft_env_oldpwd(cmd->env);
 	if (!cmd->cmdarg[1])
 	{
-		chdir("/Users/sismaili");
+		chdir("/Users/ababouel");
 		return (0);
 	}
 	if (chdir(cmd->cmdarg[1]) == -1)

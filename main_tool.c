@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:36:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/20 23:59:09 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/21 02:32:39 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,29 @@ static int execbuilt(t_data *dt)
 {
     if (!ft_strncmp(dt->cmd.cmdarg[0], "export", ft_strlen("export")))
 	{
-		ft_export(&dt->cmd);
+		g_l.state = ft_export(&dt->cmd);
 		return (1);	
 	}
 	else if (!ft_strncmp(dt->cmd.cmdarg[0], "unset", ft_strlen("unset")))
 	{
-			ft_unset(&dt->cmd);
-			return (1);
+		g_l.state = ft_unset(&dt->cmd);
+		return (1);
 	}
 	else if (!ft_strncmp(dt->cmd.cmdarg[0], "exit", ft_strlen("exit")))
 	{
 		write(1, "exit\n", 6);
 		exit(0);
     }
+	else if (dt->cmd.pathcmd != NULL && !ft_strncmp(dt->cmd.pathcmd, "/usr/bin/env", ft_strlen(dt->cmd.pathcmd)))
+	{
+		g_l.state = ft_env(&dt->cmd);
+		return (1);
+	}
+	else if (dt->cmd.pathcmd != NULL && !ft_strncmp(dt->cmd.pathcmd, "/usr/bin/cd", ft_strlen(dt->cmd.pathcmd)))
+	{
+		g_l.state = ft_cd(&dt->cmd);
+		return (1);
+	}
     return (0);
 }
 
