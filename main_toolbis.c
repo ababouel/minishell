@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:42:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 17:36:12 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/22 00:06:00 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,8 @@
 static int	execpathcmd(t_data *dt)
 {
 	if (dt->cmd.pathcmd != NULL)
-	{
+	{	
 		if (!ft_strncmp(dt->cmd.pathcmd,
-				"/usr/bin/env", ft_strlen(dt->cmd.pathcmd)))
-		{
-			g_l.state = ft_env(&dt->cmd);
-			return (1);
-		}
-		else if (!ft_strncmp(dt->cmd.pathcmd,
 				"/usr/bin/cd", ft_strlen(dt->cmd.pathcmd)))
 		{
 			g_l.state = ft_cd(&dt->cmd);

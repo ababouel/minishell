@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exectool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 03:17:11 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 00:03:47 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,15 @@ int	filein(t_cmd *cmd)
 			open_here_doc(file[x].file, &cmd->ffd[0],
 				O_CREAT | O_RDWR | O_TRUNC);
 		if (file[x].type == TOKEN_RINPUT)
-			openfileredic(file[x].file, &cmd->ffd[0],
-				O_RDONLY);
+		{
+			openfileredic(file[x].file, &cmd->ffd[0], O_RDONLY);
+			if(cmd->ffd[0] == -1)
+			{
+				printf("%s: No such file or directory\n", file[x].file);
+				g_l.state = 1;
+				exit(g_l.state);
+			}
+		}
 		if (file[x].type == TOKEN_ROUTPUT)
 			openfileredic(file[x].file, &cmd->ffd[1],
 				O_WRONLY | O_CREAT | O_TRUNC);
