@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/20 22:27:38 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:07:13 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,23 @@ void	recursive(t_lsdata *data)
 	dt = data->head;
 	if (!ft_strncmp(dt->cmd.cmdarg[0], "export", ft_strlen("export")))
 	{
-		ft_export(&dt->cmd);
+		g_l.state = ft_export(&dt->cmd);
 		return ;	
 	}
 	else if (!ft_strncmp(dt->cmd.cmdarg[0], "unset", ft_strlen("unset")))
 	{
-			ft_unset(&dt->cmd);
+			g_l.state = ft_unset(&dt->cmd);
 			return ;
 	}
 	else if (!ft_strncmp(dt->cmd.cmdarg[0], "exit", ft_strlen("exit")))
 	{
 		write(1, "exit\n", 6);
 		exit(0);
+	}
+	else if (!ft_strncmp(dt->cmd.pathcmd, "/usr/bin/cd", ft_strlen(dt->cmd.pathcmd)))
+	{
+		g_l.state = ft_cd(&dt->cmd);
+		return ;
 	}
 	while (dt != NULL)
 	{
@@ -188,6 +193,7 @@ int main(int ac, char **av, char **env)
 			test = printtoken(&lstok);
 			if (test && test != 3)
 			{
+				// printoken(&lstok);
 				if (delete_var(&lstok, env))
 				{
 					// printoken(&lstok);
