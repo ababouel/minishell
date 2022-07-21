@@ -6,7 +6,11 @@
 #    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/07/20 21:45:31 by ababouel         ###   ########.fr        #
+=======
+#    Updated: 2022/07/21 02:32:58 by sismaili         ###   ########.fr        #
+>>>>>>> d9ad61baf55aa857b9f83297a087a05fc78172e8
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +23,7 @@ GRAY	=	\e[33;2;37m
 GREEN = \033[0;32m
 ###
 CC = cc 
-CFLAGS = -Wall -g -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra -g
 BDIR = build
 FILES = main main_tool lexer/lexer lexer/lexerbis lexer/token lexer/lexerlst lexer/lexerlst parse/parstree\
 		parse/parselst/parsetool parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio parse/filter_token\

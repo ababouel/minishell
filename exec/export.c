@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/19 22:14:20 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 03:00:10 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ char	**equal_export(t_cmd *cmd, int i, int j)
 		if (!ft_strncmp(cmd->env[size], cmd->cmdarg[i], len) && len == j
 			&& !ft_strncmp(cmd->export[size], cmd -> cmdarg[i], len))
 		{
-			cmd->env[size] = cmd->cmdarg[i];
-			cmd->export[size] = cmd->cmdarg[i];
+			cmd->env[size] = ft_strdup(cmd->cmdarg[i]);
+			cmd->export[size] = ft_strdup(cmd->cmdarg[i]);
 			return (cmd->env);
 		}
 		size++;
 	}
-	cmd->env[size] = cmd->cmdarg[i];
+	cmd->env[size] = ft_strdup(cmd->cmdarg[i]);
 	cmd->env[++size] = NULL;
 	return (cmd->env);
 }
@@ -95,6 +95,7 @@ char	**check_export(t_cmd *cmd, int i, int j)
 	check = 0;
 	while (cmd->cmdarg[i][j])
 	{
+		// printf("%s\n", cmd->cmdarg[i]);
 		if ((cmd->cmdarg[i][j] == '=' || (cmd->cmdarg[i][j] == '+'
 			&& cmd->cmdarg[i][j + 1] == '=')) && check == 0)
 		{
