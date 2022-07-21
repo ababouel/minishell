@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 16:12:20 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:15:02 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ int	main(int ac, char **av, char **env)
 		if (line != NULL)
 		{
 			add_init_lstok(&lstok, line);
+			init_lsdata(&lsdata);
 			if (printtoken(&lstok))
 			{
 				// printoken(&lstok);
 				if (delete_var(&lstok, d_env))
 				{
-					init_lsdata(&lsdata);
 					parsing(&lsdata, &lstok, d_env);
 					if (lsdata.head->cmd.cmdarg != NULL)
 						execution(&lsdata);
