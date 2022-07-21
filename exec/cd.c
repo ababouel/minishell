@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:57:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 02:19:56 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:16:45 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exec.h"
+
+// char	*cd_which(char *cmd, char **env)
+// {
+// 	char	*which;
+// 	int		i;
+// 	int		j;
+
+// 	i = 0;
+// 	j = 0;
+// 	while (env[i])
+// 	{
+// 		if (ft_strncmp(env[i], "HOME", strlen("HOME")) == 0)
+// 		{
+// 			while (env[i][j] != '=')
+// 				j++;
+// 			which = malloc(sizeof(char *) + ft_strlen(env[i]) - j);
+			
+// 		}
+// 		i++;
+// 	}
+// 	return (NULL);
+// }
 
 void	ft_env_oldpwd(char **env)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 04:14:25 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:00:52 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,27 @@ int	delete_var(t_lsnode *lstok, char **env)
 	return (1);
 }
 
+char	**dup_env(char **env)
+{
+	char	**temp_env;
+	int		i;
+
+	i = 0;
+	while(env[i])
+		i++;
+	temp_env = malloc(sizeof(char *) * (i + 1));
+	if (!temp_env)
+		return (NULL);
+	i = 0;
+	while (env[i])
+	{
+		temp_env[i] = ft_strdup(env[i]);
+		i++;
+	}
+	temp_env[i] = NULL;
+	return (temp_env);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	(void)ac;
@@ -41,9 +62,11 @@ int	main(int ac, char **av, char **env)
     char		*line;
     t_lsnode	lstok;
 	t_lsdata	lsdata;
+	char		**d_env;
 
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
+	d_env = dup_env(env);
 	while (1337)
 	{
 		g_l.g_pid = 1;
@@ -53,6 +76,7 @@ int	main(int ac, char **av, char **env)
 		if (!line)
 		{
 			write(1, "exit\n", 5);
+			d_env = ft_freedt(d_env);
 			exit(0);
 		}
 		if (line != NULL)
@@ -61,10 +85,10 @@ int	main(int ac, char **av, char **env)
 			if (printtoken(&lstok))
 			{
 				// printoken(&lstok);
-				if (delete_var(&lstok, env))
+				if (delete_var(&lstok, d_env))
 				{
 					init_lsdata(&lsdata);
-					parsing(&lsdata, &lstok, env);
+					parsing(&lsdata, &lstok, d_env);
 					if (lsdata.head->cmd.cmdarg != NULL)
 						execution(&lsdata);
 				}
