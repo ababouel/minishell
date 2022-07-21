@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/20 22:06:38 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/21 03:10:26 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	printtoken(t_lsnode *lstok)
 	while (temp)
 	{
 		if (temp->type == TOKEN_PIPE
-			|| temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND)
+			|| temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND || !ft_strncmp(temp->value, ";", 1))
 		{
 			g_l.state = 258;
 			return (printf("syntax error near unexpected token `%s'\n",

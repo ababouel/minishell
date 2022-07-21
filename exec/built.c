@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 02:48:06 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 03:58:32 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,6 @@ void	path_cmd(t_data *dt)
 		exec_pipe(dt);
 	exit(g_l.state);
 }
-
-// void	arg_cmd(t_data *dt)
-// {
-// 	t_cmd	*cmd;
-
-// 	cmd = &dt->cmd;
-// 	if (!ft_strncmp(cmd->cmdarg[0], "exit", ft_strlen("exit")))
-// 	{
-// 		write(1, "exit\n", 6);
-// 		exit(0);
-// 	}
-// }
 
 void	built(t_data *data, t_lsdata *lsdata)
 {

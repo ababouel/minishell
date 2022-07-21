@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_which.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/20 22:01:05 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/21 04:04:07 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ char	*ft_which1(char *cmd, char **spl, int j)
 {
 	char	*access;
 
-	if (cmd[0] == '/')
-	{
-		spl = ft_freedt(spl);
-		return (ft_strdup(cmd));
-	}
-	else if (cmd[0] == '.' && cmd[1] == '/')
+	// if (cmd[0] == '/')
+	// {
+	// 	spl = ft_freedt(spl);
+	// 	return (ft_strdup(cmd));
+	// }
+	if (cmd[0] == '.' && cmd[1] == '/')
 	{
 		spl = ft_freedt(spl);
 		return (point_slash(cmd));
@@ -107,8 +107,11 @@ char	*ft_which(char *cmd, char **env)
 
 	i = 0;
 	j = 0;
+	spl = NULL;
 	while (env[i])
 	{
+		if (cmd[0] == '/')
+			return (ft_strdup(cmd));
 		if (ft_strncmp(env[i], "PATH", strlen("PATH")) == 0)
 		{
 			spl = ft_split(env[i], ":");
@@ -122,6 +125,7 @@ char	*ft_which(char *cmd, char **env)
 		}
 		i++;
 	}
-	spl = ft_freedt(spl);
+	if (spl)
+		spl = ft_freedt(spl);
 	return (NULL);
 }

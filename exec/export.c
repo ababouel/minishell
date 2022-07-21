@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 03:00:10 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 03:00:59 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ char	**check_export(t_cmd *cmd, int i, int j)
 	check = 0;
 	while (cmd->cmdarg[i][j])
 	{
-		// printf("%s\n", cmd->cmdarg[i]);
 		if ((cmd->cmdarg[i][j] == '=' || (cmd->cmdarg[i][j] == '+'
 			&& cmd->cmdarg[i][j + 1] == '=')) && check == 0)
 		{
