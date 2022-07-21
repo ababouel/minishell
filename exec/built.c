@@ -6,11 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/07/21 02:06:32 by ababouel         ###   ########.fr       */
-=======
-/*   Updated: 2022/07/21 02:48:06 by sismaili         ###   ########.fr       */
->>>>>>> d9ad61baf55aa857b9f83297a087a05fc78172e8
+/*   Updated: 2022/07/21 03:42:43 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +37,7 @@ void	path_cmd(t_data *dt)
 	if (!ft_strncmp(cmd->pathcmd, "/bin/pwd", ft_strlen(cmd->pathcmd)))
 		g_l.state = ft_pwd();
 	else if (!ft_strncmp(cmd->pathcmd, "/bin/echo", ft_strlen(cmd->pathcmd)))
-<<<<<<< HEAD
 		g_l.state = ft_echo(cmd);	
-=======
-		g_l.state = ft_echo(cmd);
->>>>>>> d9ad61baf55aa857b9f83297a087a05fc78172e8
 	else
 		exec_pipe(dt);
 	exit(g_l.state);

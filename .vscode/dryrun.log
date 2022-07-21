@@ -1,75 +1,39 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/ababouel/Documents/minishells'
-mkdir -p build
-cc  -Wall -g -Werror -Wextra  -c main.c -o build/main.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build
-cc  -Wall -g -Werror -Wextra  -c main_tool.c -o build/main_tool.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/lexer
-cc  -Wall -g -Werror -Wextra  -c lexer/lexer.c -o build/lexer/lexer.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/lexer
-cc  -Wall -g -Werror -Wextra  -c lexer/lexerbis.c -o build/lexer/lexerbis.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/lexer
-cc  -Wall -g -Werror -Wextra  -c lexer/token.c -o build/lexer/token.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/lexer
-cc  -Wall -g -Werror -Wextra  -c lexer/lexerlst.c -o build/lexer/lexerlst.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/parse
-cc  -Wall -g -Werror -Wextra  -c parse/parstree.c -o build/parse/parstree.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/parse/parselst
-cc  -Wall -g -Werror -Wextra  -c parse/parselst/parsetool.c -o build/parse/parselst/parsetool.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/parse/parselst
-cc  -Wall -g -Werror -Wextra  -c parse/parselst/parsecmd.c -o build/parse/parselst/parsecmd.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/parse/parselst
-cc  -Wall -g -Werror -Wextra  -c parse/parselst/parsepipe.c -o build/parse/parselst/parsepipe.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/parse/parselst
-cc  -Wall -g -Werror -Wextra  -c parse/parselst/parseio.c -o build/parse/parselst/parseio.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/parse
-cc  -Wall -g -Werror -Wextra  -c parse/filter_token.c -o build/parse/filter_token.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/tools
-cc  -Wall -g -Werror -Wextra  -c tools/ft_split.c -o build/tools/ft_split.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/tools
-cc  -Wall -g -Werror -Wextra  -c tools/ft_strncmp.c -o build/tools/ft_strncmp.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/tools
-cc  -Wall -g -Werror -Wextra  -c tools/lsnode.c -o build/tools/lsnode.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/tools
-cc  -Wall -g -Werror -Wextra  -c tools/ft_strdup.c -o build/tools/ft_strdup.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/tools
-cc  -Wall -g -Werror -Wextra  -c tools/ft_strjoin.c -o build/tools/ft_strjoin.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/tools
-cc  -Wall -g -Werror -Wextra  -c tools/freestack.c -o build/tools/freestack.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
-mkdir -p build/tools
-cc  -Wall -g -Werror -Wextra  -c tools/ft_isalpha.c -o build/tools/ft_isalpha.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec
-cc  -Wall -g -Werror -Wextra  -c exec/built.c -o build/exec/built.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c exec/built.c -o build/exec/built.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build/exec
-cc  -Wall -g -Werror -Wextra  -c exec/cd.c -o build/exec/cd.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c exec/cd.c -o build/exec/cd.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec
-cc  -Wall -g -Werror -Wextra  -c exec/echo.c -o build/exec/echo.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c exec/echo.c -o build/exec/echo.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec
-cc  -Wall -g -Werror -Wextra  -c exec/export.c -o build/exec/export.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c exec/export.c -o build/exec/export.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec
-cc  -Wall -g -Werror -Wextra  -c exec/export2.c -o build/exec/export2.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c exec/export2.c -o build/exec/export2.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec
-cc  -Wall -g -Werror -Wextra  -c exec/unset.c -o build/exec/unset.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c exec/unset.c -o build/exec/unset.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec
-cc  -Wall -g -Werror -Wextra  -c exec/pwd_env.c -o build/exec/pwd_env.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c exec/pwd_env.c -o build/exec/pwd_env.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec
-cc  -Wall -g -Werror -Wextra  -c exec/ft_which.c -o build/exec/ft_which.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c exec/ft_which.c -o build/exec/ft_which.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec
-cc  -Wall -g -Werror -Wextra  -c exec/execution.c -o build/exec/execution.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c exec/execution.c -o build/exec/execution.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec
-cc  -Wall -g -Werror -Wextra  -c exec/exectool.c -o build/exec/exectool.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c exec/exectool.c -o build/exec/exectool.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/exec
-cc  -Wall -g -Werror -Wextra  -c exec/sort_export.c -o build/exec/sort_export.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c exec/sort_export.c -o build/exec/sort_export.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/env_var
-cc  -Wall -g -Werror -Wextra  -c env_var/env_var.c -o build/env_var/env_var.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c env_var/env_var.c -o build/env_var/env_var.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/env_var
-cc  -Wall -g -Werror -Wextra  -c env_var/env_var_tools.c -o build/env_var/env_var_tools.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c env_var/env_var_tools.c -o build/env_var/env_var_tools.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build/errors
-cc  -Wall -g -Werror -Wextra  -c errors/tokens_check.c -o build/errors/tokens_check.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c errors/tokens_check.c -o build/errors/tokens_check.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/errors
-cc  -Wall -g -Werror -Wextra  -c errors/errors.c -o build/errors/errors.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+cc  -Wall -Werror -Wextra -g -c errors/errors.c -o build/errors/errors.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 printf "\e[33;2;37m-COMPILING Minishell...\n"
-cc  -Wall -g -Werror -Wextra  build/main.o build/main_tool.o build/lexer/lexer.o build/lexer/lexerbis.o build/lexer/token.o build/lexer/lexerlst.o build/parse/parstree.o build/parse/parselst/parsetool.o build/parse/parselst/parsecmd.o build/parse/parselst/parsepipe.o build/parse/parselst/parseio.o build/parse/filter_token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o build/tools/ft_strjoin.o build/tools/freestack.o build/tools/ft_isalpha.o build/exec/built.o build/exec/cd.o build/exec/echo.o build/exec/export.o build/exec/export2.o build/exec/unset.o build/exec/pwd_env.o build/exec/ft_which.o build/exec/execution.o build/exec/exectool.o build/exec/sort_export.o build/env_var/env_var.o build/env_var/env_var_tools.o build/errors/tokens_check.o build/errors/errors.o -o minishell -lreadline -L /Users/ababouel/.brew/opt/readline/lib 
+cc  -Wall -Werror -Wextra -g build/main.o build/main_tool.o build/lexer/lexer.o build/lexer/lexerbis.o build/lexer/token.o build/lexer/lexerlst.o build/parse/parstree.o build/parse/parselst/parsetool.o build/parse/parselst/parsecmd.o build/parse/parselst/parsepipe.o build/parse/parselst/parseio.o build/parse/filter_token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o build/tools/ft_strjoin.o build/tools/freestack.o build/tools/ft_isalpha.o build/exec/built.o build/exec/cd.o build/exec/echo.o build/exec/export.o build/exec/export2.o build/exec/unset.o build/exec/pwd_env.o build/exec/ft_which.o build/exec/execution.o build/exec/exectool.o build/exec/sort_export.o build/env_var/env_var.o build/env_var/env_var_tools.o build/errors/tokens_check.o build/errors/errors.o -o minishell -lreadline -L /Users/ababouel/.brew/opt/readline/lib 
 printf "\033[0;32mDone !"
 make: Leaving directory `/Users/ababouel/Documents/minishells'
  
