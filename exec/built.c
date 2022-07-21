@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 14:21:01 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 00:17:16 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 02:48:06 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,22 @@ void	path_cmd(t_data *dt)
 		g_l.state = ft_pwd();
 	else if (!ft_strncmp(cmd->pathcmd, "/bin/echo", ft_strlen(cmd->pathcmd)))
 		g_l.state = ft_echo(cmd);
-	// else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/cd", ft_strlen(cmd->pathcmd)))
-	// 	g_l.state = ft_cd(cmd);
-	else if (!ft_strncmp(cmd->pathcmd, "/usr/bin/env", ft_strlen(cmd->pathcmd)))
-		g_l.state = ft_env(cmd);
 	else
 		exec_pipe(dt);
 	exit(g_l.state);
 }
 
-void	arg_cmd(t_data *dt)
-{
-	t_cmd	*cmd;
+// void	arg_cmd(t_data *dt)
+// {
+// 	t_cmd	*cmd;
 
-	cmd = &dt->cmd;
-	if (!ft_strncmp(cmd->cmdarg[0], "exit", ft_strlen("exit")))
-	{
-		write(1, "exit\n", 6);
-		exit(0);
-	}
-}
+// 	cmd = &dt->cmd;
+// 	if (!ft_strncmp(cmd->cmdarg[0], "exit", ft_strlen("exit")))
+// 	{
+// 		write(1, "exit\n", 6);
+// 		exit(0);
+// 	}
+// }
 
 void	built(t_data *data, t_lsdata *lsdata)
 {

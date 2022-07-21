@@ -6,7 +6,7 @@
 #    By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
-#    Updated: 2022/07/20 23:58:44 by sismaili         ###   ########.fr        #
+#    Updated: 2022/07/21 02:32:58 by sismaili         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ GRAY	=	\e[33;2;37m
 GREEN = \033[0;32m
 ###
 CC = cc 
-CFLAGS = -Wall -g -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra -g
 BDIR = build
 FILES = main lexer/lexer lexer/lexerbis lexer/token lexer/lexerlst lexer/lexerlst parse/parstree\
 		parse/parselst/parsetool parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio parse/filter_token\

@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 05:29:58 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 00:55:30 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:57:49 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,32 +53,6 @@ t_token	*lexer_parse_exp(t_lexer *lexer)
 	}
 	return (init_token(TOKEN_EXP, value));
 }
-
-// t_token	*lexer_parse_exp(t_lexer *lexer)
-// {
-// 	char	*value;
-// 	int		isqted;
-// 	int		isqtes;
-// 	char	*c;
-// 	int		len;
-
-// 	len = 0;
-// 	isqted = 0;
-// 	isqtes = 0;
-// 	value = NULL;
-// 	c = lexer->src + lexer->i;
-// 	while (c[len] != '\0'
-// 		&& (isqted == 1 || isqtes == 1 || !is_delim(c[len], " |<>\0")))
-// 	{
-// 		isqted = is_qte(lexer, isqted, '"');
-// 		isqtes = is_qte(lexer, isqtes, '\'');
-// 		len++;
-// 	}
-// 	value = ft_strndup(lexer->src + lexer->i, len);
-// 	while (len--)
-// 		lexer_advance(lexer);
-// 	return (init_token(TOKEN_EXP, value));
-// }
 
 t_token	*lexer_parse_quote(t_lexer *lexer, char ch, t_type type)
 {

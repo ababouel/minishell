@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 23:36:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 01:07:13 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 02:59:00 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	recursive(t_lsdata *data)
 	if (!ft_strncmp(dt->cmd.cmdarg[0], "export", ft_strlen("export")))
 	{
 		g_l.state = ft_export(&dt->cmd);
-		return ;	
+		return ;
 	}
 	else if (!ft_strncmp(dt->cmd.cmdarg[0], "unset", ft_strlen("unset")))
 	{
@@ -58,9 +58,14 @@ void	recursive(t_lsdata *data)
 		write(1, "exit\n", 6);
 		exit(0);
 	}
-	else if (!ft_strncmp(dt->cmd.pathcmd, "/usr/bin/cd", ft_strlen(dt->cmd.pathcmd)))
+	else if (dt->cmd.pathcmd != NULL && !ft_strncmp(dt->cmd.pathcmd, "/usr/bin/cd", ft_strlen(dt->cmd.pathcmd)))
 	{
 		g_l.state = ft_cd(&dt->cmd);
+		return ;
+	}
+	else if (dt->cmd.pathcmd != NULL && !ft_strncmp(dt->cmd.pathcmd, "/usr/bin/env", ft_strlen(dt->cmd.pathcmd)))
+	{
+		g_l.state = ft_env(&dt->cmd);
 		return ;
 	}
 	while (dt != NULL)
