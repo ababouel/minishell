@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 17:04:19 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:02:19 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	printtoken(t_lsnode *lstok)
 		if (!check_pipe(temp))
 		{
 			g_l.state = 258;
-			return (3);
+			return (0);
 		}
 		temp = temp->next;
 	}

@@ -6,27 +6,11 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 16:45:16 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/21 17:52:17 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
-
-char	**ft_freedt(char **data)
-{
-	int	i;
-
-	i = 0;
-	while (data[i])
-	{
-		free(data[i]);
-		data[i] = NULL;
-		i++;
-	}
-	free(data);
-	data = NULL;
-	return (data);
-}
 
 char	*point_slash(char *cmd)
 {
@@ -93,6 +77,26 @@ char	*ft_which1(char *cmd, char **spl, int j)
 	}
 }
 
+char	*ft_which2(char *cmd, char *env, char *which)
+{
+	char	**spl;
+	int		i;
+
+	i = 0;
+	spl = NULL;
+	spl = ft_split(env, ":");
+	while (spl[i])
+	{
+		which = ft_which1(cmd, spl, i);
+		if (which)
+			return (which);
+		i++;
+	}
+	if (spl)
+		spl = ft_freedt(spl);
+	return (NULL);
+}
+
 char	*ft_which(char *cmd, char **env)
 {
 	char	**spl;
@@ -109,14 +113,9 @@ char	*ft_which(char *cmd, char **env)
 			return (ft_strdup(cmd));
 		if (ft_strncmp(env[i], "PATH", ft_strlen("PATH")) == 0)
 		{
-			spl = ft_split(env[i], ":");
-			while (spl[j])
-			{
-				which = ft_which1(cmd, spl, j);
-				if (which)
-					return (which);
-				j++;
-			}
+			which = ft_which2(cmd, env[i], which);
+			if (which)
+				return (which);
 		}
 		i++;
 	}
