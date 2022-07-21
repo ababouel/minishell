@@ -3,16 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   freestack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/20 23:45:42 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/21 17:51:52 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "lib.h"
 #include "lstree.h"
+
+char	**ft_freedt(char **data)
+{
+	int	i;
+
+	i = 0;
+	while (data[i])
+	{
+		free(data[i]);
+		data[i] = NULL;
+		i++;
+	}
+	free(data);
+	data = NULL;
+	return (data);
+}
 
 static void	freedata(t_data *item)
 {
