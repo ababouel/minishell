@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 00:44:23 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:45:18 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ int	check_doll(char *cmd, int i)
 		return (0);
 	else if (cmd[i + 1] == '$')
 		return (0);
-	else if (cmd[i + 1] == '?')
-		return (0);
+	// else if (cmd[i + 1] == '?')
+	// 	return (0);
 	else
 		return (1);
 }
 
 char	*join_new(char *new, char *var, char **env, int l)
 {
+
 	var[l] = '\0';
 	var = search_in_env(env, var);
 	if (var)
@@ -48,16 +49,22 @@ char	*fill_new(char *new, char *cmd, char **env, int *i)
 		return (NULL);
 	l = 0;
 	(*i)++;
-	while (cmd[*i] && cmd[*i] != '$'
-		&& (ft_isalpha(cmd[*i]) || ft_isdigit(cmd[*i])))
-	{
-		if (ft_isdigit(cmd[*i]) && cmd[*i - 1] == '$')
-		{
-			var[l++] = cmd[(*i)++];
-			break ;
-		}
+	if (cmd[*i] && cmd[*i] == '?')
 		var[l++] = cmd[(*i)++];
+	else
+	{
+		while (cmd[*i] && cmd[*i] != '$'
+			&& (ft_isalpha(cmd[*i]) || ft_isdigit(cmd[*i])))
+		{
+			if (ft_isdigit(cmd[*i]) && cmd[*i - 1] == '$')
+			{
+				var[l++] = cmd[(*i)++];
+				break ;
+			}
+			var[l++] = cmd[(*i)++];
+		}
 	}
+	var[l] = '\0';
 	new = join_new(new, var, env, l);
 	return (new);
 }

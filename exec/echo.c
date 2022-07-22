@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 20:44:53 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 01:29:09 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:36:33 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,16 @@
 
 void	check_echo(t_cmd *cmd, int check, int i)
 {
-	int	j;
+	// int	j;
 
 	if (check == 1)
 		i++;
 	while (cmd->cmdarg[i])
 	{
-		j = 0;
-		while (cmd->cmdarg[i][j])
-		{
-			if (cmd->cmdarg[i][j] == '$' && cmd->cmdarg[i][j + 1] == '?')
-			{
-				printf("%d", g_l.state);
-				j += 2;
-			}
-			else
-				printf("%c", cmd->cmdarg[i][j++]);
-		}
+		printf("%s", cmd->cmdarg[i]);
+		// j = 0;
+		// while (cmd->cmdarg[i][j])
+		// 	printf("%c", cmd->cmdarg[i][j++]);
 		i++;
 		if (cmd->cmdarg[i])
 			printf(" ");

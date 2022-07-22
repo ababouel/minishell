@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:11:22 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/20 18:43:59 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 15:48:56 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ char	*search_in_env(char **env, char *var)
 	i = 0;
 	len = 0;
 	new = NULL;
+	if (var[0] == '?')
+	{
+		free (var);
+		return (ft_itoa(g_l.state));
+	}
 	while (env[i])
 	{
 		j = 0;
