@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/20 14:13:23 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 18:50:38 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 
 typedef struct s_gl
 {
-	int	g_pid;
-	int	state;
+	int		g_pid;
+	int		state;
+	char	**export;
 }	t_gl;
 
 t_gl	g_l;
@@ -58,5 +59,6 @@ void	exec_pipe(t_data *dt);
 void	redic_close(t_cmd *cmd);
 void	redic_open(t_cmd *cmd);
 char	**ft_freedt(char **data);
+char	*fill_new(char *new, char *cmd, char **env, int *i);
 
 #endif

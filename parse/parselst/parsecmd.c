@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 15:12:41 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 16:03:43 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	parse_cmd(t_data *data, t_token *token, char **env)
 	{
 		cmd->pathcmd = ft_which(token->value, env);
 		cmd->env = env;
-		cmd->export = dup_env(cmd->env);
+		cmd->export = g_l.export;
 	}
 	add_cmdarg(cmd, token);
 }

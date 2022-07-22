@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_toolbis.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:42:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 00:06:00 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/22 16:17:40 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,23 @@ static int	execpathcmd(t_data *dt)
 
 static int	execbuilt(t_data *dt)
 {
-	if (!ft_strncmp(dt->cmd.cmdarg[0], "export", ft_strlen("export")))
+	if (dt->cmd.cmdarg)
 	{
-		g_l.state = ft_export(&dt->cmd);
-		return (1);
-	}
-	else if (!ft_strncmp(dt->cmd.cmdarg[0], "unset", ft_strlen("unset")))
-	{
-		g_l.state = ft_unset(&dt->cmd);
-		return (1);
-	}
-	else if (!ft_strncmp(dt->cmd.cmdarg[0], "exit", ft_strlen("exit")))
-	{
-		write(1, "exit\n", 6);
-		exit(0);
+		if (!ft_strncmp(dt->cmd.cmdarg[0], "export", ft_strlen("export")))
+		{
+			g_l.state = ft_export(&dt->cmd);
+			return (1);
+		}
+		else if (!ft_strncmp(dt->cmd.cmdarg[0], "unset", ft_strlen("unset")))
+		{
+			g_l.state = ft_unset(&dt->cmd);
+			return (1);
+		}
+		else if (!ft_strncmp(dt->cmd.cmdarg[0], "exit", ft_strlen("exit")))
+		{
+			write(1, "exit\n", 6);
+			exit(0);
+		}
 	}
 	return (0);
 }

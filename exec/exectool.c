@@ -3,38 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   exectool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 00:03:47 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/22 18:59:05by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-static void	open_here_doc(char *eof, int *fd, int flag)
+char	*search_var1(char *cmd, char **env)
+{
+	int		i;
+	char	*new;
+	char	*temp;
+
+	i = 0;
+	new = NULL;
+	while (cmd[i])
+	{
+		if (cmd[i] == '$')
+			new = fill_new(new, cmd, env, &i);
+		else
+		{
+			temp = malloc(2);
+			temp[0] = cmd[i++];
+			temp[1] = '\0';
+			new = ft_strjoinbis(new, temp);
+			free (temp);
+		}
+	}
+	return (new);
+}
+
+static void	open_here_doc(char *eof, t_cmd *cmd, int flag)
 {
 	char	*buf;
 	char	fdh;
+	int		i;
 
-	if (*fd > 0)
-		close(*fd);
-	fdh = open("/tmp/.hedoc", flag, 0644);
-	buf = ft_strdup("");
+	i = 0;
+	if (cmd->ffd[0] > 0)
+		close(cmd->ffd[0]);
+	fdh = open("/tmp/.hedoc", flag, 0777);
 	while (1337)
 	{
 		buf = readline("> ");
+		i = 0;
 		if (buf == NULL || (buf && ft_strcmp(buf, eof) == 0))
 			break ;
+		buf = search_var1(buf, cmd->env);
 		write(fdh, buf, ft_strlen(buf));
 		write(fdh, "\n", 1);
 		free(buf);
-		buf = ft_strdup("");
 	}
 	free(buf);
 	buf = NULL;
 	close(fdh);
-	*fd = open("/tmp/.hedoc", O_RDONLY, 0644);
+	cmd->ffd[0] = open("/tmp/.hedoc", O_RDONLY, 0644);
 }
 
 static void	openfileredic(char *file, int *fd, int flags)
@@ -54,7 +80,7 @@ int	filein(t_cmd *cmd)
 	while (file[x].file != NULL)
 	{
 		if (file[x].type == TOKEN_DRINPUT)
-			open_here_doc(file[x].file, &cmd->ffd[0],
+			open_here_doc(file[x].file, cmd,
 				O_CREAT | O_RDWR | O_TRUNC);
 		if (file[x].type == TOKEN_RINPUT)
 		{

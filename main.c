@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 18:28:34 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/22 19:27:51 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int	exitcheck(char **env, char *line)
 	{
 		write(1, "exit\n", 5);
 		env = ft_freedt(env);
+		// g_l.export = ft_freedt(g_l.export);
 		return (1);
 	}
 	return (0);
@@ -28,6 +29,7 @@ static void	loop_line(char **env, char *line)
 	t_lsnode	lstok;
 	t_lsdata	lsdata;
 
+	// (void)env;
 	if (line != NULL)
 	{
 		add_init_lstok(&lstok, line);
@@ -37,10 +39,10 @@ static void	loop_line(char **env, char *line)
 			if (delete_var(&lstok, env))
 			{
 				parsing(&lsdata, &lstok, env);
-				if (lsdata.head->cmd.cmdarg != NULL)
+				if (lsdata.head->cmd.name || lsdata.head->cmd.cmdarg != NULL)
 					execution(&lsdata);
 			}
-			ft_freestack(&lstok);
+			ft_freestackbis(&lstok);
 			ft_freetree(&lsdata);
 		}
 		else
@@ -62,15 +64,19 @@ int	main(int ac, char **av, char **env)
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 	d_env = dup_env(env);
+	g_l.export = env;
 	while (1337)
 	{
 		g_l.g_pid = 1;
 		line = readline_t();
 		g_l.g_pid = 0;
+		// line = ft_strdup(av[2]);
 		add_history(line);
 		if (exitcheck(d_env, line))
 			exit(0);
 		loop_line(d_env, line);
+		// break;
 	}
+		d_env = ft_freedt(d_env);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:35:05 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 17:51:52 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 18:40:38 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,22 @@ char	**ft_freedt(char **data)
 
 static void	freedata(t_data *item)
 {
+	int x;
+	x = 0;
 	if (item->cmd.pathcmd != NULL)
 		free(item->cmd.pathcmd);
 	if (item->cmd.cmdarg != NULL)
 		item->cmd.cmdarg = ft_freedt(item->cmd.cmdarg);
 	if (item->cmd.name != NULL)
+	{
+		while(item->cmd.name[x].file != NULL)
+		{
+			free(item->cmd.name[x].file);
+			item->cmd.name[x].file = NULL;
+			x++;
+		}
 		free(item->cmd.name);
+	}
 	item->cmd.pathcmd = NULL;
 	item->cmd.name = NULL;
 	free(item);
@@ -89,9 +99,7 @@ void	ft_freestackbis(t_lsnode *sk)
 	while (node != NULL)
 	{
 		temp = node;
-		node = node->next;
-		if (temp->type == TOKEN_EXP)
-			free(temp->value);
+		node = node->next;	
 		temp->value = NULL;
 		free(temp);
 		temp = NULL;

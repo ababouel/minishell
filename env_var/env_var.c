@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/22 15:45:18 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 19:24:51 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	check_doll(char *cmd, int i)
 		return (0);
 	else if (cmd[i + 1] == '$')
 		return (0);
-	// else if (cmd[i + 1] == '?')
-	// 	return (0);
 	else
 		return (1);
 }
@@ -88,6 +86,20 @@ char	*remove_squote(char *cmd, int *check, int i)
 	return (cmd);
 }
 
+int	check_dollar(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == '$')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 char	*search_var(char *cmd, char **env, int check)
 {
 	int		i;
@@ -96,19 +108,24 @@ char	*search_var(char *cmd, char **env, int check)
 
 	i = 0;
 	new = NULL;
-	while (cmd[i])
+	if (check_dollar(cmd))
 	{
-		cmd = remove_squote(cmd, &check, i);
-		if (cmd[i] == '$' && check_doll(cmd, i) && check != 1)
-			new = fill_new(new, cmd, env, &i);
-		else
+		while (cmd[i])
 		{
-			temp = malloc(2);
-			temp[0] = cmd[i++];
-			temp[1] = '\0';
-			new = ft_strjoinbis(new, temp);
-			free (temp);
+			cmd = remove_squote(cmd, &check, i);
+			if (cmd[i] == '$' && check_doll(cmd, i) && check != 1)
+				new = fill_new(new, cmd, env, &i);
+			else
+			{
+				temp = malloc(2);
+				temp[0] = cmd[i++];
+				temp[1] = '\0';
+				new = ft_strjoinbis(new, temp);
+				free (temp);
+			}
 		}
+		return (new);
 	}
-	return (new);
+	else
+		return (cmd);
 }

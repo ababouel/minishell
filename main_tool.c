@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_tool.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:36:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 17:51:10 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/22 19:25:46 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,11 @@ int	delete_var(t_lsnode *lstok, char **env)
 			return (0);
 		val = temp->value;
 		temp->value = search_var(temp->value, env, check);
-		if (temp->type == TOKEN_EXP)
+		if (temp->type == TOKEN_EXP 
+			|| temp->type == TOKEN_DRINPUT
+			|| temp->type == TOKEN_RINPUT
+			|| temp->type == TOKEN_ROUTPUT
+			|| temp->type == TOKEN_DROUTPUT)
 			free(val);
 		temp = temp->next;
 	}
