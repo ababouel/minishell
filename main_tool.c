@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_tool.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:36:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 19:38:12 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 22:10:49 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ char	**dup_env(char **env)
 	return (temp_env);
 }
 
+static int	check_dollar(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == '$')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	delete_var(t_lsnode *lstok, char **env)
 {
 	t_token	*temp;
@@ -61,14 +75,17 @@ int	delete_var(t_lsnode *lstok, char **env)
 		check = ft_filter_token2(temp->value);
 		if (check == -1)
 			return (0);
-		val = temp->value;
-		temp->value = search_var(temp->value, env, check);
-		if (temp->type == TOKEN_EXP 
-			|| temp->type == TOKEN_DRINPUT
-			|| temp->type == TOKEN_RINPUT
-			|| temp->type == TOKEN_ROUTPUT
-			|| temp->type == TOKEN_DROUTPUT)
-			free(val);
+		if (check_dollar(temp->value))
+		{
+			val = temp->value;
+			temp->value = search_var(temp->value, env, check);
+			if (temp->type == TOKEN_EXP
+				|| temp->type == TOKEN_DRINPUT
+				|| temp->type == TOKEN_RINPUT
+				|| temp->type == TOKEN_ROUTPUT
+				|| temp->type == TOKEN_DROUTPUT)
+				free(val);
+		}
 		temp = temp->next;
 	}
 	return (1);

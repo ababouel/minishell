@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/22 20:00:27 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 22:15:16 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,24 +108,20 @@ char	*search_var(char *cmd, char **env, int check)
 
 	i = 0;
 	new = NULL;
-	if (check_dollar(cmd))
+	temp = NULL;
+	while (cmd[i])
 	{
-		while (cmd[i])
+		cmd = remove_squote(cmd, &check, i);
+		if (cmd[i] == '$' && check_doll(cmd, i) && check != 1)
+			new = fill_new(new, cmd, env, &i);
+		else
 		{
-			cmd = remove_squote(cmd, &check, i);
-			if (cmd[i] == '$' && check_doll(cmd, i) && check != 1)
-				new = fill_new(new, cmd, env, &i);
-			else
-			{
-				temp = malloc(2);
-				temp[0] = cmd[i++];
-				temp[1] = '\0';
-				new = ft_strjoinbis(new, temp);
-				free (temp);
-			}
+			temp = malloc(2);
+			temp[0] = cmd[i++];
+			temp[1] = '\0';
+			new = ft_strjoinbis(new, temp);
+			free (temp);
 		}
-		return (new);
 	}
-	else
-		return (cmd);
+		return (new);
 }

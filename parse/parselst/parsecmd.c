@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsecmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 16:03:43 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 21:38:58 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ static void	add_cmdarg(t_cmd *cmd, t_token *token)
 		size = ft_dstrlen(cmd->cmdarg);
 		cmd->cmdarg = (char **)ft_drealloc((void **) cmd->cmdarg,
 				sizeof(char *) * (size + 1));
-		cmd->cmdarg[size - 1] = ft_strdup(token->value);
+		cmd->cmdarg[size - 1] = token->value;
 		cmd->cmdarg[size] = NULL;
 	}
 	else if (cmd->cmdarg == NULL)
 	{
 		cmd->cmdarg = (char **)malloc(sizeof(char *) + 1);
 		if (token->value != NULL)
-			cmd->cmdarg[0] = ft_strdup(token->value);
+			cmd->cmdarg[0] = token->value;
 		else
 			cmd->cmdarg[0] = ft_strdup("");
 		cmd->cmdarg[1] = NULL;

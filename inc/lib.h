@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lib.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 15:34:04 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 22:03:14 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 
 int				ins_next_node(t_lsnode *stack, t_token *token);
 void			init_stack(t_lsnode *stack);
-void			ft_freestack(t_lsnode *sk);
 unsigned int	is_delim(char c, char *delim);
 char			**ft_split(char const *s, char *c);
 size_t			ft_strlen(const char *s);
