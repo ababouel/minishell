@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 19:27:51 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/22 20:01:11 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ static void	loop_line(char **env, char *line)
 		{
 			if (delete_var(&lstok, env))
 			{
+				t_token *token = lstok.head;
+				while(token)
+				{
+					printf("token=> %s\n", token->value);
+					token = token->next;
+				}
 				parsing(&lsdata, &lstok, env);
 				if (lsdata.head->cmd.name || lsdata.head->cmd.cmdarg != NULL)
 					execution(&lsdata);
