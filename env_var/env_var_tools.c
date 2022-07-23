@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_var_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:11:22 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/22 15:48:56 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:37:32 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/exec.h"
+#include "exec.h"
 
 char	*return_new(char *new, char **env, int i, int j)
 {

@@ -1,6 +1,9 @@
 {
     "C_Cpp.errorSquiggles": "Disabled",
     "files.associations": {
-        "lstree.h": "c"
+        "lstree.h": "c",
+        "locale": "c",
+        "string": "c",
+        "exec.h": "c"
     }
 }

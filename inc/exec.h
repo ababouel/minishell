@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 18:50:38 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/23 02:44:30 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@
 # include <sys/wait.h>
 # include <termios.h>
 
+typedef struct s_val
+{
+	char			*value;
+	struct s_val	*next;
+	struct s_val	*prev;	
+}	t_val;
+typedef struct s_env
+{
+	t_val	*head;
+	t_val	*tail;
+	int		size;
+}	t_env;
 typedef struct s_gl
 {
 	int		g_pid;

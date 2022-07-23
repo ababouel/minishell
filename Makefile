@@ -6,7 +6,7 @@
 #    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
-#    Updated: 2022/07/22 21:01:01 by ababouel         ###   ########.fr        #
+#    Updated: 2022/07/23 01:34:49 by ababouel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ FILES = main main_tool main_toolbis lexer/lexer lexer/lexerbis lexer/token lexer
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack\
 		tools/ft_isalpha tools/ft_itoa exec/built exec/cd exec/echo exec/export exec/export2 exec/unset exec/pwd_env\
 		exec/ft_which exec/execution exec/exectool exec/sort_export env_var/env_var\
-		env_var/env_var_tools errors/tokens_check errors/errors
+		env_var/env_var_tools  errors/tokens_check errors/errors
 		
 NAME = minishell
 OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))
