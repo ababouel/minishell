@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 00:24:39 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 03:31:11 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 04:45:28 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,54 @@ void    rm_var(t_val *val,char *var)
     }
 }
 
+void    swap_env(t_val *val1, t_val *val2)
+{
+    char *temp;
+
+    temp = NULL;
+    temp = val1->value;
+    val1->value = val2->value;
+    val2->value = temp;
+}
+
+void  exp_sort(t_val *val)
+{
+	int     j;
+    t_val   *env;
+
+	j = 0;
+    env = val;
+	while (env->next && env->value[j])
+	{
+		if (env->value[j] > env->next->value[j])
+		{
+            swap_env(env, env->next);	
+			break ;
+		}
+		else if (env->value[j] == env->next->value[j])
+			j++;
+		else
+			break ;
+	}
+}
+
+void    sorting(t_val *val)
+{
+    t_val *temp;
+    t_val *tmp2;
+
+    temp = val;
+    while (temp)
+    {
+        tmp2 = val;
+        while (tmp2)
+        {
+            exp_sort(tmp2);
+            tmp2 = tmp2->next;
+        }
+        temp = temp->next;
+    }
+}
 
 void    add_node(t_env *env, t_val *val)
 {
@@ -154,17 +202,20 @@ int main(int ac, char **av, char **env)
     //     printf("%s\n", val->value);
     //     val = val->prev;
     // }
-    lsval = lenv.head;
     // val = search_val(lsval, "PATH");
     // if (val != NULL)
-    //     printf("%s\n", val->value);
-    // printf("**********************************\n");
-    // printf("**********************************\n");
-    // printf("**********************************\n");
-    lsval = lenv.head;
-    rm_var(lsval, "PATH");
-    lsval = lenv.head;
+    //     printf("%s\n", val->value); 
     add_node(&lenv, add_val("HELLO="));
+    val = lenv.head;
+    while (val && val->value != NULL)
+    {
+         printf("%s\n", val->value);
+         val = val->next;
+    }
+    printf("**********************************\n");
+    printf("**********************************\n");
+    printf("**********************************\n");
+    sorting(lenv.head);
     val = lenv.head;
     while (val && val->value != NULL)
     {

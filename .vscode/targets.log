@@ -8,10 +8,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sat Jul 23 01:35:55 2022
+# Make data base, printed on Sat Jul 23 03:40:12 2022
 
- 
 # Variables
+ 
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
@@ -188,15 +188,10 @@ FILES = main main_tool main_toolbis lexer/lexer lexer/lexerbis lexer/token lexer
 
 # Directories
 
-# tools (device 16777225, inode 4497901): 10 files, no impossibilities so far.
-# . (device 16777225, inode 4497696): 19 files, no impossibilities.
-# lexer (device 16777225, inode 4497885): 6 files, no impossibilities so far.
-# exec (device 16777225, inode 4497866): 3 files, no impossibilities so far.
-# parse (device 16777225, inode 4497893): 5 files, no impossibilities so far.
+# . (device 16777225, inode 4497696): 16 files, no impossibilities.
 # inc (device 16777225, inode 4497878): 8 files, no impossibilities so far.
-# parse/parselst (device 16777225, inode 4497895): 6 files, no impossibilities so far.
 
-# 57 files, no impossibilities in 7 directories.
+# 24 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -211,63 +206,33 @@ build/%.o: %.c inc/minishell.h inc/lib.h inc/token.h  inc/lexer.h inc/exec.h
 # Files
 
 # Not a target:
-tools/lsnode.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+build/exec/built.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-# Not a target:
-parse/filter_token.c:
+build/main.o: main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
 #  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-parse/parselst/parsetool.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-parse/parstree.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-build/exec/built.o: exec/built.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `exec/built'
-#  Last modified 2022-07-23 01:34:54
+#  Implicit/static pattern stem: `main'
+#  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
-# @ := build/exec/built.o
+# @ := build/main.o
 # automatic
 # % := 
 # automatic
-# * := exec/built
+# * := main
 # automatic
-# + := exec/built.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
+# + := main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
 # automatic
 # | := 
 # automatic
-# < := exec/built.c
+# < := main.c
 # automatic
-# ^ := exec/built.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
+# ^ := main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
 # automatic
-# ? := exec/built.c
+# ? := main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/17=6%
 #  commands to execute (from `Makefile', line 44):
@@ -275,32 +240,11 @@ build/exec/built.o: exec/built.c inc/minishell.h inc/lib.h inc/token.h inc/lexer
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 	
 
-build/main.o: main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `main'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
- 
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
-
-build/parse/parselst/parsepipe.o: parse/parselst/parsepipe.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parse/parselst/parsepipe'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
+# Not a target:
+build/parse/parselst/parsepipe.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 all: minishell
 #  Phony target (prerequisite of .PHONY).
@@ -330,67 +274,36 @@ build/exec/export2.o:
 #  File has not been updated.
 
 # Not a target:
-parse/parselst/parsepipe.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
 build/env_var/env_var.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-build/lexer/lexerbis.o: lexer/lexerbis.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `lexer/lexerbis'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
+# Not a target:
+build/lexer/lexerbis.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-22 22:09:33
+#  Last modified 2022-07-23 03:35:47
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-tools/ft_itoa.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-22 20:59:56
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-build/lexer/token.o: lexer/token.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `lexer/token'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
+build/lexer/token.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 inc/lexer.h:
 #  Implicit rule search has been done.
+ 
 #  Last modified 2022-07-21 18:55:03
 #  File has been updated.
 #  Successfully updated.
@@ -406,51 +319,17 @@ inc/lexer.h:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-23 01:34:49
+#  Last modified 2022-07-23 03:38:24
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-lexer/token.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-build/tools/ft_isalpha.o: tools/ft_isalpha.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `tools/ft_isalpha'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
-
-# Not a target:
-tools/ft_strjoin.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-tools/ft_split.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+build/tools/ft_isalpha.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 build/exec/ft_which.o:
@@ -472,7 +351,7 @@ build/exec/exectool.o:
 
 minishell: build/main.o build/main_tool.o build/main_toolbis.o build/lexer/lexer.o build/lexer/lexerbis.o build/lexer/token.o build/lexer/lexerlst.o build/lexer/lexerlst.o build/parse/parstree.o build/parse/parselst/parsetool.o build/parse/parselst/parsecmd.o build/parse/parselst/parsepipe.o build/parse/parselst/parseio.o build/parse/filter_token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/ft_strdup.o build/tools/ft_strjoin.o build/tools/freestack.o build/tools/ft_isalpha.o build/tools/ft_itoa.o build/exec/built.o build/exec/cd.o build/exec/echo.o build/exec/export.o build/exec/export2.o build/exec/unset.o build/exec/pwd_env.o build/exec/ft_which.o build/exec/execution.o build/exec/exectool.o build/exec/sort_export.o build/env_var/env_var.o build/env_var/env_var_tools.o build/errors/tokens_check.o build/errors/errors.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-23 01:34:54
+#  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -505,18 +384,11 @@ fclean: clean
 	@rm -rf minishell 
 	
 
-build/tools/ft_strdup.o: tools/ft_strdup.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `tools/ft_strdup'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
+# Not a target:
+build/tools/ft_strdup.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 build/exec/cd.o:
@@ -524,19 +396,11 @@ build/exec/cd.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-build/lexer/lexerlst.o: lexer/lexerlst.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `lexer/lexerlst'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
- 
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
+# Not a target:
+build/lexer/lexerlst.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 inc/token.h:
@@ -547,40 +411,17 @@ inc/token.h:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-build/main_tool.o: main_tool.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `main_tool'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
-
-build/tools/freestack.o: tools/freestack.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `tools/freestack'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
+# Not a target:
+build/main_tool.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-lexer/lexerbis.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+build/tools/freestack.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
@@ -595,35 +436,10 @@ build/exec/echo.o:
 #  File has not been updated.
 
 # Not a target:
-lexer/lexerlst.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-build/tools/lsnode.o: tools/lsnode.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `tools/lsnode'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
-
-# Not a target:
-main_tool.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-22 22:10:49
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+build/tools/lsnode.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
@@ -637,27 +453,11 @@ build/exec/export.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-build/tools/ft_strncmp.o: tools/ft_strncmp.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `tools/ft_strncmp'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
-
 # Not a target:
-exec/built.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-23 01:35:55
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+build/tools/ft_strncmp.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 clean:
 #  Phony target (prerequisite of .PHONY).
@@ -670,18 +470,9 @@ clean:
 	
 
 # Not a target:
-tools/ft_isalpha.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
 inc/exec.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-23 01:02:42
+#  Last modified 2022-07-23 02:44:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -703,54 +494,22 @@ inc/minishell.h:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-tools/ft_strncmp.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
 build/exec/execution.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-build/main_toolbis.o: main_toolbis.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `main_toolbis'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
-
-build/tools/ft_itoa.o: tools/ft_itoa.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `tools/ft_itoa'
-#  Last modified 2022-07-23 01:34:54
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
+# Not a target:
+build/main_toolbis.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-tools/ft_strdup.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+build/tools/ft_itoa.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 inc/lib.h:
@@ -761,72 +520,23 @@ inc/lib.h:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-build/parse/parselst/parsecmd.o: parse/parselst/parsecmd.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parse/parselst/parsecmd'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
-
-build/parse/parselst/parseio.o: parse/parselst/parseio.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parse/parselst/parseio'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
+# Not a target:
+build/parse/parselst/parsecmd.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-main_toolbis.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-22 20:59:56
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-build/lexer/lexer.o: lexer/lexer.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `lexer/lexer'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
- 
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
+build/parse/parselst/parseio.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-tools/freestack.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-22 22:07:14
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-parse/parselst/parsecmd.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-22 21:38:58
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+build/lexer/lexer.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 build/errors/errors.o:
@@ -835,90 +545,37 @@ build/errors/errors.o:
 #  File has not been updated.
 
 # Not a target:
-parse/parselst/parseio.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-22 20:59:56
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-build/parse/filter_token.o: parse/filter_token.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parse/filter_token'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
-
-build/tools/ft_strjoin.o: tools/ft_strjoin.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `tools/ft_strjoin'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
-
-build/parse/parselst/parsetool.o: parse/parselst/parsetool.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parse/parselst/parsetool'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
-
-build/tools/ft_split.o: tools/ft_split.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `tools/ft_split'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
-
-build/parse/parstree.o: parse/parstree.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `parse/parstree'
-#  Last modified 2022-07-23 01:34:53
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 44):
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-	
+build/parse/filter_token.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-lexer/lexer.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-07-22 20:59:56
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+build/tools/ft_strjoin.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/parse/parselst/parsetool.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/tools/ft_split.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+build/parse/parstree.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=72/1024=7%, Rehash=0, Collisions=7/416=2%
+# Load=51/1024=5%, Rehash=0, Collisions=4/122=3%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -930,6 +587,7 @@ lexer/lexer.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Jul 23 01:35:55 2022
+ 
+# Finished Make data base on Sat Jul 23 03:40:12 2022
 
  
