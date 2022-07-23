@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 17:55:39 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 21:22:27 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,17 @@ static void	loop_line(t_env *env, char *line)
 
 int	main(int ac, char **av, char **env)
 {
-	t_env	tenv;
+	t_env	*tenv;
 	char	*line;
 
 	(void) av;
 	(void) ac;
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
-	dup_envis(&tenv, env);
-	dup_envis(&g_l.export, env);
+	tenv = malloc(sizeof(t_env));
+	g_l.export = malloc(sizeof(t_env));
+	dup_envis(tenv, env);
+	dup_envis(g_l.export, env);
 	g_l.env = env;
 	while (1337)
 	{
@@ -66,9 +68,9 @@ int	main(int ac, char **av, char **env)
 		line = readline_t();
 		g_l.g_pid = 0;
 		add_history(line);
-		if (exitcheck(&tenv, line))
+		if (exitcheck(tenv, line))
 			exit(0);
-		loop_line(&tenv, line);
+		loop_line(tenv, line);
 	}
 	return (0);
 }

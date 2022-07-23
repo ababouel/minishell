@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/23 18:29:39 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 22:44:02 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ static t_val	*equal_export(t_cmd *cmd, int i)
 	t_val	*result;
 
 	temp = NULL;
-	result = search_val(cmd->env->head, strrchr(cmd->cmdarg[i], '='));
+	result = NULL;
+	result = search_val(cmd->env->head, cmd->cmdarg[i]);
+	if (result && result->value != NULL)
+		printf("=> data =>%s\n", result->value);
 	if (result)
 	{
+		printf("data+>\n");
 		temp = result->value;
 		result->value = ft_strdup(cmd->cmdarg[i]);
 		free(temp);
@@ -37,7 +41,7 @@ static t_val	*plus_export(t_cmd *cmd, int i)
 	t_val	*result;
 
 	temp = NULL;
-	result = search_val(cmd->env->head, strrchr(cmd->cmdarg[i], '='));
+	result = search_val(cmd->env->head, cmd->cmdarg[i]);
 	if (result)
 	{
 		temp = strchr(cmd->cmdarg[i], '=');
@@ -66,6 +70,7 @@ static void	check_export(t_cmd *cmd, int i)
 		if ((cmd->cmdarg[i][j] == '=' || (cmd->cmdarg[i][j] == '+'
 			&& cmd->cmdarg[i][j + 1] == '=')) && check == 0)
 		{
+			printf("=>%s\n",cmd->cmdarg[i]);
 			if (cmd->cmdarg[i][j] == '+')
 			{
 				result = plus_export(cmd, i);
@@ -100,11 +105,19 @@ static void	check_export(t_cmd *cmd, int i)
 int	ft_export(t_cmd *cmd)
 {
 	int	i;
+	t_val *head;
 
 	i = 1;
+	head = NULL;
 	if (!cmd->cmdarg[i])
 	{
 		sorting(cmd->export->head);
+		head = cmd->export->head;
+		while (head)
+		{
+			printf("declare -x %s\n", head->value);
+			head = head->next;
+		}
 		return (0);
 	}
 	while (cmd->cmdarg[i])

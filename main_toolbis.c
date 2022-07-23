@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_toolbis.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:42:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 16:17:40 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:45:24 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	execbuilt(t_data *dt)
 		else if (!ft_strncmp(dt->cmd.cmdarg[0], "exit", ft_strlen("exit")))
 		{
 			write(1, "exit\n", 6);
-			exit(0);
+			exit(g_l.state);
 		}
 	}
 	return (0);
