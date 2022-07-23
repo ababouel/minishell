@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 14:40:15 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:17:06 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_gl
 {
 	int		g_pid;
 	int		state;
-	char	**export;
+	t_val	*export;
 }	t_gl;
 
 t_gl	g_l;

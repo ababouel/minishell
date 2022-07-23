@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 23:17:00 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:15:40 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	exitcheck(char **env, char *line)
+static int	exitcheck(t_val *env, char *line)
 {
 	if (!line)
 	{
 		write(1, "exit\n", 5);
-		env = ft_freedt(env);
+		// env = ft_freedt(env);
+		env = NULL;
 		return (1);
 	}
 	return (0);

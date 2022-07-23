@@ -6,13 +6,13 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 09:37:45 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/05 09:40:01 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:40:06 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-t_data	*init_dt(char **env)
+t_data	*init_dt()
 {
 	t_data	*data;
 
@@ -25,7 +25,8 @@ t_data	*init_dt(char **env)
 	data->cmd.name = NULL;
 	data->cmd.cmdarg = NULL;
 	data->cmd.pathcmd = NULL;
-	data->cmd.env = env;
+	data->cmd.env = NULL;
+	data->cmd.export = NULL;
 	data->pipe.pfd[1] = -1;
 	data->pipe.pfd[0] = -1;
 	data->pipe.statpipe = NUL;

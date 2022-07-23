@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/20 23:49:25 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:43:19 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct s_cmd
 	int		numfile;
 	char	*pathcmd;
 	char	**cmdarg;
-	char	**env;
-	char	**export;
+	t_val	*env;
+	t_val	*export;
 	t_file	*name;
 }	t_cmd;
 
@@ -64,14 +64,14 @@ typedef struct s_lsdata
 }	t_lsdata;
 
 void	init_lsdata(t_lsdata *lstree);
-void	parsing(t_lsdata *lstree, t_lsnode *lsnode, char **env);
+void	parsing(t_lsdata *lstree, t_lsnode *lsnode, t_val *env);
 int		ins_next_tree(t_lsdata *stack, t_data *data);
 void	ft_freetree(t_lsdata *sk);
-void	parse_cmd(t_data *data, t_token *token, char **env);
+void	parse_cmd(t_data *data, t_token *token, t_val *env);
 t_data	*parse_pipe(t_lsdata *lsdata, t_data *data);
 int		ins_next_data(t_lsdata *stack, t_data *data);
 int		parse_redic(t_data *lsdata, t_token *token);
-t_data	*init_dt(char **env);
+t_data	*init_dt(void);
 int		ft_filter_token2(char *value);
 void	ft_freestackbis(t_lsnode *sk);
 

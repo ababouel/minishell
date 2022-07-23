@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_which.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 17:52:17 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:35:43 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,30 +61,22 @@ char	*ft_access(char **spl, char *cmd, int j)
 char	*ft_which1(char *cmd, char **spl, int j)
 {
 	char	*access;
-
-	if (cmd[0] == '.' && cmd[1] == '/')
-	{
-		spl = ft_freedt(spl);
-		return (point_slash(cmd));
-	}
+	
+	access = ft_access(spl, cmd, j);
+	if (access)
+		return (access);
 	else
-	{
-		access = ft_access(spl, cmd, j);
-		if (access)
-			return (access);
-		else
-			return (NULL);
-	}
+		return (NULL);
 }
 
-char	*ft_which2(char *cmd, char *env, char *which)
+char	*ft_which2(char *cmd, t_val *env, char *which)
 {
 	char	**spl;
 	int		i;
 
 	i = 0;
 	spl = NULL;
-	spl = ft_split(env, ":");
+	spl = ft_split(env->value, ":");
 	while (spl[i])
 	{
 		which = ft_which1(cmd, spl, i);
@@ -97,29 +89,21 @@ char	*ft_which2(char *cmd, char *env, char *which)
 	return (NULL);
 }
 
-char	*ft_which(char *cmd, char **env)
+char	*ft_which(char *cmd, t_val *env)
 {
-	char	**spl;
 	char	*which;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	spl = NULL;
-	while (env[i])
+	t_val	*result;
+	
+	if (cmd[0] == '/')
+		return (ft_strdup(cmd));
+	if (cmd[0] == '.' && cmd[1] == '/')
+		return (point_slash(cmd));
+	result = search_val(env, "PATH");
+	if (result)
 	{
-		if (cmd[0] == '/')
-			return (ft_strdup(cmd));
-		if (ft_strncmp(env[i], "PATH", ft_strlen("PATH")) == 0)
-		{
-			which = ft_which2(cmd, env[i], which);
+			which = ft_which2(cmd, result, which);
 			if (which)
 				return (which);
-		}
-		i++;
 	}
-	if (spl)
-		spl = ft_freedt(spl);
 	return (NULL);
 }
