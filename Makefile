@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
+#    By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/07/23 01:34:49 by ababouel         ###   ########.fr        #
+=======
+#    Updated: 2022/07/22 23:06:50 by sismaili         ###   ########.fr        #
+>>>>>>> 69689e681f3ab12adb1e991aa88298389b546695
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +34,14 @@ FILES = main main_tool main_toolbis lexer/lexer lexer/lexerbis lexer/token lexer
 		
 NAME = minishell
 OBJ = $(addprefix $(BDIR)/, $(FILES:=.o))
-INC = -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+INC = -I ./inc -I /Users/sismaili/.brew/opt/readline/include
 HEADERS = inc/minishell.h inc/lib.h inc/token.h  inc/lexer.h inc/exec.h
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@printf "$(GRAY)-COMPILING Minishell...\n"
-	@$(CC) $(CFLAGS) $^ -o $@ -lreadline -L /Users/ababouel/.brew/opt/readline/lib 
+	@$(CC) $(CFLAGS) $^ -o $@ -lreadline -L /Users/sismaili/.brew/opt/readline/lib 
 	@printf "$(GREEN)Done !"
 
 $(BDIR)/%.o : %.c $(HEADERS)
