@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 02:44:30 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:40:15 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,11 @@ void	redic_close(t_cmd *cmd);
 void	redic_open(t_cmd *cmd);
 char	**ft_freedt(char **data);
 char	*fill_new(char *new, char *cmd, char **env, int *i);
+void    sorting(t_val *val);
+t_val   *search_val(t_val *env, char *val);
+void    rm_var(t_val *val,char *var);
+void    add_node(t_env *env, t_val *val);
+void	init_env(t_env *env);
+void    dup_envis(t_env *lenv, char **env);
 
 #endif
