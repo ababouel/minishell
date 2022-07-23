@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/23 01:22:21 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:31:06 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/exec.h"
+#include "exec.h"
 
 int	check_doll(char *cmd, int i)
 {
@@ -22,7 +22,7 @@ int	check_doll(char *cmd, int i)
 		return (1);
 }
 
-char	*join_new(char *new, char *var, char **env, int l)
+char	*join_new(char *new, char *var, t_val *env, int l)
 {
 
 	var[l] = '\0';
@@ -37,7 +37,7 @@ char	*join_new(char *new, char *var, char **env, int l)
 	return (new);
 }
 
-char	*fill_new(char *new, char *cmd, char **env, int *i)
+char	*fill_new(char *new, char *cmd, t_val *env, int *i)
 {
 	char	*var;
 	int		l;
@@ -100,7 +100,7 @@ int	check_dollar(char *cmd)
 	return (0);
 }
 
-char	*search_var(char *cmd, char **env, int check)
+char	*search_var(char *cmd, t_val *env, int check)
 {
 	int		i;
 	char	*new;

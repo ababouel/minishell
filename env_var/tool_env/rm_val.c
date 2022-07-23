@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 14:15:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 14:21:47 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:08:07 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ void    rm_var(t_val *val,char *var)
     tprv = NULL;
     tnxt = NULL;
     result = search_val(val, var);
-    if (result)
+    if (result && result->value != NULL)
     {
         tprv = result->prev;
         tnxt = result->next;
         tprv->next = tnxt;
-        tnxt->prev = tprv;
+        if (tnxt)
+            tnxt->prev = tprv;
         result = rm_val(result);
     }
 }

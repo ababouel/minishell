@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:31:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 00:15:12 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:43:10 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,18 @@ int	ft_pwd(void)
 
 int	ft_env(t_cmd *cmd)
 {
-	int	i;
-	int	j;
-	int	check;
-
-	i = 0;
+	t_val	*head;
+	
+	head = cmd->env->head;
 	if (cmd->cmdarg[1])
 	{
 		printf("env: %s: No such file or directory\n", cmd->cmdarg[1]);
 		return (1);
 	}
-	while (cmd->env[i])
+	while (head)
 	{
-		j = 0;
-		check = 0;
-		while (cmd->env[i][j])
-		{
-			if (cmd->env[i][j] == '=')
-				check = 1;
-			j++;
-		}
-		if (check == 1)
-			printf("%s\n", cmd->env[i]);
-		i++;
+		printf("%s\n", head->value);
+		head = head->next;
 	}
 	return (0);
 }

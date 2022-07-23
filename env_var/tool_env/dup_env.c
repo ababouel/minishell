@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 14:12:41 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 14:22:17 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:31:06 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void init_env(t_env *env)
     env->size = 0;
 }
 
-static t_val   *add_val(char *env)
+t_val   *add_val(char *env)
 {
     t_val   *val;
 

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:27:57 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 21:38:58 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:58:22 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	add_cmdarg(t_cmd *cmd, t_token *token)
 	}
 }
 
-void	parse_cmd(t_data *data, t_token *token, char **env)
+void	parse_cmd(t_data *data, t_token *token, t_env *env)
 {
 	t_cmd	*cmd;
 
@@ -46,7 +46,7 @@ void	parse_cmd(t_data *data, t_token *token, char **env)
 	{
 		cmd->pathcmd = ft_which(token->value, env);
 		cmd->env = env;
-		cmd->export = g_l.export;
+		cmd->export = &g_l.export;
 	}
 	add_cmdarg(cmd, token);
 }

@@ -3,92 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:57:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 16:36:13 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:30:57 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exec.h"
 
-char	*cd_home(char **env)
+static char	*cd_home(t_val *env)
 {
-	char	*home;
-	int		i;
-	int		j;
-	int		l;
+	t_val	*result;
 
-	i = 0;
-	l = 0;
-	while (env[i])
+	result = search_val(env, "HOME");
+	if (result)
 	{
-		j = 0;
-		while (env[i][j] != '=')
-			j++;
-		if (ft_strncmp(env[i], "HOME", j) == 0)
-		{
-			home = malloc(sizeof(char) + ft_strlen(env[i]) - j);
-			while (env[i][j])
-				home[l++] = env[i][++j];
-			return (home);
-		}
-		i++;
+		return (strchr(result->value, '/'));
 	}
 	return (NULL);
 }
 
-void	ft_env_oldpwd(char **env)
+static void	ft_env_oldpwd(t_val *env)
 {
-	char	str[100];
-	int		i;
-	int		j;
-	int		len;
+	char	str[1000];
+	t_val	*result;
+	char	*temp;
 
-	i = 0;
-	j = 0;
-	len = 0;
+	temp = NULL;
 	if (getcwd(str, sizeof(str)) == NULL)
 		return ;
-	while (env[i])
+	result = search_val(env, "OLDPWD");
+	if (result)
 	{
-		if (!ft_strncmp(env[i], "OLDPWD", ft_strlen("OLDPWD")))
-		{
-			while (env[i][j] != '=')
-				j++;
-			while (str[len])
-				env[i][++j] = str[len++];
-			env[i][++j] = '\0';
-			break ;
-		}
-		i++;
+		temp = result->value;
+		result->value = ft_strjoin("OLDPWD=", str);
+		free(temp);
+		temp = NULL;
 	}
 }
 
-void	ft_env_pwd(char **env)
+static void	ft_env_pwd(t_val *env)
 {
-	char	str[100];
-	int		i;
-	int		j;
-	int		len;
+	char	str[1000];
+	t_val	*result;
+	char	*temp;
 
-	i = 0;
-	j = 0;
-	len = 0;
+	temp = NULL;
 	if (getcwd(str, sizeof(str)) == NULL)
 		return ;
-	while (env[i])
+	result = search_val(env, "PWD");
+	if (result)
 	{
-		if (!ft_strncmp(env[i], "PWD", ft_strlen("PWD")))
-		{
-			while (env[i][j] != '=')
-				j++;
-			while (str[len])
-				env[i][++j] = str[len++];
-			env[i][++j] = '\0';
-			break ;
-		}
-		i++;
+		temp = result->value;
+		result->value = ft_strjoin("PWD=", str);
+		free(temp);
+		temp = NULL;
 	}
 }
 
@@ -96,10 +66,10 @@ int	ft_cd(t_cmd *cmd)
 {
 	char	*home;
 
-	ft_env_oldpwd(cmd->env);
+	ft_env_oldpwd(cmd->env->head);
 	if (!cmd->cmdarg[1])
 	{
-		home = cd_home(cmd->env);
+		home = cd_home(cmd->env->head);
 		if (!home)
 			return (printf("cd: HOME not set\n"), 1);
 		chdir(home);
@@ -110,6 +80,6 @@ int	ft_cd(t_cmd *cmd)
 		printf("cd: %s: No such file or directory\n", cmd->cmdarg[1]);
 		return (1);
 	}
-	ft_env_pwd(cmd->env);
+	ft_env_pwd(cmd->env->head);
 	return (0);
 }

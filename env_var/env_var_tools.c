@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:11:22 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/23 15:12:31 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:38:36 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*return_new(char *new, char *env, int j)
 	int	len;
 
 	len = 0;
-	new = malloc(sizeof(char) * ft_strlen(env[j]));
+	new = malloc(sizeof(char) * ft_strlen(&env[j]));
 	if (!new)
 		return (NULL);
 	while (env[j])
@@ -31,12 +31,9 @@ char	*return_new(char *new, char *env, int j)
 char	*search_in_env(t_val *env, char *var)
 {
 	int		j;
-	int		len;
 	char	*new;
 	t_val	*result;
 
-	i = 0;
-	len = 0;
 	new = NULL;
 	if (var[0] == '?')
 	{

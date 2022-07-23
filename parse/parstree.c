@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/20 22:59:51 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:56:48 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	numpipe(t_token *token)
 	return (len);
 }
 
-t_data	*genlsdt(t_lsdata *lsdata, t_token *token, t_data *data, char **env)
+static t_data	*genlsdt(t_lsdata *lsdata, t_token *token, t_data *data, t_env *env)
 {
 	while (token != NULL)
 	{
@@ -50,12 +50,12 @@ t_data	*genlsdt(t_lsdata *lsdata, t_token *token, t_data *data, char **env)
 	return (data);
 }
 
-void	parsing(t_lsdata *lsdata, t_lsnode *lsnode, char **env)
+void	parsing(t_lsdata *lsdata, t_lsnode *lsnode, t_env *env)
 {
 	t_token	*token;
 	t_data	*data;
 
-	data = init_dt(env);
+	data = init_dt();
 	token = lsnode->head;
 	lsdata->nupipe = numpipe(token);
 	data = genlsdt(lsdata, token, data, env);

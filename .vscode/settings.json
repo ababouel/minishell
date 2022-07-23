@@ -4,6 +4,9 @@
         "lstree.h": "c",
         "locale": "c",
         "string": "c",
-        "exec.h": "c"
+        "exec.h": "c",
+        "chrono": "c",
+        "lib.h": "c",
+        "minishell.h": "c"
     }
 }

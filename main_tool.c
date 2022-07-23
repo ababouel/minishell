@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:36:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 22:10:49 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:56:02 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,26 @@ char	*readline_t(void)
 	return (buf);
 }
 
-char	**dup_env(char **env)
-{
-	char	**temp_env;
-	int		i;
+// char	**dup_env(char **env)
+// {
+// 	char	**temp_env;
+// 	int		i;
 
-	i = 0;
-	while (env[i])
-		i++;
-	temp_env = malloc(sizeof(char *) * (i + 1));
-	if (!temp_env)
-		return (NULL);
-	i = 0;
-	while (env[i])
-	{
-		temp_env[i] = ft_strdup(env[i]);
-		i++;
-	}
-	temp_env[i] = NULL;
-	return (temp_env);
-}
+// 	i = 0;
+// 	while (env[i])
+// 		i++;
+// 	temp_env = malloc(sizeof(char *) * (i + 1));
+// 	if (!temp_env)
+// 		return (NULL);
+// 	i = 0;
+// 	while (env[i])
+// 	{
+// 		temp_env[i] = ft_strdup(env[i]);
+// 		i++;
+// 	}
+// 	temp_env[i] = NULL;
+// 	return (temp_env);
+// }
 
 static int	check_dollar(char *cmd)
 {
@@ -62,14 +62,16 @@ static int	check_dollar(char *cmd)
 	return (0);
 }
 
-int	delete_var(t_lsnode *lstok, char **env)
+int	delete_var(t_lsnode *lstok, t_env *env)
 {
 	t_token	*temp;
 	int		check;
 	char	*val;
+	t_val	*head;
 
 	val = NULL;
 	temp = lstok->head;
+	head = env->head;
 	while (temp)
 	{
 		check = ft_filter_token2(temp->value);
@@ -78,7 +80,7 @@ int	delete_var(t_lsnode *lstok, char **env)
 		if (check_dollar(temp->value))
 		{
 			val = temp->value;
-			temp->value = search_var(temp->value, env, check);
+			temp->value = search_var(temp->value, head, check);
 			if (temp->type == TOKEN_EXP
 				|| temp->type == TOKEN_DRINPUT
 				|| temp->type == TOKEN_RINPUT

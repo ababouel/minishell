@@ -6,13 +6,13 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 15:15:40 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:55:39 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	exitcheck(t_val *env, char *line)
+static int	exitcheck(t_env *env, char *line)
 {
 	if (!line)
 	{
@@ -24,12 +24,11 @@ static int	exitcheck(t_val *env, char *line)
 	return (0);
 }
 
-static void	loop_line(char **env, char *line)
+static void	loop_line(t_env *env, char *line)
 {
 	t_lsnode	lstok;
 	t_lsdata	lsdata;
 
-	(void)env;
 	if (line != NULL)
 	{
 		add_init_lstok(&lstok, line);
@@ -51,24 +50,25 @@ static void	loop_line(char **env, char *line)
 
 int	main(int ac, char **av, char **env)
 {
-	char	**d_env;
+	t_env	tenv;
 	char	*line;
 
 	(void) av;
 	(void) ac;
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
-	d_env = dup_env(env);
-	g_l.export = dup_env(env);
+	dup_envis(&tenv, env);
+	dup_envis(&g_l.export, env);
+	g_l.env = env;
 	while (1337)
 	{
 		g_l.g_pid = 1;
 		line = readline_t();
 		g_l.g_pid = 0;
 		add_history(line);
-		if (exitcheck(d_env, line))
+		if (exitcheck(&tenv, line))
 			exit(0);
-		loop_line(d_env, line);
+		loop_line(&tenv, line);
 	}
 	return (0);
 }

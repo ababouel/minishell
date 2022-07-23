@@ -12,7 +12,7 @@
 
 #include "exec.h"
 
-char	*search_var1(char *cmd, char **env)
+static char	*search_var1(char *cmd, t_val *env)
 {
 	int		i;
 	char	*new;
@@ -20,10 +20,11 @@ char	*search_var1(char *cmd, char **env)
 
 	i = 0;
 	new = NULL;
+	temp = NULL;
 	while (cmd[i])
 	{
 		if (cmd[i] == '$')
-			new = fill_new(new, cmd, env, &i);
+			new = fill_new(new, cmd, env, &i);	
 		else
 		{
 			temp = malloc(2);
@@ -33,7 +34,7 @@ char	*search_var1(char *cmd, char **env)
 			free (temp);
 		}
 	}
-	return (new);
+		return (new);
 }
 
 static void	open_here_doc(char *eof, t_cmd *cmd, int flag)
@@ -52,7 +53,7 @@ static void	open_here_doc(char *eof, t_cmd *cmd, int flag)
 		i = 0;
 		if (buf == NULL || (buf && ft_strcmp(buf, eof) == 0))
 			break ;
-		buf = search_var1(buf, cmd->env);
+		buf = search_var1(buf, cmd->env->head);
 		write(fdh, buf, ft_strlen(buf));
 		write(fdh, "\n", 1);
 		free(buf);

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 15:43:19 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:57:28 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,27 @@
 # include "lexer.h"
 # include "lib.h"
 
+typedef struct s_val
+{
+	char			*value;
+	struct s_val	*next;
+	struct s_val	*prev;	
+}	t_val;
+typedef struct s_env
+{
+	t_val	*head;
+	t_val	*tail;
+	int		size;
+}	t_env;
+typedef struct s_gl
+{
+	int		g_pid;
+	int		state;
+	t_env	export;
+	char	**env;
+}	t_gl;
+
+t_gl	g_l;
 typedef enum e_mpipe
 {
 	NUL	= -1,
@@ -42,8 +63,8 @@ typedef struct s_cmd
 	int		numfile;
 	char	*pathcmd;
 	char	**cmdarg;
-	t_val	*env;
-	t_val	*export;
+	t_env	*env;
+	t_env	*export;
 	t_file	*name;
 }	t_cmd;
 
@@ -64,10 +85,10 @@ typedef struct s_lsdata
 }	t_lsdata;
 
 void	init_lsdata(t_lsdata *lstree);
-void	parsing(t_lsdata *lstree, t_lsnode *lsnode, t_val *env);
+void	parsing(t_lsdata *lstree, t_lsnode *lsnode, t_env *env);
 int		ins_next_tree(t_lsdata *stack, t_data *data);
 void	ft_freetree(t_lsdata *sk);
-void	parse_cmd(t_data *data, t_token *token, t_val *env);
+void	parse_cmd(t_data *data, t_token *token, t_env *env);
 t_data	*parse_pipe(t_lsdata *lsdata, t_data *data);
 int		ins_next_data(t_lsdata *stack, t_data *data);
 int		parse_redic(t_data *lsdata, t_token *token);

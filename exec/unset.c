@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:47:35 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 16:31:01 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:51:26 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/exec.h"
 
-int	error_unset(t_cmd *cmd, int i)
+static int	error_unset(t_cmd *cmd, int i)
 {
 	if (ft_isalpha(cmd->cmdarg[i][0]) || cmd->cmdarg[i][0] == '_')
 		return (0);
@@ -23,52 +23,19 @@ int	error_unset(t_cmd *cmd, int i)
 	}
 }
 
-char	**ft_swap(char **env, int j)
-{
-	char	*tmp;
-
-	tmp = env[j];
-	env[j] = env[j + 1];
-	env[j + 1] = tmp;
-	return (env);
-}
-
-void	check_unset(t_cmd *cmd, int i)
-{
-	int		j;
-
-	j = 0;
-	while (cmd->env[j])
-	{
-		if (!ft_strncmp(cmd->cmdarg[i], cmd->env[j], ft_strlen(cmd->cmdarg[i])))
-		{
-			while (cmd->env[j])
-			{
-				if (cmd->env[j + 1] == NULL)
-				{
-					free (cmd->env[j]);
-					cmd->env[j] = NULL;
-					break ;
-				}
-				cmd->env = ft_swap(cmd->env, j);
-				j++;
-			}
-		}
-		else
-			j++;
-	}
-}
-
 int	ft_unset(t_cmd *cmd)
 {
-	int	i;
+	int		i;
+	t_val	*head;
 
 	i = 1;
+	head = cmd->env->head;
 	while (cmd->cmdarg[i])
 	{
 		if (error_unset(cmd, i))
 			return (1);
-		check_unset(cmd, i);
+		rm_var(head, cmd->cmdarg[i]);
+		rm_var(head, cmd->cmdarg[i]);	
 		i++;
 	}
 	return (0);
