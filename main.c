@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 22:09:33 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:17:00 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int ac, char **av, char **env)
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 	d_env = dup_env(env);
-	g_l.export = env;
+	g_l.export = dup_env(env);
 	while (1337)
 	{
 		g_l.g_pid = 1;
