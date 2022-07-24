@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_tool.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:36:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/24 19:53:33 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:57:13 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,12 @@ int	delete_var(t_lsnode *lstok, t_env *env)
 			while (temp)
 			{
 				if (head->value == NULL)
-					head->value = ft_strdup(temp->value);
+				{
+					if (temp && temp->value)
+						head->value = ft_strdup(temp->value);
+					else
+						head->value = ft_strdup("");
+				}
 				else
 					head->value = ft_strjoinbis(head->value, temp->value);
 				temp = temp->next;

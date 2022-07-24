@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/24 19:40:08 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 21:48:35 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,33 +75,6 @@ int	check_pipe(t_token *temp)
 	return (1);
 }
 
-t_token	*token_while(t_token *temp)
-{
-	int	i;
-
-	i = 0;
-	while (temp->type != TOKEN_PIPE
-		&& temp->type != TOKEN_DPIPE && temp->type != TOKEN_DAND)
-	{
-		if (!tokens_check(temp, i))
-		{
-			g_l.state = 1;
-			return (NULL);
-		}
-		if (!check_red(temp))
-		{
-			g_l.state = 258;
-			return (NULL);
-		}
-		if (!temp->next)
-			break ;
-		temp = temp->next;
-		if (temp->type == TOKEN_SPACE)
-			i++;
-	}
-	return (temp);
-}
-
 int    check_quote(char *value)
 {
     int    i;
@@ -134,6 +107,38 @@ int    check_quote(char *value)
     return (1);
 }
 
+t_token	*token_while(t_token *temp)
+{
+	int	i;
+
+	i = 0;
+	while (temp->type != TOKEN_PIPE
+		&& temp->type != TOKEN_DPIPE && temp->type != TOKEN_DAND)
+	{
+		if (!tokens_check(temp, i))
+		{
+			g_l.state = 1;
+			return (NULL);
+		}
+		if (!check_red(temp))
+		{
+			g_l.state = 258;
+			return (NULL);
+		}
+		if (!check_quote(temp->value))
+		{
+			g_l.state = 258;
+			return (NULL);
+		}
+		if (!temp->next)
+			break ;
+		temp = temp->next;
+		if (temp->type == TOKEN_SPACE)
+			i++;
+	}
+	return (temp);
+}
+
 int	printtoken(t_lsnode *lstok)
 {
 	t_token	*temp;
@@ -141,11 +146,6 @@ int	printtoken(t_lsnode *lstok)
 	temp = lstok->head;
 	while (temp)
 	{
-		if (!check_quote(temp->value))
-		{
-			g_l.state = 258;
-			return (printf("syntax error\n"), 0);
-		}
 		if (temp->type == TOKEN_PIPE
 			|| temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND
 			|| temp->type == TOKEN_SCL)
@@ -156,7 +156,7 @@ int	printtoken(t_lsnode *lstok)
 		}
 		temp = token_while(temp);
 		if (temp == NULL)
-			return (0);
+			return (printf("syntax error\n"), 0);
 		if (!check_pipe(temp))
 		{
 			g_l.state = 258;
