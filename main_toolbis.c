@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:42:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 19:45:24 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 22:53:03 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static int	execbuilt(t_data *dt)
 {
 	if (dt->cmd.cmdarg)
 	{
-		if (!ft_strncmp(dt->cmd.cmdarg[0], "export", ft_strlen("export")))
+		if (dt->pipe.statpipe == NUL && !ft_strncmp(dt->cmd.cmdarg[0], "export", ft_strlen("export")))
 		{
 			g_l.state = ft_export(&dt->cmd);
 			return (1);
 		}
-		else if (!ft_strncmp(dt->cmd.cmdarg[0], "unset", ft_strlen("unset")))
+		else if (dt->pipe.statpipe == NUL && !ft_strncmp(dt->cmd.cmdarg[0], "unset", ft_strlen("unset")))
 		{
 			g_l.state = ft_unset(&dt->cmd);
 			return (1);

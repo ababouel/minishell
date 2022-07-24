@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:13:20 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 01:58:23 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 23:04:59 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	path_cmd(t_data *dt)
 
 	cmd = &dt->cmd;
 	if (!ft_strncmp(cmd->pathcmd, "/usr/bin/env", ft_strlen(cmd->pathcmd)))
-			g_l.state = ft_env(&dt->cmd);
+		g_l.state = ft_env(&dt->cmd);
 	else if (!ft_strncmp(cmd->pathcmd, "/bin/pwd", ft_strlen(cmd->pathcmd)))
 		g_l.state = ft_pwd();
 	else if (!ft_strncmp(cmd->pathcmd, "/bin/echo", ft_strlen(cmd->pathcmd)))
@@ -52,7 +52,17 @@ void	built(t_data *data, t_lsdata *lsdata)
 	cmd = &data->cmd;
 	ft_stat_pipe_dup(data, lsdata);
 	redic_open(cmd);
-	if (cmd->pathcmd)
+	if (data->pipe.statpipe != NUL && !ft_strncmp(data->cmd.cmdarg[0], "export", ft_strlen("export")))
+	{
+		g_l.state = ft_export(cmd);
+		exit(g_l.state);
+	}
+	else if (data->pipe.statpipe != NUL && !ft_strncmp(data->cmd.cmdarg[0], "unset", ft_strlen("unset")))
+	{
+		g_l.state = 0;
+		exit(g_l.state);
+	}
+	else if (cmd->pathcmd)
 		path_cmd(data);
 	else
 	{

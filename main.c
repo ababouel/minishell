@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/24 19:53:14 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 00:22:08 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	loop_line(t_env *env, char *line)
 					execution(&lsdata);
 			}
 		}
-		ft_freestackbis(&lstok);
+		ft_freestack(&lstok);
 		ft_freetree(&lsdata);
 		free(line);
 	}

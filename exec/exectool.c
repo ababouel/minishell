@@ -69,6 +69,14 @@ static void	openfileredic(char *file, int *fd, int flags)
 	if (*fd > 0)
 		close(*fd);
 	*fd = open(file, flags, 0644);
+	if(*fd == -1)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(file, 2);
+		perror(" ");
+		g_l.state = 1;
+		exit(g_l.state);
+	}
 }
 
 int	filein(t_cmd *cmd)
@@ -84,15 +92,7 @@ int	filein(t_cmd *cmd)
 			open_here_doc(file[x].file, cmd,
 				O_CREAT | O_RDWR | O_TRUNC);
 		if (file[x].type == TOKEN_RINPUT)
-		{
 			openfileredic(file[x].file, &cmd->ffd[0], O_RDONLY);
-			if(cmd->ffd[0] == -1)
-			{
-				printf("%s: No such file or directory\n", file[x].file);
-				g_l.state = 1;
-				exit(g_l.state);
-			}
-		}
 		if (file[x].type == TOKEN_ROUTPUT)
 			openfileredic(file[x].file, &cmd->ffd[1],
 				O_WRONLY | O_CREAT | O_TRUNC);

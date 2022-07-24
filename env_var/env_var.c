@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/24 17:45:12 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 23:49:49 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ char	*search_var(char *cmd, t_val *env)
 			temp[1] = '\0';
 			new = ft_strjoinbis(new, temp);
 			free (temp);
+			temp = NULL;
 		}
 	}
 		return (new);
