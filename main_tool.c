@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:36:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 17:56:02 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:47:24 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,6 @@ char	*readline_t(void)
 	return (buf);
 }
 
-// char	**dup_env(char **env)
-// {
-// 	char	**temp_env;
-// 	int		i;
-
-// 	i = 0;
-// 	while (env[i])
-// 		i++;
-// 	temp_env = malloc(sizeof(char *) * (i + 1));
-// 	if (!temp_env)
-// 		return (NULL);
-// 	i = 0;
-// 	while (env[i])
-// 	{
-// 		temp_env[i] = ft_strdup(env[i]);
-// 		i++;
-// 	}
-// 	temp_env[i] = NULL;
-// 	return (temp_env);
-// }
-
 static int	check_dollar(char *cmd)
 {
 	int	i;
@@ -64,34 +43,26 @@ static int	check_dollar(char *cmd)
 
 int	delete_var(t_lsnode *lstok, t_env *env)
 {
-	t_token	*temp;
-	int		check;
-	char	*val;
-	t_val	*head;
+	t_token	*head;
+	t_lexer *lexer;
+	t_token *temp;
 
-	val = NULL;
+	lexer = NULL;
+	temp = NULL:
 	temp = lstok->head;
-	head = env->head;
 	while (temp)
 	{
-		check = ft_filter_token2(temp->value);
-		if (check == -1)
-			return (0);
-		if (check_dollar(temp->value))
+		if (temp->type == TOKEN_EXP)
 		{
-			val = temp->value;
-			temp->value = search_var(temp->value, head, check);
-			if (temp->type == TOKEN_EXP
-				|| temp->type == TOKEN_DRINPUT
-				|| temp->type == TOKEN_RINPUT
-				|| temp->type == TOKEN_ROUTPUT
-				|| temp->type == TOKEN_DROUTPUT)
-				free(val);
+			init_lexer(temp->value);
+			
 		}
 		temp = temp->next;
 	}
 	return (1);
 }
+
+
 
 t_lsnode	*add_init_lstok(t_lsnode *lstok, char *line)
 {
@@ -113,3 +84,35 @@ t_lsnode	*add_init_lstok(t_lsnode *lstok, char *line)
 	lexer = NULL;
 	return (lstok);
 }
+
+// int	delete_var(t_lsnode *lstok, t_env *env)
+// {
+// 	t_token	*temp;
+// 	int		check;
+// 	char	*val;
+// 	t_val	*head;
+
+// 	val = NULL;
+// 	temp = lstok->head;
+// 	head = env->head;
+// 	while (temp)
+// 	{
+// 		check = ft_filter_token2(temp->value);
+// 		if (check == -1)
+// 			return (0);
+// 		if (check_dollar(temp->value))
+// 		{
+// 			val = temp->value;
+// 			temp->value = search_var(temp->value, head, check);
+// 			if (temp->type == TOKEN_EXP
+// 				|| temp->type == TOKEN_DRINPUT
+// 				|| temp->type == TOKEN_RINPUT
+// 				|| temp->type == TOKEN_ROUTPUT
+// 				|| temp->type == TOKEN_DROUTPUT)
+// 				free(val);
+// 		}
+// 		temp = temp->next;
+// 	}
+// 	return (1);
+// :w
+// }

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/23 18:31:06 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:47:24 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,8 @@ char	*search_var(char *cmd, t_val *env, int check)
 	temp = NULL;
 	while (cmd[i])
 	{
-		if (check != 4)
-			cmd = remove_squote(cmd, &check, i);
-		if (cmd[i] == '$' && check_doll(cmd, i) && check != 1)
-		{
+		if (cmd[i] == '$' && check_doll(cmd, i))
 			new = fill_new(new, cmd, env, &i);
-			// if (check == 4)
-			// 	check = 0;
-		}
 		else
 		{
 			temp = malloc(2);

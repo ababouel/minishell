@@ -8,10 +8,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sun Jul 24 00:54:46 2022
+# Make data base, printed on Sun Jul 24 16:47:25 2022
 
 # Variables
 
+ 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -43,16 +44,17 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cf3w0033hz/T/vscode-ipc-609f3e09-1131-42c5-9496-2a219da934b4.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cf3w0033hz/T/vscode-ipc-f3a42954-0f2d-4f69-862b-eee78e00482d.sock
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /Users/ababouel/goinfre/homebrew/bin:/Users/ababouel/.brew/bin:/Users/ababouel/.brew/bin:/Users/ababouel/goinfre/.brew/bin:/Users/ababouel/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
- 
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # makefile (from `Makefile', line 16)
 CURVE = \e[33;3m
+# environment
+LaunchInstanceID = 6A2365DB-1626-4E68-B371-CBD05D554CAA
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -60,7 +62,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.OJuih9uT53/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.W7X3ndTCVJ/Listeners
 # automatic
 %F = $(notdir $%)
 # makefile (from `Makefile', line 23)
@@ -78,7 +80,7 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = /Users/ababouel
 # default
-MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
 VSCODE_CODE_CACHE_PATH = /Users/ababouel/Library/Application Support/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
 # environment
@@ -116,7 +118,8 @@ LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
-MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+ 
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
 # makefile (from `Makefile', line 34)
 INC = -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 # default
@@ -136,7 +139,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2200
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000002.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # makefile (from `Makefile', line 15)
@@ -145,6 +148,8 @@ YELLOW = \e[93;5;226m
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x18E1F:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # environment
@@ -157,6 +162,8 @@ PAGER = less
 LC_ALL = C
 # makefile (from `Makefile', line 17)
 RESET = \e[0m
+# environment
+SECURITYSESSIONID = 186a8
 # automatic
 ^F = $(notdir $^)
 # default
@@ -170,11 +177,11 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6942
+VSCODE_PID = 853
 # makefile (from `Makefile', line 24)
 FILES = main main_tool main_toolbis lexer/lexer lexer/lexerbis lexer/token lexer/lexerlst lexer/lexerlst parse/parstree parse/parselst/parsetool parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio parse/filter_token tools/ft_split tools/ft_strncmp tools/lsnode tools/ft_strdup tools/ft_strjoin tools/freestack tools/ft_isalpha tools/ft_itoa exec/built exec/cd exec/echo exec/export exec/export2 exec/unset exec/pwd_env exec/ft_which exec/execution exec/exectool env_var/tool_env/dup_env env_var/tool_env/rm_val env_var/tool_env/search_val env_var/tool_env/sorting env_var/env_var env_var/env_var_tools errors/tokens_check errors/errors
 # variable set hash-table stats:
-# Load=80/1024=8%, Rehash=0, Collisions=4/117=3%
+# Load=83/1024=8%, Rehash=0, Collisions=4/120=3%
 
 # Pattern-specific Variable Values
 
@@ -182,10 +189,10 @@ FILES = main main_tool main_toolbis lexer/lexer lexer/lexerbis lexer/token lexer
 
 # Directories
 
-# . (device 16777229, inode 4497696): 16 files, no impossibilities.
-# inc (device 16777229, inode 4497878): 8 files, no impossibilities so far.
+# . (device 16777225, inode 4497696): 17 files, no impossibilities.
+# inc (device 16777225, inode 4497878): 8 files, no impossibilities so far.
 
-# 24 files, no impossibilities in 2 directories.
+# 25 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -208,7 +215,7 @@ build/exec/built.o:
 build/main.o: main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `main'
-#  File does not exist.
+#  Last modified 2022-07-24 15:24:21
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -226,7 +233,7 @@ build/main.o: main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.
 # automatic
 # ^ := main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
 # automatic
-# ? := main.c inc/minishell.h inc/lib.h inc/token.h inc/lexer.h inc/exec.h
+# ? := inc/lexer.h
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/17=6%
 #  commands to execute (from `Makefile', line 45):
@@ -248,7 +255,6 @@ all: minishell
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
- 
 # Load=0/32=0%, Rehash=0, Collisions=0/6=0%
 
 # Not a target:
@@ -316,7 +322,7 @@ build/lexer/token.o:
 # Not a target:
 inc/lexer.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-21 18:55:03
+#  Last modified 2022-07-24 16:03:30
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -371,6 +377,7 @@ minishell: build/main.o build/main_tool.o build/main_toolbis.o build/lexer/lexer
 #  commands to execute (from `Makefile', line 40):
 	@printf "$(GRAY)-COMPILING Minishell...\n"
 	@$(CC) $(CFLAGS) $^ -o $@ -lreadline -L /Users/ababouel/.brew/opt/readline/lib 
+ 
 	@printf "$(GREEN)Done !"
 	
 
@@ -530,7 +537,6 @@ inc/lib.h:
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
- 
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
@@ -600,6 +606,6 @@ build/parse/parstree.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Jul 24 00:54:46 2022
+# Finished Make data base on Sun Jul 24 16:47:25 2022
 
  

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 12:57:21 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 00:59:06 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/24 16:47:24 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ int	check_check(char *value)
 	return (0);
 }
 
-char	*remove_quote(char *value, char c, int len)
+char	*remove_quote(char *value, char c)
 {
 	int	i;
 
 	i = -1;
-	while (value[++i] && i <= len)
+	while (value[++i])
 	{
 		if (value[i] == c)
 		{

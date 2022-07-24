@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/21 18:02:19 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/24 14:45:28 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int	printtoken(t_lsnode *lstok)
 	temp = lstok->head;
 	while (temp)
 	{
+
 		if (temp->type == TOKEN_PIPE
 			|| temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND
 			|| temp->type == TOKEN_SCL)
@@ -117,6 +118,11 @@ int	printtoken(t_lsnode *lstok)
 			return (printf("syntax error near unexpected token `%s'\n",
 					temp->value), 3);
 		}
+		if (temp->type == TOKEN)
+		if (!check_squote(value))
+			return (printf("syntax error\n"), -1);
+		if (!check_dquote(value))
+			return (printf("syntax error\n"), -1)
 		temp = token_while(temp);
 		if (temp == NULL)
 			return (0);

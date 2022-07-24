@@ -7,6 +7,7 @@
         "exec.h": "c",
         "chrono": "c",
         "lib.h": "c",
-        "minishell.h": "c"
+        "minishell.h": "c",
+        "lexer.h": "c"
     }
 }
