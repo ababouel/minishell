@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/24 17:18:48 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/24 19:53:14 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	exitcheck(t_env *env, char *line)
 {
 	if (!line)
 	{
-		write(1, "exit\n", 5);
+		printf("\033[11C\033[1Aexit\n");	
 		// env = ft_freedt(env);
 		env = NULL;
 		return (1);

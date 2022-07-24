@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/24 16:47:24 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:55:17 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,25 @@ t_token	*lexer_next_token(t_lexer *lexer)
 	return (init_token(TOKEN_EOL, "\0"));
 }
 
-t_token	*lexer_cat_token(t_lexer *lexer, t_token *token)
+static t_token	*lexer_parse_lsexp(t_lexer *lexer)
+{
+	char	*value;
+
+	value = ft_calloc(1, sizeof(char));
+	while (lexer->c != '\0')
+	{
+		if (!is_delim(lexer->c, " |'\"<>\0"))
+		{
+			value = ft_strjoinbis(value, &lexer->c);
+			lexer_advance(lexer);
+		}
+		else
+			break ;
+	}
+	return (init_token(TOKEN_EXP, value));
+}
+
+t_token	*lexer_cat_token(t_lexer *lexer)
 {
 	while (lexer->i < lexer->size && lexer->c != '\0')
 	{
@@ -53,7 +71,7 @@ t_token	*lexer_cat_token(t_lexer *lexer, t_token *token)
 			return (lexer_parse_quote(lexer, '\"', TOKEN_DQUOTE));
 		if (lexer->c == '$')
 			return (lexer_parse_dollar(lexer));
-		return (lexer_parse_token(lexer));
+		return (lexer_parse_lsexp(lexer));
 	}
 	return (init_token(TOKEN_EOL, "\0"));
 }

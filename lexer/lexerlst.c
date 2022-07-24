@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexerlst.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 05:29:58 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/21 01:57:49 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/24 19:32:05 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ t_token	*lexer_parse_exp(t_lexer *lexer)
 	{
 		if (isqted == 1 || isqtes == 1 || !is_delim(lexer->c, " |<>\0"))
 		{
-			isqted = is_qte(lexer, isqted, '"');
-			isqtes = is_qte(lexer, isqtes, '\'');
+			if ((isqted == 0 && isqtes == 0) || isqted == 1)
+				isqted = is_qte(lexer, isqted, '"');
+			if ((isqted == 0 && isqtes == 0) || isqtes == 1)
+				isqtes = is_qte(lexer, isqtes, '\'');
 			value = ft_strjoinbis(value, &lexer->c);
 			lexer_advance(lexer);
 		}
@@ -90,7 +92,7 @@ t_token	*lexer_parse_dollar(t_lexer *lexer)
 
 	len = 0;
 	c = lexer->src + lexer->i;
-	while (c[len] != '\0' && !is_delim(c[len], " |&<>"))
+	while (c[len] != '\0' && !is_delim(c[len], " |'\"&<>"))
 		len++;
 	if (len != 1 && c[1] == '$')
 	{

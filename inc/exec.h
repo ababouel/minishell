@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 18:36:16 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:45:31 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	handler(int hand);
 int		printtoken(t_lsnode *lstok);
 int		first_check(t_token *temp);
 int		second_check(t_token *temp);
-char	*search_var(char *cmd, t_val *env, int check);
+char	*search_var(char *cmd, t_val *env);
 char	*search_in_env(t_val *env, char *var);
 char	*return_new(char *new, char *env, int j);
-char	*remove_quote(char *value, char c, int len);
+char	*remove_quote(char *value, char c);
 void	ft_stat_pipe_dup(t_data *dt, t_lsdata *lsdata);
 void	ft_stat_pipe_close(t_data *dt);
 void	exec_pipe(t_data *dt);

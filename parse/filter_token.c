@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 12:57:21 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/24 16:47:24 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:43:54 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ int	ft_filter_token2(char *value)
 		return (printf("syntax error\n"), -1);
 	check = check_check(value);
 	if (check == 4)
-		value = remove_quote(value, '\"', ft_strlen(value));
+		value = remove_quote(value, '\"');
 	return (check);
 }

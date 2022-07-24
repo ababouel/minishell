@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/24 14:45:28 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 19:40:08 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,38 @@ t_token	*token_while(t_token *temp)
 	return (temp);
 }
 
+int    check_quote(char *value)
+{
+    int    i;
+
+    i = 0;
+    while (value[i])
+    {
+        if (value[i] == '"')
+        {
+            i++;
+            while (value[i] != '"')
+            {
+                i++;
+                if (value[i] == '\0')
+                    return (0);
+            }
+        }
+        else if (value[i] == '\'')
+        {
+            i++;
+            while (value[i] != '\'')
+            {
+                i++;
+                if (value[i] == '\0')
+                    return (0);
+            }
+        }
+        i++;
+    }
+    return (1);
+}
+
 int	printtoken(t_lsnode *lstok)
 {
 	t_token	*temp;
@@ -109,7 +141,11 @@ int	printtoken(t_lsnode *lstok)
 	temp = lstok->head;
 	while (temp)
 	{
-
+		if (!check_quote(temp->value))
+		{
+			g_l.state = 258;
+			return (printf("syntax error\n"), 0);
+		}
 		if (temp->type == TOKEN_PIPE
 			|| temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND
 			|| temp->type == TOKEN_SCL)
@@ -118,11 +154,6 @@ int	printtoken(t_lsnode *lstok)
 			return (printf("syntax error near unexpected token `%s'\n",
 					temp->value), 3);
 		}
-		if (temp->type == TOKEN)
-		if (!check_squote(value))
-			return (printf("syntax error\n"), -1);
-		if (!check_dquote(value))
-			return (printf("syntax error\n"), -1)
 		temp = token_while(temp);
 		if (temp == NULL)
 			return (0);

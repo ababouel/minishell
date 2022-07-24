@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/24 16:47:24 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:45:12 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ char	*remove_squote(char *cmd, int *check, int i)
 	if (cmd[i] == '\'' && *check != 4)
 	{
 		len = i;
-		cmd = remove_quote(cmd, '\'', len);
+		cmd = remove_quote(cmd, '\'');
 		(*check) += 1;
 	}
 	if (*check % 2 == 0 && *check != 4)
 	{
-		cmd = remove_quote(cmd, '\'', len);
+		cmd = remove_quote(cmd, '\'');
 		check = 0;
 		len = 0;
 	}
@@ -100,7 +100,7 @@ int	check_dollar(char *cmd)
 	return (0);
 }
 
-char	*search_var(char *cmd, t_val *env, int check)
+char	*search_var(char *cmd, t_val *env)
 {
 	int		i;
 	char	*new;
