@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/24 03:12:59 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 17:08:48 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,18 @@ static t_val	*search_plus(t_val *env, char *val)
     int sizeval;
     int sizeenv;
     int number;
-    
+
     sizeval = ft_strl(val, '+');
     number = 0;
     while(env && env->value != NULL)
     {
         sizeenv = ft_strl(env->value, '=');
+	// printf("val = %d\n", sizeval);
+	// 	printf("env = %d\n", sizeenv);
+	// 	printf("value = %s\n", env->value);
+	// 	printf("value2 = %s\n", val);
         number = ft_strncmp(env->value, val, sizeval);
+		// printf("num = %d\n", number);
         if (number == 0 && sizeenv == sizeval)
             break;     
         env = env->next;
@@ -78,21 +83,26 @@ static t_val	*equal_export(t_cmd *cmd, int i, t_val *env)
 	result = add_val(cmd->cmdarg[i]);
 	return (result);
 }
-static t_val	*plus_export(t_cmd *cmd, int i, t_val *env)
+static t_val	*plus_export(char *cmd, t_val *env)
 {
 	char	*temp;
+	char	*temp2;
 	t_val	*result;
 
 	temp = NULL;
-	result = search_plus(env, cmd->cmdarg[i]);
+	temp2 = NULL;
+	result = search_plus(env, cmd);
 	if (result)
 	{
-		temp = strchr(cmd->cmdarg[i], '=');
-		result->value = ft_strjoinbis(result->value, &temp[1]);	
+		temp = strchr(cmd, '=');
+		temp2 = strchr(result->value, '=');
+		if (temp2 == NULL)
+			result->value = ft_strjoinbis(result->value, &temp[0]);
+		else
+			result->value = ft_strjoinbis(result->value, &temp[1]);
 		return (NULL);
 	}
-	result = add_val(remove_fplus(cmd->cmdarg[i], '+'));
-	printf("%s\n", result->value);
+	result = add_val(remove_fplus(cmd, '+'));
 	return (result);
 }
 
@@ -101,10 +111,12 @@ static void	check_export(t_cmd *cmd, int i)
 	int		j;
 	int		check;
 	t_val	*result;
+	char	*temp;
 
 	j = 0;
 	check = 0;
 	result = NULL;
+	temp = NULL;
 	while (cmd->cmdarg[i][j])
 	{
 		if ((cmd->cmdarg[i][j] == '=' || (cmd->cmdarg[i][j] == '+'
@@ -112,12 +124,16 @@ static void	check_export(t_cmd *cmd, int i)
 		{	
 			if (cmd->cmdarg[i][j] == '+')
 			{
-				result = plus_export(cmd, i, cmd->env->head);
+				temp = ft_strdup(cmd->cmdarg[i]);
+				result = plus_export(cmd->cmdarg[i], cmd->env->head);
 				if (result)
 					add_node(cmd->env, result);
-				result = plus_export(cmd, i, cmd->export->head);
+				result = NULL;
+				result = plus_export(temp, cmd->export->head);
 				if (result)
 					add_node(cmd->export, result);
+				free (temp);
+				temp = NULL;
 				return ;
 			}
 			else
