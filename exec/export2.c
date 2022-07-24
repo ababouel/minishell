@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:40:14 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/23 18:24:08 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 02:02:16 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_val	*exportenv(t_cmd *cmd, int i, int j, int check)
 				cmd->cmdarg[i]), NULL);
 	else
 	{
-		result = search_val(cmd->env->head, cmd->cmdarg[i]);
+		result = search_val(cmd->export->head, cmd->cmdarg[i]);
 		if (result)
 			return NULL;
 		else

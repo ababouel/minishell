@@ -12,6 +12,7 @@ mkdir -p build/lexer
 cc  -Wall -Werror -Wextra -g -c lexer/lexerbis.c -o build/lexer/lexerbis.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/lexer
 cc  -Wall -Werror -Wextra -g -c lexer/token.c -o build/lexer/token.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build/lexer
 cc  -Wall -Werror -Wextra -g -c lexer/lexerlst.c -o build/lexer/lexerlst.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/parse
@@ -20,6 +21,7 @@ mkdir -p build/parse/parselst
 cc  -Wall -Werror -Wextra -g -c parse/parselst/parsetool.c -o build/parse/parselst/parsetool.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/parse/parselst
 cc  -Wall -Werror -Wextra -g -c parse/parselst/parsecmd.c -o build/parse/parselst/parsecmd.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build/parse/parselst
 cc  -Wall -Werror -Wextra -g -c parse/parselst/parsepipe.c -o build/parse/parselst/parsepipe.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/parse/parselst
@@ -34,6 +36,7 @@ mkdir -p build/tools
 cc  -Wall -Werror -Wextra -g -c tools/lsnode.c -o build/tools/lsnode.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/tools
 cc  -Wall -Werror -Wextra -g -c tools/ft_strdup.c -o build/tools/ft_strdup.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+ 
 mkdir -p build/tools
 cc  -Wall -Werror -Wextra -g -c tools/ft_strjoin.c -o build/tools/ft_strjoin.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
 mkdir -p build/tools

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 14:12:41 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 18:31:06 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 03:04:55 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ t_val   *add_val(char *env)
 
 void    add_node(t_env *env, t_val *val)
 {
+    t_val *temp;
+
+    temp = env->head;
     if (env->head == NULL)
     {
         env->head = val;
@@ -38,9 +41,11 @@ void    add_node(t_env *env, t_val *val)
     }
     else
     {
-        env->tail->next = val;
-        val->prev = env->tail;
-        env->tail = env->tail->next;
+        while (temp->next != NULL)
+            temp = temp->next;
+        temp->next = val;
+        val->prev = temp;
+        env->tail = val;
     }
     env->size += 1;
 }

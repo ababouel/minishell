@@ -6,11 +6,12 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 14:17:17 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 22:52:00 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/24 02:25:00 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
+
 static int ft_strlequal(char *val)
 {
 	size_t	len;
@@ -30,16 +31,15 @@ t_val   *search_val(t_val *env, char *val)
     int sizeenv;
     int number;
     
-    sizeval = ft_strlen(val);
+    sizeval = ft_strlequal(val);
     number = 0;
     while(env && env->value != NULL)
     {
         sizeenv = ft_strlequal(env->value);
         number = ft_strncmp(env->value, val, sizeval);
-        printf("compare=> %d && sizeenv => %d == sizeval => %d\n", number, sizeenv, sizeval); 
         if (number == 0 && sizeenv == sizeval)
-            return (env);     
+            break;     
         env = env->next;
     }
-    return (NULL);
+    return (env);
 }
