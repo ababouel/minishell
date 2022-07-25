@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsetool.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 09:37:45 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 15:40:06 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 00:59:39 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-t_data	*init_dt()
+t_data	*init_dt(void)
 {
 	t_data	*data;
 

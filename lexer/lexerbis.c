@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexerbis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/24 17:55:17 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 01:05:33 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_token	*lexer_cat_token(t_lexer *lexer)
 	while (lexer->i < lexer->size && lexer->c != '\0')
 	{
 		if (lexer->c == '\'')
-			return (lexer_parse_quote(lexer, '\'', TOKEN_SINQTE));	
+			return (lexer_parse_quote(lexer, '\'', TOKEN_SINQTE));
 		if (lexer->c == '"')
 			return (lexer_parse_quote(lexer, '\"', TOKEN_DQUOTE));
 		if (lexer->c == '$')

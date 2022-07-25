@@ -3,14 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   built.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:13:20 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/24 23:04:59 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 03:01:41 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/exec.h"
+#include "exec.h"
+
+static void	builtin_cmdargbis(t_data *data, t_cmd *cmd)
+{
+	if (!ft_strncmp(data->cmd.cmdarg[0],
+			"pwd", ft_strlen(data->cmd.cmdarg[0])))
+	{
+		g_l.state = ft_pwd();
+		exit(g_l.state);
+	}
+	else if (!ft_strncmp(data->cmd.cmdarg[0],
+			"echo", ft_strlen(data->cmd.cmdarg[0])))
+	{
+		g_l.state = ft_echo(cmd);
+		exit(g_l.state);
+	}
+}
+
+static void	builtin_cmdarg(t_data *data, t_cmd *cmd)
+{
+	if (data->pipe.statpipe != NUL
+		&& !ft_strncmp(data->cmd.cmdarg[0],
+			"export", ft_strlen(data->cmd.cmdarg[0])))
+	{
+		g_l.state = ft_export(cmd);
+		exit(g_l.state);
+	}
+	else if (data->pipe.statpipe != NUL
+		&& !ft_strncmp(data->cmd.cmdarg[0],
+			"unset", ft_strlen(data->cmd.cmdarg[0])))
+	{
+		g_l.state = ft_unset(cmd);
+		exit(g_l.state);
+	}
+}
 
 void	handler(int hand)
 {
@@ -52,17 +86,9 @@ void	built(t_data *data, t_lsdata *lsdata)
 	cmd = &data->cmd;
 	ft_stat_pipe_dup(data, lsdata);
 	redic_open(cmd);
-	if (data->pipe.statpipe != NUL && !ft_strncmp(data->cmd.cmdarg[0], "export", ft_strlen("export")))
-	{
-		g_l.state = ft_export(cmd);
-		exit(g_l.state);
-	}
-	else if (data->pipe.statpipe != NUL && !ft_strncmp(data->cmd.cmdarg[0], "unset", ft_strlen("unset")))
-	{
-		g_l.state = 0;
-		exit(g_l.state);
-	}
-	else if (cmd->pathcmd)
+	builtin_cmdarg(data, cmd);
+	builtin_cmdargbis(data, cmd);
+	if (cmd->pathcmd)
 		path_cmd(data);
 	else
 	{

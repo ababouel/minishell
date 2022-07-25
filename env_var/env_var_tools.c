@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_var_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:11:22 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/24 01:40:56 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 01:17:26 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*search_in_env(t_val *env, char *var)
 	{
 		j = 0;
 		while (result->value[j] != '=')
-			j++;	
+			j++;
 		new = return_new(new, result->value, j);
 		free (var);
 		return (new);

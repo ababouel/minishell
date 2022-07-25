@@ -6,11 +6,37 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 15:33:32 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/22 15:33:43 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 02:38:25 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib.h"
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	n;
+	int	sign;
+
+	i = 0;
+	n = 0;
+	sign = 1;
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -sign;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		n = n * 10 + (str[i] - '0');
+		i++;
+	}
+	return (n * sign);
+}
 
 static int	ft_start(int n)
 {

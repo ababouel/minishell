@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:47:35 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/23 22:04:49 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 01:06:26 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_unset(t_cmd *cmd)
 		if (error_unset(cmd, i))
 			return (1);
 		rm_var(vhead, cmd->cmdarg[i]);
-		rm_var(xhead, cmd->cmdarg[i]);	
+		rm_var(xhead, cmd->cmdarg[i]);
 		i++;
 	}
 	return (0);

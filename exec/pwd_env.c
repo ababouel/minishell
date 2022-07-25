@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:31:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/23 17:43:10 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 01:06:46 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_pwd(void)
 int	ft_env(t_cmd *cmd)
 {
 	t_val	*head;
-	
+
 	head = cmd->env->head;
 	if (cmd->cmdarg[1])
 	{

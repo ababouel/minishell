@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parstree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 16:52:26 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 17:56:48 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 01:00:16 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	numpipe(t_token *token)
 	return (len);
 }
 
-static t_data	*genlsdt(t_lsdata *lsdata, t_token *token, t_data *data, t_env *env)
+t_data	*genlsdt(t_lsdata *lsdata, t_token *token, t_data *data, t_env *env)
 {
 	while (token != NULL)
 	{

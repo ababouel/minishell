@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_toolbis.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:42:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/24 22:53:03 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 03:10:55 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,47 @@
 
 static int	execpathcmd(t_data *dt)
 {
-	if (dt->cmd.pathcmd != NULL)
-	{	
-		if (!ft_strncmp(dt->cmd.pathcmd,
+	if ((dt->cmd.pathcmd && !ft_strncmp(dt->cmd.pathcmd,
 				"/usr/bin/cd", ft_strlen(dt->cmd.pathcmd)))
-		{
-			g_l.state = ft_cd(&dt->cmd);
-			return (1);
-		}
+		|| !ft_strncmp(dt->cmd.cmdarg[0], "cd", ft_strlen(dt->cmd.cmdarg[0])))
+	{
+		g_l.state = ft_cd(&dt->cmd);
+		return (1);
 	}
 	return (0);
+}
+
+static void	built_exit(t_data *dt)
+{
+	if (!ft_strncmp(dt->cmd.cmdarg[0],
+			"exit", ft_strlen(dt->cmd.cmdarg[0])))
+	{
+		write(1, "exit\n", 6);
+		if (dt->cmd.cmdarg[1])
+			g_l.state = ft_atoi(dt->cmd.cmdarg[1]);
+		exit(g_l.state);
+	}
 }
 
 static int	execbuilt(t_data *dt)
 {
 	if (dt->cmd.cmdarg)
 	{
-		if (dt->pipe.statpipe == NUL && !ft_strncmp(dt->cmd.cmdarg[0], "export", ft_strlen("export")))
+		if (dt->pipe.statpipe == NUL
+			&& !ft_strncmp(dt->cmd.cmdarg[0],
+				"export", ft_strlen(dt->cmd.cmdarg[0])))
 		{
 			g_l.state = ft_export(&dt->cmd);
 			return (1);
 		}
-		else if (dt->pipe.statpipe == NUL && !ft_strncmp(dt->cmd.cmdarg[0], "unset", ft_strlen("unset")))
+		else if (dt->pipe.statpipe == NUL
+			&& !ft_strncmp(dt->cmd.cmdarg[0],
+				"unset", ft_strlen(dt->cmd.cmdarg[0])))
 		{
 			g_l.state = ft_unset(&dt->cmd);
 			return (1);
 		}
-		else if (!ft_strncmp(dt->cmd.cmdarg[0], "exit", ft_strlen("exit")))
-		{
-			write(1, "exit\n", 6);
-			exit(g_l.state);
-		}
+		built_exit(dt);
 	}
 	return (0);
 }

@@ -3,21 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 00:22:08 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 03:08:02 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+t_lsnode	*add_init_lstok(t_lsnode *lstok, char *line)
+{
+	t_lexer	*lexer;
+	t_token	*token;
+
+	lexer = NULL;
+	token = NULL;
+	init_stack(lstok);
+	lexer = init_lexer(line);
+	while (lexer->i < ft_strlen(line))
+	{
+		if (lexer->src[lexer->i] != '\0')
+			token = lexer_next_token(lexer);
+		if (token != NULL)
+			ins_next_node(lstok, (void *) token);
+	}
+	free(lexer);
+	lexer = NULL;
+	return (lstok);
+}
+
 static int	exitcheck(t_env *env, char *line)
 {
 	if (!line)
 	{
-		printf("\033[11C\033[1Aexit\n");	
-		// env = ft_freedt(env);
+		printf("\033[11C\033[1Aexit\n");
 		env = NULL;
 		return (1);
 	}
@@ -41,9 +61,11 @@ static void	loop_line(t_env *env, char *line)
 				if (lsdata.head->cmd.name || lsdata.head->cmd.cmdarg != NULL)
 					execution(&lsdata);
 			}
+			ft_freestack(&lstok);
+			ft_freetree(&lsdata);
 		}
-		ft_freestack(&lstok);
-		ft_freetree(&lsdata);
+		else
+			ft_freestackbis(&lstok);
 		free(line);
 	}
 }

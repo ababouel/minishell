@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/24 17:45:31 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 02:02:45 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,20 @@ void	redic_close(t_cmd *cmd);
 void	redic_open(t_cmd *cmd);
 char	**ft_freedt(char **data);
 char	*fill_new(char *new, char *cmd, t_val *env, int *i);
-void    sorting(t_val *val);
-t_val   *search_val(t_val *env, char *val);
-void    rm_var(t_val *val,char *var);
-void    add_node(t_env *env, t_val *val);
+void	sorting(t_val *val);
+t_val	*search_val(t_val *env, char *val);
+void	rm_var(t_val *val, char *var);
+void	add_node(t_env *env, t_val *val);
 void	init_env(t_env *env);
-void    dup_envis(t_env *lenv, char **env);
-t_val   *add_val(char *env);
+void	dup_envis(t_env *lenv, char **env);
+t_val	*add_val(char *env);
+char	*remove_fplus(char *value, char c);
+int		ft_strl(char *val, char c);
+t_val	*search_plus(t_val *env, char *val);
+t_val	*equal_export(t_cmd *cmd, int i, t_val *env);
+void	dup_plus_export(t_cmd *cmd, t_val *result, int i);
+void	dup_equal_export(t_cmd *cmd, t_val *result, int i);
+t_val	*plus_export(char *cmd, t_val *env);
+int		check_quote(char *value);
 
 #endif

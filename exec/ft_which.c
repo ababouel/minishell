@@ -31,7 +31,7 @@ char	*point_slash(char *cmd)
 		str = ft_strjoin(cwd, "/");
 		str = ft_strjoinbis(str, temp);
 	}
-	free (temp);
+	free(temp);
 	if (!access(str, X_OK))
 		return (str);
 	free(str);
@@ -61,7 +61,7 @@ char	*ft_access(char **spl, char *cmd, int j)
 char	*ft_which1(char *cmd, char **spl, int j)
 {
 	char	*access;
-	
+
 	access = ft_access(spl, cmd, j);
 	if (access)
 		return (access);
@@ -94,7 +94,7 @@ char	*ft_which(char *cmd, t_env *env)
 	char	*which;
 	t_val	*result;
 
-	which = NULL;	
+	which = NULL;
 	if (cmd[0] == '/')
 		return (ft_strdup(cmd));
 	if (cmd[0] == '.' && cmd[1] == '/')
@@ -102,9 +102,9 @@ char	*ft_which(char *cmd, t_env *env)
 	result = search_val(env->head, "PATH");
 	if (result)
 	{
-			which = ft_which2(cmd, result, which);
-			if (which)
-				return (which);
+		which = ft_which2(cmd, result, which);
+		if (which)
+			return (which);
 	}
 	return (NULL);
 }

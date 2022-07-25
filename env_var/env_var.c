@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 14:24:28 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/24 23:49:49 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 02:19:25 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ int	check_doll(char *cmd, int i)
 		return (1);
 }
 
-char	*join_new(char *new, char *var, t_val *env, int l)
+static char	*join_new(char *new, char *var, t_val *env, int l)
 {
-
 	var[l] = '\0';
 	var = search_in_env(env, var);
 	if (var)
@@ -35,6 +34,21 @@ char	*join_new(char *new, char *var, t_val *env, int l)
 	else
 		free (var);
 	return (new);
+}
+
+static char	*fill_newbis(char *cmd, char *var, int *i, int *l)
+{
+	while (cmd[*i] && cmd[*i] != '$'
+		&& (ft_isalpha(cmd[*i]) || ft_isdigit(cmd[*i])))
+	{
+		if (ft_isdigit(cmd[*i]) && cmd[*i - 1] == '$')
+		{
+			var[(*l)++] = cmd[(*i)++];
+			break ;
+		}
+		var[(*l)++] = cmd[(*i)++];
+	}
+	return (var);
 }
 
 char	*fill_new(char *new, char *cmd, t_val *env, int *i)
@@ -50,54 +64,10 @@ char	*fill_new(char *new, char *cmd, t_val *env, int *i)
 	if (cmd[*i] && cmd[*i] == '?')
 		var[l++] = cmd[(*i)++];
 	else
-	{
-		while (cmd[*i] && cmd[*i] != '$'
-			&& (ft_isalpha(cmd[*i]) || ft_isdigit(cmd[*i])))
-		{
-			if (ft_isdigit(cmd[*i]) && cmd[*i - 1] == '$')
-			{
-				var[l++] = cmd[(*i)++];
-				break ;
-			}
-			var[l++] = cmd[(*i)++];
-		}
-	}
+		var = fill_newbis(cmd, var, i, &l);
 	var[l] = '\0';
 	new = join_new(new, var, env, l);
 	return (new);
-}
-
-char	*remove_squote(char *cmd, int *check, int i)
-{
-	int	len;
-
-	if (cmd[i] == '\'' && *check != 4)
-	{
-		len = i;
-		cmd = remove_quote(cmd, '\'');
-		(*check) += 1;
-	}
-	if (*check % 2 == 0 && *check != 4)
-	{
-		cmd = remove_quote(cmd, '\'');
-		check = 0;
-		len = 0;
-	}
-	return (cmd);
-}
-
-int	check_dollar(char *cmd)
-{
-	int	i;
-
-	i = 0;
-	while (cmd[i])
-	{
-		if (cmd[i] == '$')
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 char	*search_var(char *cmd, t_val *env)
@@ -123,5 +93,5 @@ char	*search_var(char *cmd, t_val *env)
 			temp = NULL;
 		}
 	}
-		return (new);
+	return (new);
 }

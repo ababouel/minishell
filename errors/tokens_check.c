@@ -6,11 +6,11 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/24 21:48:35 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 02:03:47 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/exec.h"
+#include "exec.h"
 
 int	tokens_check(t_token *temp, int i)
 {
@@ -41,12 +41,11 @@ int	tokens_check(t_token *temp, int i)
 
 int	check_red(t_token *temp)
 {
-	if (temp->type == TOKEN_DRINPUT
-		|| temp->type == TOKEN_ROUTPUT || temp->type == TOKEN_DROUTPUT
-		|| temp->type == TOKEN_RINPUT)
+	if (temp->type == TOKEN_DRINPUT || temp->type == TOKEN_ROUTPUT
+		|| temp->type == TOKEN_DROUTPUT || temp->type == TOKEN_RINPUT)
 	{
 		if (temp->value == NULL)
-			return (printf("syntax error near unexpected token `newline'\n"), 0);
+			return (0);
 	}
 	return (1);
 }
@@ -65,7 +64,8 @@ int	check_pipe(t_token *temp)
 			if (temp->type == TOKEN_PIPE || temp->type == TOKEN_DPIPE
 				|| temp->type == TOKEN_DAND)
 				return (printf("syntax error near unexpected token `%s'\n",
-						temp->next->value), 0);
+						temp->next->value),
+					0);
 			else if (!temp->next || temp->next->type == TOKEN_SCL)
 				return (printf("syntax error: unexpected end of file\n"), 0);
 			else
@@ -75,57 +75,20 @@ int	check_pipe(t_token *temp)
 	return (1);
 }
 
-int    check_quote(char *value)
-{
-    int    i;
-
-    i = 0;
-    while (value[i])
-    {
-        if (value[i] == '"')
-        {
-            i++;
-            while (value[i] != '"')
-            {
-                i++;
-                if (value[i] == '\0')
-                    return (0);
-            }
-        }
-        else if (value[i] == '\'')
-        {
-            i++;
-            while (value[i] != '\'')
-            {
-                i++;
-                if (value[i] == '\0')
-                    return (0);
-            }
-        }
-        i++;
-    }
-    return (1);
-}
-
 t_token	*token_while(t_token *temp)
 {
 	int	i;
 
 	i = 0;
-	while (temp->type != TOKEN_PIPE
-		&& temp->type != TOKEN_DPIPE && temp->type != TOKEN_DAND)
+	while (temp->type != TOKEN_PIPE && temp->type != TOKEN_DPIPE
+		&& temp->type != TOKEN_DAND)
 	{
 		if (!tokens_check(temp, i))
 		{
 			g_l.state = 1;
 			return (NULL);
 		}
-		if (!check_red(temp))
-		{
-			g_l.state = 258;
-			return (NULL);
-		}
-		if (!check_quote(temp->value))
+		if (!check_red(temp) || !check_quote(temp->value))
 		{
 			g_l.state = 258;
 			return (NULL);
@@ -146,13 +109,13 @@ int	printtoken(t_lsnode *lstok)
 	temp = lstok->head;
 	while (temp)
 	{
-		if (temp->type == TOKEN_PIPE
-			|| temp->type == TOKEN_DPIPE || temp->type == TOKEN_DAND
-			|| temp->type == TOKEN_SCL)
+		if (temp->type == TOKEN_PIPE || temp->type == TOKEN_DPIPE
+			|| temp->type == TOKEN_DAND || temp->type == TOKEN_SCL)
 		{
 			g_l.state = 258;
 			return (printf("syntax error near unexpected token `%s'\n",
-					temp->value), 3);
+					temp->value),
+				3);
 		}
 		temp = token_while(temp);
 		if (temp == NULL)

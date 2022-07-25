@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lib.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/22 22:03:14 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 02:38:48 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int				ft_isalpha(char c);
 int				ft_ischar(char *str);
 int				ft_isdigit(int c);
 char			*ft_itoa(int n);
+int				ft_atoi(const char *str);
 
 #endif
