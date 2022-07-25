@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 19:33:06 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 22:00:46 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,10 @@ int	main(int ac, char **av, char **env)
 		g_l.g_pid = 1;
 		line = readline_t();
 		g_l.g_pid = 0;
-		add_history(line);
 		if (exitcheck(tenv, line))
 			exit(0);
+		if (ft_strlen(line) > 0)
+			add_history(line);
 		loop_line(tenv, line);
 	}
 	return (0);
