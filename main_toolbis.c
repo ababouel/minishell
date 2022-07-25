@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:42:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 03:51:29 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 15:00:54 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static int	execbuilt(t_data *dt)
 			&& !ft_strncmp(dt->cmd.cmdarg[0],
 				"export", ft_strlen(dt->cmd.cmdarg[0])))
 		{
-			printf("test\n");
 			g_l.state = ft_export(&dt->cmd);
 			return (1);
 		}
