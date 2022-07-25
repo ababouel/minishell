@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exectool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 02:00:34 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 15:11:33 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,13 @@ static void	open_here_doc(char *eof, t_cmd *cmd, int flag)
 {
 	char	*buf;
 	char	fdh;
-	int		i;
 
-	i = 0;
 	if (cmd->ffd[0] > 0)
 		close(cmd->ffd[0]);
 	fdh = open("/tmp/.hedoc", flag, 0777);
 	while (1337)
 	{
 		buf = readline("> ");
-		i = 0;
 		if (buf == NULL || (buf && ft_strcmp(buf, eof) == 0))
 			break ;
 		buf = search_var1(buf, cmd->env->head);

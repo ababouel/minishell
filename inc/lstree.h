@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:06:02 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 00:22:46 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 15:05:53 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ t_data	*init_dt(void);
 int		ft_filter_token2(char *value);
 void	ft_freestackbis(t_lsnode *sk);
 void	ft_freestack(t_lsnode *sk);
+void	ft_free_env(t_env *env);
 
 #endif

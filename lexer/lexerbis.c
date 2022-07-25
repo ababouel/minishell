@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexerbis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:28:54 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 01:05:33 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 15:15:09 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ t_token	*lexer_cat_token(t_lexer *lexer)
 			return (lexer_parse_quote(lexer, '\"', TOKEN_DQUOTE));
 		if (lexer->c == '$')
 			return (lexer_parse_dollar(lexer));
+		if (lexer->c == '<' && lexer->src[lexer->i + 1] == '<')
+			return (lexer_redirection(lexer, "<<", TOKEN_DRINPUT));
+		if (lexer->c == '>' && lexer->src[lexer->i + 1] == '>')
+			return (lexer_redirection(lexer, ">>", TOKEN_DROUTPUT));
+		if (lexer->c == '<')
+			return (lexer_redirection(lexer, "<", TOKEN_RINPUT));
+		if (lexer->c == '>')
+			return (lexer_redirection(lexer, ">", TOKEN_ROUTPUT));
 		return (lexer_parse_lsexp(lexer));
 	}
 	return (init_token(TOKEN_EOL, "\0"));

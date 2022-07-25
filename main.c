@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 03:08:02 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 15:54:01 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*readline_t(void)
+{
+	char			*buf;
+	struct termios	attr;
+	struct termios	old_attr;
+
+	tcgetattr(STDIN_FILENO, &old_attr);
+	attr = old_attr;
+	attr.c_lflag &= ~(ECHOCTL);
+	tcsetattr(STDIN_FILENO, TCSANOW | TCSAFLUSH, &attr);
+	buf = readline("minishell$ ");
+	tcsetattr(STDIN_FILENO, TCSANOW | TCSAFLUSH, &old_attr);
+	return (buf);
+}
 
 t_lsnode	*add_init_lstok(t_lsnode *lstok, char *line)
 {
@@ -38,7 +53,8 @@ static int	exitcheck(t_env *env, char *line)
 	if (!line)
 	{
 		printf("\033[11C\033[1Aexit\n");
-		env = NULL;
+		ft_free_env(env);
+		ft_free_env(g_l.export);
 		return (1);
 	}
 	return (0);

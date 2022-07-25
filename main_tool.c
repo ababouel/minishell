@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main_tool.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:36:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 02:31:32 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 15:57:13 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*readline_t(void)
-{
-	char			*buf;
-	struct termios	attr;
-	struct termios	old_attr;
-
-	tcgetattr(STDIN_FILENO, &old_attr);
-	attr = old_attr;
-	attr.c_lflag &= ~(ECHOCTL);
-	tcsetattr(STDIN_FILENO, TCSANOW | TCSAFLUSH, &attr);
-	buf = readline("minishell$ ");
-	tcsetattr(STDIN_FILENO, TCSANOW | TCSAFLUSH, &old_attr);
-	return (buf);
-}
 
 static t_lsnode	*add_init_lsexp(t_lsnode *lstok, char *line)
 {
@@ -92,19 +77,28 @@ static void	join_tokenlsexp(t_token *temp, t_token *head)
 	}
 }
 
+static int	check_head_type(t_token *head)
+{
+	if (head->type == TOKEN_EXP
+		|| head->type == TOKEN_RINPUT
+		|| head->type == TOKEN_ROUTPUT
+		|| head->type == TOKEN_DRINPUT
+		|| head->type == TOKEN_DROUTPUT)
+		return (1);
+	return (0);
+}
+
 int	delete_var(t_lsnode *lstok, t_env *env)
 {
 	t_token		*head;
-	t_lexer		*lexer;
 	t_lsnode	lsexp;
 	t_token		*temp;
 
-	lexer = NULL;
 	temp = NULL;
 	head = lstok->head;
 	while (head)
 	{
-		if (head->type == TOKEN_EXP)
+		if (check_head_type(head))
 		{
 			lsexp = *add_init_lsexp(&lsexp, head->value);
 			temp = lsexp.head;
