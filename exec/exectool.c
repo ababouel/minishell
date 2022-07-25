@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 15:11:33 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 22:32:49 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static void	open_here_doc(char *eof, t_cmd *cmd, int flag)
 		buf = readline("> ");
 		if (buf == NULL || (buf && ft_strcmp(buf, eof) == 0))
 			break ;
-		buf = search_var1(buf, cmd->env->head);
+		if (cmd->env != NULL)
+			buf = search_var1(buf, cmd->env->head);
 		write(fdh, buf, ft_strlen(buf));
 		write(fdh, "\n", 1);
 		free(buf);

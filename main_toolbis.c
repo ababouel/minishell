@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_toolbis.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:42:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 21:20:25 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 22:38:48 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	execpathcmd(t_data *dt)
 {
+	if (dt->cmd.name != NULL)
+		filein(&dt->cmd);
 	if ((dt->cmd.pathcmd && !ft_strncmp(dt->cmd.pathcmd,
 				"/usr/bin/cd", ft_strlen(dt->cmd.pathcmd)))
 		|| (dt->cmd.cmdarg && !ft_strncmp(dt->cmd.cmdarg[0],

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 19:42:13 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 22:27:14 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	redic_close(t_cmd *cmd)
 }
 
 void	redic_open(t_cmd *cmd)
-{
-	if (cmd->name != NULL)
-		filein(cmd);
+{	
 	if (cmd->ffd[0] > 0)
 		dup2(cmd->ffd[0], STDIN_FILENO);
 	if (cmd->ffd[1] > 0)
