@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:42:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 03:10:55 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 03:41:36 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static int	execpathcmd(t_data *dt)
 {
 	if ((dt->cmd.pathcmd && !ft_strncmp(dt->cmd.pathcmd,
 				"/usr/bin/cd", ft_strlen(dt->cmd.pathcmd)))
-		|| !ft_strncmp(dt->cmd.cmdarg[0], "cd", ft_strlen(dt->cmd.cmdarg[0])))
+		|| (dt->cmd.cmdarg && !ft_strncmp(dt->cmd.cmdarg[0],
+				"cd", ft_strlen(dt->cmd.cmdarg[0]))))
 	{
 		g_l.state = ft_cd(&dt->cmd);
 		return (1);
