@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/25 16:00:45 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:54:20 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_val	*plus_export(char *cmd, t_val *env)
 	result = search_plus(env, cmd);
 	if (result)
 	{
-		temp = strchr(cmd, '=');
-		temp2 = strchr(result->value, '=');
+		temp = ft_strchr(cmd, '=');
+		temp2 = ft_strchr(result->value, '=');
 		if (temp2 == NULL)
 			result->value = ft_strjoinbis(result->value, &temp[0]);
 		else
@@ -118,6 +118,6 @@ int	ft_export(t_cmd *cmd)
 					cmd->cmdarg[i]),
 				1);
 		i++;
-	}
+	}	
 	return (0);
 }

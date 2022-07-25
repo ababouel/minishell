@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:31:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/25 01:06:46 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 21:08:37 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	ft_pwd(void)
 int	ft_env(t_cmd *cmd)
 {
 	t_val	*head;
+	char	*str;
 
 	head = cmd->env->head;
 	if (cmd->cmdarg[1])
@@ -33,7 +34,9 @@ int	ft_env(t_cmd *cmd)
 	}
 	while (head)
 	{
-		printf("%s\n", head->value);
+		str = ft_strchr(head->value, '=');
+		if (str && str[0] == '=')
+			printf("%s\n", head->value);
 		head = head->next;
 	}
 	return (0);

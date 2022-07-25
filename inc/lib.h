@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lib.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 00:33:37 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 15:00:20 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 21:05:45 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ int				ft_ischar(char *str);
 int				ft_isdigit(int c);
 char			*ft_itoa(int n);
 int				ft_atoi(const char *str);
+char			*ft_strchr(const char *s, int c);
+void			ft_isfulldigit(char *str);
 
 #endif

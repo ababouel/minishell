@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:57:12 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/23 21:30:38 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:54:09 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*cd_home(t_val *env)
 
 	result = search_val(env, "HOME");
 	if (result)
-		return (strchr(result->value, '/'));
+		return (ft_strchr(result->value, '/'));
 	return (NULL);
 }
 

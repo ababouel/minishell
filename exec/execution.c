@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 02:34:18 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:42:13 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	exec_pipe(t_data *dt)
 	t_cmd	*cmd;
 
 	cmd = &dt->cmd;
-	if (execve(cmd->pathcmd, cmd->cmdarg, g_l.env) == -1)
+	if (execve(cmd->pathcmd, cmd->cmdarg, dup_env(cmd->export)) == -1)
 	{
 		g_l.state = 127;
 		printf("%s: command not found\n", cmd->cmdarg[0]);

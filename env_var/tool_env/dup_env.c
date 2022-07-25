@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 14:12:41 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 01:16:49 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 21:19:56 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,25 @@ void	dup_envis(t_env *lenv, char **env)
 	init_env(lenv);
 	while (env[x])
 		add_node(lenv, add_val(env[x++]));
+}
+
+char	**dup_env(t_env *lenv)
+{
+	t_val	*env;
+	char	**data;
+	int		x;
+
+	x = 0;
+	env = lenv->head;
+	if (lenv->size > 0)
+		data = malloc(sizeof(char *) * (lenv->size + 1));
+	while (env)
+	{
+		data[x] = ft_strdup(env->value);
+		env = env->next;
+		x++;
+	}
+	if (lenv->size > 0)
+		data[x] = NULL;
+	return (data);
 }

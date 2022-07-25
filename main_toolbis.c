@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:42:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 15:00:54 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 21:20:25 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,15 @@ static int	execpathcmd(t_data *dt)
 static void	built_exit(t_data *dt)
 {
 	if (ft_strlen(dt->cmd.cmdarg[0]) > 0 && !ft_strncmp(dt->cmd.cmdarg[0],
-			"exit", ft_strlen(dt->cmd.cmdarg[0])))
+			"exit", ft_strlen(dt->cmd.cmdarg[0]))
+		&& ft_strlen(dt->cmd.cmdarg[0]) == 4)
 	{
 		write(1, "exit\n", 6);
 		if (dt->cmd.cmdarg[1])
+		{
+			ft_isfulldigit(dt->cmd.cmdarg[1]);
 			g_l.state = ft_atoi(dt->cmd.cmdarg[1]);
+		}
 		exit(g_l.state);
 	}
 }
@@ -43,14 +47,16 @@ static int	execbuilt(t_data *dt)
 	{
 		if (dt->pipe.statpipe == NUL && ft_strlen(dt->cmd.cmdarg[0]) > 0
 			&& !ft_strncmp(dt->cmd.cmdarg[0],
-				"export", ft_strlen(dt->cmd.cmdarg[0])))
+				"export", ft_strlen("export"))
+			&& ft_strlen(dt->cmd.cmdarg[0]) == 6)
 		{
 			g_l.state = ft_export(&dt->cmd);
 			return (1);
 		}
 		else if (dt->pipe.statpipe == NUL && ft_strlen(dt->cmd.cmdarg[0]) > 0
 			&& !ft_strncmp(dt->cmd.cmdarg[0],
-				"unset", ft_strlen(dt->cmd.cmdarg[0])))
+				"unset", ft_strlen(dt->cmd.cmdarg[0]))
+			&& ft_strlen(dt->cmd.cmdarg[0]) == 5)
 		{
 			g_l.state = ft_unset(&dt->cmd);
 			return (1);

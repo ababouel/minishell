@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:13:20 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 03:45:36 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 21:13:19 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 static void	builtin_cmdargbis(t_data *data, t_cmd *cmd)
 {
 	if (!ft_strncmp(data->cmd.cmdarg[0],
-			"pwd", ft_strlen(data->cmd.cmdarg[0])))
+			"pwd", ft_strlen(data->cmd.cmdarg[0]))
+		&& ft_strlen(data->cmd.cmdarg[0]) == 3)
 	{
 		g_l.state = ft_pwd();
 		exit(g_l.state);
 	}
 	else if (!ft_strncmp(data->cmd.cmdarg[0],
-			"echo", ft_strlen(data->cmd.cmdarg[0])))
+			"echo", ft_strlen(data->cmd.cmdarg[0]))
+		&& ft_strlen(data->cmd.cmdarg[0]) == 4)
 	{
 		g_l.state = ft_echo(cmd);
 		exit(g_l.state);
@@ -32,14 +34,16 @@ static void	builtin_cmdarg(t_data *data, t_cmd *cmd)
 {
 	if (data->pipe.statpipe != NUL
 		&& !ft_strncmp(data->cmd.cmdarg[0],
-			"export", ft_strlen(data->cmd.cmdarg[0])))
+			"export", ft_strlen(data->cmd.cmdarg[0]))
+		&& ft_strlen(data->cmd.cmdarg[0]) == 6)
 	{
 		g_l.state = ft_export(cmd);
 		exit(g_l.state);
 	}
 	else if (data->pipe.statpipe != NUL
 		&& !ft_strncmp(data->cmd.cmdarg[0],
-			"unset", ft_strlen(data->cmd.cmdarg[0])))
+			"unset", ft_strlen(data->cmd.cmdarg[0]))
+		&& ft_strlen(data->cmd.cmdarg[0]) == 5)
 	{
 		g_l.state = ft_unset(cmd);
 		exit(g_l.state);

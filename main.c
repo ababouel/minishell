@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 15:54:01 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:33:06 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	main(int ac, char **av, char **env)
 	g_l.export = malloc(sizeof(t_env));
 	dup_envis(tenv, env);
 	dup_envis(g_l.export, env);
-	g_l.env = env;
 	while (1337)
 	{
 		g_l.g_pid = 1;

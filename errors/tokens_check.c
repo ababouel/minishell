@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:24:29 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/25 16:05:14 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 16:57:27 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,9 @@ int	check_pipe(t_token *temp)
 			return (printf("syntax error: unexpected end of file\n"), 0);
 		while (temp->next)
 		{
-			if (temp->next->type == TOKEN_SPACE)
-				temp = temp->next;
-			if (temp->type == TOKEN_PIPE || temp->type == TOKEN_DPIPE
-				|| temp->type == TOKEN_DAND)
+			if (temp->next->type == TOKEN_PIPE
+				|| temp->next->type == TOKEN_DPIPE
+				|| temp->next->type == TOKEN_DAND)
 				return (printf("syntax error near unexpected token `%s'\n",
 						temp->next->value),
 					0);
