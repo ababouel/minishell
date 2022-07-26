@@ -1,6 +1,10 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/ababouel/Desktop/minishell'
-make: Nothing to be done for `all'.
  
+mkdir -p build/exec
+cc  -Wall -Werror -Wextra -g -c exec/heredoc.c -o build/exec/heredoc.o -I ./inc -I /Users/ababouel/.brew/opt/readline/include
+printf "\e[33;2;37m-COMPILING Minishell...\n"
+cc  -Wall -Werror -Wextra -g build/main.o build/main_tool.o build/main_toolbis.o build/lexer/lexer.o build/lexer/lexerbis.o build/lexer/token.o build/lexer/lexerlst.o build/parse/parstree.o build/parse/parselst/parsetool.o build/parse/parselst/parsecmd.o build/parse/parselst/parsepipe.o build/parse/parselst/parseio.o build/parse/filter_token.o build/tools/ft_split.o build/tools/ft_strncmp.o build/tools/lsnode.o build/tools/free_env.o build/tools/ft_strdup.o build/tools/ft_strjoin.o build/tools/freestack.o build/tools/ft_isalpha.o build/tools/ft_itoa.o build/tools/ft_strchr.o build/exec/built.o build/exec/cd.o build/exec/echo.o build/exec/export.o build/exec/export2.o build/exec/unset.o build/exec/pwd_env.o build/exec/ft_which.o build/exec/execution.o build/exec/exectool.o build/exec/export_tools.o build/exec/heredoc.o build/env_var/tool_env/dup_env.o build/env_var/tool_env/rm_val.o build/env_var/tool_env/search_val.o build/env_var/tool_env/sorting.o build/env_var/env_var.o build/env_var/env_var_tools.o build/errors/tokens_check.o build/errors/errors.o -o minishell -lreadline -L /Users/ababouel/.brew/opt/readline/lib 
+printf "\033[0;32mDone !"
 make: Leaving directory `/Users/ababouel/Desktop/minishell'
  

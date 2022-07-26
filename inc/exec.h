@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 16:33:26 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/26 01:14:23 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ void	dup_plus_export(t_cmd *cmd, t_val *result, int i);
 void	dup_equal_export(t_cmd *cmd, t_val *result, int i);
 t_val	*plus_export(char *cmd, t_val *env);
 int		check_quote(char *value);
+void	creat_heredoc(t_cmd *cmd);
 
 #endif

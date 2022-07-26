@@ -6,7 +6,7 @@
 #    By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/10 23:35:29 by ababouel          #+#    #+#              #
-#    Updated: 2022/07/25 22:05:13 by ababouel         ###   ########.fr        #
+#    Updated: 2022/07/26 01:27:31 by ababouel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ FILES = main main_tool main_toolbis lexer/lexer lexer/lexerbis lexer/token lexer
 		parse/parselst/parsetool parse/parselst/parsecmd parse/parselst/parsepipe parse/parselst/parseio parse/filter_token\
 		tools/ft_split tools/ft_strncmp tools/lsnode tools/free_env tools/ft_strdup tools/ft_strjoin tools/freestack tools/ft_isalpha\
 		tools/ft_itoa tools/ft_strchr exec/built exec/cd exec/echo exec/export exec/export2 exec/unset exec/pwd_env exec/ft_which exec/execution exec/exectool\
-		exec/export_tools env_var/tool_env/dup_env env_var/tool_env/rm_val env_var/tool_env/search_val env_var/tool_env/sorting\
+		exec/export_tools exec/heredoc env_var/tool_env/dup_env env_var/tool_env/rm_val env_var/tool_env/search_val env_var/tool_env/sorting\
 		env_var/env_var env_var/env_var_tools\
 		errors/tokens_check errors/errors
 		

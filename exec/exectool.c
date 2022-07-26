@@ -6,60 +6,19 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 06:32:14 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 22:32:49 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/26 01:39:19 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-static char	*search_var1(char *cmd, t_val *env)
+static void	open_here_doc(t_cmd *cmd, int flag)
 {
-	int		i;
-	char	*new;
-	char	*temp;
-
-	i = 0;
-	new = NULL;
-	temp = NULL;
-	while (cmd[i])
-	{
-		if (cmd[i] == '$')
-			new = fill_new(new, cmd, env, &i);
-		else
-		{
-			temp = malloc(2);
-			temp[0] = cmd[i++];
-			temp[1] = '\0';
-			new = ft_strjoinbis(new, temp);
-			free(temp);
-		}
-	}
-	return (new);
-}
-
-static void	open_here_doc(char *eof, t_cmd *cmd, int flag)
-{
-	char	*buf;
-	char	fdh;
-
 	if (cmd->ffd[0] > 0)
 		close(cmd->ffd[0]);
-	fdh = open("/tmp/.hedoc", flag, 0777);
-	while (1337)
-	{
-		buf = readline("> ");
-		if (buf == NULL || (buf && ft_strcmp(buf, eof) == 0))
-			break ;
-		if (cmd->env != NULL)
-			buf = search_var1(buf, cmd->env->head);
-		write(fdh, buf, ft_strlen(buf));
-		write(fdh, "\n", 1);
-		free(buf);
-	}
-	free(buf);
-	buf = NULL;
-	close(fdh);
-	cmd->ffd[0] = open("/tmp/.hedoc", O_RDONLY, 0644);
+	if (cmd->cmdarg != NULL)
+		creat_heredoc(cmd);
+	cmd->ffd[0] = open("/tmp/.hedoc", flag, 0644);
 }
 
 static void	openfileredic(char *file, int *fd, int flags)
@@ -87,7 +46,7 @@ int	filein(t_cmd *cmd)
 	while (file[x].file != NULL)
 	{
 		if (file[x].type == TOKEN_DRINPUT)
-			open_here_doc(file[x].file, cmd, O_CREAT | O_RDWR | O_TRUNC);
+			open_here_doc(cmd, O_RDONLY);
 		if (file[x].type == TOKEN_RINPUT)
 			openfileredic(file[x].file, &cmd->ffd[0], O_RDONLY);
 		if (file[x].type == TOKEN_ROUTPUT)
