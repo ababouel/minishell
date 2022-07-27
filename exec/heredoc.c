@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 01:20:41 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/26 01:41:01 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/27 01:45:59 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static void	heredocbis(t_file *file, t_cmd *cmd, int x)
 	while (1337)
 	{
 		buf = readline("> ");
-		if (buf == NULL || (buf && ft_strcmp(buf, file[x].file) == 0))
+		if (buf == NULL || (buf && ft_strncmp(buf, file[x].file, ft_strlen(file[x].file)) == 0))
 			break ;
-		if (cmd->env != NULL)
+		if (cmd->env != NULL && buf != file[x].file)
 			buf = search_var1(buf, cmd->env->head);
 		write(fdh, buf, ft_strlen(buf));
 		write(fdh, "\n", 1);

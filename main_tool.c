@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:36:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 23:28:55 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/27 01:47:34 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static int	check_head_type(t_token *head)
 	if (head->type == TOKEN_EXP
 		|| head->type == TOKEN_RINPUT
 		|| head->type == TOKEN_ROUTPUT
-		|| head->type == TOKEN_DRINPUT
 		|| head->type == TOKEN_DROUTPUT)
 		return (1);
 	return (0);
