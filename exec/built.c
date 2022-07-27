@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:13:20 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 03:45:36 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/27 01:12:32 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,13 @@ void	built(t_data *data, t_lsdata *lsdata)
 		path_cmd(data);
 	else
 	{
-		printf("%s: command not found\n", cmd->cmdarg[0]);
-		g_l.state = 127;
+		if (access(cmd->cmdarg[0], X_OK) == -1)
+			g_l.state = 126;
+		else
+			g_l.state = 127;
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(cmd->cmdarg[0], 2);
+		perror(" ");
 		exit(g_l.state);
 	}
 }

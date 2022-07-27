@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 02:34:18 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/27 01:13:32 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,18 @@ void	redic_open(t_cmd *cmd)
 void	exec_pipe(t_data *dt)
 {
 	t_cmd	*cmd;
+	// char	*str;
 
 	cmd = &dt->cmd;
 	if (execve(cmd->pathcmd, cmd->cmdarg, g_l.env) == -1)
 	{
-		g_l.state = 127;
-		printf("%s: command not found\n", cmd->cmdarg[0]);
+		if (access(cmd->cmdarg[0], X_OK) == -1)
+			g_l.state = 126;
+		else
+			g_l.state = 127;
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(cmd->cmdarg[0], 2);
+		perror(" ");
 	}
 	exit(g_l.state);
 }

@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:01:49 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/23 18:24:32 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/27 01:23:30 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char	*point_slash(char *cmd)
 		str = ft_strjoin(cwd, "/");
 		str = ft_strjoinbis(str, temp);
 	}
-	free(temp);
 	if (!access(str, X_OK))
 		return (str);
 	free(str);
@@ -95,10 +94,8 @@ char	*ft_which(char *cmd, t_env *env)
 	t_val	*result;
 
 	which = NULL;
-	if (cmd[0] == '/')
+	if (strchr(cmd,'/') != NULL)
 		return (ft_strdup(cmd));
-	if (cmd[0] == '.' && cmd[1] == '/')
-		return (point_slash(cmd));
 	result = search_val(env->head, "PATH");
 	if (result)
 	{
