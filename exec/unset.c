@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:47:35 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/25 01:06:26 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 16:23:51 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,14 @@ static int	error_unset(t_cmd *cmd, int i)
 int	ft_unset(t_cmd *cmd)
 {
 	int		i;
-	t_val	*vhead;
-	t_val	*xhead;
 
 	i = 1;
-	vhead = cmd->env->head;
-	xhead = cmd->export->head;
 	while (cmd->cmdarg[i])
 	{
 		if (error_unset(cmd, i))
 			return (1);
-		rm_var(vhead, cmd->cmdarg[i]);
-		rm_var(xhead, cmd->cmdarg[i]);
+		rm_var(cmd->env, cmd->cmdarg[i]);
+		rm_var(cmd->export, cmd->cmdarg[i]);
 		i++;
 	}
 	return (0);

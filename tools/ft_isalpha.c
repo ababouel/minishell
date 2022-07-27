@@ -6,17 +6,35 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 20:53:36 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/20 13:22:03 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 21:07:04 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lib.h"
+#include "lib.h"
+#include "exec.h"
 
 int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (1);
 	return (0);
+}
+
+void	ft_isfulldigit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+		{
+			g_l.state = 255;
+			printf("exit: %s: numeric argument required\n", str);
+			exit (g_l.state);
+		}
+		i++;
+	}
 }
 
 int	ft_isprint(int c)

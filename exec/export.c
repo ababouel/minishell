@@ -6,7 +6,7 @@
 /*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:51 by sismaili          #+#    #+#             */
-/*   Updated: 2022/07/25 03:43:43 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:54:20 by sismaili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_val	*plus_export(char *cmd, t_val *env)
 	result = search_plus(env, cmd);
 	if (result)
 	{
-		temp = strchr(cmd, '=');
-		temp2 = strchr(result->value, '=');
+		temp = ft_strchr(cmd, '=');
+		temp2 = ft_strchr(result->value, '=');
 		if (temp2 == NULL)
 			result->value = ft_strjoinbis(result->value, &temp[0]);
 		else
@@ -37,11 +37,8 @@ t_val	*plus_export(char *cmd, t_val *env)
 
 static int	tools_export(t_cmd *cmd, t_val *result, int i, int j)
 {
-	int	check;
-
-	check = 0;
 	if ((cmd->cmdarg[i][j] == '=' || (cmd->cmdarg[i][j] == '+'
-		&& cmd->cmdarg[i][j + 1] == '=')) && check == 0)
+		&& cmd->cmdarg[i][j + 1] == '=')))
 	{
 		if (cmd->cmdarg[i][j] == '+')
 		{
@@ -54,9 +51,6 @@ static int	tools_export(t_cmd *cmd, t_val *result, int i, int j)
 			return (0);
 		}
 	}
-	if (!ft_isalpha(cmd->cmdarg[i][j]) && cmd->cmdarg[i][j] != '_'
-		&& !ft_isdigit(cmd->cmdarg[i][j]))
-		check = 1;
 	return (1);
 }
 
@@ -71,8 +65,11 @@ static void	check_export(t_cmd *cmd, int i)
 	result = NULL;
 	while (cmd->cmdarg[i][j])
 	{
-		if (!tools_export(cmd, result, i, j))
-			return ;
+		if (check == 0)
+		{
+			if (!tools_export(cmd, result, i, j))
+				return ;
+		}
 		if (!ft_isalpha(cmd->cmdarg[i][j]) && cmd->cmdarg[i][j] != '_'
 			&& !ft_isdigit(cmd->cmdarg[i][j]))
 			check = 1;
@@ -121,6 +118,6 @@ int	ft_export(t_cmd *cmd)
 					cmd->cmdarg[i]),
 				1);
 		i++;
-	}
+	}	
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 03:09:46 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 02:02:45 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/26 01:14:23 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**ft_freedt(char **data);
 char	*fill_new(char *new, char *cmd, t_val *env, int *i);
 void	sorting(t_val *val);
 t_val	*search_val(t_val *env, char *val);
-void	rm_var(t_val *val, char *var);
+void	rm_var(t_env *val, char *var);
 void	add_node(t_env *env, t_val *val);
 void	init_env(t_env *env);
 void	dup_envis(t_env *lenv, char **env);
@@ -63,5 +63,6 @@ void	dup_plus_export(t_cmd *cmd, t_val *result, int i);
 void	dup_equal_export(t_cmd *cmd, t_val *result, int i);
 t_val	*plus_export(char *cmd, t_val *env);
 int		check_quote(char *value);
+void	creat_heredoc(t_cmd *cmd);
 
 #endif

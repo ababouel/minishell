@@ -6,7 +6,7 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:36:12 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 15:57:13 by ababouel         ###   ########.fr       */
+/*   Updated: 2022/07/25 23:28:55 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	join_tokenlsexp(t_token *temp, t_token *head)
 			else
 				head->value = ft_strdup("");
 		}
-		else
+		else if (temp->value != NULL)
 			head->value = ft_strjoinbis(head->value, temp->value);
 		temp = temp->next;
 	}

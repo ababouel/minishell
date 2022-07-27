@@ -6,7 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:13:20 by ababouel          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/27 01:12:32 by ababouel         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/25 21:13:19 by sismaili         ###   ########.fr       */
+>>>>>>> 65ed65745d7785e4f61b009c854769cc203fd045
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +19,15 @@
 static void	builtin_cmdargbis(t_data *data, t_cmd *cmd)
 {
 	if (!ft_strncmp(data->cmd.cmdarg[0],
-			"pwd", ft_strlen(data->cmd.cmdarg[0])))
+			"pwd", ft_strlen(data->cmd.cmdarg[0]))
+		&& ft_strlen(data->cmd.cmdarg[0]) == 3)
 	{
 		g_l.state = ft_pwd();
 		exit(g_l.state);
 	}
 	else if (!ft_strncmp(data->cmd.cmdarg[0],
-			"echo", ft_strlen(data->cmd.cmdarg[0])))
+			"echo", ft_strlen(data->cmd.cmdarg[0]))
+		&& ft_strlen(data->cmd.cmdarg[0]) == 4)
 	{
 		g_l.state = ft_echo(cmd);
 		exit(g_l.state);
@@ -32,14 +38,16 @@ static void	builtin_cmdarg(t_data *data, t_cmd *cmd)
 {
 	if (data->pipe.statpipe != NUL
 		&& !ft_strncmp(data->cmd.cmdarg[0],
-			"export", ft_strlen(data->cmd.cmdarg[0])))
+			"export", ft_strlen(data->cmd.cmdarg[0]))
+		&& ft_strlen(data->cmd.cmdarg[0]) == 6)
 	{
 		g_l.state = ft_export(cmd);
 		exit(g_l.state);
 	}
 	else if (data->pipe.statpipe != NUL
 		&& !ft_strncmp(data->cmd.cmdarg[0],
-			"unset", ft_strlen(data->cmd.cmdarg[0])))
+			"unset", ft_strlen(data->cmd.cmdarg[0]))
+		&& ft_strlen(data->cmd.cmdarg[0]) == 5)
 	{
 		g_l.state = ft_unset(cmd);
 		exit(g_l.state);

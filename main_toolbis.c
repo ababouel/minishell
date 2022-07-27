@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_toolbis.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:42:47 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 03:51:29 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/26 01:36:12 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	execpathcmd(t_data *dt)
 {
+	if (dt->cmd.name != NULL && dt->cmd.cmdarg == NULL)
+		creat_heredoc(&dt->cmd);
 	if ((dt->cmd.pathcmd && !ft_strncmp(dt->cmd.pathcmd,
 				"/usr/bin/cd", ft_strlen(dt->cmd.pathcmd)))
 		|| (dt->cmd.cmdarg && !ft_strncmp(dt->cmd.cmdarg[0],
@@ -28,11 +30,15 @@ static int	execpathcmd(t_data *dt)
 static void	built_exit(t_data *dt)
 {
 	if (ft_strlen(dt->cmd.cmdarg[0]) > 0 && !ft_strncmp(dt->cmd.cmdarg[0],
-			"exit", ft_strlen(dt->cmd.cmdarg[0])))
+			"exit", ft_strlen(dt->cmd.cmdarg[0]))
+		&& ft_strlen(dt->cmd.cmdarg[0]) == 4)
 	{
 		write(1, "exit\n", 6);
 		if (dt->cmd.cmdarg[1])
+		{
+			ft_isfulldigit(dt->cmd.cmdarg[1]);
 			g_l.state = ft_atoi(dt->cmd.cmdarg[1]);
+		}
 		exit(g_l.state);
 	}
 }
@@ -43,15 +49,16 @@ static int	execbuilt(t_data *dt)
 	{
 		if (dt->pipe.statpipe == NUL && ft_strlen(dt->cmd.cmdarg[0]) > 0
 			&& !ft_strncmp(dt->cmd.cmdarg[0],
-				"export", ft_strlen(dt->cmd.cmdarg[0])))
+				"export", ft_strlen("export"))
+			&& ft_strlen(dt->cmd.cmdarg[0]) == 6)
 		{
-			printf("test\n");
 			g_l.state = ft_export(&dt->cmd);
 			return (1);
 		}
 		else if (dt->pipe.statpipe == NUL && ft_strlen(dt->cmd.cmdarg[0]) > 0
 			&& !ft_strncmp(dt->cmd.cmdarg[0],
-				"unset", ft_strlen(dt->cmd.cmdarg[0])))
+				"unset", ft_strlen(dt->cmd.cmdarg[0]))
+			&& ft_strlen(dt->cmd.cmdarg[0]) == 5)
 		{
 			g_l.state = ft_unset(&dt->cmd);
 			return (1);

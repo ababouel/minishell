@@ -6,7 +6,11 @@
 /*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:11:09 by ababouel          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/27 01:13:32 by ababouel         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/26 01:26:58 by ababouel         ###   ########.fr       */
+>>>>>>> 65ed65745d7785e4f61b009c854769cc203fd045
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +26,7 @@ void	redic_close(t_cmd *cmd)
 }
 
 void	redic_open(t_cmd *cmd)
-{
+{	
 	if (cmd->name != NULL)
 		filein(cmd);
 	if (cmd->ffd[0] > 0)
@@ -39,7 +43,7 @@ void	exec_pipe(t_data *dt)
 	// char	*str;
 
 	cmd = &dt->cmd;
-	if (execve(cmd->pathcmd, cmd->cmdarg, g_l.env) == -1)
+	if (execve(cmd->pathcmd, cmd->cmdarg, dup_env(cmd->export)) == -1)
 	{
 		if (access(cmd->cmdarg[0], X_OK) == -1)
 			g_l.state = 126;
