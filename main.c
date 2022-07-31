@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sismaili <sismaili@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ababouel <ababouel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 04:14:09 by ababouel          #+#    #+#             */
-/*   Updated: 2022/07/25 22:00:46 by sismaili         ###   ########.fr       */
+/*   Updated: 2022/07/31 05:42:27 by ababouel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char	*readline_t(void)
 	attr.c_lflag &= ~(ECHOCTL);
 	tcsetattr(STDIN_FILENO, TCSANOW | TCSAFLUSH, &attr);
 	buf = readline("minishell$ ");
-	tcsetattr(STDIN_FILENO, TCSANOW | TCSAFLUSH, &old_attr);
 	return (buf);
 }
 
@@ -102,7 +101,7 @@ int	main(int ac, char **av, char **env)
 	while (1337)
 	{
 		g_l.g_pid = 1;
-		line = readline_t();
+		line = readline_t(); 
 		g_l.g_pid = 0;
 		if (exitcheck(tenv, line))
 			exit(0);
